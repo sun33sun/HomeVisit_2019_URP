@@ -12,7 +12,8 @@ namespace QFramework.Example
 		protected override void OnInit(IUIData uiData = null)
 		{
 			mData = uiData as ButtonPanelData ?? new ButtonPanelData();
-			// please add init code here
+
+			btnSeting.onClick.AddListener(SwitchSettingBtn);
 		}
 		
 		protected override void OnOpen(IUIData uiData = null)
@@ -29,6 +30,22 @@ namespace QFramework.Example
 		
 		protected override void OnClose()
 		{
+		}
+
+		void SwitchSettingBtn()
+		{
+			if (btnKnowledge.gameObject.activeInHierarchy)
+			{
+				btnKnowledge.gameObject.SetActive(false);
+				btnTestBrief.gameObject.SetActive(false);
+				btnTestReport.gameObject.SetActive(false);
+			}
+			else
+			{
+				btnKnowledge.gameObject.SetActive(true);
+				btnTestBrief.gameObject.SetActive(true);
+				btnTestReport.gameObject.SetActive(true);
+			}
 		}
 	}
 }
