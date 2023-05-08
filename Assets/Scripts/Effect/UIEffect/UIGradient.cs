@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace HomeVisit_URP.UIEffect
+namespace HomeVisit.UIEffect
 {
 	[AddComponentMenu("UI/Effects/UIGradient")]
 	public class UIGradient : BaseMeshEffect

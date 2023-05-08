@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace HomeVisit_URP.UI
+namespace HomeVisit.UI
 {
 	public class CommunicationStepUI : MonoBehaviour
 	{

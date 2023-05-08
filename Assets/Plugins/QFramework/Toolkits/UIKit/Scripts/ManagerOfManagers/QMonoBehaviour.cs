@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  ****************************************************************************/
 
-namespace QFramework 
+namespace QFramework
 {
 	using UnityEngine;
 	using System;
@@ -32,15 +32,15 @@ namespace QFramework
 	public abstract class QMonoBehaviour : MonoBehaviour
 	{
 		protected bool mReceiveMsgOnlyObjActive = true;
-		
-		public void Process (int eventId, params object[] param)  
+
+		public void Process(int eventId, params object[] param)
 		{
 			if (mReceiveMsgOnlyObjActive && gameObject.activeInHierarchy || !mReceiveMsgOnlyObjActive)
 			{
 				var msg = param[0] as IMsg;
 				ProcessMsg(eventId, msg as QMsg);
 				msg.Processed = true;
-				
+
 				if (msg.ReuseAble)
 				{
 					msg.Recycle2Cache();
@@ -48,28 +48,28 @@ namespace QFramework
 			}
 		}
 
-		protected virtual void ProcessMsg (int eventId,QMsg msg) {}
+		protected virtual void ProcessMsg(int eventId, QMsg msg) { }
 
-		
+
 		public abstract IManager Manager { get; }
-			
+
 		public virtual void Show()
 		{
-			gameObject.SetActive (true);
+			gameObject.SetActive(true);
 
-			OnShow ();
+			OnShow();
 		}
 
-		protected virtual void OnShow() {}
+		protected virtual void OnShow() { }
 
 		public virtual void Hide()
 		{
-			OnHide ();
+			OnHide();
 
-			gameObject.SetActive (false);
+			gameObject.SetActive(false);
 		}
 
-		protected virtual void OnHide() {}
+		protected virtual void OnHide() { }
 
 		protected void RegisterEvents<T>(params T[] eventIDs) where T : IConvertible
 		{
@@ -84,7 +84,7 @@ namespace QFramework
 			mCachedEventIds.Add(eventId.ToUInt16(null));
 			Manager.RegisterEvent(eventId, Process);
 		}
-		
+
 		protected void UnRegisterEvent<T>(T eventId) where T : IConvertible
 		{
 			mCachedEventIds.Remove(eventId.ToUInt16(null));
@@ -95,7 +95,7 @@ namespace QFramework
 		{
 			if (null != mPrivateEventIds)
 			{
-				mPrivateEventIds.ForEach(id => Manager.UnRegisterEvent(id,Process));
+				mPrivateEventIds.ForEach(id => Manager.UnRegisterEvent(id, Process));
 			}
 		}
 
@@ -103,28 +103,28 @@ namespace QFramework
 		{
 			Manager.SendMsg(msg);
 		}
-		
-        public virtual void SendEvent<T>(T eventId) where T : IConvertible
+
+		public virtual void SendEvent<T>(T eventId) where T : IConvertible
 		{
 			Manager.SendEvent(eventId);
 		}
-		
+
 		private List<ushort> mPrivateEventIds = null;
-		
+
 		private List<ushort> mCachedEventIds
 		{
 			get { return mPrivateEventIds ?? (mPrivateEventIds = new List<ushort>()); }
 		}
 
 		protected virtual void OnDestroy()
-		{			
-			if (Application.isPlaying) 
+		{
+			if (Application.isPlaying)
 			{
 				OnBeforeDestroy();
 				UnRegisterAllEvent();
 			}
 		}
-		
-	    protected virtual void OnBeforeDestroy(){}
+
+		protected virtual void OnBeforeDestroy() { }
 	}
 }

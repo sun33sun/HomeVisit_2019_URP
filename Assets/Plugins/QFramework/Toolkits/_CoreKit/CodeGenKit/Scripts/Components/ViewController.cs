@@ -26,5 +26,10 @@ namespace QFramework
         [HideInInspector] public string PrefabFolder = string.Empty;
 
         public string TemplateName => nameof(ViewController);
+
+  //      public static Hide()
+		//{
+
+		//}
     }
 }
