@@ -3,9 +3,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using QFramework;
 
-namespace QFramework.Example
+namespace HomeVisit.UI
 {
-	// Generate Id:b35537ee-b4ed-4076-bb9d-e014a6aa7792
+	// Generate Id:2fe5d7eb-078d-4dd9-bf60-a280f617f97c
 	public partial class ButtonPanel
 	{
 		public const string Name = "ButtonPanel";
@@ -20,7 +20,14 @@ namespace QFramework.Example
 		public UnityEngine.UI.Button btnTestReport;
 		[SerializeField]
 		public UnityEngine.UI.Button btnTestBrief;
-		
+		[SerializeField]
+		public UnityEngine.UI.Image imgTip;
+		[SerializeField]
+		public TMPro.TextMeshProUGUI tmpTip;
+
+		KnowledgeExamPanel knowledgeExamPanel = null;
+		TestReportPanel testReportPanel = null;
+
 		private ButtonPanelData mPrivateData = null;
 		
 		protected override void ClearUIComponents()
@@ -30,6 +37,8 @@ namespace QFramework.Example
 			btnKnowledge = null;
 			btnTestReport = null;
 			btnTestBrief = null;
+			imgTip = null;
+			tmpTip = null;
 			
 			mData = null;
 		}

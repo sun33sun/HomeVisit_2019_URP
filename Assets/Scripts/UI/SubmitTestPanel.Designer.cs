@@ -3,15 +3,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using QFramework;
 
-namespace QFramework.Example
+namespace HomeVisit.UI
 {
-	// Generate Id:ca320587-6f8b-462f-8012-f86503b439fb
+	// Generate Id:535ce2ac-39a7-4667-8b3b-eec95b97cff0
 	public partial class SubmitTestPanel
 	{
 		public const string Name = "SubmitTestPanel";
 		
-		[SerializeField]
-		public TMPro.TextMeshProUGUI tmpTIp;
 		[SerializeField]
 		public UnityEngine.UI.Button btnCancel;
 		[SerializeField]
@@ -21,7 +19,6 @@ namespace QFramework.Example
 		
 		protected override void ClearUIComponents()
 		{
-			tmpTIp = null;
 			btnCancel = null;
 			btnConfirm = null;
 			

@@ -1,0 +1,41 @@
+ManifestFileVersion: 0
+CRC: 333602660
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 75998ae0337e56b13895c6c10f828f96
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 1270b93765fd3dfe99f109ef2a7ca1ba
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 216dcb56655ffec40a55cbeddfd98f66, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0d51f3a7c41ab0346b49ae50d456bece, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 21624ba93b6fe624da2471d01a352c6d, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a871272db2409fc44800c937368d4407, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 8dce31eeb7437ec42af30b55fc97a341, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Art/UIPrefab/MainPanel.prefab
+Dependencies: []

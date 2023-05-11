@@ -65,6 +65,12 @@ namespace QFramework
 			base.Hide();
 		}
 
+		public override void Show()
+		{
+			State = PanelState.Opening;
+			base.Show();
+			transform.SetAsLastSibling();
+		}
 
 		protected virtual void OnInit(IUIData uiData = null)
 		{

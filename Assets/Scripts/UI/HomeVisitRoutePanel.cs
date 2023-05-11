@@ -1,0 +1,55 @@
+using UnityEngine;
+using UnityEngine.UI;
+using QFramework;
+
+namespace HomeVisit.UI
+{
+	public class HomeVisitRoutePanelData : UIPanelData
+	{
+	}
+	public partial class HomeVisitRoutePanel : UIPanel
+	{
+		protected override void OnInit(IUIData uiData = null)
+		{
+			mData = uiData as HomeVisitRoutePanelData ?? new HomeVisitRoutePanelData();
+
+			btnClose.onClick.AddListener(Hide);
+			btnSubmit.onClick.AddListener(() =>
+			{
+				UIKit.OpenPanelAsync<CommunicateOutlinePanel>().ToAction().Start(this);
+				UIKit.GetPanel<MainPanel>().NextStep();
+				Hide();
+			});
+
+			btnDialogue.onClick.AddListener(() => 
+			{
+				btnDialogue.gameObject.SetActive(false);
+				imgTip.gameObject.SetActive(true);
+			});
+			btnConfirm.onClick.AddListener(() =>
+			{
+				imgTip.gameObject.SetActive(false);
+				svMap.gameObject.SetActive(true);
+			});
+		}
+		
+		protected override void OnOpen(IUIData uiData = null)
+		{
+		}
+		
+		protected override void OnShow()
+		{
+			imgTip.gameObject.SetActive(false);
+			svMap.gameObject.SetActive(false);
+			imgRoute.gameObject.SetActive(false);
+		}
+		
+		protected override void OnHide()
+		{
+		}
+		
+		protected override void OnClose()
+		{
+		}
+	}
+}

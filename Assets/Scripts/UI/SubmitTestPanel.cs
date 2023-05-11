@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using QFramework;
 
-namespace QFramework.Example
+namespace HomeVisit.UI
 {
 	public class SubmitTestPanelData : UIPanelData
 	{
@@ -12,7 +12,9 @@ namespace QFramework.Example
 		protected override void OnInit(IUIData uiData = null)
 		{
 			mData = uiData as SubmitTestPanelData ?? new SubmitTestPanelData();
-			// please add init code here
+
+			btnCancel.onClick.AddListener(() => { this.Hide(); });
+			btnConfirm.onClick.AddListener(() => { });
 		}
 		
 		protected override void OnOpen(IUIData uiData = null)
