@@ -5,6 +5,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using QFramework;
+using TMPro;
+using System.Collections.Generic;
 
 namespace HomeVisit.UI
 {
@@ -17,7 +19,9 @@ namespace HomeVisit.UI
 		[SerializeField]
 		public StepUI[] stepUIs;
 		[SerializeField]
-		public GameObject[] imgSteps;
+		public GameObject[] objSteps;
+		[SerializeField]
+		public List<TextMeshProUGUI> tmpList;
 
 		public void Clear()
 		{

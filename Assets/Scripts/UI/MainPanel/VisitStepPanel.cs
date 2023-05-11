@@ -7,21 +7,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using QFramework;
+using TMPro;
+
+//31 + 18 * 5 + 32 * 4 + 30
+//31 + 90 + 128 + 30 = 279
+
 
 namespace HomeVisit.UI
 {
 	public partial class VisitStepPanel : UIElement
 	{
-		int stepUIIndex;
+		int stepUIIndex = 0;
+		int tmpIndex = 0;
 
 		private void Start()
 		{
-			if (imgSteps == null || imgSteps.Length < 1)
-				return;
 			for (int i = 0; i < stepUIs.Length; i++)
 			{
 				int index = i;
-				stepUIs[i].GetComponent<Button>().onClick.AddListener(()=> { imgSteps[index].SetActive(imgSteps[index].activeInHierarchy); });
+				stepUIs[i].GetComponent<Button>().onClick.AddListener(() => { objSteps[index].SetActive(objSteps[index].activeInHierarchy); });
 			}
 		}
 
@@ -48,6 +52,20 @@ namespace HomeVisit.UI
 			stepUIs[stepUIIndex].img.sprite = stepUIs[stepUIIndex].spriteH;
 			
 			imgProgressBar.sprite = stepUIs[stepUIIndex].spriteProgressBar;
+		}
+
+		public void NextTmp()
+		{
+			if (tmpList.Count < 1)
+			{
+				Debug.LogError("tmpIndex Out Of Bonds : " + tmpIndex);
+				return;
+			}
+			tmpList[tmpIndex].fontStyle = TMPro.FontStyles.Normal;
+			tmpList[tmpIndex].transform.Find("imgSelected").GetComponent<Image>().enabled = false;
+			tmpIndex++;
+			tmpList[tmpIndex].fontStyle = TMPro.FontStyles.Bold;
+			tmpList[tmpIndex].transform.Find("imgSelected").GetComponent<Image>().enabled = true;
 		}
 	}
 }

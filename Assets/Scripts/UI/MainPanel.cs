@@ -10,6 +10,7 @@ namespace HomeVisit.UI
 	public partial class MainPanel : UIPanel
 	{
 		public VisitStepPanel[] visitStepPanels;
+		int visitStepIndex = 0;
 
 		protected override void OnInit(IUIData uiData = null)
 		{
@@ -25,7 +26,14 @@ namespace HomeVisit.UI
 
 		public void NextStep()
 		{
-			PreVisitPanel.NextStep();
+			visitStepPanels[visitStepIndex].NextStep();
+		}
+
+		public void NextVisitStepPanel()
+		{
+			visitStepPanels[visitStepIndex].gameObject.SetActive(false);
+			visitStepIndex++;
+			visitStepPanels[visitStepIndex].gameObject.SetActive(true);
 		}
 
 

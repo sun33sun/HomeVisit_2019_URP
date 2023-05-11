@@ -18,8 +18,6 @@ namespace HomeVisit.UI
 		public UnityEngine.UI.Button btnFullScreen;
 		[SerializeField]
 		public UnityEngine.UI.Image imgVisitProgress;
-		[SerializeField]
-		public VisitStepPanel PreVisitPanel;
 		
 		private MainPanelData mPrivateData = null;
 		
@@ -29,7 +27,6 @@ namespace HomeVisit.UI
 			btnKeyWord = null;
 			btnFullScreen = null;
 			imgVisitProgress = null;
-			PreVisitPanel = null;
 			
 			mData = null;
 		}
