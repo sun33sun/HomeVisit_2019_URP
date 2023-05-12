@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 1584536032
+CRC: 1153592013
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -64,4 +64,47 @@ AssetBundleManifest:
       Dependencies: {}
     Info_19:
       Name: mainpanel_prefab
+      Dependencies: {}
+    Info_20:
+      Name: knowledgeexampanel_prefab
+      Dependencies: {}
+    Info_21:
+      Name: singletitle_prefab
+      Dependencies: {}
+    Info_22:
+      Name: multipletitle_prefab
+      Dependencies: {}
+    Info_23:
+      Name: submittestpanel_prefab
+      Dependencies: {}
+    Info_24:
+      Name: homevisitformpanel_prefab
+      Dependencies: {}
+    Info_25:
+      Name: homevisitcontentpanel_prefab
+      Dependencies: {}
+    Info_26:
+      Name: buttonpanel_prefab
+      Dependencies: {}
+    Info_27:
+      Name: scorereport_prefab
+      Dependencies: {}
+    Info_28:
+      Name: testreportpanel_prefab
+      Dependencies: {}
+    Info_29:
+      Name: homevisitroutepanel_prefab
+      Dependencies: {}
+    Info_30:
+      Name: communicateoutlinepanel_prefab
+      Dependencies:
+        Dependency_0: singletitle_prefab
+    Info_31:
+      Name: clothespanel_prefab
+      Dependencies: {}
+    Info_32:
+      Name: recordsheetpanel_prefab
+      Dependencies: {}
+    Info_33:
+      Name: onvisitpanel_prefab
       Dependencies: {}

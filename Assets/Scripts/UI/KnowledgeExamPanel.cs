@@ -9,9 +9,8 @@ namespace HomeVisit.UI
 	}
 	public partial class KnowledgeExamPanel : UIPanel
 	{
-		ResLoader mResLoader = ResLoader.Allocate();
-		GameObject singlePrefab = null;
-		GameObject multiplePrefab = null;
+		[SerializeField] GameObject singlePrefab = null;
+		[SerializeField] GameObject multiplePrefab = null;
 
 		void TestExam()
 		{
@@ -42,8 +41,6 @@ namespace HomeVisit.UI
 
 		GameObject CreateSingleTitle(SingleTitleData data)
 		{
-			if(singlePrefab == null)
-				singlePrefab = mResLoader.LoadSync<GameObject>("SingleTitle");
 			GameObject gameObj = Instantiate(singlePrefab);
 			gameObj.name = singlePrefab.name;
 			gameObj.GetComponent<SingleTitle>().Init(data);
@@ -55,8 +52,6 @@ namespace HomeVisit.UI
 
 		GameObject CreateMultipleTitle(MultipleTitleData data)
 		{
-			if (multiplePrefab == null)
-				multiplePrefab = mResLoader.LoadSync<GameObject>("MultipleTitle");
 			GameObject gameObj = Instantiate(multiplePrefab);
 			gameObj.name = multiplePrefab.name;
 			gameObj.GetComponent<MultipleTitle>().Init(data);
@@ -75,7 +70,7 @@ namespace HomeVisit.UI
 			btnCancel.onClick.AddListener(HideImgSubmitExam);
 			btnConfirm.onClick.AddListener(ShowTestReportPanel);
 
-			TestExam();
+			//TestExam();
 		}
 
 		void ShowImgSubmitExam()

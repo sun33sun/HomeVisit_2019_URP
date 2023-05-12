@@ -14,16 +14,10 @@ namespace HomeVisit.UI
 			mData = uiData as ButtonPanelData ?? new ButtonPanelData();
 
 			//创建并初始化页面
-			UIKit.OpenPanelAsync<KnowledgeExamPanel>().ToAction().Start(this, () =>
-			{
-				knowledgeExamPanel = UIKit.GetPanel<KnowledgeExamPanel>();
-				knowledgeExamPanel.Hide();
-			});
-			UIKit.OpenPanelAsync<TestReportPanel>().ToAction().Start(this, () =>
-			 {
-				 testReportPanel = UIKit.GetPanel<TestReportPanel>();
-				 testReportPanel.Hide();
-			 });
+			knowledgeExamPanel = UIKit.GetPanel<KnowledgeExamPanel>();
+			knowledgeExamPanel.Hide();
+			testReportPanel = UIKit.GetPanel<TestReportPanel>();
+			testReportPanel.Hide();
 
 			//订阅点击事件
 			btnSeting.onClick.AddListener(SwitchSettingBtn);

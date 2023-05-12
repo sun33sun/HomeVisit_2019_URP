@@ -24,6 +24,8 @@ namespace HomeVisit.UI
 			});
 			btnConfirm.onClick.AddListener(() =>
 			{
+				UIKit.GetPanel<MainPanel>().NextVisitStepPanel();
+				UIKit.OpenPanelAsync<OnVisitPanel>().ToAction().Start(this);
 				Hide();
 			});
 		}

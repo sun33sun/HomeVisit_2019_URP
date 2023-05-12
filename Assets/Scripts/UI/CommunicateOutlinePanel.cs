@@ -14,9 +14,10 @@ namespace HomeVisit.UI
 			mData = uiData as CommunicateOutlinePanelData ?? new CommunicateOutlinePanelData();
 
 			btnClose.onClick.AddListener(Hide);
-			btnSubmit.onClick.AddListener(() =>
+			btnConfirm.onClick.AddListener(() =>
 			{
 				UIKit.GetPanel<MainPanel>().NextStep();
+				UIKit.OpenPanelAsync<ClothesPanel>().ToAction().Start(this);
 				Hide();
 			});
 		}

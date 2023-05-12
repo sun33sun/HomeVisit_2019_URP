@@ -22,10 +22,12 @@ namespace HomeVisit.UI
 
 		private void Start()
 		{
+			if (objSteps.Length < 1)
+				return;
 			for (int i = 0; i < stepUIs.Length; i++)
 			{
 				int index = i;
-				stepUIs[i].GetComponent<Button>().onClick.AddListener(() => { objSteps[index].SetActive(objSteps[index].activeInHierarchy); });
+				stepUIs[i].GetComponent<Button>().onClick.AddListener(() => { objSteps[index].SetActive(!objSteps[index].activeInHierarchy); });
 			}
 		}
 

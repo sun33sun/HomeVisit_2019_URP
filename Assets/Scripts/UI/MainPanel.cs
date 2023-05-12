@@ -29,11 +29,20 @@ namespace HomeVisit.UI
 			visitStepPanels[visitStepIndex].NextStep();
 		}
 
+		public void NextTmp()
+		{
+			visitStepPanels[visitStepIndex].NextTmp();
+		}
+
 		public void NextVisitStepPanel()
 		{
+			visitStepPanels[visitStepIndex].InitState();
 			visitStepPanels[visitStepIndex].gameObject.SetActive(false);
 			visitStepIndex++;
 			visitStepPanels[visitStepIndex].gameObject.SetActive(true);
+			visitStepPanels[visitStepIndex].InitState();
+
+			imgVisitProgress.sprite = visitStepPanels[visitStepIndex].spriteProgress;
 		}
 
 
