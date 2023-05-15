@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 1153592013
+CRC: 2058010287
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -67,7 +67,9 @@ AssetBundleManifest:
       Dependencies: {}
     Info_20:
       Name: knowledgeexampanel_prefab
-      Dependencies: {}
+      Dependencies:
+        Dependency_0: singletitle_prefab
+        Dependency_1: multipletitle_prefab
     Info_21:
       Name: singletitle_prefab
       Dependencies: {}
@@ -97,8 +99,7 @@ AssetBundleManifest:
       Dependencies: {}
     Info_30:
       Name: communicateoutlinepanel_prefab
-      Dependencies:
-        Dependency_0: singletitle_prefab
+      Dependencies: {}
     Info_31:
       Name: clothespanel_prefab
       Dependencies: {}

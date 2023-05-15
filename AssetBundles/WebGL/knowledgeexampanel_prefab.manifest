@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2903243404
+CRC: 1955275748
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: e78b743dce64b43efbd5dd779223ce6c
+    Hash: 140688799afc7e3970ab324b66249282
   TypeTreeHash:
     serializedVersion: 2
-    Hash: f408f9c9d9637981b4f9468a7e9a35e6
+    Hash: f57c1e58884cf6b3480fbdf8708e9acc
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -58,4 +58,6 @@ ClassTypes:
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Art/UIPrefab/KnowledgeExamPanel.prefab
-Dependencies: []
+Dependencies:
+- D:/WorkSpace/HomeVisit_2019_URP/AssetBundles/WebGL/multipletitle_prefab
+- D:/WorkSpace/HomeVisit_2019_URP/AssetBundles/WebGL/singletitle_prefab

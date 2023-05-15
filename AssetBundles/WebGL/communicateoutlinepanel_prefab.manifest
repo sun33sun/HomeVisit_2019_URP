@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 144432821
+CRC: 3968782388
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 6bfbc0c6194e55688fc8bc3d53e04b81
+    Hash: cdda3207cec36044a477dd6425b030c9
   TypeTreeHash:
     serializedVersion: 2
     Hash: f38bb409dbeda8b7a59f4e8121c21488
@@ -58,5 +58,4 @@ ClassTypes:
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Art/UIPrefab/CommunicateOutlinePanel.prefab
-Dependencies:
-- D:/WorkSpace/HomeVisit_2019_URP/AssetBundles/WebGL/singletitle_prefab
+Dependencies: []
