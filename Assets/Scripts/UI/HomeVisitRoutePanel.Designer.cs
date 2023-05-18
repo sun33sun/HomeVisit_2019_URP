@@ -15,7 +15,7 @@ namespace HomeVisit.UI
 		[SerializeField]
 		public UnityEngine.UI.Button btnClose;
 		[SerializeField]
-		public UnityEngine.UI.ScrollRect svMap;
+		public HomeVisit.UI.MyScrollRect svMap;
 		[SerializeField]
 		public UnityEngine.UI.Button btnDraw;
 		[SerializeField]

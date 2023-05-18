@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using QFramework;
+using HomeVisit.Draw;
 
 namespace HomeVisit.UI
 {
@@ -9,6 +10,8 @@ namespace HomeVisit.UI
 	}
 	public partial class HomeVisitRoutePanel : UIPanel
 	{
+		[SerializeField] DrawDriver drawDriver;
+
 		protected override void OnInit(IUIData uiData = null)
 		{
 			mData = uiData as HomeVisitRoutePanelData ?? new HomeVisitRoutePanelData();
@@ -31,6 +34,8 @@ namespace HomeVisit.UI
 				imgTip.gameObject.SetActive(false);
 				svMap.gameObject.SetActive(true);
 			});
+			btnDraw.onClick.AddListener(() => { drawDriver.isEnable = !drawDriver.isEnable; });
+			btnErase.onClick.AddListener(drawDriver.Clear);
 		}
 		
 		protected override void OnOpen(IUIData uiData = null)

@@ -17,6 +17,15 @@ namespace HomeVisit.UI
 			btnTestAssistance.onClick.AddListener(() => { TestAssistance.gameObject.SetActive(true); });
 			btnCloseGoal.onClick.AddListener(() => { TestGoal.gameObject.SetActive(false); });
 			btnCloseAssistance.onClick.AddListener(() => { TestAssistance.gameObject.SetActive(false); });
+
+
+			ActionKit.Sequence()
+				.Callback(() => { TestGoal.gameObject.SetActive(true); })
+				.Condition(() => { return !TestGoal.gameObject.activeInHierarchy; })
+				.Delay(1, () => { TestAssistance.gameObject.SetActive(true); })
+				.Condition(() => { return !TestAssistance.gameObject.activeInHierarchy; })
+				.Delay(1, Hide)
+				.Start(this);
 		}
 
 		protected override void OnOpen(IUIData uiData = null)

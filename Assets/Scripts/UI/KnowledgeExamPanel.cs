@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using QFramework;
+using System.Collections.Generic;
+using System;
 
 namespace HomeVisit.UI
 {
@@ -11,6 +13,8 @@ namespace HomeVisit.UI
 	{
 		[SerializeField] GameObject singlePrefab = null;
 		[SerializeField] GameObject multiplePrefab = null;
+
+		List<ITitle> titles = new List<ITitle>();
 
 		void TestExam()
 		{
@@ -43,7 +47,9 @@ namespace HomeVisit.UI
 		{
 			GameObject gameObj = Instantiate(singlePrefab);
 			gameObj.name = singlePrefab.name;
-			gameObj.GetComponent<SingleTitle>().Init(data);
+			SingleTitle singleTitle = gameObj.GetComponent<SingleTitle>();
+			titles.Add(singleTitle);
+			singleTitle.Init(data);
 			gameObj.transform.SetParent(Content);
 			gameObj.transform.localScale = Vector3.one;
 			gameObj.transform.SetAsFirstSibling();
@@ -54,7 +60,9 @@ namespace HomeVisit.UI
 		{
 			GameObject gameObj = Instantiate(multiplePrefab);
 			gameObj.name = multiplePrefab.name;
-			gameObj.GetComponent<MultipleTitle>().Init(data);
+			MultipleTitle multipleTitle = gameObj.GetComponent<MultipleTitle>();
+			titles.Add(multipleTitle);
+			multipleTitle.Init(data);
 			gameObj.transform.SetParent(Content);
 			gameObj.transform.localScale = Vector3.one;
 			gameObj.transform.SetAsFirstSibling();
@@ -66,29 +74,24 @@ namespace HomeVisit.UI
 			mData = uiData as KnowledgeExamPanelData ?? new KnowledgeExamPanelData();
 
 			btnClose.onClick.AddListener(Hide);
-			btnSubmit.onClick.AddListener(ShowImgSubmitExam);
-			btnCancel.onClick.AddListener(HideImgSubmitExam);
-			btnConfirm.onClick.AddListener(ShowTestReportPanel);
+			btnSubmit.onClick.AddListener(()=> 
+			{
+				imgSubmitExam.gameObject.SetActive(true);
+				imgExam.gameObject.SetActive(false);
+				//UIKit.GetPanel<TestReportPanel>().on
+			});
+			btnCancel.onClick.AddListener(()=> 
+			{
+				imgSubmitExam.gameObject.SetActive(false);
+				imgExam.gameObject.SetActive(true);
+			});
+			btnConfirm.onClick.AddListener(()=> 
+			{
+				UIKit.ShowPanel<TestReportPanel>();
+				Hide();
+			});
 
-			//TestExam();
-		}
-
-		void ShowImgSubmitExam()
-		{
-			imgSubmitExam.gameObject.SetActive(true);
-			imgExam.gameObject.SetActive(false);
-		}
-
-		void HideImgSubmitExam()
-		{
-			imgSubmitExam.gameObject.SetActive(false);
-			imgExam.gameObject.SetActive(true);
-		}
-
-		void ShowTestReportPanel()
-		{
-			UIKit.ShowPanel<TestReportPanel>();
-			Hide();
+			TestExam();
 		}
 
 		protected override void OnOpen(IUIData uiData = null)
@@ -107,6 +110,14 @@ namespace HomeVisit.UI
 		
 		protected override void OnClose()
 		{
+		}
+
+		public int GetScore()
+		{
+			int totalScore = 0;
+			for (int i = 0; i < titles.Count; i++)
+				totalScore += titles[i].GetScore();
+			return totalScore;
 		}
 	}
 }

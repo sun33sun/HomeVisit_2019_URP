@@ -5,11 +5,13 @@ using QFramework;
 
 namespace HomeVisit.UI
 {
-	// Generate Id:35c12f60-be92-49f2-ba1b-9fb6468217e1
+	// Generate Id:54264f06-8d17-4dcf-8a3c-4fc5de33069d
 	public partial class TestReportPanel
 	{
 		public const string Name = "TestReportPanel";
 		
+		[SerializeField]
+		public UnityEngine.UI.Image imgBk;
 		[SerializeField]
 		public UnityEngine.UI.Button btnClose;
 		[SerializeField]
@@ -17,7 +19,7 @@ namespace HomeVisit.UI
 		[SerializeField]
 		public TMPro.TextMeshProUGUI tmpTotalScore;
 		[SerializeField]
-		public UnityEngine.RectTransform Content;
+		public RectTransform Grid;
 		[SerializeField]
 		public UnityEngine.UI.Button btnSubmit;
 		
@@ -25,10 +27,11 @@ namespace HomeVisit.UI
 		
 		protected override void ClearUIComponents()
 		{
+			imgBk = null;
 			btnClose = null;
 			tmpDate = null;
 			tmpTotalScore = null;
-			Content = null;
+			Grid = null;
 			btnSubmit = null;
 			
 			mData = null;

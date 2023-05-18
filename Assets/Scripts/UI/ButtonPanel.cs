@@ -88,10 +88,10 @@ namespace HomeVisit.UI
 			switch (testReportPanel.State)
 			{
 				case PanelState.Opening:
-					knowledgeExamPanel.Hide();
+					testReportPanel.Hide();
 					break;
 				case PanelState.Hide:
-					knowledgeExamPanel.Show();
+					testReportPanel.Show();
 					break;
 			}
 		}

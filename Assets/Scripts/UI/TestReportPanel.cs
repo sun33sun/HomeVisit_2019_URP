@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using QFramework;
+using System.Collections.Generic;
 
 namespace HomeVisit.UI
 {
@@ -9,6 +10,9 @@ namespace HomeVisit.UI
 	}
 	public partial class TestReportPanel : UIPanel
 	{
+		[SerializeField] GameObject reportPrefab;
+		[SerializeField] List<ScoreReport> reportList;
+
 		protected override void OnInit(IUIData uiData = null)
 		{
 			mData = uiData as TestReportPanelData ?? new TestReportPanelData();
@@ -35,6 +39,24 @@ namespace HomeVisit.UI
 		
 		protected override void OnClose()
 		{
+		}
+
+		public void HideRender()
+		{
+			imgBk.gameObject.SetActive(false);
+		}
+
+		public void ShowRender()
+		{
+			imgBk.gameObject.SetActive(true);
+		}
+
+		public void CreateScoreReport(ScoreReportData data)
+		{
+			ScoreReport newReport = Instantiate(reportPrefab).GetComponent<ScoreReport>();
+			reportList.Add(newReport);
+			newReport.Init(data);
+			newReport.transform.SetParent(Grid);
 		}
 	}
 }
