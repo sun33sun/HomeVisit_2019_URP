@@ -23,8 +23,6 @@ namespace HomeVisit.UI
 	{
 		bool isRight;
 
-		ScoreReportData scoreReportData = new ScoreReportData();
-
 		protected override void OnInit(IUIData uiData = null)
 		{
 			mData = uiData as SingleTitleData;
@@ -126,6 +124,19 @@ namespace HomeVisit.UI
 				strScore = (isRight? mData.score : 0).ToString()
 			};
 			return data;
+		}
+
+		public bool GetState()
+		{
+			return isRight;
+		}
+
+		public void CheckTitle()
+		{
+			if(isRight)
+				tmpAnalysis.text = rightTip;
+			else
+				tmpAnalysis.text = errorTip;
 		}
 	}
 }

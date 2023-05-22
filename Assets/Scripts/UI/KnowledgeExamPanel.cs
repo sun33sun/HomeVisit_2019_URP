@@ -16,6 +16,9 @@ namespace HomeVisit.UI
 
 		List<ITitle> titles = new List<ITitle>();
 
+		DateTime startTime;
+		DateTime endTime;
+
 		void TestExam()
 		{
 			DateTime startTime = DateTime.Now;
@@ -43,9 +46,7 @@ namespace HomeVisit.UI
 				strC = "选项C",
 				strD = "选项D",
 				score = 30,
-
-				strModule = "知识考核",
-				strStart = startTime
+				strModule = "知识考核"
 			};
 			CreateMultipleTitle(multipleData);
 
@@ -83,14 +84,7 @@ namespace HomeVisit.UI
 			mData = uiData as KnowledgeExamPanelData ?? new KnowledgeExamPanelData();
 
 			btnClose.onClick.AddListener(Hide);
-			btnSubmit.onClick.AddListener(()=> 
-			{
-				imgSubmitExam.gameObject.SetActive(true);
-				imgExam.gameObject.SetActive(false);
-				TestReportPanel testReportPanel = UIKit.GetPanel<TestReportPanel>();
-				for (int i = 0; i < titles.Count; i++)
-					testReportPanel.CreateScoreReport(titles[i].GetScoreReportData());
-			});
+			btnSubmit.onClick.AddListener(Submit);
 			btnCancel.onClick.AddListener(()=> 
 			{
 				imgSubmitExam.gameObject.SetActive(false);
@@ -105,18 +99,39 @@ namespace HomeVisit.UI
 			TestExam();
 		}
 
+		void Submit()
+		{
+			imgSubmitExam.gameObject.SetActive(true);
+			imgExam.gameObject.SetActive(false);
+
+			int totalScore = 0;
+			for (int i = 0; i < titles.Count; i++)
+				totalScore += titles[i].GetScore();
+			ScoreReportData data = new ScoreReportData()
+			{
+				strModule = "知识考核",
+				strStart = startTime,
+				strEnd = endTime,
+				strScore = totalScore.ToString()
+			};
+			TestReportPanel testReportPanel = UIKit.GetPanel<TestReportPanel>();
+			testReportPanel.CreateScoreReport(data);
+		}
+
 		protected override void OnOpen(IUIData uiData = null)
 		{
 		}
 		
 		protected override void OnShow()
 		{
+			startTime = DateTime.Now;
 			imgExam.gameObject.SetActive(true);
 			imgSubmitExam.gameObject.SetActive(false);
 		}
 		
 		protected override void OnHide()
 		{
+			endTime = DateTime.Now;
 		}
 		
 		protected override void OnClose()

@@ -11,11 +11,16 @@ namespace HomeVisit.UI
 	{
 		public string strTitleDescribe;
 		public List<string> strTogList;
+
+		public List<bool> rightList;
+		public int score;
 	}
+
 	public partial class OutlineTitle : UIPanel, ITitle
 	{
 		[SerializeField] GameObject togPrefab;
-		List<Toggle> togList = new List<Toggle>();
+		List<TogOutline> selectedTogList = new List<TogOutline>();
+		List<TogOutline> togList = new List<TogOutline>();
 
 		protected override void OnInit(IUIData uiData = null)
 		{
@@ -27,24 +32,25 @@ namespace HomeVisit.UI
 
 			for (int i = 0; i < mData.strTogList.Count; i++)
 			{
-				Toggle newTog = Instantiate(togPrefab).GetComponent<Toggle>();
+				TogOutline newTog = Instantiate(togPrefab).GetComponent<TogOutline>();
+				togList.Add(newTog);
 				newTog.name = "tog" + i;
 				int index = i;
 				newTog.transform.GetComponentInChildren<TextMeshProUGUI>().text = mData.strTogList[index];
 				newTog.transform.SetParent(transform);
 
-				newTog.onValueChanged.AddListener((isOn) =>
+				newTog.tog.onValueChanged.AddListener((isOn) =>
 				{
 					if (isOn)
 					{
-						if (togList.Count > 3)
-							togList[0].isOn = false;
-						togList.Add(newTog);
+						if (selectedTogList.Count > 3)
+							selectedTogList[0].tog.isOn = false;
+						selectedTogList.Add(newTog);
 						communicateOutlinePanel.strTogSelected.Add(mData.strTogList[index]);
 					}
 					else
 					{
-						togList.Remove(newTog);
+						selectedTogList.Remove(newTog);
 						communicateOutlinePanel.strTogSelected.Remove(mData.strTogList[index]);
 					}
 				});
@@ -67,9 +73,37 @@ namespace HomeVisit.UI
 		{
 		}
 
-		public ScoreReportData GetScoreReportData()
+		public int GetScore()
 		{
-			throw new System.NotImplementedException();
+			if (GetState())
+				return mData.score;
+			else
+				return 0;
+		}
+
+		public bool GetState()
+		{
+			bool isRIght = true;
+			for (int i = 0; i < selectedTogList.Count; i++)
+			{
+				if (selectedTogList[i].tog.isOn != mData.rightList[i])
+				{
+					isRIght = false;
+					break;
+				}
+			}
+			return isRIght;
+		}
+
+		public void CheckTitle()
+		{
+			for (int i = 0; i < togList.Count; i++)
+			{
+				if (togList[i].tog.isOn == mData.rightList[i])
+					togList[i].ShowState(1);
+				else
+					togList[i].ShowState(-1);
+			}
 		}
 	}
 }

@@ -1155,6 +1155,10 @@ MonoBehaviour:
   imgSubmitExam: {fileID: 2158554818129043055}
   btnCancel: {fileID: 2158554818184133219}
   btnConfirm: {fileID: 2158554819237263973}
+  singlePrefab: {fileID: 6612779045072830739, guid: 8b13dbd64fc5b024d9676dfab25a816d,
+    type: 3}
+  multiplePrefab: {fileID: 305959949449525276, guid: c9cd3256d77f49a4baa205de6ba243a0,
+    type: 3}
 --- !u!1 &5599004110475174671
 GameObject:
   m_ObjectHideFlags: 0
@@ -1455,8 +1459,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5599004110041844658}
   m_HandleRect: {fileID: 5599004110041844621}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.3964728
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

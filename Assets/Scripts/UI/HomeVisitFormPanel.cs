@@ -16,6 +16,9 @@ namespace HomeVisit.UI
 
 		List<ITitle> titles = new List<ITitle>();
 
+		DateTime startTime;
+		DateTime endTime;
+
 		protected override void OnInit(IUIData uiData = null)
 		{
 			mData = uiData as HomeVisitFormPanelData ?? new HomeVisitFormPanelData();
@@ -40,8 +43,17 @@ namespace HomeVisit.UI
 				Hide();
 
 				TestReportPanel testReportPanel = UIKit.GetPanel<TestReportPanel>();
+				int totalScore = 0;
 				for (int i = 0; i < titles.Count; i++)
-					testReportPanel.CreateScoreReport(titles[i].GetScoreReportData());
+					totalScore += titles[i].GetScore();
+				ScoreReportData data = new ScoreReportData()
+				{
+					strModule = "家访形式",
+					strStart = startTime,
+					strEnd = endTime,
+					strScore = totalScore.ToString()
+				};
+				testReportPanel.CreateScoreReport(data);
 			});
 
 			TestExam();
@@ -75,8 +87,7 @@ namespace HomeVisit.UI
 				strD = "选项D",
 				score = 30,
 
-				strModule = "家访形式",
-				strStart = startTime
+				strModule = "家访形式"
 			};
 			CreateMultipleTitle(multipleData);
 
@@ -114,12 +125,14 @@ namespace HomeVisit.UI
 		
 		protected override void OnShow()
 		{
+			startTime = DateTime.Now;
 			imgExam.gameObject.SetActive(false);
 			imgSubmitExam.gameObject.SetActive(true);
 		}
 		
 		protected override void OnHide()
 		{
+			endTime = DateTime.Now;
 		}
 		
 		protected override void OnClose()

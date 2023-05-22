@@ -17,25 +17,48 @@ namespace HomeVisit.UI
 		List<ITitle> titles = new List<ITitle>();
 		public List<string> strTogSelected = new List<string>();
 
+		DateTime startTime;
+		DateTime endTime;
+
 		protected override void OnInit(IUIData uiData = null)
 		{
 			mData = uiData as CommunicateOutlinePanelData ?? new CommunicateOutlinePanelData();
 
 			btnClose.onClick.AddListener(Hide);
-			btnConfirm.onClick.AddListener(() =>
-			{
-				UIKit.GetPanel<MainPanel>().NextStep();
-				UIKit.OpenPanelAsync<ClothesPanel>().ToAction().Start(this);
-				Hide();
-
-				TestReportPanel testReportPanel = UIKit.GetPanel<TestReportPanel>();
-				for (int i = 0; i < titles.Count; i++)
-				{
-					testReportPanel.CreateScoreReport(titles[i].GetScoreReportData());
-				}
-			});
+			btnConfirm.onClick.AddListener(Confirm);
+			btnSubmit.onClick.AddListener(Submit);
 
 			TestExam();
+		}
+
+		void Confirm()
+		{
+			//检查题目对错
+			for (int i = 0; i < titles.Count; i++)
+				titles[i].CheckTitle();
+
+			//显示提交按钮
+			btnConfirm.gameObject.SetActive(false);
+			btnSubmit.gameObject.SetActive(true);
+		}
+
+		void Submit()
+		{
+			int totalScore = 0;
+			for (int i = 0; i < titles.Count; i++)
+				totalScore = titles[i].GetScore();
+			ScoreReportData data = new ScoreReportData()
+			{
+				strModule = "交流提纲",
+				strScore = totalScore.ToString(),
+			};
+			TestReportPanel testReportPanel = UIKit.GetPanel<TestReportPanel>();
+			testReportPanel.CreateScoreReport(data);
+
+			//修改进度UI并进入下一个页面
+			UIKit.GetPanel<MainPanel>().NextStep();
+			UIKit.OpenPanelAsync<ClothesPanel>().ToAction().Start(this);
+			Hide();
 		}
 
 		void TestExam()
@@ -45,7 +68,7 @@ namespace HomeVisit.UI
 			OutlineTitleData multipleData = new OutlineTitleData()
 			{
 				strTitleDescribe = "教师可以询问家长：（多选题，最多选四个）",
-				strTogList = new List<string>() 
+				strTogList = new List<string>()
 				{
 					"孩子生活能力（如：吃喝拉撒睡……）",
 					"孩子自理能力（刷牙洗脸穿衣……）",
@@ -55,9 +78,11 @@ namespace HomeVisit.UI
 					"家长期望（孩子哪方面成长……）",
 					"需要老师特别注意的方面（座位、注意力、在校吃饭、人际交往……）",
 					"教师可以向家长介绍学校理念，让家长有一个初步的了解。"
-				}
+				},
+				rightList = new List<bool>() { true, true, true, true, false, false, false, false },
+				score = 10
 			};
-			CreateMultipleTitle(multipleData);
+			CreateOutlinTitle(multipleData);
 
 
 			OutlineTitleData multipleData1 = new OutlineTitleData()
@@ -72,14 +97,16 @@ namespace HomeVisit.UI
 					"了解学生对新学校新集体的期待",
 					"了解家长家庭教育理念",
 					"预测家长和学生可能关心的教育问题"
-				}
+				},
+				rightList = new List<bool>() {  false, false, false, true, true, true, true },
+				score = 5
 			};
-			CreateMultipleTitle(multipleData1);
+			CreateOutlinTitle(multipleData1);
 
 			btnConfirm.transform.SetAsLastSibling();
 		}
 
-		GameObject CreateMultipleTitle(OutlineTitleData data)
+		GameObject CreateOutlinTitle(OutlineTitleData data)
 		{
 			GameObject gameObj = Instantiate(outlineTitlePrefab);
 			gameObj.name = outlineTitlePrefab.name;
@@ -95,15 +122,19 @@ namespace HomeVisit.UI
 		protected override void OnOpen(IUIData uiData = null)
 		{
 		}
-		
+
 		protected override void OnShow()
 		{
+			startTime = DateTime.Now;
+			btnConfirm.gameObject.SetActive(true);
+			btnSubmit.gameObject.SetActive(false);
 		}
-		
+
 		protected override void OnHide()
 		{
+			endTime = DateTime.Now;
 		}
-		
+
 		protected override void OnClose()
 		{
 		}

@@ -18,14 +18,11 @@ namespace HomeVisit.UI
 		public int score = 0;
 
 		public string strModule = "";
-		public DateTime strStart;
 	}
 	public partial class MultipleTitle : UIPanel, ITitle
 	{
 		bool[] isSelected = new bool[4];
 		int rightCount = 0;
-
-		ScoreReportData scoreReportData = new ScoreReportData();
 
 		protected override void OnInit(IUIData uiData = null)
 		{
@@ -47,22 +44,22 @@ namespace HomeVisit.UI
 			togA.onValueChanged.AddListener(isOn =>
 			{
 				isSelected[0] = isOn;
-				CheckState();
+				GetState();
 			});
 			togB.onValueChanged.AddListener(isOn =>
 			{
 				isSelected[1] = isOn;
-				CheckState();
+				GetState();
 			});
 			togC.onValueChanged.AddListener(isOn =>
 			{
 				isSelected[2] = isOn;
-				CheckState();
+				GetState();
 			});
 			togD.onValueChanged.AddListener(isOn =>
 			{
 				isSelected[3] = isOn;
-				CheckState();
+				GetState();
 			});
 
 			if (mData.isRights[0])
@@ -75,28 +72,6 @@ namespace HomeVisit.UI
 				strError.Append('D');
 
 			errorTip = $"解析：回答错误，正确答案<color=#ff0000ff>{strError}</color>";
-		}
-
-		bool CheckState()
-		{
-			bool allRight = true;
-			int selectedCount = 0;
-			for (int i = 0; i < mData.isRights.Length; i++)
-			{
-				if (mData.isRights[i] != isSelected[i])
-					allRight = false;
-				if (isSelected[i])
-					selectedCount++;
-			}
-
-			if (allRight)
-				tmpAnalysis.text = rightTip;
-			else if (selectedCount >= rightCount)
-				tmpAnalysis.text = errorTip;
-			else
-				tmpAnalysis.text = "解析：";
-
-			return allRight;
 		}
 
 		protected override void OnOpen(IUIData uiData = null)
@@ -115,16 +90,37 @@ namespace HomeVisit.UI
 		{
 		}
 
-		public ScoreReportData GetScoreReportData()
+		public int GetScore()
 		{
-			ScoreReportData data = new ScoreReportData()
+			if (GetState())
+				return mData.score;
+			else
+				return 0;
+		}
+
+		public bool GetState()
+		{
+			bool allRight = true;
+			int selectedCount = 0;
+			for (int i = 0; i < mData.isRights.Length; i++)
 			{
-				strModule = mData.strModule,
-				strStart = mData.strStart,
-				strEnd = DateTime.Now,
-				strScore = (CheckState()? mData.score : 0).ToString()
-			};
-			return data;
+				if (mData.isRights[i] != isSelected[i])
+					allRight = false;
+				if (isSelected[i])
+					selectedCount++;
+			}
+			if (allRight)
+				tmpAnalysis.text = rightTip;
+			else if (selectedCount >= rightCount)
+				tmpAnalysis.text = errorTip;
+			else
+				tmpAnalysis.text = "解析：";
+			return allRight;
+		}
+
+		public void CheckTitle()
+		{
+			GetState();
 		}
 	}
 }
