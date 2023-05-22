@@ -7,6 +7,7 @@ namespace HomeVisit.UI
 {
 	public class HomeVisitRoutePanelData : UIPanelData
 	{
+
 	}
 	public partial class HomeVisitRoutePanel : UIPanel
 	{
@@ -22,6 +23,7 @@ namespace HomeVisit.UI
 				UIKit.OpenPanelAsync<CommunicateOutlinePanel>().ToAction().Start(this);
 				UIKit.GetPanel<MainPanel>().NextStep();
 				Hide();
+				UIKit.GetPanel<TestReportPanel>().SetTestEvaluate(inputTestEvaluate.text);
 			});
 
 			btnDialogue.onClick.AddListener(() => 

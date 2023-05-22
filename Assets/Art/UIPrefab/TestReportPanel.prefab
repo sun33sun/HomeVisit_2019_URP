@@ -1266,9 +1266,11 @@ MonoBehaviour:
   tmpDate: {fileID: 5077290308313526897}
   tmpTotalScore: {fileID: 5077290308354640824}
   Grid: {fileID: 701381207}
+  tmpTestEvaluate: {fileID: 6370852359488593717}
   btnSubmit: {fileID: 5122318041107449037}
-  scoreReportPrefab: {fileID: 4966625517963348014, guid: aecf1c941229b934bb215c5c2005ac96,
+  reportPrefab: {fileID: 4966625517963348014, guid: aecf1c941229b934bb215c5c2005ac96,
     type: 3}
+  reportList: []
 --- !u!1 &5077290309597771563
 GameObject:
   m_ObjectHideFlags: 0
@@ -1543,8 +1545,9 @@ GameObject:
   - component: {fileID: 5035011811327254615}
   - component: {fileID: 1530600058870350806}
   - component: {fileID: 6370852359488593717}
+  - component: {fileID: 352875379414212120}
   m_Layer: 0
-  m_Name: tmpDescribe
+  m_Name: tmpTestEvaluate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1666,6 +1669,22 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &352875379414212120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5719996146810555310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d51f3a7c41ab0346b49ae50d456bece, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MarkType: 0
+  CustomComponentName: tmpTestEvaluate
+  CustomComment: 
+  mComponentName: TMPro.TextMeshProUGUI
 --- !u!1 &8645622262499469828
 GameObject:
   m_ObjectHideFlags: 0

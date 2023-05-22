@@ -53,10 +53,19 @@ namespace HomeVisit.UI
 
 		public void CreateScoreReport(ScoreReportData data)
 		{
-			ScoreReport newReport = Instantiate(reportPrefab).GetComponent<ScoreReport>();
+			Transform newTrans = Instantiate(reportPrefab).transform;
+			newTrans.SetParent(Grid);
+			newTrans.localScale = Vector3.one;
+			newTrans.SetAsLastSibling();
+
+			ScoreReport newReport = newTrans.GetComponent<ScoreReport>();
 			reportList.Add(newReport);
 			newReport.Init(data);
-			newReport.transform.SetParent(Grid);
+		}
+
+		public void SetTestEvaluate(string newContent)
+		{
+			tmpTestEvaluate.text = newContent;
 		}
 	}
 }

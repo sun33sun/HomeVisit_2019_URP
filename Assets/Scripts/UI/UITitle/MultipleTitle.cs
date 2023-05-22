@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using QFramework;
 using System.Text;
+using System;
 
 namespace HomeVisit.UI
 {
@@ -14,13 +15,17 @@ namespace HomeVisit.UI
 		public string strB = "";
 		public string strC = "";
 		public string strD = "";
-
 		public int score = 0;
+
+		public string strModule = "";
+		public DateTime strStart;
 	}
 	public partial class MultipleTitle : UIPanel, ITitle
 	{
 		bool[] isSelected = new bool[4];
 		int rightCount = 0;
+
+		ScoreReportData scoreReportData = new ScoreReportData();
 
 		protected override void OnInit(IUIData uiData = null)
 		{
@@ -110,12 +115,16 @@ namespace HomeVisit.UI
 		{
 		}
 
-		public int GetScore()
+		public ScoreReportData GetScoreReportData()
 		{
-			if (CheckState())
-				return mData.score;
-			else
-				return 0;
+			ScoreReportData data = new ScoreReportData()
+			{
+				strModule = mData.strModule,
+				strStart = mData.strStart,
+				strEnd = DateTime.Now,
+				strScore = (CheckState()? mData.score : 0).ToString()
+			};
+			return data;
 		}
 	}
 }

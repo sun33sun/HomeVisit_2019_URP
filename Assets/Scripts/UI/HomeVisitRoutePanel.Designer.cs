@@ -5,7 +5,7 @@ using QFramework;
 
 namespace HomeVisit.UI
 {
-	// Generate Id:4236bb07-2a24-43bb-ac89-662d47131b2c
+	// Generate Id:c7dca2fa-05a0-4913-b845-5fb53ecbdba7
 	public partial class HomeVisitRoutePanel
 	{
 		public const string Name = "HomeVisitRoutePanel";
@@ -20,6 +20,8 @@ namespace HomeVisit.UI
 		public UnityEngine.UI.Button btnDraw;
 		[SerializeField]
 		public UnityEngine.UI.Button btnErase;
+		[SerializeField]
+		public TMPro.TMP_InputField inputTestEvaluate;
 		[SerializeField]
 		public UnityEngine.UI.Button btnSubmit;
 		[SerializeField]
@@ -42,6 +44,7 @@ namespace HomeVisit.UI
 			svMap = null;
 			btnDraw = null;
 			btnErase = null;
+			inputTestEvaluate = null;
 			btnSubmit = null;
 			imgTip = null;
 			tmpTIp = null;

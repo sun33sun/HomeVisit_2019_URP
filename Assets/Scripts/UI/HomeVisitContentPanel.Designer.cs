@@ -17,7 +17,6 @@ namespace HomeVisit.UI
 		public UnityEngine.UI.Button btnSubmit;
 		[SerializeField]
 		public UnityEngine.UI.Button btnClose;
-		public List<ITitle> titleList = new List<ITitle>();
 
 		private HomeVisitContentPanelData mPrivateData = null;
 		

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using QFramework;
+using System;
 
 namespace HomeVisit.UI
 {
@@ -13,12 +14,17 @@ namespace HomeVisit.UI
 		public string strB = "";
 		public string strC = "";
 		public string strD = "";
-
 		public int score = 0;
+
+		public string strModule = "";
+		public DateTime strStart;
 	}
 	public partial class SingleTitle : UIPanel, ITitle
 	{
 		bool isRight;
+
+		ScoreReportData scoreReportData = new ScoreReportData();
+
 		protected override void OnInit(IUIData uiData = null)
 		{
 			mData = uiData as SingleTitleData;
@@ -108,6 +114,18 @@ namespace HomeVisit.UI
 				return mData.score;
 			else
 				return 0;
+		}
+
+		public ScoreReportData GetScoreReportData()
+		{
+			ScoreReportData data = new ScoreReportData()
+			{
+				strModule = mData.strModule,
+				strStart = mData.strStart,
+				strEnd = DateTime.Now,
+				strScore = (isRight? mData.score : 0).ToString()
+			};
+			return data;
 		}
 	}
 }

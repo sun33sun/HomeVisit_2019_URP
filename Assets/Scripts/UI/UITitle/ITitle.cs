@@ -4,7 +4,7 @@ namespace HomeVisit.UI
 {
     public interface ITitle
     {
-        int GetScore();
+        ScoreReportData GetScoreReportData();
     }
 }
 

@@ -18,6 +18,7 @@ namespace HomeVisit.UI
 
 		void TestExam()
 		{
+			DateTime startTime = DateTime.Now;
 			SingleTitleData singleData = new SingleTitleData()
 			{
 				rightIndex = 0,
@@ -26,7 +27,10 @@ namespace HomeVisit.UI
 				strB = "选项B",
 				strC = "选项C",
 				strD = "选项D",
-				score = 20
+				score = 20,
+
+				strModule = "知识考核",
+				strStart = startTime
 			};
 			CreateSingleTitle(singleData);
 
@@ -38,9 +42,14 @@ namespace HomeVisit.UI
 				strB = "选项B",
 				strC = "选项C",
 				strD = "选项D",
-				score = 30
+				score = 30,
+
+				strModule = "知识考核",
+				strStart = startTime
 			};
 			CreateMultipleTitle(multipleData);
+
+			btnSubmit.transform.SetAsLastSibling();
 		}
 
 		GameObject CreateSingleTitle(SingleTitleData data)
@@ -78,7 +87,9 @@ namespace HomeVisit.UI
 			{
 				imgSubmitExam.gameObject.SetActive(true);
 				imgExam.gameObject.SetActive(false);
-				//UIKit.GetPanel<TestReportPanel>().on
+				TestReportPanel testReportPanel = UIKit.GetPanel<TestReportPanel>();
+				for (int i = 0; i < titles.Count; i++)
+					testReportPanel.CreateScoreReport(titles[i].GetScoreReportData());
 			});
 			btnCancel.onClick.AddListener(()=> 
 			{
@@ -110,14 +121,6 @@ namespace HomeVisit.UI
 		
 		protected override void OnClose()
 		{
-		}
-
-		public int GetScore()
-		{
-			int totalScore = 0;
-			for (int i = 0; i < titles.Count; i++)
-				totalScore += titles[i].GetScore();
-			return totalScore;
 		}
 	}
 }

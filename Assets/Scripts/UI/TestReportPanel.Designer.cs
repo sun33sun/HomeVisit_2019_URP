@@ -5,7 +5,7 @@ using QFramework;
 
 namespace HomeVisit.UI
 {
-	// Generate Id:54264f06-8d17-4dcf-8a3c-4fc5de33069d
+	// Generate Id:726e0a6e-b570-4c0f-938e-ae3ccc6bdaed
 	public partial class TestReportPanel
 	{
 		public const string Name = "TestReportPanel";
@@ -21,6 +21,8 @@ namespace HomeVisit.UI
 		[SerializeField]
 		public RectTransform Grid;
 		[SerializeField]
+		public TMPro.TextMeshProUGUI tmpTestEvaluate;
+		[SerializeField]
 		public UnityEngine.UI.Button btnSubmit;
 		
 		private TestReportPanelData mPrivateData = null;
@@ -32,6 +34,7 @@ namespace HomeVisit.UI
 			tmpDate = null;
 			tmpTotalScore = null;
 			Grid = null;
+			tmpTestEvaluate = null;
 			btnSubmit = null;
 			
 			mData = null;

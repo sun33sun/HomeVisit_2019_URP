@@ -1,15 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 using QFramework;
+using System;
 
 namespace HomeVisit.UI
 {
 	public class ScoreReportData : UIPanelData
 	{
 		public string strModule = "";
-		public string strStart = "";
-		public string strEnd = "";
-		public string strTotalTime = "";
+		public DateTime strStart;
+		public DateTime strEnd;
 		public string strScore = "";
 	}
 	public partial class ScoreReport : UIPanel
@@ -19,9 +19,9 @@ namespace HomeVisit.UI
 			mData = uiData as ScoreReportData ?? new ScoreReportData();
 
 			tmpModule.text = mData.strModule;
-			tmpStart.text = mData.strStart;
-			tmpEnd.text = mData.strEnd;
-			tmpTotalTime.text = mData.strTotalTime;
+			tmpStart.text = mData.strStart.ToString("yyyy-MM-dd HH:mm");
+			tmpEnd.text = mData.strEnd.ToString("yyyy-MM-dd HH:mm");
+			tmpTotalTime.text = (mData.strStart - mData.strEnd).ToString("%m' min.'");
 			tmpScore.text = mData.strScore;
 		}
 		

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using QFramework;
+using System.Collections.Generic;
 
 namespace HomeVisit.UI
 {
@@ -9,6 +10,9 @@ namespace HomeVisit.UI
 	}
 	public partial class ClothesPanel : UIPanel
 	{
+		[SerializeField] List<GameObject> manClothes;
+		[SerializeField] List<GameObject> womanClothes;
+
 		protected override void OnInit(IUIData uiData = null)
 		{
 			mData = uiData as ClothesPanelData ?? new ClothesPanelData();
