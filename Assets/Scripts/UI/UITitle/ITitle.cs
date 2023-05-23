@@ -6,7 +6,7 @@ namespace HomeVisit.UI
     {
         int GetScore();
 
-        bool GetState();
+        bool GetExamResult();
 
         void CheckTitle();
 

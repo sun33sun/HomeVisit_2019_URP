@@ -5,7 +5,7 @@ using QFramework;
 
 namespace HomeVisit.UI
 {
-	// Generate Id:00717ef3-b466-4479-9977-05507fdcaae7
+	// Generate Id:bb072dc8-1238-4e51-83b4-9eecc54e4e3e
 	public partial class ClothesPanel
 	{
 		public const string Name = "ClothesPanel";
@@ -13,13 +13,13 @@ namespace HomeVisit.UI
 		[SerializeField]
 		public UnityEngine.UI.Image imgTopBk;
 		[SerializeField]
-		public UnityEngine.UI.Image imgMidBk;
-		[SerializeField]
 		public UnityEngine.UI.Button btnMan;
 		[SerializeField]
 		public UnityEngine.UI.Button btnWoman;
 		[SerializeField]
 		public UnityEngine.UI.Button btnCloseClothes;
+		[SerializeField]
+		public UnityEngine.UI.Image imgMidBk;
 		[SerializeField]
 		public UnityEngine.UI.Image imgTeacher;
 		[SerializeField]
@@ -27,12 +27,12 @@ namespace HomeVisit.UI
 		[SerializeField]
 		public UnityEngine.UI.Button btnSubmit;
 		[SerializeField]
+		public UnityEngine.UI.Button btnConfirm;
+		[SerializeField]
 		public UnityEngine.UI.Image imgConfirm;
 		[SerializeField]
-		public UnityEngine.UI.Button btnConfirm;
-
-		public Sprite[] spriteSex;
-
+		public UnityEngine.UI.Button btnConfirmSubmit;
+		
 		private ClothesPanelData mPrivateData = null;
 		
 		protected override void ClearUIComponents()
@@ -41,11 +41,13 @@ namespace HomeVisit.UI
 			btnMan = null;
 			btnWoman = null;
 			btnCloseClothes = null;
+			imgMidBk = null;
 			imgTeacher = null;
 			Content = null;
 			btnSubmit = null;
-			imgConfirm = null;
 			btnConfirm = null;
+			imgConfirm = null;
+			btnConfirmSubmit = null;
 			
 			mData = null;
 		}

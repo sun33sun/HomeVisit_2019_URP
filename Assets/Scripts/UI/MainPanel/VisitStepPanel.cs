@@ -27,7 +27,7 @@ namespace HomeVisit.UI
 			for (int i = 0; i < stepUIs.Length; i++)
 			{
 				int index = i;
-				stepUIs[i].GetComponent<Button>().onClick.AddListener(() => { objSteps[index].SetActive(!objSteps[index].activeInHierarchy); });
+				stepUIs[i].btnStep.onClick.AddListener(() => { objSteps[index].SetActive(!objSteps[index].activeInHierarchy); });
 			}
 		}
 
@@ -39,21 +39,23 @@ namespace HomeVisit.UI
 			{
 				stepUIs[i].img.sprite = stepUIs[i].spriteD;
 			}
+			for (int i = 1; i < stepUIs.Length; i++)
+				stepUIs[i].btnStep.interactable = false;
 		}
 
 		public void NextStep()
 		{
-			if (stepUIIndex > stepUIs.Length - 2)
+			if (stepUIIndex >= stepUIs.Length - 1)
 			{
 				Debug.LogError("StepUIIndex Out Of Bounds : " + stepUIIndex);
 				return;
 			}
 			stepUIs[stepUIIndex].img.sprite = stepUIs[stepUIIndex].spriteC;
-
 			stepUIIndex++;
 			stepUIs[stepUIIndex].img.sprite = stepUIs[stepUIIndex].spriteH;
 			
 			imgProgressBar.sprite = stepUIs[stepUIIndex].spriteProgressBar;
+			stepUIs[stepUIIndex].btnStep.interactable = true;
 		}
 
 		public void NextTmp()
@@ -63,9 +65,14 @@ namespace HomeVisit.UI
 				Debug.LogError("tmpIndex Out Of Bonds : " + tmpIndex);
 				return;
 			}
-			tmpList[tmpIndex].fontStyle = TMPro.FontStyles.Normal;
-			tmpList[tmpIndex].transform.Find("imgSelected").GetComponent<Image>().enabled = false;
 			tmpIndex++;
+			tmpList[tmpIndex].fontStyle = TMPro.FontStyles.Bold;
+			tmpList[tmpIndex].transform.Find("imgSelected").GetComponent<Image>().enabled = true;
+		}
+
+		public void StartTMP()
+		{
+			tmpIndex = 0;
 			tmpList[tmpIndex].fontStyle = TMPro.FontStyles.Bold;
 			tmpList[tmpIndex].transform.Find("imgSelected").GetComponent<Image>().enabled = true;
 		}

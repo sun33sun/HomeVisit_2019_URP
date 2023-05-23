@@ -11,7 +11,7 @@ namespace HomeVisit.UI
 			ResKit.InitAsync().ToAction().Start(this, () =>
 			 {
 				 UIKit.OpenPanelAsync<MainPanel>(UILevel.Bg).ToAction().Start(this);
-				 UIKit.OpenPanelAsync<TestGoalPanel>().ToAction().Start(this);
+				 UIKit.OpenPanelAsync<TestGoalPanel>().ToAction().Start(this,()=> { UIKit.HidePanel<TestGoalPanel>(); });
 				 UIKit.OpenPanelAsync<TestReportPanel>().ToAction().Start(this, () =>
 				 {
 					 UIKit.OpenPanelAsync<KnowledgeExamPanel>().ToAction().Start(this, () =>
@@ -20,11 +20,6 @@ namespace HomeVisit.UI
 					 });
 				 });
 			 });
-
-			//ResKit.InitAsync().ToAction().Start(this, () =>
-			//{
-			//	UIKit.OpenPanelAsync<CommunicateOutlinePanel>().ToAction().Start(this);
-			//});
 		}
 	}
 }

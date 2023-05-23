@@ -7,6 +7,7 @@ namespace HomeVisit.UI
 {
 	public class StepUI : MonoBehaviour
 	{
+		public Button btnStep;
 		public Image img;
 		[Header("«–ªª”√Õº∆¨")]
 		public Sprite spriteProgressBar;

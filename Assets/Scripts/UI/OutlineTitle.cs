@@ -76,13 +76,13 @@ namespace HomeVisit.UI
 
 		public int GetScore()
 		{
-			if (GetState())
+			if (GetExamResult())
 				return mData.score;
 			else
 				return 0;
 		}
 
-		public bool GetState()
+		public bool GetExamResult()
 		{
 			bool isRIght = true;
 			for (int i = 0; i < selectedTogList.Count; i++)

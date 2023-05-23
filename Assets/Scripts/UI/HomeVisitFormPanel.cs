@@ -25,6 +25,7 @@ namespace HomeVisit.UI
 
 			btnConfirm.onClick.AddListener(() =>
 			{
+				UIKit.GetPanel<MainPanel>().NextStep();
 				imgExam.gameObject.SetActive(true);
 				imgSubmitExam.gameObject.SetActive(false);
 			});
@@ -36,27 +37,36 @@ namespace HomeVisit.UI
 
 			btnClose.onClick.AddListener(Hide);
 
-			btnSubmit.onClick.AddListener(() =>
+			btnConfirmFrom.onClick.AddListener(() =>
 			{
-				UIKit.OpenPanelAsync<HomeVisitRoutePanel>().ToAction().Start(this);
-				UIKit.GetPanel<MainPanel>().NextStep();
-				Hide();
-
-				TestReportPanel testReportPanel = UIKit.GetPanel<TestReportPanel>();
-				int totalScore = 0;
 				for (int i = 0; i < titles.Count; i++)
-					totalScore += titles[i].GetScore();
-				ScoreReportData data = new ScoreReportData()
-				{
-					strModule = "家访形式",
-					strStart = startTime,
-					strEnd = endTime,
-					strScore = totalScore.ToString()
-				};
-				testReportPanel.CreateScoreReport(data);
+					titles[i].CheckTitle();
+				btnSubmitFrom.transform.SetAsLastSibling();
 			});
+			btnSubmitFrom.onClick.AddListener(SubmitForm);
 
 			TestExam();
+		}
+
+		void SubmitForm()
+		{
+			//生成实验报告
+			TestReportPanel testReportPanel = UIKit.GetPanel<TestReportPanel>();
+			int totalScore = 0;
+			for (int i = 0; i < titles.Count; i++)
+				totalScore += titles[i].GetScore();
+			ScoreReportData data = new ScoreReportData()
+			{
+				strModule = "家访形式",
+				strStart = startTime,
+				strEnd = endTime,
+				strScore = totalScore.ToString()
+			};
+			testReportPanel.CreateScoreReport(data);
+
+			UIKit.OpenPanelAsync<HomeVisitRoutePanel>().ToAction().Start(this);
+			UIKit.GetPanel<MainPanel>().NextStep();
+			Hide();
 		}
 
 		void TestExam()
@@ -91,7 +101,9 @@ namespace HomeVisit.UI
 			};
 			CreateMultipleTitle(multipleData);
 
-			btnSubmit.transform.parent.SetAsLastSibling();
+			btnConfirmFrom.transform.parent.SetAsLastSibling();
+			btnSubmitFrom.transform.SetAsLastSibling();
+			btnConfirmFrom.transform.SetAsLastSibling();
 		}
 
 		GameObject CreateSingleTitle(SingleTitleData data)
@@ -128,6 +140,9 @@ namespace HomeVisit.UI
 			startTime = DateTime.Now;
 			imgExam.gameObject.SetActive(false);
 			imgSubmitExam.gameObject.SetActive(true);
+
+			btnSubmitFrom.transform.SetAsLastSibling();
+			btnConfirmFrom.transform.SetAsLastSibling();
 		}
 		
 		protected override void OnHide()

@@ -24,6 +24,11 @@ namespace HomeVisit.UI
 			btnKnowledge.onClick.AddListener(SwitchKnowledgePanel);
 			btnTestReport.onClick.AddListener(SwitchTestReportPanel);
 			btnTip.onClick.AddListener(() => { imgTip.gameObject.SetActive(false); });
+
+			btnTestBrief.onClick.AddListener(() =>
+			{
+				UIKit.ShowPanel<TestGoalPanel>();
+			});
 		}
 		
 		protected override void OnOpen(IUIData uiData = null)

@@ -29,6 +29,10 @@ namespace HomeVisit.UI
 			visitStepPanels[visitStepIndex].NextStep();
 		}
 
+		public void StartTMP()
+		{
+			visitStepPanels[visitStepIndex].StartTMP();
+		}
 		public void NextTmp()
 		{
 			visitStepPanels[visitStepIndex].NextTmp();

@@ -124,7 +124,7 @@ namespace HomeVisit.UI
 			return data;
 		}
 
-		public bool GetState()
+		public bool GetExamResult()
 		{
 			return isRight;
 		}

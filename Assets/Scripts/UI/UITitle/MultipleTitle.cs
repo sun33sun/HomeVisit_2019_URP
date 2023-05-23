@@ -44,22 +44,22 @@ namespace HomeVisit.UI
 			togA.onValueChanged.AddListener(isOn =>
 			{
 				isSelected[0] = isOn;
-				GetState();
+				GetExamResult();
 			});
 			togB.onValueChanged.AddListener(isOn =>
 			{
 				isSelected[1] = isOn;
-				GetState();
+				GetExamResult();
 			});
 			togC.onValueChanged.AddListener(isOn =>
 			{
 				isSelected[2] = isOn;
-				GetState();
+				GetExamResult();
 			});
 			togD.onValueChanged.AddListener(isOn =>
 			{
 				isSelected[3] = isOn;
-				GetState();
+				GetExamResult();
 			});
 
 			if (mData.isRights[0])
@@ -92,13 +92,13 @@ namespace HomeVisit.UI
 
 		public int GetScore()
 		{
-			if (GetState())
+			if (GetExamResult())
 				return mData.score;
 			else
 				return 0;
 		}
 
-		public bool GetState()
+		public bool GetExamResult()
 		{
 			bool allRight = true;
 			int selectedCount = 0;

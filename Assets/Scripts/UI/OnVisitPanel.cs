@@ -31,7 +31,7 @@ namespace HomeVisit.UI
 			});
 			btnConfirmObserveDetail.onClick.AddListener(() =>
 			{
-				UIKit.GetPanel<MainPanel>().NextVisitStepPanel();
+				UIKit.GetPanel<MainPanel>().NextTmp();
 				imgObserveDetail.gameObject.SetActive(false);
 				imgPreSpeak.gameObject.SetActive(true);
 			});
@@ -56,12 +56,16 @@ namespace HomeVisit.UI
 			});
 			btnConfirmRecord.onClick.AddListener(() => 
 			{
-				UIKit.GetPanel<MainPanel>().NextStep();
+				MainPanel mainPanel = UIKit.GetPanel<MainPanel>();
+				mainPanel.NextTmp();
+				mainPanel.NextTmp();
+				mainPanel.NextStep();
 				btnDialogue.gameObject.SetActive(true);
 				dialogueIndex = 0;
 				btnDialogue.sprite = spriteDialogue1[dialogueIndex];
 				txtDialogue.text = strDialogue1[dialogueIndex];
 				btnDialogue.GetComponent<Button>().onClick.RemoveListener(SwitchDialogue);
+				btnDialogue.GetComponent<Button>().onClick.RemoveListener(SwitchDialogue1);
 			});
 			btnRefuse.onClick.AddListener(() =>
 			{
@@ -107,13 +111,15 @@ namespace HomeVisit.UI
 		void SwitchDialogue()
 		{
 			dialogueIndex++;
-			if (dialogueIndex == 2)
-				UIKit.GetPanel<MainPanel>().NextStep();
+			if (dialogueIndex == 3)
+				UIKit.GetPanel<MainPanel>().NextTmp();
+
+
 			if(dialogueIndex >= spriteDialogue.Length)
 			{
-				imgExpressGratitude.gameObject.SetActive(true);
+				imgObserveDetail.gameObject.SetActive(true);
 				btnDialogue.gameObject.SetActive(false);
-				UIKit.GetPanel<MainPanel>().NextStep();
+				UIKit.GetPanel<MainPanel>().NextTmp();
 			}
 			else
 			{
@@ -125,6 +131,23 @@ namespace HomeVisit.UI
 		void SwitchDialogue1()
 		{
 			dialogueIndex++;
+			switch (dialogueIndex)
+			{
+				case 1:
+					UIKit.GetPanel<MainPanel>().NextTmp();
+					break;
+				case 2:
+					UIKit.GetPanel<MainPanel>().NextTmp();
+					break;
+				case 3:
+					UIKit.GetPanel<MainPanel>().NextTmp();
+					UIKit.GetPanel<MainPanel>().NextTmp();
+					UIKit.GetPanel<MainPanel>().NextStep();
+					break;
+				default:
+					break;
+			}
+
 			if (dialogueIndex >= spriteDialogue1.Length)
 			{
 				imgExpressGratitude.gameObject.SetActive(true);
@@ -149,6 +172,8 @@ namespace HomeVisit.UI
 			imgPostSpeak.gameObject.SetActive(false);
 			imgExpressGratitude.gameObject.SetActive(false);
 			imgNext.gameObject.SetActive(false);
+
+			UIKit.GetPanel<MainPanel>().StartTMP();
 		}
 
 		protected override void OnOpen(IUIData uiData = null)

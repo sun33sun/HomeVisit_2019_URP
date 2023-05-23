@@ -2,11 +2,10 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using QFramework;
-using System.Collections.Generic;
 
 namespace HomeVisit.UI
 {
-	// Generate Id:a1b0206f-1540-4ae5-9616-9b47d0f195b5
+	// Generate Id:56ca1722-ba40-4716-8094-466230c0074f
 	public partial class HomeVisitContentPanel
 	{
 		public const string Name = "HomeVisitContentPanel";
@@ -16,14 +15,17 @@ namespace HomeVisit.UI
 		[SerializeField]
 		public UnityEngine.UI.Button btnSubmit;
 		[SerializeField]
+		public UnityEngine.UI.Button btnConfirm;
+		[SerializeField]
 		public UnityEngine.UI.Button btnClose;
-
+		
 		private HomeVisitContentPanelData mPrivateData = null;
 		
 		protected override void ClearUIComponents()
 		{
 			Content = null;
 			btnSubmit = null;
+			btnConfirm = null;
 			btnClose = null;
 			
 			mData = null;

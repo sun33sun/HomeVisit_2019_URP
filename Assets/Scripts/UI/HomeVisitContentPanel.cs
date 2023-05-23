@@ -25,27 +25,35 @@ namespace HomeVisit.UI
 
 
 			btnClose.onClick.AddListener(Hide);
-			btnSubmit.onClick.AddListener(() =>
-			{
-				UIKit.GetPanel<MainPanel>().NextStep();
-				UIKit.OpenPanelAsync<HomeVisitFormPanel>().ToAction().Start(this);
-				Hide();
 
-				TestReportPanel testReportPanel = UIKit.GetPanel<TestReportPanel>();
-				int totalScore = 0;
+			btnConfirm.onClick.AddListener(() =>
+			{
 				for (int i = 0; i < titles.Count; i++)
-					totalScore += titles[i].GetScore();
-				ScoreReportData data = new ScoreReportData()
-				{
-					strModule = "家访内容",
-					strStart = startTime,
-					strEnd = endTime,
-					strScore = totalScore.ToString()
-				};
-				testReportPanel.CreateScoreReport(data);
+					titles[i].CheckTitle();
+				btnSubmit.transform.SetAsLastSibling();
 			});
+			btnSubmit.onClick.AddListener(Submit);
 
 			TestExam();
+		}
+
+		void Submit()
+		{
+			UIKit.OpenPanelAsync<HomeVisitFormPanel>().ToAction().Start(this);
+			Hide();
+
+			TestReportPanel testReportPanel = UIKit.GetPanel<TestReportPanel>();
+			int totalScore = 0;
+			for (int i = 0; i < titles.Count; i++)
+				totalScore += titles[i].GetScore();
+			ScoreReportData data = new ScoreReportData()
+			{
+				strModule = "家访内容",
+				strStart = startTime,
+				strEnd = endTime,
+				strScore = totalScore.ToString()
+			};
+			testReportPanel.CreateScoreReport(data);
 		}
 
 		void TestExam()
@@ -114,6 +122,8 @@ namespace HomeVisit.UI
 		protected override void OnShow()
 		{
 			startTime = DateTime.Now;
+			btnSubmit.transform.SetAsLastSibling();
+			btnConfirm.transform.SetAsLastSibling();
 		}
 
 		protected override void OnHide()
