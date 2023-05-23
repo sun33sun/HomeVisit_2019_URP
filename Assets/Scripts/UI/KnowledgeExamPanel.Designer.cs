@@ -5,7 +5,7 @@ using QFramework;
 
 namespace HomeVisit.UI
 {
-	// Generate Id:d09b5acb-693e-4c46-97a2-100b38e55dfb
+	// Generate Id:e7dfbe9c-912e-4df5-81f8-81ac796f2ef0
 	public partial class KnowledgeExamPanel
 	{
 		public const string Name = "KnowledgeExamPanel";
@@ -19,13 +19,15 @@ namespace HomeVisit.UI
 		[SerializeField]
 		public UnityEngine.UI.Button btnSubmit;
 		[SerializeField]
+		public UnityEngine.UI.Button btnConfirm;
+		[SerializeField]
 		public UnityEngine.UI.Button btnClose;
 		[SerializeField]
 		public UnityEngine.RectTransform imgSubmitExam;
 		[SerializeField]
 		public UnityEngine.UI.Button btnCancel;
 		[SerializeField]
-		public UnityEngine.UI.Button btnConfirm;
+		public UnityEngine.UI.Button btnConfirmSubmit;
 		
 		private KnowledgeExamPanelData mPrivateData = null;
 		
@@ -35,10 +37,11 @@ namespace HomeVisit.UI
 			tmpPanelName = null;
 			Content = null;
 			btnSubmit = null;
+			btnConfirm = null;
 			btnClose = null;
 			imgSubmitExam = null;
 			btnCancel = null;
-			btnConfirm = null;
+			btnConfirmSubmit = null;
 			
 			mData = null;
 		}

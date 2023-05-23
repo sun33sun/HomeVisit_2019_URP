@@ -22,16 +22,5 @@ namespace HomeVisit.UI
 		public GameObject[] objSteps;
 		[SerializeField]
 		public List<TextMeshProUGUI> tmpList;
-
-		public void Clear()
-		{
-			imgProgressBar = null;
-			stepUIs = null;
-		}
-
-		public override string ComponentName
-		{
-			get { return "CommunicationOutlinePanel";}
-		}
 	}
 }

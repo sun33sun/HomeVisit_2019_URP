@@ -51,6 +51,7 @@ namespace HomeVisit.UI
 			CreateMultipleTitle(multipleData);
 
 			btnSubmit.transform.SetAsLastSibling();
+			btnConfirm.transform.SetAsLastSibling();
 		}
 
 		GameObject CreateSingleTitle(SingleTitleData data)
@@ -90,23 +91,34 @@ namespace HomeVisit.UI
 				imgSubmitExam.gameObject.SetActive(false);
 				imgExam.gameObject.SetActive(true);
 			});
-			btnConfirm.onClick.AddListener(()=> 
-			{
-				UIKit.ShowPanel<TestReportPanel>();
-				Hide();
-			});
+			btnConfirm.onClick.AddListener(Confirm);
+
+			btnConfirmSubmit.onClick.AddListener(ConfirmSubmit);
 
 			TestExam();
+		}
+
+		void Confirm()
+		{
+			for (int i = 0; i < titles.Count; i++)
+				titles[i].CheckTitle();
+			btnConfirm.gameObject.SetActive(false);
+			btnSubmit.gameObject.SetActive(true);
 		}
 
 		void Submit()
 		{
 			imgSubmitExam.gameObject.SetActive(true);
 			imgExam.gameObject.SetActive(false);
+		}
 
+		void ConfirmSubmit()
+		{
+			//创建实验报告
 			int totalScore = 0;
 			for (int i = 0; i < titles.Count; i++)
 				totalScore += titles[i].GetScore();
+			endTime = DateTime.Now;
 			ScoreReportData data = new ScoreReportData()
 			{
 				strModule = "知识考核",
@@ -116,7 +128,11 @@ namespace HomeVisit.UI
 			};
 			TestReportPanel testReportPanel = UIKit.GetPanel<TestReportPanel>();
 			testReportPanel.CreateScoreReport(data);
+
+			UIKit.OpenPanelAsync<TestReportPanel>();
+			Hide();
 		}
+
 
 		protected override void OnOpen(IUIData uiData = null)
 		{
@@ -131,7 +147,6 @@ namespace HomeVisit.UI
 		
 		protected override void OnHide()
 		{
-			endTime = DateTime.Now;
 		}
 		
 		protected override void OnClose()

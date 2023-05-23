@@ -9,6 +9,8 @@ namespace HomeVisit.UI
 	}
 	public partial class ButtonPanel : UIPanel
 	{
+		KnowledgeExamPanel knowledgeExamPanel;
+		TestReportPanel testReportPanel;
 		protected override void OnInit(IUIData uiData = null)
 		{
 			mData = uiData as ButtonPanelData ?? new ButtonPanelData();

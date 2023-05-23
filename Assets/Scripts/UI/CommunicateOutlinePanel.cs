@@ -47,9 +47,12 @@ namespace HomeVisit.UI
 			int totalScore = 0;
 			for (int i = 0; i < titles.Count; i++)
 				totalScore = titles[i].GetScore();
+			endTime = DateTime.Now;
 			ScoreReportData data = new ScoreReportData()
 			{
 				strModule = "½»Á÷Ìá¸Ù",
+				strStart = startTime,
+				strEnd = endTime,
 				strScore = totalScore.ToString(),
 			};
 			TestReportPanel testReportPanel = UIKit.GetPanel<TestReportPanel>();
@@ -63,7 +66,6 @@ namespace HomeVisit.UI
 
 		void TestExam()
 		{
-			DateTime startTime = DateTime.Now;
 
 			OutlineTitleData multipleData = new OutlineTitleData()
 			{
@@ -83,7 +85,6 @@ namespace HomeVisit.UI
 				score = 10
 			};
 			CreateOutlinTitle(multipleData);
-
 
 			OutlineTitleData multipleData1 = new OutlineTitleData()
 			{
@@ -132,7 +133,6 @@ namespace HomeVisit.UI
 
 		protected override void OnHide()
 		{
-			endTime = DateTime.Now;
 		}
 
 		protected override void OnClose()

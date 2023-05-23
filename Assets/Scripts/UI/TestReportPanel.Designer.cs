@@ -5,7 +5,7 @@ using QFramework;
 
 namespace HomeVisit.UI
 {
-	// Generate Id:726e0a6e-b570-4c0f-938e-ae3ccc6bdaed
+	// Generate Id:e8bea18c-578a-4d88-b4e4-ede949e5c375
 	public partial class TestReportPanel
 	{
 		public const string Name = "TestReportPanel";
