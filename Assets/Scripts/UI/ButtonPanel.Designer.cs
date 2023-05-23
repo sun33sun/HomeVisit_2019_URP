@@ -5,7 +5,7 @@ using QFramework;
 
 namespace HomeVisit.UI
 {
-	// Generate Id:e5668c19-da86-4535-a5f0-151dc122a5f5
+	// Generate Id:2fe5d7eb-078d-4dd9-bf60-a280f617f97c
 	public partial class ButtonPanel
 	{
 		public const string Name = "ButtonPanel";
@@ -24,7 +24,10 @@ namespace HomeVisit.UI
 		public UnityEngine.UI.Image imgTip;
 		[SerializeField]
 		public TMPro.TextMeshProUGUI tmpTip;
-		
+
+		KnowledgeExamPanel knowledgeExamPanel = null;
+		TestReportPanel testReportPanel = null;
+
 		private ButtonPanelData mPrivateData = null;
 		
 		protected override void ClearUIComponents()

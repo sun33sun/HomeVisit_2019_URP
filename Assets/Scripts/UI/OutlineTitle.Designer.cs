@@ -5,7 +5,7 @@ using QFramework;
 
 namespace HomeVisit.UI
 {
-	// Generate Id:dc4e9067-e73f-403c-ab03-24d5f04cbff2
+	// Generate Id:4da0086e-7e0c-408d-8a22-4d36d7a16991
 	public partial class OutlineTitle
 	{
 		public const string Name = "OutlineTitle";

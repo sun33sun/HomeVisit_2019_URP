@@ -5,7 +5,7 @@ using QFramework;
 
 namespace HomeVisit.UI
 {
-	// Generate Id:2bdaa2be-6d63-4463-90a6-dab7b4b7b8b2
+	// Generate Id:607887a2-8d73-4c5f-89cc-2e1c623a649e
 	public partial class CommunicateOutlinePanel
 	{
 		public const string Name = "CommunicateOutlinePanel";
@@ -15,9 +15,9 @@ namespace HomeVisit.UI
 		[SerializeField]
 		public RectTransform Content;
 		[SerializeField]
-		public UnityEngine.UI.Button btnSubmit;
-		[SerializeField]
 		public UnityEngine.UI.Button btnConfirm;
+		[SerializeField]
+		public UnityEngine.UI.Button btnSubmit;
 		
 		private CommunicateOutlinePanelData mPrivateData = null;
 		
@@ -25,8 +25,8 @@ namespace HomeVisit.UI
 		{
 			btnClose = null;
 			Content = null;
-			btnSubmit = null;
 			btnConfirm = null;
+			btnSubmit = null;
 			
 			mData = null;
 		}

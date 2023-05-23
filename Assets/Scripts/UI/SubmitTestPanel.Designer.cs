@@ -5,25 +5,22 @@ using QFramework;
 
 namespace HomeVisit.UI
 {
-	// Generate Id:9404c741-7863-4e16-9ea2-316ca9e804c3
+	// Generate Id:535ce2ac-39a7-4667-8b3b-eec95b97cff0
 	public partial class SubmitTestPanel
 	{
 		public const string Name = "SubmitTestPanel";
 		
 		[SerializeField]
-		public TMPro.TextMeshProUGUI tmpTIp;
+		public UnityEngine.UI.Button btnCancel;
 		[SerializeField]
 		public UnityEngine.UI.Button btnConfirm;
-		[SerializeField]
-		public UnityEngine.UI.Button btnCancel;
 		
 		private SubmitTestPanelData mPrivateData = null;
 		
 		protected override void ClearUIComponents()
 		{
-			tmpTIp = null;
-			btnConfirm = null;
 			btnCancel = null;
+			btnConfirm = null;
 			
 			mData = null;
 		}

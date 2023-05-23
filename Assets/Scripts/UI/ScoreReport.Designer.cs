@@ -5,10 +5,10 @@ using QFramework;
 
 namespace HomeVisit.UI
 {
-	// Generate Id:de1eb9bb-2544-498d-bf7f-55e5013a7295
+	// Generate Id:d032b137-2f40-47e8-9ac0-54ded381af0c
 	public partial class ScoreReport
 	{
-		public const string Name = "ScoreReport";
+		public const string Name = "imgScoreBk";
 		
 		[SerializeField]
 		public TMPro.TextMeshProUGUI tmpModule;

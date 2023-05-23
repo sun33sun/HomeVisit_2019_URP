@@ -5,7 +5,7 @@ using QFramework;
 
 namespace HomeVisit.UI
 {
-	// Generate Id:fdf76368-c046-4269-971d-d6acf2a6d4d4
+	// Generate Id:52a0be06-9b5e-4c5d-881c-5965b9f9f967
 	public partial class RecordSheetPanel
 	{
 		public const string Name = "RecordSheetPanel";
