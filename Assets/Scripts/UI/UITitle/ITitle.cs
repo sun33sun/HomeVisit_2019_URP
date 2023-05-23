@@ -9,6 +9,12 @@ namespace HomeVisit.UI
         bool GetState();
 
         void CheckTitle();
+
+        void Reset();
+
+        void SetInteractable(bool newState);
+
+        bool GetInteractable();
     }
 }
 

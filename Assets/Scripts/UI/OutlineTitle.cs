@@ -21,6 +21,7 @@ namespace HomeVisit.UI
 		[SerializeField] GameObject togPrefab;
 		List<TogOutline> selectedTogList = new List<TogOutline>();
 		List<TogOutline> togList = new List<TogOutline>();
+		CommunicateOutlinePanel communicateOutlinePanel;
 
 		protected override void OnInit(IUIData uiData = null)
 		{
@@ -28,7 +29,7 @@ namespace HomeVisit.UI
 
 			titleDescribe.text = mData.strTitleDescribe;
 
-			CommunicateOutlinePanel communicateOutlinePanel = UIKit.GetPanel<CommunicateOutlinePanel>();
+			communicateOutlinePanel = UIKit.GetPanel<CommunicateOutlinePanel>();
 
 			for (int i = 0; i < mData.strTogList.Count; i++)
 			{
@@ -104,6 +105,29 @@ namespace HomeVisit.UI
 				else
 					togList[i].ShowState(-1);
 			}
+		}
+
+		public void Reset()
+		{
+			SetInteractable(true);
+			communicateOutlinePanel.strTogSelected.Clear();
+			for (int i = 0; i < togList.Count; i++)
+				togList[i].tog.isOn = false;
+			for (int i = 0; i < togList.Count; i++)
+				togList[i].ShowState(0);
+		}
+
+		public void SetInteractable(bool newState)
+		{
+			for (int i = 0; i < togList.Count; i++)
+				togList[i].tog.interactable = newState;
+		}
+
+		public bool GetInteractable()
+		{
+			if (togList.Count < 1)
+				return false;
+			return togList[0].tog.interactable;
 		}
 	}
 }

@@ -109,18 +109,53 @@ namespace HomeVisit.UI
 				if (isSelected[i])
 					selectedCount++;
 			}
-			if (allRight)
-				tmpAnalysis.text = rightTip;
-			else if (selectedCount >= rightCount)
-				tmpAnalysis.text = errorTip;
-			else
-				tmpAnalysis.text = "½âÎö£º";
+
 			return allRight;
 		}
 
 		public void CheckTitle()
 		{
-			GetState();
+			bool allRight = true;
+			int selectedCount = 0;
+			for (int i = 0; i < mData.isRights.Length; i++)
+			{
+				if (mData.isRights[i] != isSelected[i])
+				{
+					allRight = false;
+					break;
+				}
+				if (isSelected[i])
+					selectedCount++;
+			}
+			if (allRight)
+				tmpAnalysis.text = rightTip;
+			else if (selectedCount >= rightCount || !allRight)
+				tmpAnalysis.text = errorTip;
+			else
+				tmpAnalysis.text = "½âÎö£º";
+		}
+
+		public void Reset()
+		{
+			SetInteractable(true);
+			tmpAnalysis.text = "½âÎö£º";
+			togA.isOn = false;
+			togB.isOn = false;
+			togC.isOn = false;
+			togD.isOn = false;
+		}
+
+		public void SetInteractable(bool newState)
+		{
+			togA.interactable = newState;
+			togB.interactable = newState;
+			togC.interactable = newState;
+			togD.interactable = newState;
+		}
+
+		public bool GetInteractable()
+		{
+			return togA.interactable;
 		}
 	}
 }

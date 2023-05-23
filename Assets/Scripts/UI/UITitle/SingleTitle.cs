@@ -72,7 +72,6 @@ namespace HomeVisit.UI
 			if (isOn)
 			{
 				isRight = true;
-				tmpAnalysis.text = rightTip;
 			}
 			else
 			{
@@ -86,7 +85,6 @@ namespace HomeVisit.UI
 			if (isOn)
 			{
 				isRight = false;
-				tmpAnalysis.text = errorTip;
 			}
 		}
 
@@ -137,6 +135,30 @@ namespace HomeVisit.UI
 				tmpAnalysis.text = rightTip;
 			else
 				tmpAnalysis.text = errorTip;
+		}
+
+		public void Reset()
+		{
+			SetInteractable(true);
+			isRight = false;
+			tmpAnalysis.text = "½âÎö£º";
+			togA.isOn = false;
+			togB.isOn = false;
+			togC.isOn = false;
+			togD.isOn = false;
+		}
+
+		public void SetInteractable(bool newState)
+		{
+			togA.interactable = newState;
+			togB.interactable = newState;
+			togC.interactable = newState;
+			togD.interactable = newState;
+		}
+
+		public bool GetInteractable()
+		{
+			return togA.interactable;
 		}
 	}
 }

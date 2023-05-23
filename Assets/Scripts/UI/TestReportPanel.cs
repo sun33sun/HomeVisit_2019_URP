@@ -53,6 +53,14 @@ namespace HomeVisit.UI
 
 		public void CreateScoreReport(ScoreReportData data)
 		{
+			for (int i = 0; i < reportList.Count; i++)
+			{
+				if(reportList[i].tmpModule.text == data.strModule)
+				{
+					reportList[i].Init(data);
+					return;
+				}
+			}
 			Transform newTrans = Instantiate(reportPrefab).transform;
 			newTrans.SetParent(Grid);
 			newTrans.localScale = Vector3.one;

@@ -15,7 +15,7 @@ using TMPro;
 
 namespace HomeVisit.UI
 {
-	public partial class VisitStepPanel : UIElement
+	public partial class VisitStepPanel : MonoBehaviour
 	{
 		int stepUIIndex = 0;
 		int tmpIndex = 0;

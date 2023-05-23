@@ -15,6 +15,7 @@ namespace HomeVisit.UI
 		[SerializeField] GameObject multiplePrefab = null;
 
 		List<ITitle> titles = new List<ITitle>();
+		List<Toggle> togs = new List<Toggle>();
 
 		DateTime startTime;
 		DateTime endTime;
@@ -51,12 +52,14 @@ namespace HomeVisit.UI
 			CreateMultipleTitle(multipleData);
 
 			btnSubmit.transform.SetAsLastSibling();
+			btnConfirm.transform.SetAsLastSibling();
 		}
 
 		GameObject CreateSingleTitle(SingleTitleData data)
 		{
 			GameObject gameObj = Instantiate(singlePrefab);
 			gameObj.name = singlePrefab.name;
+			togs.Add(gameObj.GetComponent<Toggle>());
 			SingleTitle singleTitle = gameObj.GetComponent<SingleTitle>();
 			titles.Add(singleTitle);
 			singleTitle.Init(data);
@@ -70,6 +73,7 @@ namespace HomeVisit.UI
 		{
 			GameObject gameObj = Instantiate(multiplePrefab);
 			gameObj.name = multiplePrefab.name;
+			togs.Add(gameObj.GetComponent<Toggle>());
 			MultipleTitle multipleTitle = gameObj.GetComponent<MultipleTitle>();
 			titles.Add(multipleTitle);
 			multipleTitle.Init(data);
@@ -84,22 +88,32 @@ namespace HomeVisit.UI
 			mData = uiData as KnowledgeExamPanelData ?? new KnowledgeExamPanelData();
 
 			btnClose.onClick.AddListener(Hide);
-			btnSubmit.onClick.AddListener(Submit);
+			btnSubmit.onClick.AddListener(()=>
+			{
+				imgSubmitExam.gameObject.SetActive(true);
+				imgExam.gameObject.SetActive(false);
+			});
 			btnCancel.onClick.AddListener(()=> 
 			{
 				imgSubmitExam.gameObject.SetActive(false);
 				imgExam.gameObject.SetActive(true);
+				for (int i = 0; i < titles.Count; i++)
+					titles[i].Reset();
 			});
-			btnConfirm.onClick.AddListener(()=> 
-			{
-				UIKit.ShowPanel<TestReportPanel>();
-				Hide();
-			});
+			btnConfirm.onClick.AddListener(Confirm);
+			btnConfirmSubmit.onClick.AddListener(ConfirmSubmit);
 
 			TestExam();
 		}
 
-		void Submit()
+		void Confirm()
+		{
+			for (int i = 0; i < titles.Count; i++)
+				titles[i].CheckTitle();
+			btnSubmit.transform.SetAsLastSibling();
+		}
+
+		void ConfirmSubmit()
 		{
 			imgSubmitExam.gameObject.SetActive(true);
 			imgExam.gameObject.SetActive(false);
@@ -116,6 +130,9 @@ namespace HomeVisit.UI
 			};
 			TestReportPanel testReportPanel = UIKit.GetPanel<TestReportPanel>();
 			testReportPanel.CreateScoreReport(data);
+
+			UIKit.ShowPanel<TestReportPanel>();
+			Hide();
 		}
 
 		protected override void OnOpen(IUIData uiData = null)
@@ -124,9 +141,14 @@ namespace HomeVisit.UI
 		
 		protected override void OnShow()
 		{
+			for (int i = 0; i < titles.Count; i++)
+				titles[i].Reset();
+
 			startTime = DateTime.Now;
 			imgExam.gameObject.SetActive(true);
 			imgSubmitExam.gameObject.SetActive(false);
+
+			btnConfirm.transform.SetAsLastSibling();
 		}
 		
 		protected override void OnHide()
