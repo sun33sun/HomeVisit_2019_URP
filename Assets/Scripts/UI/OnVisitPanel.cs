@@ -65,7 +65,9 @@ namespace HomeVisit.UI
 				btnDialogue.sprite = spriteDialogue1[dialogueIndex];
 				txtDialogue.text = strDialogue1[dialogueIndex];
 				btnDialogue.GetComponent<Button>().onClick.RemoveListener(SwitchDialogue);
-				btnDialogue.GetComponent<Button>().onClick.RemoveListener(SwitchDialogue1);
+				btnDialogue.GetComponent<Button>().onClick.AddListener(SwitchDialogue1);
+
+				imgPostSpeak.gameObject.SetActive(false);
 			});
 			btnRefuse.onClick.AddListener(() =>
 			{
