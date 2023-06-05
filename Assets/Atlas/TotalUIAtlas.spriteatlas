@@ -7,7 +7,6 @@ SpriteAtlas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: TotalUIAtlas
-  serializedVersion: 2
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -29,8 +28,6 @@ SpriteAtlas:
       allowAlphaSplitting: 0
       enableRotation: 0
       enableTightPacking: 0
-      enableAlphaDilation: 0
-    secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
     - {fileID: 2800000, guid: d91745d4919e5f64a866c16f37040470, type: 3}
@@ -168,9 +165,45 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 03e33a3b9c9d5a64fae6d9de3dccd583, type: 3}
     - {fileID: 2800000, guid: 18f14333deca797409bb18605c2f98d3, type: 3}
     - {fileID: 2800000, guid: a6accb2f590842240adf157e411278a6, type: 3}
+    - {fileID: 2800000, guid: f2778c6e62dfe624bacf2abe2b41aa4a, type: 3}
+    - {fileID: 2800000, guid: 708021b8b0338b44d90a62658c32f23a, type: 3}
+    - {fileID: 2800000, guid: 6bccc32dfb961d448ae9a625a0d6cccb, type: 3}
+    - {fileID: 2800000, guid: 67aaa80a3fc0b4a449d95213626e8f2e, type: 3}
+    - {fileID: 2800000, guid: f046c56b2c88da842a055e830c6ad18a, type: 3}
+    - {fileID: 2800000, guid: 33fa8c49fae6c5d44a7b6d0f3578d452, type: 3}
+    - {fileID: 2800000, guid: 79a793d97b6469646b985b93358e0ff4, type: 3}
+    - {fileID: 2800000, guid: 826ca2e6020bcce48ae34c0e479f0486, type: 3}
+    - {fileID: 2800000, guid: fa99cb11d42fc114dad06e990d5ad240, type: 3}
+    - {fileID: 2800000, guid: 01be9ef5978ee714392fe27966b9e9e5, type: 3}
+    - {fileID: 2800000, guid: a92f0ffdec7aa104b88ec7d4e2d0b4cc, type: 3}
+    - {fileID: 2800000, guid: d4de7b051713f1345840d5c3e5fb9a59, type: 3}
+    - {fileID: 2800000, guid: 058cadfe3d09cbb44806dd3e32ea8ee5, type: 3}
+    - {fileID: 2800000, guid: d77272e3231200c4c8166b273fb69a73, type: 3}
+    - {fileID: 2800000, guid: 6a8c2feef62efc34cb96454e1005c190, type: 3}
+    - {fileID: 2800000, guid: 449dd6595ac4bb543b0f2a3a1d77ae55, type: 3}
+    - {fileID: 2800000, guid: e2846ef4458eb6b42ab415e1d3509857, type: 3}
+    - {fileID: 2800000, guid: 4de8c7170110c1f48977cbb1bb93d959, type: 3}
+    - {fileID: 2800000, guid: a1e2cf708a7a9f44e969865af46cf808, type: 3}
+    - {fileID: 2800000, guid: 504f82aef92957f4787c3d1061e3a318, type: 3}
+    - {fileID: 2800000, guid: 4c16e29b38dea6a469849d9e62863a51, type: 3}
+    - {fileID: 2800000, guid: e3af0ecff9245d9449adeb731adfe97b, type: 3}
+    - {fileID: 2800000, guid: daaa5e0e6d5d096499a90effe05fa596, type: 3}
+    - {fileID: 2800000, guid: 1e395106b7da3f1459d3c1c0558cf588, type: 3}
+    - {fileID: 2800000, guid: a6acde0394f8fcf4d874907ea9839e84, type: 3}
+    - {fileID: 2800000, guid: 172802c295a6d9d44849731113301fa1, type: 3}
+    - {fileID: 2800000, guid: e8ce42427e25f0645b0e6d5ee8e3afd1, type: 3}
+    - {fileID: 2800000, guid: ad1ce4a464d31d6448c5b18a03b58b68, type: 3}
+    - {fileID: 2800000, guid: 8da39d90dea230d4dbe7a099ec3742d5, type: 3}
+    - {fileID: 2800000, guid: fbe1ca1b98d675146a6fe2ef469715a4, type: 3}
+    - {fileID: 2800000, guid: 3df4f132d6dece344b216c28f22de46c, type: 3}
+    - {fileID: 2800000, guid: e7edd1c6640a02a419d89cfc2e675a46, type: 3}
+    - {fileID: 2800000, guid: 164cb27d19f386544aa7c11e94ea5fc9, type: 3}
+    - {fileID: 2800000, guid: a900a17dfb3173845a90d55471497034, type: 3}
+    - {fileID: 2800000, guid: 135bbb67fa8f13441979184f62b80fa8, type: 3}
+    - {fileID: 2800000, guid: 9dab45c0ca900694f94bd1ee4a1c859b, type: 3}
+    - {fileID: 2800000, guid: 564a61540d42ef24193c341ae8beff27, type: 3}
+    - {fileID: 2800000, guid: f27cc9d8b24fe2545adf266fdab494f1, type: 3}
     bindAsDefault: 1
-    isAtlasV2: 0
-    cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 5c9b402098e7d6a41bec3f7f3d06e464, type: 3}
@@ -442,7 +475,5 @@ SpriteAtlas:
   - "4\u7740\u88C5\u51C6\u5907\u8FDB\u5EA6\u6761"
   - "\u5E2E\u52A9-\u9F20\u6807\u952E\u76D8"
   - "\u8BBF\u524D\u51C6\u5907"
-  m_RenderDataMap: {}
   m_Tag: TotalUIAtlas
   m_IsVariant: 0
-  m_IsPlaceholder: 0

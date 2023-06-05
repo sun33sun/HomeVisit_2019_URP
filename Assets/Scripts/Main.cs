@@ -10,8 +10,12 @@ namespace HomeVisit.UI
         {
 			ResKit.InitAsync().ToAction().Start(this, () =>
 			 {
+				 //主页面
 				 UIKit.OpenPanelAsync<MainPanel>(UILevel.Bg).ToAction().Start(this);
-				 UIKit.OpenPanelAsync<TestGoalPanel>().ToAction().Start(this,()=> { UIKit.HidePanel<TestGoalPanel>(); });
+				 //实验简介
+				 UIKit.OpenPanelAsync<TestBriefPanel>().ToAction().Start(this);
+
+				 //实验报告
 				 UIKit.OpenPanelAsync<TestReportPanel>().ToAction().Start(this, () =>
 				 {
 					 UIKit.OpenPanelAsync<KnowledgeExamPanel>().ToAction().Start(this, () =>
@@ -19,6 +23,7 @@ namespace HomeVisit.UI
 						 UIKit.OpenPanelAsync<ButtonPanel>(UILevel.PopUI).ToAction().Start(this);
 					 });
 				 });
+
 			 });
 		}
 	}

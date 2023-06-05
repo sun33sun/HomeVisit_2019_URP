@@ -41,11 +41,13 @@ namespace HomeVisit.UI
 				imgOnSpeak.gameObject.SetActive(true);
 				btnEndRecord.interactable = false;
 				StartCoroutine(WaveChange());
+				SignalManager.Instance.StartRecorderFunc();
 			});
 			btnEndRecord.onClick.AddListener(() =>
 			{
 				imgOnSpeak.gameObject.SetActive(false);
 				imgPostSpeak.gameObject.SetActive(true);
+				SignalManager.Instance.EndRecorderFunc();
 			});
 			btnReRecord.onClick.AddListener(() =>
 			{

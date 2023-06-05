@@ -12,31 +12,36 @@ namespace HomeVisit.UI
 	{
 		[SerializeField] GameObject reportPrefab;
 		[SerializeField] List<ScoreReport> reportList;
+		//¼Ò·ÃÄÚÈÝÒ³Ãæ
+		HomeVisitContentPanel homeVisitContentPanel = null;
 
 		protected override void OnInit(IUIData uiData = null)
 		{
 			mData = uiData as TestReportPanelData ?? new TestReportPanelData();
 
 			btnClose.onClick.AddListener(Hide);
-			btnSubmit.onClick.AddListener(()=>
+			btnSubmit.onClick.AddListener(() =>
 			{
-				UIKit.OpenPanelAsync<HomeVisitContentPanel>().ToAction().Start(this, ()=> { UIKit.GetPanel<HomeVisitContentPanel>().transform.SetAsLastSibling(); }) ;
+				HomeVisitContentPanel homeVisitContentPanel = UIKit.GetPanel<HomeVisitContentPanel>();
+				homeVisitContentPanel.Show();
+				homeVisitContentPanel.transform.SetAsLastSibling();
 				Hide();
 			});
 		}
-		
+
 		protected override void OnOpen(IUIData uiData = null)
 		{
 		}
-		
+
 		protected override void OnShow()
 		{
+			LayoutRebuilder.ForceRebuildLayoutImmediate(Content);
 		}
-		
+
 		protected override void OnHide()
 		{
 		}
-		
+
 		protected override void OnClose()
 		{
 		}
@@ -55,7 +60,7 @@ namespace HomeVisit.UI
 		{
 			for (int i = 0; i < reportList.Count; i++)
 			{
-				if(reportList[i].tmpModule.text == data.strModule)
+				if (reportList[i].tmpModule.text == data.strModule)
 				{
 					reportList[i].Init(data);
 					return;
@@ -69,6 +74,7 @@ namespace HomeVisit.UI
 			ScoreReport newReport = newTrans.GetComponent<ScoreReport>();
 			reportList.Add(newReport);
 			newReport.Init(data);
+			LayoutRebuilder.ForceRebuildLayoutImmediate(Content);
 		}
 
 		public void SetTestEvaluate(string newContent)

@@ -13,8 +13,6 @@ namespace HomeVisit.UI
 		[SerializeField]
 		public UnityEngine.RectTransform imgExam;
 		[SerializeField]
-		public TMPro.TextMeshProUGUI tmpPanelName;
-		[SerializeField]
 		public RectTransform Content;
 		[SerializeField]
 		public UnityEngine.UI.Button btnSubmit;
@@ -34,7 +32,6 @@ namespace HomeVisit.UI
 		protected override void ClearUIComponents()
 		{
 			imgExam = null;
-			tmpPanelName = null;
 			Content = null;
 			btnSubmit = null;
 			btnConfirm = null;

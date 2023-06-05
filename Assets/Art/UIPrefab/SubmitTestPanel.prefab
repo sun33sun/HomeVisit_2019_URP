@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 134379002962712479}
   - component: {fileID: 134379002962712477}
   - component: {fileID: 134379002962712478}
-  - component: {fileID: 2089376600720870199}
+  - component: {fileID: 2173685089191457090}
   m_Layer: 5
   m_Name: imgBk
   m_TagString: Untagged
@@ -365,7 +365,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2089376600720870199
+--- !u!114 &2173685089191457090
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -374,7 +374,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 134379002962712472}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
+  m_Script: {fileID: 11500000, guid: a94a13164114a264eaae0e9d8358e4dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 1847109452173300509}
@@ -395,6 +395,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+  mouseButton: 1
 --- !u!1 &134379003015705516
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,7 +742,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -300}
+  m_AnchoredPosition: {x: 0, y: -250.00015}
   m_SizeDelta: {x: 0, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2844653013694164840
@@ -897,7 +898,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5502080622025829701}
   m_HandleRect: {fileID: 4976992347432315777}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0.83333385
   m_Size: 0.5
   m_NumberOfSteps: 0
   m_OnValueChanged:

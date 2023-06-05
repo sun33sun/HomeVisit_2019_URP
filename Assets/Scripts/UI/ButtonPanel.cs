@@ -27,7 +27,7 @@ namespace HomeVisit.UI
 
 			btnTestBrief.onClick.AddListener(() =>
 			{
-				UIKit.ShowPanel<TestGoalPanel>();
+				UIKit.ShowPanel<TestBriefPanel>();
 			});
 		}
 		

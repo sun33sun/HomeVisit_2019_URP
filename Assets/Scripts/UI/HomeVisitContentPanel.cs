@@ -17,7 +17,6 @@ namespace HomeVisit.UI
 		List<ITitle> titles = new List<ITitle>();
 
 		DateTime startTime;
-		DateTime endTime;
 
 		protected override void OnInit(IUIData uiData = null)
 		{
@@ -33,8 +32,6 @@ namespace HomeVisit.UI
 				btnSubmit.transform.SetAsLastSibling();
 			});
 			btnSubmit.onClick.AddListener(Submit);
-
-			TestExam();
 		}
 
 		void Submit()
@@ -50,69 +47,35 @@ namespace HomeVisit.UI
 			{
 				strModule = "家访内容",
 				strStart = startTime,
-				strEnd = endTime,
+				strEnd = DateTime.Now,
 				strScore = totalScore.ToString()
 			};
 			testReportPanel.CreateScoreReport(data);
 		}
 
-		void TestExam()
-		{
-			DateTime startTime = DateTime.Now;
-			SingleTitleData singleData = new SingleTitleData()
-			{
-				rightIndex = 0,
-				strDescribe = "单选题",
-				strA = "选项A",
-				strB = "选项B",
-				strC = "选项C",
-				strD = "选项D",
-				score = 20,
+		//GameObject CreateSingleTitle(SingleTitleData data)
+		//{
+		//	GameObject gameObj = Instantiate(singlePrefab);
+		//	gameObj.name = singlePrefab.name;
+		//	SingleTitle singleTitle = gameObj.GetComponent<SingleTitle>();
+		//	titles.Add(singleTitle);
+		//	singleTitle.Init(data);
+		//	gameObj.transform.SetParent(Content);
+		//	gameObj.transform.localScale = Vector3.one;
+		//	return gameObj;
+		//}
 
-				strModule = "家访内容",
-				strStart = startTime
-			};
-			CreateSingleTitle(singleData);
-
-			MultipleTitleData multipleData = new MultipleTitleData()
-			{
-				isRights = new bool[4] { true, true, false, false },
-				strDescribe = "多选题",
-				strA = "选项A",
-				strB = "选项B",
-				strC = "选项C",
-				strD = "选项D",
-				score = 30,
-				strModule = "家访内容"
-			};
-			CreateMultipleTitle(multipleData);
-
-			btnSubmit.transform.parent.SetAsLastSibling();
-		}
-
-		GameObject CreateSingleTitle(SingleTitleData data)
-		{
-			GameObject gameObj = Instantiate(singlePrefab);
-			gameObj.name = singlePrefab.name;
-			SingleTitle singleTitle = gameObj.GetComponent<SingleTitle>();
-			titles.Add(singleTitle);
-			singleTitle.Init(data);
-			gameObj.transform.SetParent(Content);
-			gameObj.transform.localScale = Vector3.one;
-			return gameObj;
-		}
-
-		GameObject CreateMultipleTitle(MultipleTitleData data)
-		{
-			GameObject gameObj = Instantiate(multiplePrefab);
-			gameObj.name = multiplePrefab.name;
-			MultipleTitle multipleTitle = gameObj.GetComponent<MultipleTitle>();
-			titles.Add(multipleTitle);
-			multipleTitle.Init(data);
-			gameObj.transform.SetParent(Content);
-			gameObj.transform.localScale = Vector3.one;
-			return gameObj;
-		}
+		//GameObject CreateMultipleTitle(MultipleTitleData data)
+		//{
+		//	GameObject gameObj = Instantiate(multiplePrefab);
+		//	gameObj.name = multiplePrefab.name;
+		//	MultipleTitle multipleTitle = gameObj.GetComponent<MultipleTitle>();
+		//	titles.Add(multipleTitle);
+		//	multipleTitle.Init(data);
+		//	gameObj.transform.SetParent(Content);
+		//	gameObj.transform.localScale = Vector3.one;
+		//	return gameObj;
+		//}
 
 
 		protected override void OnOpen(IUIData uiData = null)
@@ -128,11 +91,19 @@ namespace HomeVisit.UI
 
 		protected override void OnHide()
 		{
-			endTime = DateTime.Now;
 		}
 		
 		protected override void OnClose()
 		{
+		}
+
+		private void OnEnable()
+		{
+			Debug.Log(name + "  Enable");
+		}
+		private void OnDisable()
+		{
+			Debug.Log(name + "  Disable");
 		}
 	}
 }
