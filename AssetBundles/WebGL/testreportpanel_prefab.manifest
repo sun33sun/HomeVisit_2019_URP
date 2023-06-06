@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 876675484
+CRC: 2379706623
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: bdc7d21323e6e9fdfbb833d3c7aca999
+    Hash: 6aa13aba2478392f6475821c939d12c2
   TypeTreeHash:
     serializedVersion: 2
-    Hash: c9a648559d73b981bbe6ac4cd9e7f2f6
+    Hash: e3191656ec4e54791750ef7129f58c3d
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -55,4 +55,4 @@ SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Art/UIPrefab/TestReportPanel.prefab
 Dependencies:
-- D:/WorkSpace/HomeVisit_2019_URP/AssetBundles/WebGL/scorereport_prefab
+- D:/WorkSpace/HomeVisit_2019_URP/AssetBundles/WebGL/title

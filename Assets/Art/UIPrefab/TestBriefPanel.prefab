@@ -2211,13 +2211,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.29803923}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: b8e63ed01e5c639428815c96dbc1d63e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2244,7 +2244,7 @@ MonoBehaviour:
   btnTestDemand: {fileID: 8691365425606809842}
   btnTestAssistance: {fileID: 8691365426099414855}
   imgTestGoal: {fileID: 8691365425554987646}
-  imgTestAssistance: {fileID: 1078417417}
   imgTestPrinciple: {fileID: 8560452905151944232}
   imgTestDemand: {fileID: 1687138635586119874}
+  imgTestAssistance: {fileID: 1078417417}
   btnClosePanel: {fileID: 409454855}

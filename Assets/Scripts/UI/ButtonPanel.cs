@@ -23,7 +23,7 @@ namespace HomeVisit.UI
 			btnSeting.onClick.AddListener(SwitchSettingBtn);
 			btnKnowledge.onClick.AddListener(SwitchKnowledgePanel);
 			btnTestReport.onClick.AddListener(SwitchTestReportPanel);
-			btnTip.onClick.AddListener(() => { imgTip.gameObject.SetActive(false); });
+			btnTip.onClick.AddListener(() => { imgTip.gameObject.SetActive(!imgTip.gameObject.activeInHierarchy); });
 
 			btnTestBrief.onClick.AddListener(() =>
 			{

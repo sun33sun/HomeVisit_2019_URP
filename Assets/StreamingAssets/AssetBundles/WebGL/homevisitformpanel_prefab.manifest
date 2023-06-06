@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1743343558
+CRC: 1172228974
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: e48df8105cd53383539ab84ad4a2c3df
+    Hash: 052be39a02197f55aa944f088bdbcdcb
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 32d5ca00bea517306545945218dca79e
+    Hash: 79f0b8a29cb915736d1c98a261132af2
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -52,6 +52,4 @@ ClassTypes:
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Art/UIPrefab/HomeVisitFormPanel.prefab
-Dependencies:
-- D:/WorkSpace/HomeVisit_2019_URP/AssetBundles/WebGL/multipletitle_prefab
-- D:/WorkSpace/HomeVisit_2019_URP/AssetBundles/WebGL/singletitle_prefab
+Dependencies: []

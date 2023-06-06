@@ -79,16 +79,19 @@ namespace HomeVisit.UI
 			btnSubmit.transform.SetAsLastSibling();
 			for (int i = 0; i < manClothes.Count; i++)
 			{
+				womanClothes[i].gameObject.SetActive(true);
 				womanClothes[i].CheckTitle();
 				womanClothes[i].SetInteractable(false);
 			}
 			for (int i = 0; i < manClothes.Count; i++)
 			{
+				manClothes[i].gameObject.SetActive(true);
 				manClothes[i].CheckTitle();
 				manClothes[i].SetInteractable(false);
 			}
 			for (int i = 0; i < bothClothes.Count; i++)
 			{
+				bothClothes[i].gameObject.SetActive(true);
 				bothClothes[i].CheckTitle();
 				bothClothes[i].SetInteractable(false);
 			}

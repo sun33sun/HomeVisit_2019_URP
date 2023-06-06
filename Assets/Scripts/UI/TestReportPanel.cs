@@ -10,7 +10,6 @@ namespace HomeVisit.UI
 	}
 	public partial class TestReportPanel : UIPanel
 	{
-		[SerializeField] GameObject reportPrefab;
 		[SerializeField] List<ScoreReport> reportList;
 		//¼Ò·ÃÄÚÈÝÒ³Ãæ
 		HomeVisitContentPanel homeVisitContentPanel = null;
@@ -66,15 +65,13 @@ namespace HomeVisit.UI
 					return;
 				}
 			}
-			Transform newTrans = Instantiate(reportPrefab).transform;
+			Transform newTrans = ExamManager.Instance.CreateScoreReport(data).transform;
 			newTrans.SetParent(Grid);
 			newTrans.localScale = Vector3.one;
 			newTrans.SetAsLastSibling();
-
-			ScoreReport newReport = newTrans.GetComponent<ScoreReport>();
-			reportList.Add(newReport);
-			newReport.Init(data);
 			LayoutRebuilder.ForceRebuildLayoutImmediate(Content);
+
+			reportList.Add(newTrans.GetComponent<ScoreReport>());
 		}
 
 		public void SetTestEvaluate(string newContent)

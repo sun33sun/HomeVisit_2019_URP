@@ -71,7 +71,7 @@ namespace HomeVisit.UI
 			if (mData.isRights[3])
 				strError.Append('D');
 
-			errorTip = $"解析：回答错误，正确答案<color=#ff0000ff>{strError}</color>";
+			errorTip = $"解析：回答错误，正确答案<color=#FF0000>{strError}</color>";
 		}
 
 		protected override void OnOpen(IUIData uiData = null)

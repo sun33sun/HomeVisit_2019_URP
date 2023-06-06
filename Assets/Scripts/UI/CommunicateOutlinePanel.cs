@@ -108,15 +108,12 @@ namespace HomeVisit.UI
 
 		GameObject CreateOutlinTitle(OutlineTitleData data)
 		{
-			GameObject gameObj = Instantiate(outlineTitlePrefab);
-			gameObj.name = outlineTitlePrefab.name;
-			OutlineTitle outlineTitle = gameObj.GetComponent<OutlineTitle>();
+			OutlineTitle outlineTitle = ExamManager.Instance.CreateOutlineTitle(data);
 			titles.Add(outlineTitle);
-			outlineTitle.Init(data);
-			gameObj.transform.SetParent(Content);
-			gameObj.transform.localScale = Vector3.one;
-			gameObj.transform.SetAsFirstSibling();
-			return gameObj;
+			outlineTitle.gameObject.transform.SetParent(Content);
+			outlineTitle.gameObject.transform.localScale = Vector3.one;
+			outlineTitle.gameObject.transform.SetAsFirstSibling();
+			return outlineTitle.gameObject;
 		}
 
 		protected override void OnOpen(IUIData uiData = null)

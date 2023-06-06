@@ -41,28 +41,28 @@ namespace HomeVisit.UI
 					togB.onValueChanged.AddListener(OnErrorTogValueChange);
 					togC.onValueChanged.AddListener(OnErrorTogValueChange);
 					togD.onValueChanged.AddListener(OnErrorTogValueChange);
-					errorTip = "解析：回答错误，正确答案<color=#ff0000ff>A</color>";
+					errorTip = "解析：回答错误，正确答案<color=#FF0000>A</color>";
 					break;
 				case 1:
 					togA.onValueChanged.AddListener(OnErrorTogValueChange);
 					togB.onValueChanged.AddListener(OnRightChange);
 					togC.onValueChanged.AddListener(OnErrorTogValueChange);
 					togD.onValueChanged.AddListener(OnErrorTogValueChange);
-					errorTip = "解析：回答错误，正确答案<color=#ff0000ff>B</color>";
+					errorTip = "解析：回答错误，正确答案<color=#FF0000>B</color>";
 					break;
 				case 2:
 					togA.onValueChanged.AddListener(OnErrorTogValueChange);
 					togB.onValueChanged.AddListener(OnErrorTogValueChange);
 					togC.onValueChanged.AddListener(OnRightChange);
 					togD.onValueChanged.AddListener(OnErrorTogValueChange);
-					errorTip = "解析：回答错误，正确答案<color=#ff0000ff>C</color>";
+					errorTip = "解析：回答错误，正确答案<color=#FF0000>C</color>";
 					break;
 				case 3:
 					togA.onValueChanged.AddListener(OnErrorTogValueChange);
 					togB.onValueChanged.AddListener(OnErrorTogValueChange);
 					togC.onValueChanged.AddListener(OnErrorTogValueChange);
 					togD.onValueChanged.AddListener(OnRightChange);
-					errorTip = "解析：回答错误，正确答案<color=#ff0000ff>D</color>";
+					errorTip = "解析：回答错误，正确答案<color=#FF0000>D</color>";
 					break;
 			}
 		}

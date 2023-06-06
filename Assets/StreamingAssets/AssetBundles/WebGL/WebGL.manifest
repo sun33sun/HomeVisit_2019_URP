@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 3813622063
+CRC: 1642309783
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -65,56 +65,43 @@ AssetBundleManifest:
     Info_19:
       Name: knowledgeexampanel_prefab
       Dependencies:
-        Dependency_0: singletitle_prefab
-        Dependency_1: multipletitle_prefab
+        Dependency_0: title
     Info_20:
-      Name: singletitle_prefab
-      Dependencies: {}
-    Info_21:
-      Name: multipletitle_prefab
-      Dependencies: {}
-    Info_22:
       Name: submittestpanel_prefab
       Dependencies: {}
-    Info_23:
+    Info_21:
       Name: homevisitformpanel_prefab
-      Dependencies:
-        Dependency_0: singletitle_prefab
-        Dependency_1: multipletitle_prefab
-    Info_24:
+      Dependencies: {}
+    Info_22:
       Name: homevisitcontentpanel_prefab
       Dependencies:
-        Dependency_0: singletitle_prefab
-        Dependency_1: multipletitle_prefab
-    Info_25:
-      Name: scorereport_prefab
-      Dependencies: {}
-    Info_26:
+        Dependency_0: title
+    Info_23:
       Name: testreportpanel_prefab
       Dependencies:
-        Dependency_0: scorereport_prefab
-    Info_27:
+        Dependency_0: title
+    Info_24:
       Name: homevisitroutepanel_prefab
       Dependencies: {}
-    Info_28:
+    Info_25:
       Name: communicateoutlinepanel_prefab
       Dependencies:
-        Dependency_0: outlinetitle_prefab
-    Info_29:
+        Dependency_0: title
+    Info_26:
       Name: clothespanel_prefab
       Dependencies: {}
-    Info_30:
+    Info_27:
       Name: recordsheetpanel_prefab
       Dependencies: {}
-    Info_31:
+    Info_28:
       Name: onvisitpanel_prefab
       Dependencies: {}
-    Info_32:
-      Name: outlinetitle_prefab
-      Dependencies: {}
-    Info_33:
+    Info_29:
       Name: buttonpanel_prefab
       Dependencies: {}
-    Info_34:
+    Info_30:
       Name: testbriefpanel_prefab
+      Dependencies: {}
+    Info_31:
+      Name: title
       Dependencies: {}

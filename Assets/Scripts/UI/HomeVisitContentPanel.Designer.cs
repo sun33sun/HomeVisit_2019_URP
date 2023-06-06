@@ -5,17 +5,13 @@ using QFramework;
 
 namespace HomeVisit.UI
 {
-	// Generate Id:56ca1722-ba40-4716-8094-466230c0074f
+	// Generate Id:50e550fd-ebff-4cb9-85cf-b73b1905f32c
 	public partial class HomeVisitContentPanel
 	{
 		public const string Name = "HomeVisitContentPanel";
 		
 		[SerializeField]
-		public RectTransform Content;
-		[SerializeField]
 		public UnityEngine.UI.Button btnSubmit;
-		[SerializeField]
-		public UnityEngine.UI.Button btnConfirm;
 		[SerializeField]
 		public UnityEngine.UI.Button btnClose;
 		
@@ -23,9 +19,7 @@ namespace HomeVisit.UI
 		
 		protected override void ClearUIComponents()
 		{
-			Content = null;
 			btnSubmit = null;
-			btnConfirm = null;
 			btnClose = null;
 			
 			mData = null;

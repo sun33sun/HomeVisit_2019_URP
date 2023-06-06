@@ -20,7 +20,7 @@ namespace HomeVisit.UI
 	{
 		[SerializeField] GameObject togPrefab;
 		List<TogOutline> selectedTogList = new List<TogOutline>();
-		List<TogOutline> togList = new List<TogOutline>();
+		[SerializeField]List<TogOutline> togList = new List<TogOutline>();
 		CommunicateOutlinePanel communicateOutlinePanel;
 
 		protected override void OnInit(IUIData uiData = null)

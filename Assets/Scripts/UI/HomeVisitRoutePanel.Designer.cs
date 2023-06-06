@@ -5,17 +5,19 @@ using QFramework;
 
 namespace HomeVisit.UI
 {
-	// Generate Id:c7dca2fa-05a0-4913-b845-5fb53ecbdba7
+	// Generate Id:a5a545d3-116b-4d14-bf5e-72bc0b5d8466
 	public partial class HomeVisitRoutePanel
 	{
 		public const string Name = "HomeVisitRoutePanel";
 		
 		[SerializeField]
-		public UnityEngine.UI.Image imgRoute;
+		public UnityEngine.UI.Image imgMid;
 		[SerializeField]
 		public UnityEngine.UI.Button btnClose;
 		[SerializeField]
 		public HomeVisit.UI.MyScrollRect svMap;
+		[SerializeField]
+		public UnityEngine.UI.Image imgRoute;
 		[SerializeField]
 		public UnityEngine.UI.Button btnDraw;
 		[SerializeField]
@@ -39,9 +41,10 @@ namespace HomeVisit.UI
 		
 		protected override void ClearUIComponents()
 		{
-			imgRoute = null;
+			imgMid = null;
 			btnClose = null;
 			svMap = null;
+			imgRoute = null;
 			btnDraw = null;
 			btnErase = null;
 			inputTestEvaluate = null;

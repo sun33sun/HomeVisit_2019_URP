@@ -2,7 +2,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using QFramework;
 using System.Collections.Generic;
+using System.Collections;
 using System;
+using Newtonsoft.Json;
+using System.IO;
+using ProjectBase;
 
 namespace HomeVisit.UI
 {
@@ -11,13 +15,9 @@ namespace HomeVisit.UI
 	}
 	public partial class HomeVisitFormPanel : UIPanel
 	{
-		[SerializeField] GameObject singlePrefab = null;
-		[SerializeField] GameObject multiplePrefab = null;
-
 		List<ITitle> titles = new List<ITitle>();
-
+		public ResLoader mLoader = ResLoader.Allocate();
 		DateTime startTime;
-		DateTime endTime;
 
 		protected override void OnInit(IUIData uiData = null)
 		{
@@ -26,11 +26,6 @@ namespace HomeVisit.UI
 			btnConfirm.onClick.AddListener(() =>
 			{
 				UIKit.GetPanel<MainPanel>().NextStep();
-				imgExam.gameObject.SetActive(true);
-				imgSubmitExam.gameObject.SetActive(false);
-			});
-			btnCancel.onClick.AddListener(() =>
-			{
 				imgExam.gameObject.SetActive(true);
 				imgSubmitExam.gameObject.SetActive(false);
 			});
@@ -45,7 +40,7 @@ namespace HomeVisit.UI
 			});
 			btnSubmitFrom.onClick.AddListener(SubmitForm);
 
-			TestExam();
+			LoadTitleAsync();
 		}
 
 		void SubmitForm()
@@ -59,82 +54,54 @@ namespace HomeVisit.UI
 			{
 				strModule = "家访形式",
 				strStart = startTime,
-				strEnd = endTime,
+				strEnd = DateTime.Now,
 				strScore = totalScore.ToString()
 			};
 			testReportPanel.CreateScoreReport(data);
 
-			UIKit.OpenPanelAsync<HomeVisitRoutePanel>().ToAction().Start(this);
+			HomeVisitRoutePanel routePanel = UIKit.GetPanel<HomeVisitRoutePanel>();
+			if (routePanel == null)
+				UIKit.OpenPanelAsync<HomeVisitRoutePanel>().ToAction().Start(this);
+			else
+				routePanel.Show();
 			UIKit.GetPanel<MainPanel>().NextStep();
 			Hide();
 		}
 
-		void TestExam()
+		void LoadTitleAsync()
 		{
-			DateTime startTime = DateTime.Now;
-			SingleTitleData singleData = new SingleTitleData()
+			mLoader.Add2Load<TextAsset>("Title", "Paper_Form",(isCompleted,asset)=> 
 			{
-				rightIndex = 0,
-				strDescribe = "单选题",
-				strA = "选项A",
-				strB = "选项B",
-				strC = "选项C",
-				strD = "选项D",
-				score = 20,
-
-				strModule = "家访形式",
-				strStart = startTime
-			};
-			CreateSingleTitle(singleData);
-
-			MultipleTitleData multipleData = new MultipleTitleData()
-			{
-				isRights = new bool[4] { true, true, false, false },
-				strDescribe = "多选题",
-				strA = "选项A",
-				strB = "选项B",
-				strC = "选项C",
-				strD = "选项D",
-				score = 30,
-
-				strModule = "家访形式"
-			};
-			CreateMultipleTitle(multipleData);
-
-			btnConfirmFrom.transform.parent.SetAsLastSibling();
-			btnSubmitFrom.transform.SetAsLastSibling();
-			btnConfirmFrom.transform.SetAsLastSibling();
+				if (isCompleted)
+				{
+					string json = (asset.Asset as TextAsset).text;
+					List<JudgeTitleData> datas = JsonConvert.DeserializeObject<List<JudgeTitleData>>(json);
+					for (int i = 0; i < datas.Count; i++)
+					{
+						CreateJudgeTitle(datas[i]);
+					}
+					btnConfirmFrom.transform.parent.SetAsLastSibling();
+					btnSubmitFrom.transform.SetAsLastSibling();
+					btnConfirmFrom.transform.SetAsLastSibling();
+				}
+			});
+			mLoader.LoadAsync();
 		}
 
-		GameObject CreateSingleTitle(SingleTitleData data)
+		GameObject CreateJudgeTitle(JudgeTitleData data)
 		{
-			GameObject gameObj = Instantiate(singlePrefab);
-			gameObj.name = singlePrefab.name;
-			SingleTitle singleTitle = gameObj.GetComponent<SingleTitle>();
-			titles.Add(singleTitle);
-			singleTitle.Init(data);
-			gameObj.transform.SetParent(Content);
-			gameObj.transform.localScale = Vector3.one;
-			return gameObj;
-		}
-
-		GameObject CreateMultipleTitle(MultipleTitleData data)
-		{
-			GameObject gameObj = Instantiate(multiplePrefab);
-			gameObj.name = multiplePrefab.name;
-			MultipleTitle multipleTitle = gameObj.GetComponent<MultipleTitle>();
-			titles.Add(multipleTitle);
-			multipleTitle.Init(data);
-			gameObj.transform.SetParent(Content);
-			gameObj.transform.localScale = Vector3.one;
-			return gameObj;
+			JudgeTitle judgeTitle = ExamManager.Instance.CreateJudgeTitle(data);
+			titles.Add(judgeTitle);
+			judgeTitle.transform.SetParent(Content);
+			judgeTitle.transform.localScale = Vector3.one;
+			return judgeTitle.gameObject;
 		}
 
 
 		protected override void OnOpen(IUIData uiData = null)
 		{
 		}
-		
+
 		protected override void OnShow()
 		{
 			startTime = DateTime.Now;
@@ -144,12 +111,11 @@ namespace HomeVisit.UI
 			btnSubmitFrom.transform.SetAsLastSibling();
 			btnConfirmFrom.transform.SetAsLastSibling();
 		}
-		
+
 		protected override void OnHide()
 		{
-			endTime = DateTime.Now;
 		}
-		
+
 		protected override void OnClose()
 		{
 		}

@@ -15,10 +15,8 @@ namespace HomeVisit.UI
 		[SerializeField] GameObject multiplePrefab = null;
 
 		List<ITitle> titles = new List<ITitle>();
-		List<Toggle> togs = new List<Toggle>();
 
 		DateTime startTime;
-		DateTime endTime;
 
 		void TestExam()
 		{
@@ -57,30 +55,21 @@ namespace HomeVisit.UI
 
 		GameObject CreateSingleTitle(SingleTitleData data)
 		{
-			GameObject gameObj = Instantiate(singlePrefab);
-			gameObj.name = singlePrefab.name;
-			togs.Add(gameObj.GetComponent<Toggle>());
-			SingleTitle singleTitle = gameObj.GetComponent<SingleTitle>();
+			SingleTitle singleTitle = ExamManager.Instance.CreateSingleTitle(data);
 			titles.Add(singleTitle);
-			singleTitle.Init(data);
-			gameObj.transform.SetParent(Content);
-			gameObj.transform.localScale = Vector3.one;
-			gameObj.transform.SetAsFirstSibling();
-			return gameObj;
+			singleTitle.transform.SetParent(Content);
+			singleTitle.transform.SetAsFirstSibling();
+			return singleTitle.gameObject;
 		}
 
 		GameObject CreateMultipleTitle(MultipleTitleData data)
 		{
-			GameObject gameObj = Instantiate(multiplePrefab);
-			gameObj.name = multiplePrefab.name;
-			togs.Add(gameObj.GetComponent<Toggle>());
-			MultipleTitle multipleTitle = gameObj.GetComponent<MultipleTitle>();
+			MultipleTitle multipleTitle = ExamManager.Instance.CreateMultipleTitle(data);
 			titles.Add(multipleTitle);
-			multipleTitle.Init(data);
-			gameObj.transform.SetParent(Content);
-			gameObj.transform.localScale = Vector3.one;
-			gameObj.transform.SetAsFirstSibling();
-			return gameObj;
+			multipleTitle.transform.SetParent(Content);
+			multipleTitle.transform.localScale = Vector3.one;
+			multipleTitle.transform.SetAsFirstSibling();
+			return multipleTitle.gameObject;
 		}
 
 		protected override void OnInit(IUIData uiData = null)
@@ -125,7 +114,7 @@ namespace HomeVisit.UI
 			{
 				strModule = "ÖªÊ¶¿¼ºË",
 				strStart = startTime,
-				strEnd = endTime,
+				strEnd = DateTime.Now,
 				strScore = totalScore.ToString()
 			};
 			TestReportPanel testReportPanel = UIKit.GetPanel<TestReportPanel>();
@@ -153,7 +142,6 @@ namespace HomeVisit.UI
 		
 		protected override void OnHide()
 		{
-			endTime = DateTime.Now;
 		}
 		
 		protected override void OnClose()
