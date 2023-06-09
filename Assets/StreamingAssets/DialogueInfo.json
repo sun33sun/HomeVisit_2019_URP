@@ -1,0 +1,45 @@
+{
+	"dialogueName": "观环境",
+	"dialogues": [
+		{
+			"keywords": ["谢谢", "参观"],
+			"parent": "老师，您好！欢迎欢迎，请进，请进！",
+			"imgPath": "家长对话弹窗"
+		},
+		{
+			"keywords": null,
+			"parent": "好的！没问题！",
+			"imgPath": "家长对话弹窗"
+		},
+		{
+			"keywords": ["画", "挺好"],
+			"parent": "这幅画是我们孩子平时自己画的，他比较喜欢画画，所以我们都给挂起来啦！",
+			"imgPath": "家长对话弹窗"
+		},
+		{ "keywords": ["钢琴"], "parent": null, "imgPath": "家长对话弹窗" },
+		{
+			"keywords": ["钢琴", "好听"],
+			"parent": "嗯嗯，有的。我们家孩子平时会练习的。来给老师展示一下！",
+			"imgPath": "家长对话弹窗"
+		},
+        { "keywords": ["孩子","身体","上学"], "parent": null, "imgPath": "家长对话弹窗" },
+        {
+			"keywords": null,
+			"parent": "因为孩子注意比较不集中，想坐在靠前排。平时上学放学基本都是自己坐公交、地铁。",
+			"imgPath": "家长对话弹窗"
+		},
+        { "keywords": ["同意"], "parent": null, "imgPath": "家长对话弹窗" },
+        { "keywords": ["焦虑"], "parent": null, "imgPath": "家长对话弹窗" },
+        {
+			"keywords": null,
+			"parent": "嗯嗯，老师说的这些我们明白，之后我们也会注意方式方法。",
+			"imgPath": "家长对话弹窗"
+		},
+        { "keywords": ["安静","氛围"], "parent": null, "imgPath": "家长对话弹窗" },
+        {
+			"keywords": null,
+			"parent": "这是我们的一点心意，还请收下",
+			"imgPath": "家长对话弹窗"
+		}
+	]
+}

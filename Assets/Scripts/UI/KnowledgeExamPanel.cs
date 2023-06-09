@@ -11,9 +11,6 @@ namespace HomeVisit.UI
 	}
 	public partial class KnowledgeExamPanel : UIPanel
 	{
-		[SerializeField] GameObject singlePrefab = null;
-		[SerializeField] GameObject multiplePrefab = null;
-
 		List<ITitle> titles = new List<ITitle>();
 
 		DateTime startTime;
@@ -58,6 +55,7 @@ namespace HomeVisit.UI
 			SingleTitle singleTitle = ExamManager.Instance.CreateSingleTitle(data);
 			titles.Add(singleTitle);
 			singleTitle.transform.SetParent(Content);
+			singleTitle.transform.localScale = Vector3.one;
 			singleTitle.transform.SetAsFirstSibling();
 			return singleTitle.gameObject;
 		}

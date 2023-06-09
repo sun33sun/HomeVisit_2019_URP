@@ -5,7 +5,7 @@ using QFramework;
 
 namespace HomeVisit.UI
 {
-	// Generate Id:1272c19c-1ac4-4f1d-a45e-697c8fefbde9
+	// Generate Id:39125c12-591c-4fc4-81de-efa350bc1758
 	public partial class OnVisitPanel
 	{
 		public const string Name = "OnVisitPanel";
@@ -39,6 +39,8 @@ namespace HomeVisit.UI
 		[SerializeField]
 		public UnityEngine.UI.Button btnPlayRecord;
 		[SerializeField]
+		public TMPro.TextMeshProUGUI tmpPostText;
+		[SerializeField]
 		public UnityEngine.UI.Button btnReRecord;
 		[SerializeField]
 		public UnityEngine.UI.Button btnConfirmRecord;
@@ -54,6 +56,8 @@ namespace HomeVisit.UI
 		public UnityEngine.UI.Image imgNext;
 		[SerializeField]
 		public UnityEngine.UI.Button btnNext;
+		[SerializeField]
+		public UnityEngine.UI.Image imgBlank;
 		
 		private OnVisitPanelData mPrivateData = null;
 		
@@ -73,6 +77,7 @@ namespace HomeVisit.UI
 			tmpSpeakText = null;
 			imgPostSpeak = null;
 			btnPlayRecord = null;
+			tmpPostText = null;
 			btnReRecord = null;
 			btnConfirmRecord = null;
 			btnStopRecord = null;
@@ -81,6 +86,7 @@ namespace HomeVisit.UI
 			btnAccept = null;
 			imgNext = null;
 			btnNext = null;
+			imgBlank = null;
 			
 			mData = null;
 		}

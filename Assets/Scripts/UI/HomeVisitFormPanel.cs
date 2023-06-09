@@ -28,6 +28,7 @@ namespace HomeVisit.UI
 				UIKit.GetPanel<MainPanel>().NextStep();
 				imgExam.gameObject.SetActive(true);
 				imgSubmitExam.gameObject.SetActive(false);
+				AudioManager.Instance.StopAudio();
 			});
 
 			btnClose.onClick.AddListener(Hide);
@@ -107,6 +108,7 @@ namespace HomeVisit.UI
 			startTime = DateTime.Now;
 			imgExam.gameObject.SetActive(false);
 			imgSubmitExam.gameObject.SetActive(true);
+			AudioManager.Instance.PlayAudio("1.确认家访形式");
 
 			btnSubmitFrom.transform.SetAsLastSibling();
 			btnConfirmFrom.transform.SetAsLastSibling();

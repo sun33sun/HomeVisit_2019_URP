@@ -42,6 +42,7 @@ namespace HomeVisit.Draw
 			brushMat.SetFloat("_Size", 100);
 
 			brushMat.SetTexture("_Tex", m_renderTex);
+			Clear();
 		}
 
 		public void Release()

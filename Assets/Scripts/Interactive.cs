@@ -1,0 +1,30 @@
+﻿using System.Collections.Generic;
+using UnityEngine;
+
+public class Interactive : MonoBehaviour
+{
+	#region 单例模式
+	static Interactive instance;
+	public static Interactive Instance { get { return instance; } }
+	#endregion
+	[SerializeField] List<GameObject> objList;
+
+	private void Awake()
+	{
+		instance = this;
+	}
+
+	public static GameObject Get(string objName)
+	{
+		return instance.objList.Find(o => o.name.Equals(objName));
+	}
+
+	private void OnDestroy()
+	{
+		if (instance == this)
+		{
+			instance = null;
+		}
+	}
+}
+

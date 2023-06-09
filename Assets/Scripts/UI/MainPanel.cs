@@ -11,6 +11,7 @@ namespace HomeVisit.UI
 	{
 		public VisitStepPanel[] visitStepPanels;
 		int visitStepIndex = 0;
+		[SerializeField] Image imgBk;
 
 		protected override void OnInit(IUIData uiData = null)
 		{
@@ -53,17 +54,23 @@ namespace HomeVisit.UI
 		protected override void OnOpen(IUIData uiData = null)
 		{
 		}
-		
+
 		protected override void OnShow()
 		{
 		}
-		
+
 		protected override void OnHide()
 		{
 		}
-		
+
 		protected override void OnClose()
 		{
+		}
+
+
+		public void SetBK(bool isShow)
+		{
+			imgBk.enabled = isShow;
 		}
 	}
 }

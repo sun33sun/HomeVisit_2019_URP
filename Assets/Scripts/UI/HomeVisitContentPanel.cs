@@ -11,15 +11,12 @@ namespace HomeVisit.UI
 	}
 	public partial class HomeVisitContentPanel : UIPanel
 	{
-		[SerializeField] GameObject singlePrefab = null;
-		[SerializeField] GameObject multiplePrefab = null;
-
 		DateTime startTime;
+		[SerializeField]Questionnaire questionnaire;
 
 		protected override void OnInit(IUIData uiData = null)
 		{
 			mData = uiData as HomeVisitContentPanelData ?? new HomeVisitContentPanelData();
-
 
 			btnClose.onClick.AddListener(()=> 
 			{
@@ -32,6 +29,17 @@ namespace HomeVisit.UI
 			});
 
 			btnSubmit.onClick.AddListener(Submit);
+			btnConfirm.onClick.AddListener(Confirm);
+		}
+
+		void Confirm()
+		{
+			HomeVisitFormPanel homeVisitFormPanel = UIKit.GetPanel<HomeVisitFormPanel>();
+			if (homeVisitFormPanel == null)
+				UIKit.OpenPanelAsync<HomeVisitFormPanel>().ToAction().Start(this);
+			else
+				homeVisitFormPanel.Show();
+			Hide();
 		}
 
 		void Submit()

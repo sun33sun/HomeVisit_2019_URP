@@ -11,8 +11,6 @@ namespace HomeVisit.UI
 	public partial class TestReportPanel : UIPanel
 	{
 		[SerializeField] List<ScoreReport> reportList;
-		//¼Ò·ÃÄÚÈÝÒ³Ãæ
-		HomeVisitContentPanel homeVisitContentPanel = null;
 
 		protected override void OnInit(IUIData uiData = null)
 		{
