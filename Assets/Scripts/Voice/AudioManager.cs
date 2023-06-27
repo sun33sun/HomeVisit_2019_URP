@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 public class AudioManager : SingletonMono<AudioManager>
 {
-    [SerializeField] List<AudioClip> audioList;
-	[SerializeField] Dictionary<string, AudioClip> audioDic = new Dictionary<string, AudioClip>();
 	[SerializeField] AudioSource source;
+	[SerializeField] List<AudioClip> audioList;
+	Dictionary<string, AudioClip> audioDic = new Dictionary<string, AudioClip>();
 
 	protected override void Awake()
 	{
@@ -31,6 +31,26 @@ public class AudioManager : SingletonMono<AudioManager>
 	{
 		source.Stop();
 		source.clip = null;
+	}
+
+	public WaitUntil Play(string clipName)
+	{
+		AudioClip ac = audioDic[clipName];
+		if (ac == null)
+		{
+			print($"播放NPC语音：{clipName}");
+		}
+		else
+		{
+			source.clip = ac;
+			source.Play();
+		}
+		return new WaitUntil(CheckPlay);
+	}
+
+	bool CheckPlay()
+	{
+		return !source.isPlaying;
 	}
 }
 

@@ -14,6 +14,12 @@ public class Interactive : MonoBehaviour
 		instance = this;
 	}
 
+	public static T Get<T>(string objName)
+	{
+		GameObject obj = instance.objList.Find(o => o.name.Equals(objName));
+		return obj.GetComponent<T>();
+	}
+
 	public static GameObject Get(string objName)
 	{
 		return instance.objList.Find(o => o.name.Equals(objName));

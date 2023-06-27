@@ -13,7 +13,7 @@ namespace HomeVisit.Effect
 	{
 		public List<HighlightEffect> effectList;
 
-		public HighlightEffect AddTarget(GameObject newObj)
+		public HighlightEffect AddEffectAndTarget(GameObject newObj)
 		{
 			HighlightEffect newHighlight = newObj.AddComponent<HighlightEffect>();
 			effectList.Add(newHighlight);
@@ -24,13 +24,13 @@ namespace HomeVisit.Effect
 			return newHighlight;
 		}
 
-		public HighlightEffect AddOutline(GameObject newObj)
+		public HighlightEffect AddEffectImmediately(GameObject newObj)
 		{
 			HighlightEffect newHighlight = newObj.AddComponent<HighlightEffect>();
 			effectList.Add(newHighlight);
 			newHighlight.outlineColor = Color.red;
+			newHighlight.highlighted = true;
 
-			newObj.AddComponent<HighlightTrigger>();
 			return newHighlight;
 		}
 

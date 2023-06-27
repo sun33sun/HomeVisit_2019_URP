@@ -23,6 +23,7 @@ namespace ProjectBase
 		[SerializeField] Camera mainC;
 		[SerializeField] CinemachineVirtualCamera roamC = null;
 		[SerializeField] CinemachineVirtualCamera followC = null;
+		[SerializeField] CinemachineVirtualCamera thirdPersonC = null;
 
 		//漫游相机的刚体
 		Rigidbody roamRig = null;
@@ -278,6 +279,43 @@ namespace ProjectBase
 			EventCenter.GetInstance().RemoveEventListener(KeyCode.Space + "保持", OnSpaceState);
 
 			EventCenter.GetInstance().RemoveEventListener<float>("鼠标滚轮", OnMouseScrollWheel);
+		}
+
+		public void ThirdPerson(Transform target)
+		{
+			if (target == null)
+			{
+				thirdPersonC.transform.SetParent(transform, false);
+				roamC.Priority = 13;
+				thirdPersonC.Priority = 12;
+				followC.Priority = 11;
+			}
+			else
+			{
+				thirdPersonC.transform.SetParent(target, false);
+				thirdPersonC.Priority = 13;
+				roamC.Priority = 12;
+				followC.Priority = 11;
+			}
+		}
+
+		public WaitForSeconds ThirdPerson(Transform target, float waitTime)
+		{
+			if (target == null)
+			{
+				thirdPersonC.transform.SetParent(transform, false);
+				roamC.Priority = 13;
+				thirdPersonC.Priority = 12;
+				followC.Priority = 11;
+			}
+			else
+			{
+				thirdPersonC.transform.SetParent(target, false);
+				thirdPersonC.Priority = 13;
+				roamC.Priority = 12;
+				followC.Priority = 11;
+			}
+			return new WaitForSeconds(waitTime);
 		}
 	}
 

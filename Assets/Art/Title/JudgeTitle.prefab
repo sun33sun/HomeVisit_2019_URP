@@ -461,7 +461,7 @@ MonoBehaviour:
   m_text: "B\u3001\u9519"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6e5f90267e55dfe408a970b35547f4c9, type: 2}
-  m_sharedMaterial: {fileID: 8186924352832858736, guid: 6e5f90267e55dfe408a970b35547f4c9,
+  m_sharedMaterial: {fileID: -67964054469877056, guid: 6e5f90267e55dfe408a970b35547f4c9,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -595,7 +595,7 @@ MonoBehaviour:
   m_text: "A\u3001\u5BF9"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6e5f90267e55dfe408a970b35547f4c9, type: 2}
-  m_sharedMaterial: {fileID: 8186924352832858736, guid: 6e5f90267e55dfe408a970b35547f4c9,
+  m_sharedMaterial: {fileID: -67964054469877056, guid: 6e5f90267e55dfe408a970b35547f4c9,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -729,7 +729,7 @@ MonoBehaviour:
   m_text: "\u89E3\u6790\uFF1A"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6e5f90267e55dfe408a970b35547f4c9, type: 2}
-  m_sharedMaterial: {fileID: 8186924352832858736, guid: 6e5f90267e55dfe408a970b35547f4c9,
+  m_sharedMaterial: {fileID: -67964054469877056, guid: 6e5f90267e55dfe408a970b35547f4c9,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -863,7 +863,7 @@ MonoBehaviour:
   m_text: "\u9898\u578B\uFF1A1. \u6709\u5173\u73BB\u7483\u7684\u5B9A\u4E49\uFF0C\u4EE5\u4E0B\u8BF4\u6CD5\u6B63\u786E\u7684\u662F___"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6e5f90267e55dfe408a970b35547f4c9, type: 2}
-  m_sharedMaterial: {fileID: 8186924352832858736, guid: 6e5f90267e55dfe408a970b35547f4c9,
+  m_sharedMaterial: {fileID: -67964054469877056, guid: 6e5f90267e55dfe408a970b35547f4c9,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -999,8 +999,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tmpDescribe: {fileID: 6612779045052291156}
-  togs: []
-  tmps: []
+  togs:
+  - {fileID: 6612779043425706635}
+  - {fileID: 6612779044344080887}
+  tmps:
+  - {fileID: 6612779044762995366}
+  - {fileID: 6612779044531716725}
   tmpAnalysis: {fileID: 6612779044836694783}
   selectIndex: 0
 --- !u!222 &6429359278280431054

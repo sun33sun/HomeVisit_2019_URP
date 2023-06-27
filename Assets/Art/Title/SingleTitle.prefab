@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6612779043425706634}
   - component: {fileID: 6612779043425706635}
-  - component: {fileID: 908944220}
   m_Layer: 5
   m_Name: togA
   m_TagString: Untagged
@@ -85,22 +84,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
---- !u!114 &908944220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6612779043425706637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d51f3a7c41ab0346b49ae50d456bece, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  CustomComponentName: togB
-  CustomComment: 
-  mComponentName: UnityEngine.UI.Toggle
 --- !u!1 &6612779043442973160
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,7 +394,6 @@ GameObject:
   - component: {fileID: 6612779043644851565}
   - component: {fileID: 6612779043644851563}
   - component: {fileID: 6612779043644851562}
-  - component: {fileID: 557663419}
   m_Layer: 5
   m_Name: tmpD
   m_TagString: Untagged
@@ -468,7 +450,7 @@ MonoBehaviour:
   m_text: "D\u3001\u73BB\u7483\u662F\u7194\u4F53\u56E0\u53D7\u51B7\u5374\uFF0C\u9ECF\u5EA6\u9010\u6E10\u51CF\u5C0F\u800C\u5F62\u6210\u7684\u6676\u6001\u56FA\u4F53\u7269\u8D28"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6e5f90267e55dfe408a970b35547f4c9, type: 2}
-  m_sharedMaterial: {fileID: 8186924352832858736, guid: 6e5f90267e55dfe408a970b35547f4c9,
+  m_sharedMaterial: {fileID: -67964054469877056, guid: 6e5f90267e55dfe408a970b35547f4c9,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -535,22 +517,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &557663419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6612779043644851564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d51f3a7c41ab0346b49ae50d456bece, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  CustomComponentName: togB
-  CustomComment: 
-  mComponentName: TMPro.TextMeshProUGUI
 --- !u!1 &6612779043822565195
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,7 +528,6 @@ GameObject:
   - component: {fileID: 6612779043822565192}
   - component: {fileID: 6612779043822565238}
   - component: {fileID: 6612779043822565193}
-  - component: {fileID: 781514398}
   m_Layer: 5
   m_Name: tmpC
   m_TagString: Untagged
@@ -619,7 +584,7 @@ MonoBehaviour:
   m_text: "C\u3001\u73BB\u7483\u662F\u7194\u4F53\u56E0\u53D7\u51B7\u5374\uFF0C\u9ECF\u5EA6\u9010\u6E10\u589E\u5927\u800C\u5F62\u6210\u7684\u6676\u6001\u56FA\u4F53\u7269\u8D28"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6e5f90267e55dfe408a970b35547f4c9, type: 2}
-  m_sharedMaterial: {fileID: 8186924352832858736, guid: 6e5f90267e55dfe408a970b35547f4c9,
+  m_sharedMaterial: {fileID: -67964054469877056, guid: 6e5f90267e55dfe408a970b35547f4c9,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -686,22 +651,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &781514398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6612779043822565195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d51f3a7c41ab0346b49ae50d456bece, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  CustomComponentName: togB
-  CustomComment: 
-  mComponentName: TMPro.TextMeshProUGUI
 --- !u!1 &6612779044005305955
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,7 +735,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6612779044344080886}
   - component: {fileID: 6612779044344080887}
-  - component: {fileID: 266512416}
   m_Layer: 5
   m_Name: togB
   m_TagString: Untagged
@@ -861,22 +809,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
---- !u!114 &266512416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6612779044344080841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d51f3a7c41ab0346b49ae50d456bece, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  CustomComponentName: togB
-  CustomComment: 
-  mComponentName: UnityEngine.UI.Toggle
 --- !u!1 &6612779044407051333
 GameObject:
   m_ObjectHideFlags: 0
@@ -962,7 +894,6 @@ GameObject:
   - component: {fileID: 6612779044531716724}
   - component: {fileID: 6612779044531716722}
   - component: {fileID: 6612779044531716725}
-  - component: {fileID: 1959904162}
   m_Layer: 5
   m_Name: tmpB
   m_TagString: Untagged
@@ -1019,7 +950,7 @@ MonoBehaviour:
   m_text: "B\u3001\u73BB\u7483\u662F\u7194\u4F53\u56E0\u53D7\u51B7\u5374\uFF0C\u9ECF\u5EA6\u9010\u6E10\u51CF\u5C0F\u800C\u5F62\u6210\u7684\u975E\u6676\u6001\u56FA\u4F53\u7269\u8D28"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6e5f90267e55dfe408a970b35547f4c9, type: 2}
-  m_sharedMaterial: {fileID: 8186924352832858736, guid: 6e5f90267e55dfe408a970b35547f4c9,
+  m_sharedMaterial: {fileID: -67964054469877056, guid: 6e5f90267e55dfe408a970b35547f4c9,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1086,22 +1017,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1959904162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6612779044531716727}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d51f3a7c41ab0346b49ae50d456bece, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  CustomComponentName: togB
-  CustomComment: 
-  mComponentName: TMPro.TextMeshProUGUI
 --- !u!1 &6612779044647531339
 GameObject:
   m_ObjectHideFlags: 0
@@ -1112,7 +1027,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6612779044647531336}
   - component: {fileID: 6612779044647531337}
-  - component: {fileID: 2113467038}
   m_Layer: 5
   m_Name: togC
   m_TagString: Untagged
@@ -1187,22 +1101,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
---- !u!114 &2113467038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6612779044647531339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d51f3a7c41ab0346b49ae50d456bece, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  CustomComponentName: togB
-  CustomComment: 
-  mComponentName: UnityEngine.UI.Toggle
 --- !u!1 &6612779044762995384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1214,7 +1112,6 @@ GameObject:
   - component: {fileID: 6612779044762995385}
   - component: {fileID: 6612779044762995367}
   - component: {fileID: 6612779044762995366}
-  - component: {fileID: 1721420655}
   m_Layer: 5
   m_Name: tmpA
   m_TagString: Untagged
@@ -1271,7 +1168,7 @@ MonoBehaviour:
   m_text: "A\u3001\u73BB\u7483\u662F\u7194\u4F53\u56E0\u53D7\u51B7\u5374\uFF0C\u9ECF\u5EA6\u9010\u6E10\u589E\u5927\u800C\u5F62\u6210\u7684\u975E\u6676\u6001\u56FA\u4F53\u7269\u8D28"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6e5f90267e55dfe408a970b35547f4c9, type: 2}
-  m_sharedMaterial: {fileID: 8186924352832858736, guid: 6e5f90267e55dfe408a970b35547f4c9,
+  m_sharedMaterial: {fileID: -67964054469877056, guid: 6e5f90267e55dfe408a970b35547f4c9,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1338,22 +1235,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1721420655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6612779044762995384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d51f3a7c41ab0346b49ae50d456bece, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  CustomComponentName: togB
-  CustomComment: 
-  mComponentName: TMPro.TextMeshProUGUI
 --- !u!1 &6612779044790564813
 GameObject:
   m_ObjectHideFlags: 0
@@ -1364,7 +1245,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6612779044790564810}
   - component: {fileID: 6612779044790564811}
-  - component: {fileID: 1699182108}
   m_Layer: 5
   m_Name: togD
   m_TagString: Untagged
@@ -1439,22 +1319,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
---- !u!114 &1699182108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6612779044790564813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d51f3a7c41ab0346b49ae50d456bece, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  CustomComponentName: togB
-  CustomComment: 
-  mComponentName: UnityEngine.UI.Toggle
 --- !u!1 &6612779044836694769
 GameObject:
   m_ObjectHideFlags: 0
@@ -1466,7 +1330,6 @@ GameObject:
   - component: {fileID: 6612779044836694782}
   - component: {fileID: 6612779044836694780}
   - component: {fileID: 6612779044836694783}
-  - component: {fileID: 1778866984}
   m_Layer: 5
   m_Name: tmpAnalysis
   m_TagString: Untagged
@@ -1523,7 +1386,7 @@ MonoBehaviour:
   m_text: "\u89E3\u6790\uFF1A"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6e5f90267e55dfe408a970b35547f4c9, type: 2}
-  m_sharedMaterial: {fileID: 8186924352832858736, guid: 6e5f90267e55dfe408a970b35547f4c9,
+  m_sharedMaterial: {fileID: -67964054469877056, guid: 6e5f90267e55dfe408a970b35547f4c9,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1590,22 +1453,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1778866984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6612779044836694769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d51f3a7c41ab0346b49ae50d456bece, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  CustomComponentName: togB
-  CustomComment: 
-  mComponentName: TMPro.TextMeshProUGUI
 --- !u!1 &6612779044942614373
 GameObject:
   m_ObjectHideFlags: 0
@@ -1692,7 +1539,6 @@ GameObject:
   - component: {fileID: 6612779045052291159}
   - component: {fileID: 6612779045052291157}
   - component: {fileID: 6612779045052291156}
-  - component: {fileID: 1440291201}
   m_Layer: 5
   m_Name: titleDescribe
   m_TagString: Untagged
@@ -1749,7 +1595,7 @@ MonoBehaviour:
   m_text: "\u9898\u578B\uFF1A1. \u6709\u5173\u73BB\u7483\u7684\u5B9A\u4E49\uFF0C\u4EE5\u4E0B\u8BF4\u6CD5\u6B63\u786E\u7684\u662F___"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6e5f90267e55dfe408a970b35547f4c9, type: 2}
-  m_sharedMaterial: {fileID: 8186924352832858736, guid: 6e5f90267e55dfe408a970b35547f4c9,
+  m_sharedMaterial: {fileID: -67964054469877056, guid: 6e5f90267e55dfe408a970b35547f4c9,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1816,22 +1662,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1440291201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6612779045052291158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d51f3a7c41ab0346b49ae50d456bece, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 0
-  CustomComponentName: togB
-  CustomComment: 
-  mComponentName: TMPro.TextMeshProUGUI
 --- !u!1 &6612779045072830739
 GameObject:
   m_ObjectHideFlags: 0
@@ -1907,14 +1737,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   titleDescribe: {fileID: 6612779045052291156}
-  togA: {fileID: 6612779043425706635}
-  tmpA: {fileID: 6612779044762995366}
-  togB: {fileID: 6612779044344080887}
-  tmpB: {fileID: 6612779044531716725}
-  togC: {fileID: 6612779044647531337}
-  tmpC: {fileID: 6612779043822565193}
-  togD: {fileID: 6612779044790564811}
-  tmpD: {fileID: 6612779043644851562}
+  togs:
+  - {fileID: 6612779043425706635}
+  - {fileID: 6612779044344080887}
+  - {fileID: 6612779044647531337}
+  - {fileID: 6612779044790564811}
+  tmps:
+  - {fileID: 6612779044762995366}
+  - {fileID: 6612779044531716725}
+  - {fileID: 6612779043822565193}
+  - {fileID: 6612779043644851562}
   tmpAnalysis: {fileID: 6612779044836694783}
 --- !u!222 &5240893826652603831
 CanvasRenderer:

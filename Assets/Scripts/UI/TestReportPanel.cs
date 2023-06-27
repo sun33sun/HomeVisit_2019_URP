@@ -12,18 +12,26 @@ namespace HomeVisit.UI
 	{
 		[SerializeField] List<ScoreReport> reportList;
 
+		public bool IsFollow = true;
+
 		protected override void OnInit(IUIData uiData = null)
 		{
 			mData = uiData as TestReportPanelData ?? new TestReportPanelData();
 
 			btnClose.onClick.AddListener(Hide);
-			btnSubmit.onClick.AddListener(() =>
+			btnSubmit.onClick.AddListener(Submit);
+		}
+
+		void Submit()
+		{
+			if (IsFollow)
 			{
+				IsFollow = false;
 				HomeVisitContentPanel homeVisitContentPanel = UIKit.GetPanel<HomeVisitContentPanel>();
 				homeVisitContentPanel.Show();
 				homeVisitContentPanel.transform.SetAsLastSibling();
-				Hide();
-			});
+			}
+			Hide();
 		}
 
 		protected override void OnOpen(IUIData uiData = null)

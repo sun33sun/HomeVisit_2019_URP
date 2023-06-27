@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace HomeVisit.UI
 {
+	public enum TitleType
+	{
+		SingleTitle, MultipleTitle, JudgeTitle, OutlineTitle
+	}
 	public class TitleData
 	{
-		public int titleIndex;
+		public TitleType type;
 		public string strTitle;
 		public int rightIndex;
+		public List<bool> rightIndexs;
 		public List<string> strOptions;
 		public int score;
 	}

@@ -10,8 +10,9 @@ namespace ProjectBase
 	public class SingletonMono<T> : MonoBehaviour where T : SingletonMono<T>
 	{
 		#region 单例
-		protected static T instance;
+		private static T instance;
 		public static T Instance { get { return instance; } }
+		public bool NeedDestroy = false;
 		#endregion
 
 		protected virtual void Awake()
@@ -19,7 +20,8 @@ namespace ProjectBase
 			if (instance == null)
 			{
 				instance = (T)this;
-				DontDestroyOnLoad(instance);
+				if(!NeedDestroy)
+					DontDestroyOnLoad(instance);
 			}
 			else
 			{

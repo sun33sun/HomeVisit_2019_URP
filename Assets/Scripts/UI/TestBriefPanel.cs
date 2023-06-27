@@ -9,6 +9,8 @@ namespace HomeVisit.UI
 	}
 	public partial class TestBriefPanel : UIPanel
 	{
+		public bool IsFollow = true;
+
 		protected override void OnInit(IUIData uiData = null)
 		{
 			mData = uiData as TestBriefPanelData ?? new TestBriefPanelData();
@@ -43,7 +45,11 @@ namespace HomeVisit.UI
 			btnClosePanel.onClick.AddListener(() =>
 			{
 				UIKit.HidePanel<TestBriefPanel>();
-				UIKit.ShowPanel<HomeVisitContentPanel>();
+				if (IsFollow)
+				{
+					IsFollow = false;
+					UIKit.ShowPanel<HomeVisitContentPanel>();
+				}
 			});
 			UIKit.OpenPanelAsync<HomeVisitContentPanel>().ToAction().Start(this,()=> 
 			{

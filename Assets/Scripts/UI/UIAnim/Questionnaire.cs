@@ -10,7 +10,7 @@ namespace HomeVisit
 	public class Questionnaire : MonoBehaviour
 	{
 		[SerializeField] TextMeshProUGUI tmpBigQuestionnaire;
-		[SerializeField] DoubleClickkEvent btnBigQuestionnaire;
+		public DoubleClickEvent btnBigQuestionnaire;
 		[SerializeField] Image imgScenarioCases;
 		public List<Button> btns;
 		[SerializeField] List<TextMeshProUGUI> tmps;
@@ -35,7 +35,7 @@ namespace HomeVisit
 					PlayAnim(index);
 				});
 				//双击事件
-				btns[i].GetComponent<DoubleClickkEvent>().OnDoubleClick += () =>
+				btns[i].GetComponent<DoubleClickEvent>().OnDoubleClick += () =>
 				{
 					if (midBtn == btns[index])
 					{

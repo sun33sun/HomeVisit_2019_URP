@@ -47,6 +47,11 @@ namespace HomeVisit.UI
 		{
 			togClothes.interactable = newState;
 		}
+
+		public void InitData(TitleData titleData)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 
 }

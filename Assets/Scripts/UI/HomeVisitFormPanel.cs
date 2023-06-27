@@ -16,7 +16,6 @@ namespace HomeVisit.UI
 	public partial class HomeVisitFormPanel : UIPanel
 	{
 		List<ITitle> titles = new List<ITitle>();
-		public ResLoader mLoader = ResLoader.Allocate();
 		DateTime startTime;
 
 		protected override void OnInit(IUIData uiData = null)
@@ -41,7 +40,7 @@ namespace HomeVisit.UI
 			});
 			btnSubmitFrom.onClick.AddListener(SubmitForm);
 
-			LoadTitleAsync();
+			StartCoroutine(LoadTitleAsync());
 		}
 
 		void SubmitForm()
@@ -69,24 +68,16 @@ namespace HomeVisit.UI
 			Hide();
 		}
 
-		void LoadTitleAsync()
+		IEnumerator LoadTitleAsync()
 		{
-			mLoader.Add2Load<TextAsset>("Title", "Paper_Form",(isCompleted,asset)=> 
+			yield return WebKit.GetInstance().Read<List<JudgeTitleData>>(Settings.PAPER + "Paper_Form.json", datas =>
 			{
-				if (isCompleted)
+				foreach (var item in datas)
 				{
-					string json = (asset.Asset as TextAsset).text;
-					List<JudgeTitleData> datas = JsonConvert.DeserializeObject<List<JudgeTitleData>>(json);
-					for (int i = 0; i < datas.Count; i++)
-					{
-						CreateJudgeTitle(datas[i]);
-					}
-					btnConfirmFrom.transform.parent.SetAsLastSibling();
-					btnSubmitFrom.transform.SetAsLastSibling();
-					btnConfirmFrom.transform.SetAsLastSibling();
+					CreateJudgeTitle(item);
 				}
+				btnSubmit.SetAsLastSibling();
 			});
-			mLoader.LoadAsync();
 		}
 
 		GameObject CreateJudgeTitle(JudgeTitleData data)

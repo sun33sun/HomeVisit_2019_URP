@@ -5,7 +5,7 @@ using QFramework;
 
 namespace HomeVisit.UI
 {
-	// Generate Id:f0e10e9e-2cae-4a72-b333-e4de457e66c8
+	// Generate Id:f0185f76-e88f-4c85-8c1d-0007f6f957f7
 	public partial class MainPanel
 	{
 		public const string Name = "MainPanel";
@@ -14,6 +14,8 @@ namespace HomeVisit.UI
 		public UnityEngine.UI.Image imgSchool;
 		[SerializeField]
 		public UnityEngine.UI.Button btnKeyWord;
+		[SerializeField]
+		public UnityEngine.RectTransform imgKeywordsDetail;
 		[SerializeField]
 		public UnityEngine.UI.Button btnFullScreen;
 		[SerializeField]
@@ -25,6 +27,7 @@ namespace HomeVisit.UI
 		{
 			imgSchool = null;
 			btnKeyWord = null;
+			imgKeywordsDetail = null;
 			btnFullScreen = null;
 			imgVisitProgress = null;
 			

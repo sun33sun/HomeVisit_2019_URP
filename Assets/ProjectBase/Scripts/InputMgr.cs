@@ -16,10 +16,6 @@ namespace ProjectBase
 		private bool isStartUpdate = false;
 		private bool isStartFixedUpdate = false;
 
-        int clickCount = 0;
-        float preClickTime;
-
-
         /// <summary>
         /// 构造函数中 添加Updata监听
         /// </summary>

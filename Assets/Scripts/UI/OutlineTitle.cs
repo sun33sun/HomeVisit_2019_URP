@@ -7,37 +7,45 @@ using TMPro;
 
 namespace HomeVisit.UI
 {
-	public class OutlineTitleData : UIPanelData
+	public class OutlineTitleData : TitleData
 	{
-		public string strTitleDescribe;
-		public List<string> strTogList;
+		public OutlineTitleData(string strTitle, List<bool> rightIndexs, List<string> strOptions, int score)
+		{
+			this.type = TitleType.OutlineTitle;
+			this.strTitle = strTitle;
+			this.rightIndexs = rightIndexs;
+			this.strOptions = strOptions;
+			this.score = score;
+		}
 
-		public List<bool> rightList;
-		public int score;
+		public OutlineTitleData()
+		{
+			this.type = TitleType.OutlineTitle;
+		}
 	}
 
-	public partial class OutlineTitle : UIPanel, ITitle
+	public partial class OutlineTitle : MonoBehaviour, ITitle
 	{
 		[SerializeField] GameObject togPrefab;
 		List<TogOutline> selectedTogList = new List<TogOutline>();
 		[SerializeField]List<TogOutline> togList = new List<TogOutline>();
 		CommunicateOutlinePanel communicateOutlinePanel;
 
-		protected override void OnInit(IUIData uiData = null)
+		public void InitData(TitleData titleData)
 		{
-			mData = uiData as OutlineTitleData ?? new OutlineTitleData();
+			mData = titleData as OutlineTitleData;
 
-			titleDescribe.text = mData.strTitleDescribe;
+			titleDescribe.text = mData.strTitle;
 
 			communicateOutlinePanel = UIKit.GetPanel<CommunicateOutlinePanel>();
 
-			for (int i = 0; i < mData.strTogList.Count; i++)
+			for (int i = 0; i < mData.strOptions.Count; i++)
 			{
 				TogOutline newTog = Instantiate(togPrefab).GetComponent<TogOutline>();
 				togList.Add(newTog);
 				newTog.name = "tog" + i;
 				int index = i;
-				newTog.transform.GetComponentInChildren<TextMeshProUGUI>().text = mData.strTogList[index];
+				newTog.transform.GetComponentInChildren<TextMeshProUGUI>().text = mData.strOptions[index];
 				newTog.transform.SetParent(transform);
 
 				newTog.tog.onValueChanged.AddListener((isOn) =>
@@ -47,31 +55,15 @@ namespace HomeVisit.UI
 						if (selectedTogList.Count > 3)
 							selectedTogList[0].tog.isOn = false;
 						selectedTogList.Add(newTog);
-						communicateOutlinePanel.strTogSelected.Add(mData.strTogList[index]);
+						communicateOutlinePanel.strTogSelected.Add(mData.strOptions[index]);
 					}
 					else
 					{
 						selectedTogList.Remove(newTog);
-						communicateOutlinePanel.strTogSelected.Remove(mData.strTogList[index]);
+						communicateOutlinePanel.strTogSelected.Remove(mData.strOptions[index]);
 					}
 				});
 			}
-		}
-
-		protected override void OnOpen(IUIData uiData = null)
-		{
-		}
-
-		protected override void OnShow()
-		{
-		}
-
-		protected override void OnHide()
-		{
-		}
-
-		protected override void OnClose()
-		{
 		}
 
 		public int GetScore()
@@ -87,7 +79,7 @@ namespace HomeVisit.UI
 			bool isRIght = true;
 			for (int i = 0; i < selectedTogList.Count; i++)
 			{
-				if (selectedTogList[i].tog.isOn != mData.rightList[i])
+				if (selectedTogList[i].tog.isOn != mData.rightIndexs[i])
 				{
 					isRIght = false;
 					break;
@@ -100,7 +92,7 @@ namespace HomeVisit.UI
 		{
 			for (int i = 0; i < togList.Count; i++)
 			{
-				if (togList[i].tog.isOn == mData.rightList[i])
+				if (togList[i].tog.isOn == mData.rightIndexs[i])
 					togList[i].ShowState(1);
 				else
 					togList[i].ShowState(-1);

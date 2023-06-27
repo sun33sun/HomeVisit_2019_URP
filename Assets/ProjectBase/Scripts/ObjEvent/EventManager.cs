@@ -21,14 +21,28 @@ namespace ProjectBase
 			baseEvent.OnClick += callBack;
 		}
 
+		public WaitUntil AddObjClick(GameObject newObj)
+		{
+			BaseEvent baseEvent = newObj.GetComponent<BaseEvent>();
+			if (baseEvent == null)
+			{
+				baseEvent = newObj.AddComponent<ObjClickEvent>();
+			}
+			else
+			{
+				Debug.LogWarning($"{newObj.name} : {newObj.GetInstanceID()}\t\t有重复的回调事件：");
+			}
+			return new WaitUntil(() => { return baseEvent.isDestroy; });
+		}
+
 		public void Register(BaseEvent newEvent)
 		{
-			instance.eventList.Add(newEvent);
+			Instance.eventList.Add(newEvent);
 		}
 
 		public void Unregister(BaseEvent newEvent)
 		{
-			instance.eventList.Remove(newEvent);
+			Instance.eventList.Remove(newEvent);
 		}
 
 		public void Clear()

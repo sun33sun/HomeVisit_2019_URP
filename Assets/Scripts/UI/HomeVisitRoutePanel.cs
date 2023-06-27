@@ -20,8 +20,6 @@ namespace HomeVisit.UI
 		[SerializeField] List<Button> btnRouteList;
 		[SerializeField] List<Sprite> spriteRouteList;
 
-		bool isLoop = false;
-
 		protected override void OnInit(IUIData uiData = null)
 		{
 			mData = uiData as HomeVisitRoutePanelData ?? new HomeVisitRoutePanelData();
@@ -58,17 +56,16 @@ namespace HomeVisit.UI
 
 		IEnumerator LoadSceneAsync()
 		{
-			if (ProjectSetting.BanGongShi)
+			if (Settings.BanGongShi)
 				yield break;
 			yield return CloseEyeAnim();
 			UIKit.GetPanel<MainPanel>().SetBK(false);
 			AsyncOperation operation = SceneManager.LoadSceneAsync("BanGongShi", LoadSceneMode.Additive);
 			yield return new WaitUntil(() => { return operation.isDone; });
-			isLoop = false;
 			yield return OpenEyeAnim();
-			ProjectSetting.BanGongShi = true;
+			Settings.BanGongShi = true;
 			GameObject Teacher_Computer = Interactive.Get("Teacher_Computer");
-			EffectManager.Instance.AddTarget(Teacher_Computer);
+			EffectManager.Instance.AddEffectAndTarget(Teacher_Computer);
 			EventManager.Instance.AddObjClick(Teacher_Computer, () => { 
 				svMap.gameObject.SetActive(true);
 				imgMid.gameObject.SetActive(true);

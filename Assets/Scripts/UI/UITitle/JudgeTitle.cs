@@ -8,6 +8,19 @@ namespace HomeVisit.UI
 {
 	public class JudgeTitleData : TitleData
 	{
+		public JudgeTitleData(string strTitle, int rightIndex, List<string> strOptions, int score)
+		{
+			this.type = TitleType.JudgeTitle;
+			this.strTitle = strTitle;
+			this.rightIndex = rightIndex;
+			this.strOptions = strOptions;
+			this.score = score;
+		}
+
+		public JudgeTitleData()
+		{
+			this.type = TitleType.JudgeTitle;
+		}
 	}
 	public partial class JudgeTitle : MonoBehaviour, ITitle
 	{
@@ -19,6 +32,18 @@ namespace HomeVisit.UI
 		public TextMeshProUGUI tmpAnalysis;
 		public int selectIndex = 0;
 
+		private void Start()
+		{
+			for (int i = 0; i < togs.Count; i++)
+			{
+				int index = i;
+				togs[i].onValueChanged.AddListener(isOn =>
+				{
+					if (isOn)
+						selectIndex = index;
+				});
+			}
+		}
 
 		public void CheckTitle()
 		{
@@ -28,8 +53,7 @@ namespace HomeVisit.UI
 			}
 			else
 			{
-				char rightOption = 'A';
-				rightOption = (char)((int)(rightOption) + mData.rightIndex);
+				char rightOption = (char)((int)('A') + mData.rightIndex);
 				tmpAnalysis.text = "解析：回答错误，正确答案<color=#FF0000> " + rightOption + " </color>";
 			}
 		}
@@ -55,9 +79,9 @@ namespace HomeVisit.UI
 				return 0;
 		}
 
-		public void InitData(JudgeTitleData newData)
+		public void InitData(TitleData titleData)
 		{
-			mData = newData;
+			mData = titleData as JudgeTitleData;
 			for (int i = 0; i < togs.Count; i++)
 			{
 				int index = i;
@@ -66,6 +90,11 @@ namespace HomeVisit.UI
 					if (isOn)
 						selectIndex = index;
 				});
+			}
+			tmpDescribe.text = mData.strTitle;
+			for (int i = 0; i < tmps.Count; i++)
+			{
+				tmps[i].text = mData.strOptions[i];
 			}
 		}
 

@@ -1,8 +1,10 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using QFramework;
 using System.Collections.Generic;
 using System;
+using ProjectBase;
+using System.Collections;
 
 namespace HomeVisit.UI
 {
@@ -19,6 +21,7 @@ namespace HomeVisit.UI
 
 		DateTime startTime;
 		DateTime endTime;
+		List<OutlineTitleData> datas = null;
 
 		protected override void OnInit(IUIData uiData = null)
 		{
@@ -28,16 +31,16 @@ namespace HomeVisit.UI
 			btnConfirm.onClick.AddListener(Confirm);
 			btnSubmit.onClick.AddListener(Submit);
 
-			TestExam();
+			StartCoroutine(LoadPaper());
 		}
 
 		void Confirm()
 		{
-			//¼ì²éÌâÄ¿¶Ô´í
+			//æ£€æŸ¥é¢˜ç›®å¯¹é”™
 			for (int i = 0; i < titles.Count; i++)
 				titles[i].CheckTitle();
 
-			//ÏÔÊ¾Ìá½»°´Å¥
+			//æ˜¾ç¤ºæäº¤æŒ‰é’®
 			btnConfirm.gameObject.SetActive(false);
 			btnSubmit.gameObject.SetActive(true);
 		}
@@ -49,59 +52,28 @@ namespace HomeVisit.UI
 				totalScore = titles[i].GetScore();
 			ScoreReportData data = new ScoreReportData()
 			{
-				strModule = "½»Á÷Ìá¸Ù",
+				strModule = "äº¤æµæçº²",
 				strScore = totalScore.ToString(),
 			};
 			TestReportPanel testReportPanel = UIKit.GetPanel<TestReportPanel>();
 			testReportPanel.CreateScoreReport(data);
 
-			//ĞŞ¸Ä½ø¶ÈUI²¢½øÈëÏÂÒ»¸öÒ³Ãæ
+			//ä¿®æ”¹è¿›åº¦UIå¹¶è¿›å…¥ä¸‹ä¸€ä¸ªé¡µé¢
 			UIKit.GetPanel<MainPanel>().NextStep();
 			UIKit.OpenPanelAsync<ClothesPanel>().ToAction().Start(this);
 			Hide();
 		}
 
-		void TestExam()
+		IEnumerator LoadPaper()
 		{
 			DateTime startTime = DateTime.Now;
 
-			OutlineTitleData multipleData = new OutlineTitleData()
-			{
-				strTitleDescribe = "½ÌÊ¦¿ÉÒÔÑ¯ÎÊ¼Ò³¤£º£¨¶àÑ¡Ìâ£¬×î¶àÑ¡ËÄ¸ö£©",
-				strTogList = new List<string>()
-				{
-					"º¢×ÓÉú»îÄÜÁ¦£¨Èç£º³ÔºÈÀ­ÈöË¯¡­¡­£©",
-					"º¢×Ó×ÔÀíÄÜÁ¦£¨Ë¢ÑÀÏ´Á³´©ÒÂ¡­¡­£©",
-					"º¢×ÓĞÔ¸ñ£¨ÄÚÏò¡¢ÍâÏò¡¢ÇéĞ÷ÊÇ·ñÎÈ¶¨£©",
-					"º¢×Ó²¡Ê·£¨¹ıÃô¡¢ĞÄÔà²¡¡¢ñ²ğï¡­¡­£©",
-					"º¢×ÓµÄÑ§Ï°Çé¿ö",
-					"¼Ò³¤ÆÚÍû£¨º¢×ÓÄÄ·½Ãæ³É³¤¡­¡­£©",
-					"ĞèÒªÀÏÊ¦ÌØ±ğ×¢ÒâµÄ·½Ãæ£¨×ùÎ»¡¢×¢ÒâÁ¦¡¢ÔÚĞ£³Ô·¹¡¢ÈË¼Ê½»Íù¡­¡­£©",
-					"½ÌÊ¦¿ÉÒÔÏò¼Ò³¤½éÉÜÑ§Ğ£ÀíÄî£¬ÈÃ¼Ò³¤ÓĞÒ»¸ö³õ²½µÄÁË½â¡£"
-				},
-				rightList = new List<bool>() { true, true, true, true, false, false, false, false },
-				score = 10
-			};
-			CreateOutlinTitle(multipleData);
+			yield return WebKit.GetInstance().Read<List<OutlineTitleData>>(Settings.PAPER + "Paper_Outline.json", d => { datas = d; });
 
-
-			OutlineTitleData multipleData1 = new OutlineTitleData()
+			foreach (var item in datas)
 			{
-				strTitleDescribe = "Ïà¹ØÌ¸»°ÄÚÈİ¼°ÎÊÌâ¹©²Î¿¼£º£¨¶àÑ¡Ìâ£¬×î¶àÑ¡ËÄ¸ö£©",
-				strTogList = new List<string>()
-				{
-					"½éÉÜÑ§Ğ£°ìÑ§ÀíÄî",
-					"½éÉÜ°àÖ÷ÈÎ´ø°àÀíÄî",
-					"ÁË½âÑ§ÉúĞÔ¸ñ¡¢°®ºÃµÈ¸öÈËÇé¿ö",
-					"ÁË½âÑ§Éú¼ÙÆÚÉú»î¡¢²éÔÄ×÷Òµ",
-					"ÁË½âÑ§Éú¶ÔĞÂÑ§Ğ£ĞÂ¼¯ÌåµÄÆÚ´ı",
-					"ÁË½â¼Ò³¤¼ÒÍ¥½ÌÓıÀíÄî",
-					"Ô¤²â¼Ò³¤ºÍÑ§Éú¿ÉÄÜ¹ØĞÄµÄ½ÌÓıÎÊÌâ"
-				},
-				rightList = new List<bool>() {  false, false, false, true, true, true, true },
-				score = 5
-			};
-			CreateOutlinTitle(multipleData1);
+				CreateOutlinTitle(item);
+			}
 
 			btnConfirm.transform.SetAsLastSibling();
 		}

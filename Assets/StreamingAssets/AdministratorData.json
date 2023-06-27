@@ -1,0 +1,266 @@
+[
+	{
+		"strDistrict": "黄浦",
+		"id": "310001020100252535",
+		"strName": "路彦威",
+		"strUnit": "学校",
+		"role": 1,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "徐汇",
+		"id": "310001020100252536",
+		"strName": "赵彦卿",
+		"strUnit": "教育局",
+		"role": 0,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "长宁",
+		"id": "310001020100252537",
+		"strName": "张茂祥",
+		"strUnit": "学校",
+		"role": 1,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "静安",
+		"id": "310001020100252538",
+		"strName": "秦子婴",
+		"strUnit": "学校",
+		"role": 0,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "普陀",
+		"id": "310001020100252539",
+		"strName": "普德丽",
+		"strUnit": "学校",
+		"role": 1,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "虹口",
+		"id": "310001020100252540",
+		"strName": "王重荣",
+		"strUnit": "教育局",
+		"role": 0,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "杨浦",
+		"id": "310001020100252541",
+		"strName": "石浩",
+		"strUnit": "学校",
+		"role": 1,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "闵行",
+		"id": "310001020100252542",
+		"strName": "石虎",
+		"strUnit": "教育局",
+		"role": 0,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "宝山",
+		"id": "310001020100252543",
+		"strName": "石敢当",
+		"strUnit": "学校",
+		"role": 1,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "嘉定",
+		"id": "310001020100252544",
+		"strName": "师欣然",
+		"strUnit": "教育局",
+		"role": 0,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "浦东新区",
+		"id": "310001020100252545",
+		"strName": "李克用",
+		"strUnit": "教育局",
+		"role": 1,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "金山",
+		"id": "310001020100252546",
+		"strName": "贾辩非",
+		"strUnit": "教育局",
+		"role": 0,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "松江",
+		"id": "310001020100252546",
+		"strName": "郝元谅",
+		"strUnit": "教育局",
+		"role": 1,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "青浦",
+		"id": "310001020100252546",
+		"strName": "钱继恕",
+		"strUnit": "教育局",
+		"role": 0,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "奉贤",
+		"id": "310001020100252546",
+		"strName": "孙昌龄",
+		"strUnit": "教育局",
+		"role": 1,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "崇明",
+		"id": "310001020100252546",
+		"strName": "李元道",
+		"strUnit": "教育局",
+		"role": 0,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "崇明",
+		"id": "310001020100252547",
+		"strName": "王燕飞",
+		"strUnit": "教育局",
+		"role": 1,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "崇明",
+		"id": "310001020100252548",
+		"strName": "周慧然",
+		"strUnit": "教育局",
+		"role": 0,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "崇明",
+		"id": "310001020100252549",
+		"strName": "吴如云",
+		"strUnit": "教育局",
+		"role": 1,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "崇明",
+		"id": "310001020100252550",
+		"strName": "郑灵雨",
+		"strUnit": "教育局",
+		"role": 0,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "崇明",
+		"id": "310001020100252551",
+		"strName": "王绿竹",
+		"strUnit": "教育局",
+		"role": 0,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "崇明",
+		"id": "310001020100252552",
+		"strName": "陈巧倩",
+		"strUnit": "教育局",
+		"role": 1,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "崇明",
+		"id": "310001020100252553",
+		"strName": "褚陶陶",
+		"strUnit": "教育局",
+		"role": 0,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "崇明",
+		"id": "310001020100252554",
+		"strName": "卫朝雨",
+		"strUnit": "教育局",
+		"role": 1,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "崇明",
+		"id": "310001020100252555",
+		"strName": "蒋芃芃",
+		"strUnit": "教育局",
+		"role": 0,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "崇明",
+		"id": "310001020100252556",
+		"strName": "沈德音",
+		"strUnit": "教育局",
+		"role": 1,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "崇明",
+		"id": "310001020100252557",
+		"strName": "韩零露",
+		"strUnit": "教育局",
+		"role": 0,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "崇明",
+		"id": "31000102010025254658",
+		"strName": "杨琼华",
+		"strUnit": "教育局",
+		"role": 1,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "崇明",
+		"id": "31000102010025254659",
+		"strName": "朱采苓",
+		"strUnit": "教育局",
+		"role": 0,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "崇明",
+		"id": "31000102010025254660",
+		"strName": "秦文茵",
+		"strUnit": "教育局",
+		"role": 1,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "崇明",
+		"id": "310001020100252561",
+		"strName": "尤湄",
+		"strUnit": "教育局",
+		"role": 1,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "崇明",
+		"id": "310001020100252562",
+		"strName": "许渥丹",
+		"strUnit": "教育局",
+		"role": 1,
+		"strUserState": "正常"
+	},
+	{
+		"strDistrict": "崇明",
+		"id": "310001020100252563",
+		"strName": "何今霏",
+		"strUnit": "教育局",
+		"role": 1,
+		"strUserState": "正常"
+	}
+]

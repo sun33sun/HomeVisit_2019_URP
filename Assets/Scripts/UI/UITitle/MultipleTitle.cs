@@ -3,92 +3,30 @@ using UnityEngine.UI;
 using QFramework;
 using System.Text;
 using System;
+using System.Collections.Generic;
 
 namespace HomeVisit.UI
 {
-	public class MultipleTitleData : UIPanelData
+	public class MultipleTitleData : TitleData
 	{
-		public bool[] isRights = new bool[4];
+		public MultipleTitleData(string strTitle, List<bool> rightIndexs, List<string> strOptions, int score)
+		{
+			this.type = TitleType.MultipleTitle;
+			this.strTitle = strTitle;
+			this.rightIndexs = rightIndexs;
+			this.strOptions = strOptions;
+			this.score = score;
+		}
 
-		public string strDescribe;
-		public string strA = "";
-		public string strB = "";
-		public string strC = "";
-		public string strD = "";
-		public int score = 0;
-
-		public string strModule = "";
+		public MultipleTitleData()
+		{
+			this.type = TitleType.MultipleTitle;
+		}
 	}
-	public partial class MultipleTitle : UIPanel, ITitle
+	public partial class MultipleTitle : MonoBehaviour, ITitle
 	{
 		bool[] isSelected = new bool[4];
 		int rightCount = 0;
-
-		protected override void OnInit(IUIData uiData = null)
-		{
-			mData = uiData as MultipleTitleData ?? new MultipleTitleData();
-
-			titleDescribe.text = mData.strDescribe;
-			tmpA.text = mData.strA;
-			tmpB.text = mData.strB;
-			tmpC.text = mData.strC;
-			tmpD.text = mData.strD;
-
-			StringBuilder strError = new StringBuilder();
-			for (int i = 0; i < mData.isRights.Length; i++)
-			{
-				if (mData.isRights[i])
-					rightCount++;
-			}
-
-			togA.onValueChanged.AddListener(isOn =>
-			{
-				isSelected[0] = isOn;
-				GetExamResult();
-			});
-			togB.onValueChanged.AddListener(isOn =>
-			{
-				isSelected[1] = isOn;
-				GetExamResult();
-			});
-			togC.onValueChanged.AddListener(isOn =>
-			{
-				isSelected[2] = isOn;
-				GetExamResult();
-			});
-			togD.onValueChanged.AddListener(isOn =>
-			{
-				isSelected[3] = isOn;
-				GetExamResult();
-			});
-
-			if (mData.isRights[0])
-				strError.Append('A');
-			if (mData.isRights[1])
-				strError.Append('B');
-			if (mData.isRights[2])
-				strError.Append('C');
-			if (mData.isRights[3])
-				strError.Append('D');
-
-			errorTip = $"解析：回答错误，正确答案<color=#FF0000>{strError}</color>";
-		}
-
-		protected override void OnOpen(IUIData uiData = null)
-		{
-		}
-
-		protected override void OnShow()
-		{
-		}
-
-		protected override void OnHide()
-		{
-		}
-
-		protected override void OnClose()
-		{
-		}
 
 		public int GetScore()
 		{
@@ -102,9 +40,9 @@ namespace HomeVisit.UI
 		{
 			bool allRight = true;
 			int selectedCount = 0;
-			for (int i = 0; i < mData.isRights.Length; i++)
+			for (int i = 0; i < mData.rightIndexs.Count; i++)
 			{
-				if (mData.isRights[i] != isSelected[i])
+				if (mData.rightIndexs[i] != isSelected[i])
 					allRight = false;
 				if (isSelected[i])
 					selectedCount++;
@@ -117,9 +55,9 @@ namespace HomeVisit.UI
 		{
 			bool allRight = true;
 			int selectedCount = 0;
-			for (int i = 0; i < mData.isRights.Length; i++)
+			for (int i = 0; i < mData.rightIndexs.Count; i++)
 			{
-				if (mData.isRights[i] != isSelected[i])
+				if (mData.rightIndexs[i] != isSelected[i])
 				{
 					allRight = false;
 					break;
@@ -139,23 +77,57 @@ namespace HomeVisit.UI
 		{
 			SetInteractable(true);
 			tmpAnalysis.text = "解析：";
-			togA.isOn = false;
-			togB.isOn = false;
-			togC.isOn = false;
-			togD.isOn = false;
+			foreach (var item in togs)
+			{
+				item.isOn = false;
+			}
 		}
 
 		public void SetInteractable(bool newState)
 		{
-			togA.interactable = newState;
-			togB.interactable = newState;
-			togC.interactable = newState;
-			togD.interactable = newState;
+			foreach (var item in togs)
+			{
+				item.interactable = newState;
+			}
 		}
 
 		public bool GetInteractable()
 		{
-			return togA.interactable;
+			return togs[0].interactable;
+		}
+
+		public void InitData(TitleData titleData)
+		{
+			mData = titleData as MultipleTitleData;
+
+			titleDescribe.text = mData.strTitle;
+			for (int i = 0; i < tmps.Count; i++)
+			{
+				tmps[i].text = mData.strOptions[i];
+			}
+
+			StringBuilder strError = new StringBuilder();
+			rightCount = mData.rightIndexs.Count;
+			for (int i = 0; i < togs.Count; i++)
+			{
+				int index = i;
+				togs[i].onValueChanged.AddListener(isOn =>
+				{
+					isSelected[index] = isOn;
+					GetExamResult();
+				});
+			}
+
+			for (int i = 0; i < mData.rightIndexs.Count; i++)
+			{
+				if (mData.rightIndexs[i])
+				{
+					int temp = (int)'A' + i;
+					strError.Append((char)temp);
+				}
+			}
+
+			errorTip = $"解析：回答错误，正确答案<color=#FF0000>{strError}</color>";
 		}
 	}
 }

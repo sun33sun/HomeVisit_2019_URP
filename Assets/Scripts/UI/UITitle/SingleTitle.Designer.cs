@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using QFramework;
+using System.Collections.Generic;
+using TMPro;
 
 namespace HomeVisit.UI
 {
@@ -9,68 +11,15 @@ namespace HomeVisit.UI
 	public partial class SingleTitle
 	{
 		public const string Name = "title";
-		
-		[SerializeField]
-		public TMPro.TextMeshProUGUI titleDescribe;
-		[SerializeField]
-		public UnityEngine.UI.Toggle togA;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI tmpA;
-		[SerializeField]
-		public UnityEngine.UI.Toggle togB;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI tmpB;
-		[SerializeField]
-		public UnityEngine.UI.Toggle togC;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI tmpC;
-		[SerializeField]
-		public UnityEngine.UI.Toggle togD;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI tmpD;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI tmpAnalysis;
+
+		public TextMeshProUGUI titleDescribe;
+		public List<Toggle> togs;
+		public List<TextMeshProUGUI> tmps;
+		public TextMeshProUGUI tmpAnalysis;
 
 		string rightTip = "解析：<color=#00ff00ff>回答正确</color>";
 		string errorTip = "";
 
-		private SingleTitleData mPrivateData = null;
-		
-		protected override void ClearUIComponents()
-		{
-			titleDescribe = null;
-			togA = null;
-			tmpA = null;
-			togB = null;
-			tmpB = null;
-			togC = null;
-			tmpC = null;
-			togD = null;
-			tmpD = null;
-			tmpAnalysis = null;
-			
-			mData = null;
-		}
-		
-		public SingleTitleData Data
-		{
-			get
-			{
-				return mData;
-			}
-		}
-		
-		SingleTitleData mData
-		{
-			get
-			{
-				return mPrivateData ?? (mPrivateData = new SingleTitleData());
-			}
-			set
-			{
-				mUIData = value;
-				mPrivateData = value;
-			}
-		}
+		SingleTitleData mData;
 	}
 }

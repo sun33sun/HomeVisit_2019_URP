@@ -4,6 +4,7 @@ namespace HomeVisit.UI
 {
     public interface ITitle
     {
+        void InitData(TitleData titleData);
         int GetScore();
 
         bool GetExamResult();

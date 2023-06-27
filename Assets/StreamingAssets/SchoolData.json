@@ -1,0 +1,226 @@
+[
+	{
+		"strDistrict": "黄浦",
+		"strSchoolName": "黄浦一小",
+		"SchoolCode": 10001,
+		"strPeriod": "小学",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "黄浦",
+		"strSchoolName": "黄浦一中",
+		"SchoolCode": 20001,
+		"strPeriod": "初中",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "徐汇",
+		"strSchoolName": "徐汇一小",
+		"SchoolCode": 10101,
+		"strPeriod": "小学",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "徐汇",
+		"strSchoolName": "徐汇一中",
+		"SchoolCode": 20101,
+		"strPeriod": "初中",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "长宁",
+		"strSchoolName": "长宁一小",
+		"SchoolCode": 10201,
+		"strPeriod": "小学",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "长宁",
+		"strSchoolName": "长宁一中",
+		"SchoolCode": 20201,
+		"strPeriod": "初中",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "静安",
+		"strSchoolName": "静安一小",
+		"SchoolCode": 10301,
+		"strPeriod": "小学",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "静安",
+		"strSchoolName": "静安一中",
+		"SchoolCode": 20301,
+		"strPeriod": "初中",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "普陀",
+		"strSchoolName": "普陀一小",
+		"SchoolCode": 10401,
+		"strPeriod": "小学",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "普陀",
+		"strSchoolName": "普陀一中",
+		"SchoolCode": 20401,
+		"strPeriod": "初中",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "虹口",
+		"strSchoolName": "虹口一小",
+		"SchoolCode": 10501,
+		"strPeriod": "小学",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "虹口",
+		"strSchoolName": "虹口一中",
+		"SchoolCode": 20501,
+		"strPeriod": "初中",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "杨浦",
+		"strSchoolName": "杨浦一小",
+		"SchoolCode": 10601,
+		"strPeriod": "小学",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "杨浦",
+		"strSchoolName": "杨浦一中",
+		"SchoolCode": 20601,
+		"strPeriod": "初中",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "闵行",
+		"strSchoolName": "闵行一小",
+		"SchoolCode": 10701,
+		"strPeriod": "小学",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "闵行",
+		"strSchoolName": "闵行一中",
+		"SchoolCode": 20701,
+		"strPeriod": "初中",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "宝山",
+		"strSchoolName": "宝山一小",
+		"SchoolCode": 10801,
+		"strPeriod": "小学",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "宝山",
+		"strSchoolName": "宝山一中",
+		"SchoolCode": 20801,
+		"strPeriod": "初中",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "嘉定",
+		"strSchoolName": "嘉定一小",
+		"SchoolCode": 10901,
+		"strPeriod": "小学",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "嘉定",
+		"strSchoolName": "嘉定一中",
+		"SchoolCode": 20901,
+		"strPeriod": "初中",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "浦东新区",
+		"strSchoolName": "浦东新区一小",
+		"SchoolCode": 11001,
+		"strPeriod": "小学",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "浦东新区",
+		"strSchoolName": "浦东新区一中",
+		"SchoolCode": 21001,
+		"strPeriod": "初中",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "金山",
+		"strSchoolName": "金山一小",
+		"SchoolCode": 11101,
+		"strPeriod": "小学",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "金山",
+		"strSchoolName": "金山一中",
+		"SchoolCode": 21101,
+		"strPeriod": "初中",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "松江",
+		"strSchoolName": "松江一小",
+		"SchoolCode": 11201,
+		"strPeriod": "小学",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "松江",
+		"strSchoolName": "松江一中",
+		"SchoolCode": 21201,
+		"strPeriod": "初中",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "青浦",
+		"strSchoolName": "青浦一小",
+		"SchoolCode": 11301,
+		"strPeriod": "小学",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "青浦",
+		"strSchoolName": "青浦一中",
+		"SchoolCode": 21301,
+		"strPeriod": "初中",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "奉贤",
+		"strSchoolName": "奉贤一小",
+		"SchoolCode": 11401,
+		"strPeriod": "小学",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "奉贤",
+		"strSchoolName": "奉贤一中",
+		"SchoolCode": 21401,
+		"strPeriod": "初中",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "崇明",
+		"strSchoolName": "崇明一小",
+		"SchoolCode": 11501,
+		"strPeriod": "小学",
+		"Boarding": 0
+	},
+	{
+		"strDistrict": "崇明",
+		"strSchoolName": "崇明一中",
+		"SchoolCode": 21501,
+		"strPeriod": "初中",
+		"Boarding": 0
+	}
+]

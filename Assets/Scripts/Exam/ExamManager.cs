@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HomeVisit.UI;
 using QFramework;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace HomeVisit
 {
@@ -23,7 +24,7 @@ namespace HomeVisit
 			GameObject gameObj = Instantiate(singleTitlePrefab);
 			gameObj.name = singleTitlePrefab.name;
 			SingleTitle singleTitle = gameObj.GetComponent<SingleTitle>();
-			singleTitle.Init(data);
+			singleTitle.InitData(data);
 			return singleTitle;
 		}
 
@@ -32,7 +33,7 @@ namespace HomeVisit
 			GameObject gameObj = Instantiate(multipleTitlePrefab);
 			gameObj.name = multipleTitlePrefab.name;
 			MultipleTitle multipleTitle = gameObj.GetComponent<MultipleTitle>();
-			multipleTitle.Init(data);
+			multipleTitle.InitData(data);
 			return multipleTitle;
 		}
 
@@ -41,7 +42,7 @@ namespace HomeVisit
 			GameObject gameObj = Instantiate(outlineTitlePrefab);
 			gameObj.name = outlineTitlePrefab.name;
 			OutlineTitle outlineTitle = gameObj.GetComponent<OutlineTitle>();
-			outlineTitle.Init(data);
+			outlineTitle.InitData(data);
 			return outlineTitle;
 		}
 
@@ -65,9 +66,9 @@ namespace HomeVisit
 		{
 			GameObject gameObj = Instantiate(judgeTitlePrefab);
 			gameObj.name = judgeTitlePrefab.name;
-			JudgeTitle scoreReport = gameObj.GetComponent<JudgeTitle>();
-			scoreReport.InitData(data);
-			return scoreReport;
+			JudgeTitle judgeTitle = gameObj.GetComponent<JudgeTitle>();
+			judgeTitle.InitData(data);
+			return judgeTitle;
 		}
 	}
 }
