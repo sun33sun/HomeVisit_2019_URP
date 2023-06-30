@@ -10,39 +10,27 @@ namespace HomeVisit.UI
 {
 	public class Main : MonoBehaviour
 	{
-		void Start()
+		IEnumerator Start()
 		{
-			//ResKit.InitAsync().ToAction().Start(this, () =>
-			// {
-			//	 //获取信息页面
-			//	 UIKit.OpenPanelAsync<GetInfornationPanel>().ToAction().Start(this);
-			//	 //主页面
-			//	 UIKit.OpenPanelAsync<MainPanel>(UILevel.Bg).ToAction().Start(this);
-			//	 //实验简介
-			//	 UIKit.OpenPanelAsync<TestBriefPanel>().ToAction().Start(this);
-
-			//	 //实验报告
-			//	 UIKit.OpenPanelAsync<TestReportPanel>().ToAction().Start(this, () =>
-			//	 {
-			//		 UIKit.OpenPanelAsync<KnowledgeExamPanel>().ToAction().Start(this, () =>
-			//		 {
-			//			 UIKit.OpenPanelAsync<ButtonPanel>(UILevel.PopUI).ToAction().Start(this);
-			//		 });
-			//	 });
-			// });
-
-			ResKit.InitAsync().ToAction().Start(this, () =>
-			 {
-
-				 UIKit.OpenPanelAsync<MainPanel>().ToAction().Start(this, () =>
-				 {
-					 UIKit.OpenPanelAsync<OnVisitPanel>().ToAction().Start(this);
-				 });
-				 UIKit.OpenPanelAsync<KnowledgeExamPanel>().ToAction().Start(this, () => { UIKit.HidePanel<KnowledgeExamPanel>(); });
-				 UIKit.OpenPanelAsync<TestReportPanel>().ToAction().Start(this, () => { UIKit.HidePanel<TestReportPanel>(); });
-				 UIKit.OpenPanelAsync<ButtonPanel>().ToAction().Start(this);
-				 UIKit.OpenPanelAsync<HomeVisitContentPanel>().ToAction().Start(this, () => { UIKit.HidePanel<HomeVisitContentPanel>(); });
-			 });
+			yield return ResKit.InitAsync();
+			//最高层，遮挡其他UI，直到它们加载完成
+			yield return UIKit.OpenPanelAsync<MaskPanel>(UILevel.PopUI);
+			yield return UIKit.OpenPanelAsync<MainPanel>(UILevel.Bg);
+			yield return UIKit.OpenPanelAsync<GetInfornationPanel>();
+			//实验简介
+			yield return UIKit.OpenPanelAsync<TestBriefPanel>();
+			UIKit.HidePanel<TestBriefPanel>();
+			yield return UIKit.OpenPanelAsync<HomeVisitContentPanel>();
+			UIKit.HidePanel<HomeVisitContentPanel>();
+			yield return UIKit.OpenPanelAsync<KnowledgeExamPanel>();
+			UIKit.HidePanel<KnowledgeExamPanel>();
+			yield return UIKit.OpenPanelAsync<HomeVisitFormPanel>();
+			UIKit.HidePanel<HomeVisitFormPanel>();
+			yield return UIKit.OpenPanelAsync<TestReportPanel>();
+			UIKit.HidePanel<TestReportPanel>();
+			yield return UIKit.OpenPanelAsync<ButtonPanel>(UILevel.PopUI);
+			//关闭MaskPanel
+			UIKit.ClosePanel<MaskPanel>();
 		}
 
 		#region 生成数据

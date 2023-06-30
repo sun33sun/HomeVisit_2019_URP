@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using ProjectBase;
+using ProjectBase.Anim;
 
 namespace HomeVisit.Character
 {
@@ -22,12 +23,9 @@ namespace HomeVisit.Character
 			if (anim[clipName] == null)
 			{
 				print("播放 : " + clipName);
+				return null;
 			}
-			else
-			{
-				anim.Play(clipName);
-			}
-			return new WaitUntil(CheckAnim);
+			return AnimationManager.GetInstance().Play(anim,clipName);
 		}
 
 		public void StopAnim()
@@ -40,8 +38,8 @@ namespace HomeVisit.Character
 		{
 			anim.Play("Walk");
 			nowTarget = target;
-			agent.SetDestination(nowTarget.position);
 			agent.isStopped = false;
+			agent.SetDestination(nowTarget.position);
 			return new WaitUntil(OnWalkCompleted);
 		}
 		bool OnWalkCompleted()
@@ -53,11 +51,13 @@ namespace HomeVisit.Character
 				anim.Stop();
 				return true;
 			}
-			if (Vector3.Distance(nowTarget.position, transform.position) < 1.5f)
+			float distance = Vector3.Distance(nowTarget.position, transform.position);
+			if (distance < 1.5f)
 			{
 				agent.isStopped = true;
 				anim.Stop();
 				transform.forward = nowTarget.forward;
+				transform.position = nowTarget.position;
 				return true;
 			}
 			else
@@ -78,7 +78,9 @@ namespace HomeVisit.Character
 		{
 			if (!anim.isPlaying)
 			{
-				transform.position = nowTarget.position;
+				Vector3 temp = nowTarget.position;
+				temp.y = 0;
+				transform.position = temp;
 				transform.rotation = nowTarget.rotation;
 			}
 			return anim.isPlaying;

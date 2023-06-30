@@ -36,15 +36,15 @@ namespace QFramework
             if (!Deinited)
             {
                 Deinited = true;
-
                 mCoroutineGetter = null;
 
-                mPool.Recycle(this);
+                ActionQueue.AddCallback(new ActionQueueRecycleCallback<CoroutineAction>(mPool,this));
             }
         }
 
         public void Reset()
         {
+            Paused = false;
             Status = ActionStatus.NotStart;
         }
 

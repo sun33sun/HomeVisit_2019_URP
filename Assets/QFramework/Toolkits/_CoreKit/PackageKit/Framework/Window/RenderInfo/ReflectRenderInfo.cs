@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright (c) 2015 - 2022 liangxiegame UNDER MIT License
+ * Copyright (c) 2016 - 2023 liangxiegame UNDER MIT License
  * 
  * http://qframework.cn
  * https://github.com/liangxiegame/QFramework
@@ -32,7 +32,6 @@ namespace QFramework
         public string DisplayNameEN;
         public int RenderOrder;
 
-
         public override string ToString()
         {
             return mType.FullName;
@@ -51,7 +50,6 @@ namespace QFramework
         private PropertyInfo mEditorWindowProperty;
 
         private object[] mEmptyParams = new Object[] { };
-
         
         public bool Load()
         {
@@ -93,15 +91,11 @@ namespace QFramework
             return true;
         }
 
-
         public EditorWindow EditorWindow
         {
             get => mEditorWindowProperty?.GetMethod.Invoke(mRenderObj, mEmptyParams) as EditorWindow;
             set { mEditorWindowProperty?.SetMethod.Invoke(mRenderObj, new object[] { value }); }
         }
-        
-
-        
 
         public void Init()
         {

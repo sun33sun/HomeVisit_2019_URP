@@ -298,9 +298,6 @@ namespace QFramework
 
             mPackageKitWindow = EditorWindow.GetWindow<PackageKitWindow>();
 
-            this.SendCommand<PackageManagerInitCommand>();
-
-
             PackageManagerState.Categories.Register(value =>
             {
                 mCategoriesSelectorView.Menus(value);
@@ -372,6 +369,7 @@ namespace QFramework
 
         public void OnShow()
         {
+            this.SendCommand<PackageManagerInitCommand>();
         }
 
         public void OnHide()

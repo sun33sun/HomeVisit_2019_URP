@@ -51,10 +51,6 @@ namespace HomeVisit.UI
 					UIKit.ShowPanel<HomeVisitContentPanel>();
 				}
 			});
-			UIKit.OpenPanelAsync<HomeVisitContentPanel>().ToAction().Start(this,()=> 
-			{
-				UIKit.HidePanel<HomeVisitContentPanel>();
-			});
 		}
 
 		protected override void OnOpen(IUIData uiData = null)

@@ -34,6 +34,7 @@ public class SignalManager : MonoBehaviour
 	public void StartRecorderFunc()
 	{
 #if UNITY_EDITOR
+#else
 		StartRecord();
 #endif
 	}

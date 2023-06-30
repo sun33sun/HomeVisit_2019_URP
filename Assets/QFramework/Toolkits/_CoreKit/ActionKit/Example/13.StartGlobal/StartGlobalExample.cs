@@ -12,9 +12,9 @@ namespace QFramework.Example
 
             var action = ActionKit.Repeat()
                 .Delay(1.0f)
-                .Callback(() => Debug.Log("wait"))
+                .Callback(() => Debug.Log("wait 1.0f"))
                 .StartGlobal();
-            
+
             // action.Pause();
             // action.Resume();
             // action.Deinit(); // Stop

@@ -56,14 +56,10 @@ namespace HomeVisit.UI
 
 		IEnumerator LoadSceneAsync()
 		{
-			if (Settings.BanGongShi)
-				yield break;
-			yield return CloseEyeAnim();
 			UIKit.GetPanel<MainPanel>().SetBK(false);
-			AsyncOperation operation = SceneManager.LoadSceneAsync("BanGongShi", LoadSceneMode.Additive);
+			AsyncOperation operation = SceneManager.LoadSceneAsync("Office", LoadSceneMode.Additive);
 			yield return new WaitUntil(() => { return operation.isDone; });
 			yield return OpenEyeAnim();
-			Settings.BanGongShi = true;
 			GameObject Teacher_Computer = Interactive.Get("Teacher_Computer");
 			EffectManager.Instance.AddEffectAndTarget(Teacher_Computer);
 			EventManager.Instance.AddObjClick(Teacher_Computer, () => { 
@@ -73,7 +69,6 @@ namespace HomeVisit.UI
 			CameraManager.Instance.SetRoamRig(RigidbodyConstraints.FreezeRotation);
 			CameraManager.Instance.IsEnable = true;
 			Animation anim = Interactive.Get("ÀÏÊ¦×øÏÂ").GetComponent<Animation>();
-			//yield return anim.
 		}
 
 		IEnumerator CloseEyeAnim()

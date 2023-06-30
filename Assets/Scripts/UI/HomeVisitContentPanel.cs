@@ -20,32 +20,16 @@ namespace HomeVisit.UI
 
 			btnClose.onClick.AddListener(()=> 
 			{
-				HomeVisitFormPanel homeVisitFormPanel = UIKit.GetPanel<HomeVisitFormPanel>();
-				if (homeVisitFormPanel == null)
-					UIKit.OpenPanelAsync<HomeVisitFormPanel>().ToAction().Start(this);
-				else
-					homeVisitFormPanel.Show();
+				UIKit.ShowPanel<HomeVisitFormPanel>();
 				Hide();
 			});
-
-			btnSubmit.onClick.AddListener(Submit);
 			btnConfirm.onClick.AddListener(Confirm);
 		}
 
 		void Confirm()
 		{
 			Hide();
-			UIKit.OpenPanelAsync<GetInfornationPanel>().ToAction().Start(this);
-		}
-
-		void Submit()
-		{
-			HomeVisitFormPanel homeVisitFormPanel = UIKit.GetPanel<HomeVisitFormPanel>();
-			if (homeVisitFormPanel == null)
-				UIKit.OpenPanelAsync<HomeVisitFormPanel>().ToAction().Start(this);
-			else
-				homeVisitFormPanel.Show();
-			Hide();
+			UIKit.ShowPanel<HomeVisitFormPanel>();
 		}
 
 		protected override void OnOpen(IUIData uiData = null)
@@ -66,32 +50,13 @@ namespace HomeVisit.UI
 
 		public string GetStudentName()
 		{
-			string studentName = "";
-			for (int i = 0; i < questionnaire.btns.Count; i++)
-			{
-				if(questionnaire.btns[i] == questionnaire.midBtn)
-				{
-					switch (i)
-					{
-						case 0:
-							studentName = "张继光";
-							break;
-						case 1:
-							studentName = "林光美";
-							break;
-						case 2:
-							studentName = "秦彦威";
-							break;
-					}
-				}
-			}
-			return studentName;
+			return questionnaire.StudentName;
 		}
 
 		public WaitUntil ShowSelectedStudentInfo()
 		{
-			DoubleClickEvent midDoubleClickEvent = questionnaire.midBtn.GetComponent<DoubleClickEvent>();
-			midDoubleClickEvent.OnDoubleClick?.Invoke();
+			//TODO:
+			questionnaire.btnBigQuestionnaire.gameObject.SetActive(true);
 			questionnaire.btnBigQuestionnaire.isDoubleClick = false;
 			return new WaitUntil(() => { return questionnaire.btnBigQuestionnaire.isDoubleClick; });
 		}

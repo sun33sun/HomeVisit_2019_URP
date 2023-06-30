@@ -62,13 +62,14 @@ namespace QFramework
             {
                 Deinited = true;
                 mOnDelayFinish = null;
-                mSimpleObjectPool.Recycle(this);
+                ActionQueue.AddCallback(new ActionQueueRecycleCallback<DelayFrame>(mSimpleObjectPool,this));
             }
         }
 
         public void Reset()
         {
             Status = ActionStatus.NotStart;
+            Paused = false;
             mStartFrameCount = 0;
         }
     }

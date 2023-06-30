@@ -13,8 +13,6 @@ namespace HomeVisit
 
 		public static string DialogueInfo { get { return Application.streamingAssetsPath + "/DialogueInfo.json"; } }
 
-		public static bool BanGongShi = false;
-
 		public static string OldRandomScene = null;
 		public static string RandomScene
 		{
@@ -23,13 +21,13 @@ namespace HomeVisit
 				switch (UnityEngine.Random.Range(0,3))
 				{
 					case 0:
-						OldRandomScene = "JuJia";
+						OldRandomScene = "ToBeDeveloped";
 						break;
 					case 1:
-						OldRandomScene = "JuJia";
+						OldRandomScene = "Developing";
 						break;
 					case 2:
-						OldRandomScene = "JiaTing";
+						OldRandomScene = "Developing";
 						break;
 				}
 				return OldRandomScene;

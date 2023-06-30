@@ -102,7 +102,7 @@ namespace HomeVisit.UI
 			LayoutRebuilder.ForceRebuildLayoutImmediate(imgKeywordsDetail);
 			Vector3 newPos = Vector3.zero;
 			newPos.y = -rtBtnKeyword.sizeDelta.y - imgKeywordsDetail.sizeDelta.y / 2;
-			imgKeywordsDetail.localPosition = newPos;
+			imgKeywordsDetail.anchoredPosition = newPos;
 			yield return null;
 		}
 

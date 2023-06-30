@@ -7,6 +7,7 @@
  ****************************************************************************/
 
 using System;
+using UnityEngine;
 
 namespace QFramework
 {
@@ -80,6 +81,7 @@ namespace QFramework
         public void Reset()
         {
             Status = ActionStatus.NotStart;
+            Paused = false;
             CurrentSeconds = 0.0f;
         }
 
@@ -91,7 +93,7 @@ namespace QFramework
             {
                 OnDelayFinish = null;
                 Deinited = true;
-                mPool.Recycle(this);
+                ActionQueue.AddCallback(new ActionQueueRecycleCallback<Delay>(mPool,this));
             }
         }
 

@@ -5,7 +5,7 @@ using QFramework;
 
 namespace HomeVisit.UI
 {
-	// Generate Id:18e82631-2cdb-470c-a42a-4fdd0afd0db9
+	// Generate Id:d4762eba-dd0c-42e4-9b34-167e42c25d2d
 	public partial class HomeVisitContentPanel
 	{
 		public const string Name = "HomeVisitContentPanel";
@@ -13,23 +13,26 @@ namespace HomeVisit.UI
 		[SerializeField]
 		public UnityEngine.UI.Image imgScenarioCases;
 		[SerializeField]
-		public UnityEngine.UI.Button btnSubmit;
-		[SerializeField]
 		public UnityEngine.UI.Button btnClose;
 		[SerializeField]
 		public UnityEngine.UI.Button btnConfirm;
 		[SerializeField]
 		public UnityEngine.UI.ScrollRect btnBigQuestionnaire;
+		[SerializeField]
+		public UnityEngine.UI.Image imgBuildTip;
+		[SerializeField]
+		public UnityEngine.UI.Button btnCloseBuildTip;
 		
 		private HomeVisitContentPanelData mPrivateData = null;
 		
 		protected override void ClearUIComponents()
 		{
 			imgScenarioCases = null;
-			btnSubmit = null;
 			btnClose = null;
 			btnConfirm = null;
 			btnBigQuestionnaire = null;
+			imgBuildTip = null;
+			btnCloseBuildTip = null;
 			
 			mData = null;
 		}

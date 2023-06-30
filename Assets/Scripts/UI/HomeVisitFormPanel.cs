@@ -17,6 +17,7 @@ namespace HomeVisit.UI
 	{
 		List<ITitle> titles = new List<ITitle>();
 		DateTime startTime;
+		HomeVisitRoutePanel routePanel = null;
 
 		protected override void OnInit(IUIData uiData = null)
 		{
@@ -59,11 +60,10 @@ namespace HomeVisit.UI
 			};
 			testReportPanel.CreateScoreReport(data);
 
-			HomeVisitRoutePanel routePanel = UIKit.GetPanel<HomeVisitRoutePanel>();
 			if (routePanel == null)
-				UIKit.OpenPanelAsync<HomeVisitRoutePanel>().ToAction().Start(this);
+				UIKit.OpenPanelAsync<HomeVisitRoutePanel>().ToAction().Start(this, () => { routePanel = UIKit.GetPanel<HomeVisitRoutePanel>(); });
 			else
-				routePanel.Show();
+				UIKit.ShowPanel<HomeVisitRoutePanel>();
 			UIKit.GetPanel<MainPanel>().NextStep();
 			Hide();
 		}

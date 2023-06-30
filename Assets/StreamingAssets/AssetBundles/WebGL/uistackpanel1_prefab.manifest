@@ -1,0 +1,39 @@
+ManifestFileVersion: 0
+CRC: 4193253151
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: f2b4ee54e42e7a2ed5ad8f86dad4fbec
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 29cf771ca8771d237450b4695b5af094
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 29f914d6aa773456aa751fa3621b722e, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 128
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/QFramework/Toolkits/UIKit/Example/3.Stack/Art/UIPrefab/UIStackPanel1.prefab
+Dependencies: []

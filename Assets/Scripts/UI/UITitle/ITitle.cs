@@ -4,6 +4,7 @@ namespace HomeVisit.UI
 {
     public interface ITitle
     {
+        GameObject gameObject { get; }
         void InitData(TitleData titleData);
         int GetScore();
 

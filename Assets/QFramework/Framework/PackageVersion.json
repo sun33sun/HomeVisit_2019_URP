@@ -1,6 +1,6 @@
 {
     "Id": "",
-    "Version": "v1.0.43",
+    "Version": "v1.0.66",
     "Type": 0,
     "AccessRight": 0,
     "DownloadUrl": "",
@@ -11,10 +11,10 @@
     ],
     "DocUrl": "https://liangxiegame.com",
     "Readme": {
-        "version": "v1.0.43",
-        "content": "v1.0.43 ActionKit 每个 Action 增加 ID",
+        "version": "v1.0.66",
+        "content": "优化 PackageKit 的请求频率",
         "author": "liangxie",
-        "date": "2023 年 04 月 23 日 22:47",
+        "date": "2023 年 06 月 27 日 22:52",
         "PackageId": ""
     }
 }

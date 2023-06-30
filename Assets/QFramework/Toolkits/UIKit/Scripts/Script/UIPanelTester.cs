@@ -60,8 +60,8 @@ namespace QFramework
 
         private void Awake()
         {
-			//ResMgr.Init();
-		}
+            // ResMgr.Init();
+        }
 
         private IEnumerator Start()
         {

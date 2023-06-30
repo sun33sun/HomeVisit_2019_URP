@@ -44,7 +44,14 @@ public class RecordManager : SingletonMono<RecordManager>
 		foreach (var item in keys)
 		{
 			if (newStr.Contains(item))
+			{
 				keywordDic[item] = true;
+				print("识别到：" + keywordDic[item]);
+			}
+			else
+			{
+				print("未识别到：" + keywordDic[item]);
+			}
 		}
 
 		EventCenter.GetInstance().EventTrigger("语音识别结果", keywordDic);

@@ -64,6 +64,11 @@ namespace HomeVisit.UI
 
 		public void LoadOnVisitPaper(List<SingleTitleData> datas)
 		{
+			for (int i = 0; i < titles.Count; i++)
+			{
+				Destroy(titles[i].gameObject);
+			}
+			titles.Clear();
 			gameObject.SetActive(true);
 			examState = ExamState.OnVisit;
 			for (int i = 0; i < datas.Count; i++)

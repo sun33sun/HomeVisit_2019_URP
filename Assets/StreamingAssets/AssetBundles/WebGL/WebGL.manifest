@@ -1,0 +1,113 @@
+ManifestFileVersion: 0
+CRC: 3955709580
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: uibasicpanel_prefab
+      Dependencies: {}
+    Info_1:
+      Name: assetobj 1_prefab
+      Dependencies: {}
+    Info_2:
+      Name: uistackpanel1_prefab
+      Dependencies: {}
+    Info_3:
+      Name: c_png
+      Dependencies: {}
+    Info_4:
+      Name: imageprefaba_prefab
+      Dependencies:
+        Dependency_0: a_png
+    Info_5:
+      Name: uipanelwithimageprefab_prefab
+      Dependencies: {}
+    Info_6:
+      Name: textureexample1_png
+      Dependencies: {}
+    Info_7:
+      Name: uimultipanel_prefab
+      Dependencies: {}
+    Info_8:
+      Name: assetobj_prefab
+      Dependencies: {}
+    Info_9:
+      Name: spriteatlas_spriteatlas
+      Dependencies: {}
+    Info_10:
+      Name: assetobj 3_prefab
+      Dependencies: {}
+    Info_11:
+      Name: b_png
+      Dependencies: {}
+    Info_12:
+      Name: imageprefabc_prefab
+      Dependencies:
+        Dependency_0: c_png
+    Info_13:
+      Name: assetobj 2_prefab
+      Dependencies: {}
+    Info_14:
+      Name: uistackpanel2_prefab
+      Dependencies: {}
+    Info_15:
+      Name: sceneres_unity
+      Dependencies: {}
+    Info_16:
+      Name: a_png
+      Dependencies: {}
+    Info_17:
+      Name: imageprefabb_prefab
+      Dependencies:
+        Dependency_0: b_png
+    Info_18:
+      Name: mainpanel_prefab
+      Dependencies: {}
+    Info_19:
+      Name: knowledgeexampanel_prefab
+      Dependencies: {}
+    Info_20:
+      Name: submittestpanel_prefab
+      Dependencies: {}
+    Info_21:
+      Name: homevisitformpanel_prefab
+      Dependencies: {}
+    Info_22:
+      Name: homevisitcontentpanel_prefab
+      Dependencies: {}
+    Info_23:
+      Name: testreportpanel_prefab
+      Dependencies: {}
+    Info_24:
+      Name: homevisitroutepanel_prefab
+      Dependencies: {}
+    Info_25:
+      Name: communicateoutlinepanel_prefab
+      Dependencies:
+        Dependency_0: title
+    Info_26:
+      Name: clothespanel_prefab
+      Dependencies: {}
+    Info_27:
+      Name: recordsheetpanel_prefab
+      Dependencies: {}
+    Info_28:
+      Name: onvisitpanel_prefab
+      Dependencies: {}
+    Info_29:
+      Name: buttonpanel_prefab
+      Dependencies: {}
+    Info_30:
+      Name: testbriefpanel_prefab
+      Dependencies: {}
+    Info_31:
+      Name: title
+      Dependencies: {}
+    Info_32:
+      Name: getinfornationpanel_prefab
+      Dependencies: {}
+    Info_33:
+      Name: squarea_prefab
+      Dependencies: {}
+    Info_34:
+      Name: maskpanel_prefab
+      Dependencies: {}

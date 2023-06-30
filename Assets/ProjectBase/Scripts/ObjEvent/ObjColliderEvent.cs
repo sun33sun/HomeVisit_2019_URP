@@ -8,12 +8,12 @@ public class ObjColliderEvent : MonoBehaviour
 	MeshRenderer mr;
 	bool isCollision = false;
 	public Action<Collider> OnColliderEnterEvent;
-	WaitForSeconds wait = new WaitForSeconds(1);
+	BoxCollider box;
 
-	private void Awake()
+	private void Start()
 	{
 		mr = GetComponent<MeshRenderer>();
-		mr.material.color = Color.red;
+		box = GetComponent<BoxCollider>();
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -23,28 +23,21 @@ public class ObjColliderEvent : MonoBehaviour
 		StopAllCoroutines();
 		OnColliderEnterEvent?.Invoke(other);
 		isCollision = true;
-		gameObject.SetActive(false);
+		mr.enabled = false;
+		box.enabled = false;
 	}
 
 	public WaitUntil AreaHighlight()
 	{
-		gameObject.SetActive(true);
+		mr.enabled = true;
+		box.enabled = true;
+
 		isCollision = false;
-		StartCoroutine(DoAreaHighlight());
 		return new WaitUntil(CheckCollision);
 	}
 
 	bool CheckCollision()
 	{
 		return isCollision;
-	}
-
-	IEnumerator DoAreaHighlight()
-	{
-		while (true)
-		{
-			mr.enabled = !mr.enabled;
-			yield return wait;
-		}
 	}
 }

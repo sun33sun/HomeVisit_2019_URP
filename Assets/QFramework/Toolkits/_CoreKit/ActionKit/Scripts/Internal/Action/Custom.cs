@@ -52,17 +52,17 @@ namespace QFramework
             if (!Deinited)
             {
                 Deinited = true;
-
                 mOnStart = null;
                 mOnExecute = null;
                 mOnFinish = null;
 
-                mSimpleObjectPool.Recycle(this);
+                ActionQueue.AddCallback(new ActionQueueRecycleCallback<Custom<TData>>(mSimpleObjectPool,this));
             }
         }
 
         public void Reset()
         {
+            Paused = false;
             Status = ActionStatus.NotStart;
         }
 

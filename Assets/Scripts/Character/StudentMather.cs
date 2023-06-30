@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ProjectBase;
 using UnityEngine.AI;
+using ProjectBase.Anim;
 
 namespace HomeVisit.Character
 {
@@ -21,12 +22,9 @@ namespace HomeVisit.Character
 			if (anim[clipName] == null)
 			{
 				print("播放 : " + clipName);
+				return null;
 			}
-			else
-			{
-				anim.Play(clipName);
-			}
-			return new WaitUntil(CheckAnim);
+			return AnimationManager.GetInstance().Play(anim,clipName);
 		}
 
 		#region 走路

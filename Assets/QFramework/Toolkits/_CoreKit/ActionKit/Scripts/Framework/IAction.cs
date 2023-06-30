@@ -106,43 +106,29 @@ namespace QFramework
 
         public static IActionController StartGlobal(this IAction self, Action<IActionController> onFinish = null)
         {
-            IActionExecutor executor = null;
-            if (executor.UpdateAction(self, 0, onFinish))
-            {
-                return new ActionController()
-                {
-                    Action = self,
-                    ActionID = self.ActionID,
-                };
-            }
-
-            void Update()
-            {
-                if (executor.UpdateAction(self, Time.deltaTime, onFinish))
-                {
-                    ActionKit.OnUpdate.UnRegister(Update);
-                }
-            }
-
-            ActionKit.OnUpdate.Register(Update);
-
-
-            return new ActionController()
-            {
-                Action = self,
-                ActionID = self.ActionID,
-            };
+            return self.Start(ActionKitMonoBehaviourEvents.Instance, onFinish);
+        }
+        
+        public static IActionController StartGlobal(this IAction self, Action onFinish)
+        {
+            return self.Start(ActionKitMonoBehaviourEvents.Instance, onFinish);
         }
 
 
         public static void Pause(this IActionController self)
         {
-            self.As<IAction>().Paused = true;
+            if (self.ActionID == self.Action.ActionID)
+            {
+                self.Action.Paused = true;
+            }
         }
 
         public static void Resume(this IActionController self)
         {
-            self.As<IAction>().Paused = false;
+            if (self.ActionID == self.Action.ActionID)
+            {
+                self.Action.Paused = false;
+            }
         }
 
         public static void Finish(this IAction self)

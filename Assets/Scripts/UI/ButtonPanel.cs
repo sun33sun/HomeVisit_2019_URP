@@ -9,26 +9,24 @@ namespace HomeVisit.UI
 	}
 	public partial class ButtonPanel : UIPanel
 	{
+		KnowledgeExamPanel knowledgeExamPanel = null;
+		TestReportPanel testReportPanel = null;
+		TestBriefPanel testBriefPanel = null;
+
 		protected override void OnInit(IUIData uiData = null)
 		{
 			mData = uiData as ButtonPanelData ?? new ButtonPanelData();
-
-			//创建并初始化页面
+			//获取页面
 			knowledgeExamPanel = UIKit.GetPanel<KnowledgeExamPanel>();
-			knowledgeExamPanel.Hide();
 			testReportPanel = UIKit.GetPanel<TestReportPanel>();
-			testReportPanel.Hide();
-
+			testBriefPanel = UIKit.GetPanel<TestBriefPanel>();
 			//订阅点击事件
 			btnSeting.onClick.AddListener(SwitchSettingBtn);
-			btnKnowledge.onClick.AddListener(SwitchKnowledgePanel);
-			btnTestReport.onClick.AddListener(SwitchTestReportPanel);
 			btnTip.onClick.AddListener(() => { imgTip.gameObject.SetActive(!imgTip.gameObject.activeInHierarchy); });
 
-			btnTestBrief.onClick.AddListener(() =>
-			{
-				UIKit.ShowPanel<TestBriefPanel>();
-			});
+			btnTestReport.onClick.AddListener(SwitchTestReportPanel);
+			btnKnowledge.onClick.AddListener(SwitchKnowledgePanel);
+			btnTestBrief.onClick.AddListener(SwitchTestBriefPanel);
 		}
 		
 		protected override void OnOpen(IUIData uiData = null)
@@ -97,6 +95,19 @@ namespace HomeVisit.UI
 					break;
 				case PanelState.Hide:
 					testReportPanel.Show();
+					break;
+			}
+		}
+
+		void SwitchTestBriefPanel()
+		{
+			switch (testBriefPanel.State)
+			{
+				case PanelState.Opening:
+					testBriefPanel.Hide();
+					break;
+				case PanelState.Hide:
+					testBriefPanel.Show();
 					break;
 			}
 		}

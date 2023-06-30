@@ -29,7 +29,7 @@ namespace HomeVisit.UI
 			btnConfirm.onClick.AddListener(() =>
 			{
 				UIKit.HidePanel<GetInfornationPanel>();
-				UIKit.OpenPanelAsync<HomeVisitContentPanel>().ToAction().Start(this);
+				UIKit.ShowPanel<HomeVisitContentPanel>();
 			});
 		}
 

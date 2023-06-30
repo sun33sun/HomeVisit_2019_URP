@@ -194,6 +194,8 @@ namespace ProjectBase
 		}
 		private void OnMouseScrollWheel(float distance)
 		{
+			if (!IsEnable)
+				return;
 			roamC.m_Lens.FieldOfView += distance * mouseScrollWheelSpeed;
 			if (roamC.m_Lens.FieldOfView < 1)
 				roamC.m_Lens.FieldOfView = 1;

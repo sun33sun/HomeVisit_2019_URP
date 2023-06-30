@@ -10,6 +10,7 @@ using System.IO;
 using UnityEngine.Networking;
 using HomeVisit.Character;
 using System;
+using HomeVisit.Task;
 
 namespace HomeVisit.UI
 {
@@ -158,7 +159,7 @@ namespace HomeVisit.UI
 		IEnumerator WaveChange()
 		{
 			float value = 0;
-			WaitForSeconds wait = new WaitForSeconds(0.1f);
+			WaitForSeconds wait = new WaitForSeconds(0.05f);
 			imgFillWave.fillOrigin = 0;
 
 			while (value < 1)
@@ -196,17 +197,29 @@ namespace HomeVisit.UI
 		}
 		#endregion
 
-
 		IEnumerator LoadSceneAsync()
 		{
+			SceneManager.UnloadSceneAsync("Office");
 			yield return CloseEyeAnim();
-
-			Settings.BanGongShi = false;
-			AsyncOperation operation = SceneManager.LoadSceneAsync("MultipleChildren", LoadSceneMode.Additive);
+			AsyncOperation operation = SceneManager.LoadSceneAsync(Settings.RandomScene, LoadSceneMode.Additive);
 			yield return new WaitUntil(() => { return operation.isDone; });
+			UIKit.GetPanel<MainPanel>().SetBK(false);
 			CameraManager.Instance.SetRoamPos(FemaleTeacher.Instance.transform.position);
 			CameraManager.Instance.SetRoamForward(FemaleTeacher.Instance.transform.forward);
 			yield return OpenEyeAnim();
+
+			switch (UIKit.GetPanel<HomeVisitContentPanel>().GetStudentName())
+			{
+				case "传统":
+					TraditionTask.Instance.StartCoroutine(TraditionTask.Instance.StartTask());
+					break;
+				case "多孩":
+					MultipleChildrenTask.Instance.StartCoroutine(MultipleChildrenTask.Instance.StartTask());
+					break;
+				case "单亲":
+					SingleParentTask.Instance.StartCoroutine(SingleParentTask.Instance.StartTask());
+					break;
+			}
 		}
 
 		IEnumerator CloseEyeAnim()
@@ -240,19 +253,12 @@ namespace HomeVisit.UI
 			imgBlank.gameObject.SetActive(false);
 		}
 
-
-
-
 		public void InitState()
 		{
 			imgObserveDetail.gameObject.SetActive(false);
 			CloseRecord();
 			imgExpressGratitude.gameObject.SetActive(false);
 			imgNext.gameObject.SetActive(false);
-
-			//测试用
-			MainPanel main = UIKit.GetPanel<MainPanel>();
-			main.NextVisitStepPanel();
 
 			UIKit.GetPanel<MainPanel>().StartTMP();
 		}

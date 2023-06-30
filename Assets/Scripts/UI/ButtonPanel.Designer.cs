@@ -25,9 +25,6 @@ namespace HomeVisit.UI
 		[SerializeField]
 		public TMPro.TextMeshProUGUI tmpTip;
 
-		KnowledgeExamPanel knowledgeExamPanel = null;
-		TestReportPanel testReportPanel = null;
-
 		private ButtonPanelData mPrivateData = null;
 		
 		protected override void ClearUIComponents()

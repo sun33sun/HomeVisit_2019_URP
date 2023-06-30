@@ -129,7 +129,7 @@ namespace QFramework
 
                 mActions.Clear();
                 
-                mSimpleObjectPool.Recycle(this);
+                ActionQueue.AddCallback(new ActionQueueRecycleCallback<Sequence>(mSimpleObjectPool,this));
             }
         }
 
@@ -137,6 +137,7 @@ namespace QFramework
         {
             mCurrentActionIndex = 0;
             Status = ActionStatus.NotStart;
+            Paused = false;
             foreach (var action in mActions)
             {
                 action.Reset();
