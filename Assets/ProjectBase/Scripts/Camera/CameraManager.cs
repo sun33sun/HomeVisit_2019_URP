@@ -54,6 +54,7 @@ namespace ProjectBase
 		public bool Paused { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
 		bool isRotate = false;
+		bool isMoveing = false;
 
 		private void Start()
 		{
@@ -65,10 +66,10 @@ namespace ProjectBase
 			originFieldOfView = roamC.m_Lens.FieldOfView;
 
 			InputMgr.GetInstance().ChangerInput(true);
-			EventCenter.GetInstance().AddEventListener(KeyCode.W + "保持", OnWState);
-			EventCenter.GetInstance().AddEventListener(KeyCode.A + "保持", OnAState);
-			EventCenter.GetInstance().AddEventListener(KeyCode.S + "保持", OnSState);
-			EventCenter.GetInstance().AddEventListener(KeyCode.D + "保持", OnDState);
+			EventCenter.GetInstance().AddEventListener(KeyCode.W + "按下", OnWDown);
+			EventCenter.GetInstance().AddEventListener(KeyCode.A + "按下", OnADown);
+			EventCenter.GetInstance().AddEventListener(KeyCode.S + "按下", OnSDown);
+			EventCenter.GetInstance().AddEventListener(KeyCode.D + "按下", OnDDown);
 
 			EventCenter.GetInstance().AddEventListener(KeyCode.W + "抬起", OnWUp);
 			EventCenter.GetInstance().AddEventListener(KeyCode.A + "抬起", OnAUp);
@@ -102,28 +103,28 @@ namespace ProjectBase
 
 
 		#region 按键响应事件
-		private void OnWState()
+		private void OnWDown()
 		{
 			if (!IsEnable)
 				return;
 			roamRig.velocity = roamC.transform.forward * horizontalSpeed;
 		}
 
-		private void OnAState()
+		private void OnADown()
 		{
 			if (!IsEnable)
 				return;
 			roamRig.velocity = roamC.transform.right * -horizontalSpeed;
 		}
 
-		private void OnSState()
+		private void OnSDown()
 		{
 			if (!IsEnable)
 				return;
 			roamRig.velocity = roamC.transform.forward * -horizontalSpeed;
 		}
 
-		private void OnDState()
+		private void OnDDown()
 		{
 			if (!IsEnable)
 				return;
@@ -134,28 +135,28 @@ namespace ProjectBase
 		{
 			if (!IsEnable)
 				return;
-			roamRig.velocity -= roamC.transform.forward * horizontalSpeed * drag;
+			roamRig.velocity = Vector3.zero;
 		}
 
 		private void OnAUp()
 		{
 			if (!IsEnable)
 				return;
-			roamRig.velocity -= roamC.transform.right * -horizontalSpeed * drag;
+			roamRig.velocity = Vector3.zero;
 		}
 
 		private void OnSUp()
 		{
 			if (!IsEnable)
 				return;
-			roamRig.velocity -= roamC.transform.forward * -horizontalSpeed * drag;
+			roamRig.velocity = Vector3.zero;
 		}
 
 		private void OnDUp()
 		{
 			if (!IsEnable)
 				return;
-			roamRig.velocity -= roamC.transform.right * horizontalSpeed * drag;
+			roamRig.velocity = Vector3.zero;
 		}
 
 		private void OnMouseRightDown()
@@ -262,10 +263,10 @@ namespace ProjectBase
 
 		private void OnDestroy()
 		{
-			EventCenter.GetInstance().RemoveEventListener(KeyCode.W + "保持", OnWState);
-			EventCenter.GetInstance().RemoveEventListener(KeyCode.A + "保持", OnAState);
-			EventCenter.GetInstance().RemoveEventListener(KeyCode.S + "保持", OnSState);
-			EventCenter.GetInstance().RemoveEventListener(KeyCode.D + "保持", OnDState);
+			EventCenter.GetInstance().RemoveEventListener(KeyCode.W + "保持", OnWDown);
+			EventCenter.GetInstance().RemoveEventListener(KeyCode.A + "保持", OnADown);
+			EventCenter.GetInstance().RemoveEventListener(KeyCode.S + "保持", OnSDown);
+			EventCenter.GetInstance().RemoveEventListener(KeyCode.D + "保持", OnDDown);
 
 			EventCenter.GetInstance().RemoveEventListener(KeyCode.W + "抬起", OnWUp);
 			EventCenter.GetInstance().RemoveEventListener(KeyCode.A + "抬起", OnAUp);

@@ -30,7 +30,7 @@ namespace HomeVisit
 
 		private void OnDisable()
 		{
-			UIKit.ShowPanel<ButtonPanel>();
+			UIKit.ShowPanel<TopPanel>();
 		}
 
 		void Start()
@@ -44,7 +44,7 @@ namespace HomeVisit
 					selectedIndex = index;
 					tmpBigQuestionnaire.text = tmps[index].text;
 					btnBigQuestionnaire.gameObject.SetActive(true);
-					UIKit.HidePanel<ButtonPanel>();
+					UIKit.HidePanel<TopPanel>();
 				};
 			}
 			//没有对应场景的按钮
@@ -56,7 +56,7 @@ namespace HomeVisit
 
 			btnBigQuestionnaire.OnDoubleClick += () =>
 			{
-				UIKit.ShowPanel<ButtonPanel>();
+				UIKit.ShowPanel<TopPanel>();
 				btnBigQuestionnaire.gameObject.SetActive(false);
 			};
 		}

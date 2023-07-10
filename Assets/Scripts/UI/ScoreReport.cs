@@ -7,10 +7,13 @@ namespace HomeVisit.UI
 {
 	public class ScoreReportData : UIPanelData
 	{
-		public string strModule = "";
-		public DateTime strStart;
-		public DateTime strEnd;
-		public string strScore = "";
+		public int seq = -1;
+		public string title = null;
+		public DateTime startTime = default(DateTime);
+		public DateTime endTime = default(DateTime);
+		public TimeSpan expectTime = new TimeSpan(0,5,0);
+		public int maxScore = 0;
+		public int score = 0;
 	}
 	public partial class ScoreReport : UIPanel
 	{
@@ -18,11 +21,11 @@ namespace HomeVisit.UI
 		{
 			mData = uiData as ScoreReportData ?? new ScoreReportData();
 
-			tmpModule.text = mData.strModule;
-			tmpStart.text = mData.strStart.ToString("yyyy-MM-dd HH:mm");
-			tmpEnd.text = mData.strEnd.ToString("yyyy-MM-dd HH:mm");
-			tmpTotalTime.text = (mData.strStart - mData.strEnd).ToString("%m' min.'");
-			tmpScore.text = mData.strScore;
+			tmpModule.text = mData.title;
+			tmpStart.text = "¿ªÊ¼£º"+mData.startTime.ToString("MM-dd HH:mm");
+			tmpEnd.text = "½áÊø£º"+ mData.endTime.ToString("MM-dd HH:mm");
+			tmpTotalTime.text = (mData.startTime - mData.endTime).ToString(@"mm\:ss");
+			tmpScore.text = mData.score.ToString();
 		}
 		
 		protected override void OnOpen(IUIData uiData = null)

@@ -27,12 +27,17 @@ namespace HomeVisit.UI
 		bool isRefuseGift = false;
 		public string[] keywords;
 		public RecordState recordState;
-		public int totalScore = 0;
+		public int score = 0;
 		bool isConfirm = false;
+		DateTime startTime;
 
 		protected override void OnInit(IUIData uiData = null)
 		{
+			EventCenter.GetInstance().RemoveEventListener<Dictionary<string, bool>>("语音识别结果", OnResult);
+			EventCenter.GetInstance().RemoveEventListener<int>("访中过程试题完成", AddScore);
+
 			EventCenter.GetInstance().AddEventListener<Dictionary<string, bool>>("语音识别结果", OnResult);
+			EventCenter.GetInstance().AddEventListener<int>("访中过程试题完成", AddScore);
 
 			mData = uiData as OnVisitPanelData ?? new OnVisitPanelData();
 
@@ -47,14 +52,18 @@ namespace HomeVisit.UI
 			btnConfirmRecord.onClick.AddListener(ConfirmRecord);
 			btnRefuse.onClick.AddListener(() =>
 			{
-				imgNext.gameObject.SetActive(true);
 				imgExpressGratitude.gameObject.SetActive(false);
 				isRefuseGift = true;
 			});
 			btnAccept.onClick.AddListener(() =>
 			{
-				imgNext.gameObject.SetActive(true);
+				imgGratitudeTip.gameObject.SetActive(true);
 				imgExpressGratitude.gameObject.SetActive(false);
+			});
+			btnConfirmGratitudeTip.onClick.AddListener(() =>
+			{
+				imgGratitudeTip.gameObject.SetActive(false);
+				imgExpressGratitude.gameObject.SetActive(true);
 			});
 			btnNext.onClick.AddListener(() =>
 			{
@@ -66,6 +75,16 @@ namespace HomeVisit.UI
 			InitState();
 
 			StartCoroutine(LoadSceneAsync());
+		}
+
+		public void ShowNext()
+		{
+			imgNext.gameObject.SetActive(true);
+		}
+
+		void AddScore(int addScore)
+		{
+			score += addScore;
 		}
 
 		#region 访中过程UI
@@ -133,7 +152,7 @@ namespace HomeVisit.UI
 				}
 				else
 				{
-					totalScore += 5;
+					score += 1;
 				}
 			}
 			if (isAllRight || isConfirm)
@@ -197,16 +216,34 @@ namespace HomeVisit.UI
 		}
 		#endregion
 
+		#region 实验报告
+		public void GenerateReportData(string title, int maxScore)
+		{
+			ScoreReportData data = new ScoreReportData()
+			{
+				title = title,
+				startTime = startTime,
+				endTime = DateTime.Now,
+				maxScore = maxScore,
+				score = this.score
+			};
+			//重置记录数据
+			score = 0;
+			startTime = DateTime.Now;
+			UIKit.GetPanel<TestReportPanel>().CreateScoreReport(data);
+		}
+		#endregion
+
 		IEnumerator LoadSceneAsync()
 		{
-			SceneManager.UnloadSceneAsync("Office");
-			yield return CloseEyeAnim();
+			TopPanel topPanel = UIKit.GetPanel<TopPanel>();
+			yield return topPanel.CloseEyeAnim();
+			yield return SceneManager.UnloadSceneAsync("Office");
 			AsyncOperation operation = SceneManager.LoadSceneAsync(Settings.RandomScene, LoadSceneMode.Additive);
-			yield return new WaitUntil(() => { return operation.isDone; });
-			UIKit.GetPanel<MainPanel>().SetBK(false);
+			yield return operation;
 			CameraManager.Instance.SetRoamPos(FemaleTeacher.Instance.transform.position);
 			CameraManager.Instance.SetRoamForward(FemaleTeacher.Instance.transform.forward);
-			yield return OpenEyeAnim();
+			yield return topPanel.OpenEyeAnim();
 
 			switch (UIKit.GetPanel<HomeVisitContentPanel>().GetStudentName())
 			{
@@ -220,37 +257,8 @@ namespace HomeVisit.UI
 					SingleParentTask.Instance.StartCoroutine(SingleParentTask.Instance.StartTask());
 					break;
 			}
-		}
-
-		IEnumerator CloseEyeAnim()
-		{
-			imgBlank.gameObject.SetActive(true);
-			Material mat = imgBlank.material;
-			Vector4 vector = new Vector4(0.6f, 1, 1, 1);
-			float duration = 0.1f;
-			WaitForSeconds wait01 = new WaitForSeconds(0.1f);
-			while (vector.y > 0)
-			{
-				vector.y -= duration;
-				mat.SetVector("_Param", vector);
-				yield return wait01;
-			}
-		}
-
-		IEnumerator OpenEyeAnim()
-		{
-			imgBlank.gameObject.SetActive(true);
-			Material mat = imgBlank.material;
-			Vector4 vector = new Vector4(0.6f, 0, 1, 1);
-			float duration = 0.1f;
-			WaitForSeconds wait01 = new WaitForSeconds(0.1f);
-			while (vector.y < 1)
-			{
-				vector.y += duration;
-				mat.SetVector("_Param", vector);
-				yield return wait01;
-			}
-			imgBlank.gameObject.SetActive(false);
+			startTime = DateTime.Now;
+			topPanel.ChangeTip("请进行在线实验，过程中需要念出右上角关键字");
 		}
 
 		public void InitState()
@@ -265,6 +273,7 @@ namespace HomeVisit.UI
 
 		public WaitUntil ShowExpressGratitude()
 		{
+			CloseRecord();
 			isRefuseGift = false;
 			imgExpressGratitude.gameObject.SetActive(true);
 			return new WaitUntil(() => { return isRefuseGift; });

@@ -28,7 +28,7 @@ namespace HomeVisit.UI
 
 		public int GetScore()
 		{
-			return GetExamResult() ? 5 : 0;
+			return GetExamResult() ? 1 : 0;
 		}
 
 		public bool GetExamResult()

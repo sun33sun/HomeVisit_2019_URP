@@ -11,178 +11,93 @@
 namespace QAssetBundle
 {
     
-    public class A_png
-    {
-        public const string BundleName = "a_png";
-        public const string A = "a";
-    }
-    public class Assetobj_1_prefab
-    {
-        public const string BundleName = "assetobj 1_prefab";
-        public const string ASSETOBJ_1 = "assetobj 1";
-    }
-    public class Assetobj_2_prefab
-    {
-        public const string BundleName = "assetobj 2_prefab";
-        public const string ASSETOBJ_2 = "assetobj 2";
-    }
-    public class Assetobj_3_prefab
-    {
-        public const string BundleName = "assetobj 3_prefab";
-        public const string ASSETOBJ_3 = "assetobj 3";
-    }
-    public class Assetobj_prefab
-    {
-        public const string BundleName = "assetobj_prefab";
-        public const string ASSETOBJ = "assetobj";
-    }
-    public class B_png
-    {
-        public const string BundleName = "b_png";
-        public const string B = "b";
-    }
     public class Buttonpanel_prefab
     {
         public const string BundleName = "buttonpanel_prefab";
-        public const string BUTTONPANEL = "buttonpanel";
-    }
-    public class C_png
-    {
-        public const string BundleName = "c_png";
-        public const string C = "c";
+        public const string TOPPANEL = "TopPanel";
     }
     public class Clothespanel_prefab
     {
         public const string BundleName = "clothespanel_prefab";
-        public const string CLOTHESPANEL = "clothespanel";
+        public const string CLOTHESPANEL = "ClothesPanel";
     }
     public class Communicateoutlinepanel_prefab
     {
         public const string BundleName = "communicateoutlinepanel_prefab";
-        public const string COMMUNICATEOUTLINEPANEL = "communicateoutlinepanel";
+        public const string COMMUNICATEOUTLINEPANEL = "CommunicateOutlinePanel";
+    }
+    public class Getinfornationpanel_prefab
+    {
+        public const string BundleName = "getinfornationpanel_prefab";
+        public const string GETINFORMATIONPANEL = "GetInformationPanel";
     }
     public class Homevisitcontentpanel_prefab
     {
         public const string BundleName = "homevisitcontentpanel_prefab";
-        public const string HOMEVISITCONTENTPANEL = "homevisitcontentpanel";
+        public const string HOMEVISITCONTENTPANEL = "HomeVisitContentPanel";
     }
     public class Homevisitformpanel_prefab
     {
         public const string BundleName = "homevisitformpanel_prefab";
-        public const string HOMEVISITFORMPANEL = "homevisitformpanel";
+        public const string HOMEVISITFORMPANEL = "HomeVisitFormPanel";
     }
     public class Homevisitroutepanel_prefab
     {
         public const string BundleName = "homevisitroutepanel_prefab";
-        public const string HOMEVISITROUTEPANEL = "homevisitroutepanel";
-    }
-    public class Imageprefaba_prefab
-    {
-        public const string BundleName = "imageprefaba_prefab";
-        public const string IMAGEPREFABA = "imageprefaba";
-    }
-    public class Imageprefabb_prefab
-    {
-        public const string BundleName = "imageprefabb_prefab";
-        public const string IMAGEPREFABB = "imageprefabb";
-    }
-    public class Imageprefabc_prefab
-    {
-        public const string BundleName = "imageprefabc_prefab";
-        public const string IMAGEPREFABC = "imageprefabc";
+        public const string HOMEVISITROUTEPANEL = "HomeVisitRoutePanel";
     }
     public class Knowledgeexampanel_prefab
     {
         public const string BundleName = "knowledgeexampanel_prefab";
-        public const string KNOWLEDGEEXAMPANEL = "knowledgeexampanel";
+        public const string KNOWLEDGEEXAMPANEL = "KnowledgeExamPanel";
     }
     public class Mainpanel_prefab
     {
         public const string BundleName = "mainpanel_prefab";
-        public const string MAINPANEL = "mainpanel";
+        public const string MAINPANEL = "MainPanel";
     }
-    public class Multipletitle_prefab
+    public class Maskpanel_prefab
     {
-        public const string BundleName = "multipletitle_prefab";
-        public const string MULTIPLETITLE = "multipletitle";
+        public const string BundleName = "maskpanel_prefab";
+        public const string MASKPANEL = "MaskPanel";
     }
     public class Onvisitpanel_prefab
     {
         public const string BundleName = "onvisitpanel_prefab";
-        public const string ONVISITPANEL = "onvisitpanel";
+        public const string ONVISITPANEL = "OnVisitPanel";
     }
     public class Recordsheetpanel_prefab
     {
         public const string BundleName = "recordsheetpanel_prefab";
-        public const string RECORDSHEETPANEL = "recordsheetpanel";
-    }
-    public class Sceneres_unity
-    {
-        public const string BundleName = "sceneres_unity";
-        public const string SCENERES = "sceneres";
-    }
-    public class Scorereport_prefab
-    {
-        public const string BundleName = "scorereport_prefab";
-        public const string SCOREREPORT = "scorereport";
-    }
-    public class Singletitle_prefab
-    {
-        public const string BundleName = "singletitle_prefab";
-        public const string SINGLETITLE = "singletitle";
-    }
-    public class Spriteatlas_spriteatlas
-    {
-        public const string BundleName = "spriteatlas_spriteatlas";
-        public const string SPRITEATLAS = "spriteatlas";
+        public const string RECORDSHEETPANEL = "RecordSheetPanel";
     }
     public class Submittestpanel_prefab
     {
         public const string BundleName = "submittestpanel_prefab";
-        public const string SUBMITTESTPANEL = "submittestpanel";
+        public const string SUBMITTESTPANEL = "SubmitTestPanel";
     }
-    public class Testgoalpanel_prefab
+    public class Testbriefpanel_prefab
     {
-        public const string BundleName = "testgoalpanel_prefab";
-        public const string TESTGOALPANEL = "testgoalpanel";
+        public const string BundleName = "testbriefpanel_prefab";
+        public const string TESTBRIEFPANEL = "TestBriefPanel";
     }
     public class Testreportpanel_prefab
     {
         public const string BundleName = "testreportpanel_prefab";
-        public const string TESTREPORTPANEL = "testreportpanel";
+        public const string TESTREPORTPANEL = "TestReportPanel";
     }
-    public class Textureexample1_png
+    public class Title
     {
-        public const string BundleName = "textureexample1_png";
-        public const string TEXTUREEXAMPLE1 = "textureexample1";
-    }
-    public class Uibasicpanel_prefab
-    {
-        public const string BundleName = "uibasicpanel_prefab";
-        public const string UIBASICPANEL = "uibasicpanel";
-    }
-    public class Uimultipanel_prefab
-    {
-        public const string BundleName = "uimultipanel_prefab";
-        public const string UIMULTIPANEL = "uimultipanel";
-    }
-    public class Uipanelwithimageprefab_prefab
-    {
-        public const string BundleName = "uipanelwithimageprefab_prefab";
-        public const string UIPANELWITHIMAGEPREFAB = "uipanelwithimageprefab";
+        public const string BundleName = "title";
+        public const string JUDGETITLE = "JudgeTitle";
+        public const string MULTIPLETITLE = "MultipleTitle";
+        public const string OUTLINETITLE = "OutlineTitle";
+        public const string SCOREREPORT = "ScoreReport";
+        public const string SINGLETITLE = "SingleTitle";
+        public const string TOGOUTLINE = "TogOutline";
     }
     public class Uiprefab
     {
         public const string BundleName = "uiprefab";
-    }
-    public class Uistackpanel1_prefab
-    {
-        public const string BundleName = "uistackpanel1_prefab";
-        public const string UISTACKPANEL1 = "uistackpanel1";
-    }
-    public class Uistackpanel2_prefab
-    {
-        public const string BundleName = "uistackpanel2_prefab";
-        public const string UISTACKPANEL2 = "uistackpanel2";
     }
 }

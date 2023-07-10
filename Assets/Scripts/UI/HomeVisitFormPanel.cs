@@ -18,53 +18,78 @@ namespace HomeVisit.UI
 		List<ITitle> titles = new List<ITitle>();
 		DateTime startTime;
 		HomeVisitRoutePanel routePanel = null;
-
+		public bool IsCompleted = false;
 		protected override void OnInit(IUIData uiData = null)
 		{
 			mData = uiData as HomeVisitFormPanelData ?? new HomeVisitFormPanelData();
 
 			btnConfirm.onClick.AddListener(() =>
 			{
-				UIKit.GetPanel<MainPanel>().NextStep();
 				imgExam.gameObject.SetActive(true);
 				imgSubmitExam.gameObject.SetActive(false);
 				AudioManager.Instance.StopAudio();
 			});
 
-			btnClose.onClick.AddListener(Hide);
+			btnClose.onClick.AddListener(Close);
 
-			btnConfirmFrom.onClick.AddListener(() =>
-			{
-				for (int i = 0; i < titles.Count; i++)
-					titles[i].CheckTitle();
-				btnSubmitFrom.transform.SetAsLastSibling();
-			});
+			btnConfirmFrom.onClick.AddListener(ConfirmForm);
 			btnSubmitFrom.onClick.AddListener(SubmitForm);
+
 
 			StartCoroutine(LoadTitleAsync());
 		}
 
-		void SubmitForm()
+		void Close()
 		{
 			//生成实验报告
-			TestReportPanel testReportPanel = UIKit.GetPanel<TestReportPanel>();
 			int totalScore = 0;
 			for (int i = 0; i < titles.Count; i++)
 				totalScore += titles[i].GetScore();
 			ScoreReportData data = new ScoreReportData()
 			{
-				strModule = "家访形式",
-				strStart = startTime,
-				strEnd = DateTime.Now,
-				strScore = totalScore.ToString()
+				title = "确认家访形式",
+				startTime = startTime,
+				endTime = DateTime.Now,
+				maxScore = titles.Count,
+				score = totalScore
 			};
-			testReportPanel.CreateScoreReport(data);
-
+			UIKit.GetPanel<TestReportPanel>().CreateScoreReport(data);
+			//调整UI
 			if (routePanel == null)
 				UIKit.OpenPanelAsync<HomeVisitRoutePanel>().ToAction().Start(this, () => { routePanel = UIKit.GetPanel<HomeVisitRoutePanel>(); });
 			else
 				UIKit.ShowPanel<HomeVisitRoutePanel>();
-			UIKit.GetPanel<MainPanel>().NextStep();
+			Hide();
+		}
+
+		void ConfirmForm()
+		{
+			//生成实验报告
+			int totalScore = 0;
+			for (int i = 0; i < titles.Count; i++)
+			{
+				//检测题目对错
+				titles[i].CheckTitle();
+				totalScore += titles[i].GetScore();
+			}
+			ScoreReportData data = new ScoreReportData()
+			{
+				title = "确认家访形式",
+				startTime = startTime,
+				endTime = DateTime.Now,
+				maxScore = titles.Count,
+				score = totalScore
+			};
+			UIKit.GetPanel<TestReportPanel>().CreateScoreReport(data);
+			btnSubmitFrom.transform.SetAsLastSibling();
+		}
+
+		void SubmitForm()
+		{
+			if (routePanel == null)
+				UIKit.OpenPanelAsync<HomeVisitRoutePanel>().ToAction().Start(this, () => { routePanel = UIKit.GetPanel<HomeVisitRoutePanel>(); });
+			else
+				UIKit.ShowPanel<HomeVisitRoutePanel>();
 			Hide();
 		}
 
@@ -72,12 +97,14 @@ namespace HomeVisit.UI
 		{
 			yield return WebKit.GetInstance().Read<List<JudgeTitleData>>(Settings.PAPER + "Paper_Form.json", datas =>
 			{
+				print("Paper_Form.json读取成功，准备加载为JudgeTitle");
 				foreach (var item in datas)
 				{
 					CreateJudgeTitle(item);
 				}
 				btnSubmit.SetAsLastSibling();
 			});
+			IsCompleted = true;
 		}
 
 		GameObject CreateJudgeTitle(JudgeTitleData data)
@@ -96,6 +123,9 @@ namespace HomeVisit.UI
 
 		protected override void OnShow()
 		{
+			UIKit.GetPanel<MainPanel>().NextStep();
+			UIKit.GetPanel<TopPanel>().ChangeTip("请在题目出现后进行答题");
+
 			startTime = DateTime.Now;
 			imgExam.gameObject.SetActive(false);
 			imgSubmitExam.gameObject.SetActive(true);

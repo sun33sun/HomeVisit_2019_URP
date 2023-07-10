@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using QFramework;
 using System.Collections.Generic;
 using TMPro;
+using System;
 
 namespace HomeVisit.UI
 {
@@ -30,7 +31,7 @@ namespace HomeVisit.UI
 		public List<Toggle> togs;
 		public List<TextMeshProUGUI> tmps;
 		public TextMeshProUGUI tmpAnalysis;
-		public int selectIndex = 0;
+		public int selectIndex = -1;
 
 		private void Start()
 		{
@@ -41,6 +42,8 @@ namespace HomeVisit.UI
 				{
 					if (isOn)
 						selectIndex = index;
+					else if (selectIndex == index)
+						selectIndex = -1;
 				});
 			}
 		}

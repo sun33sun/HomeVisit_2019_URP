@@ -5,45 +5,45 @@ using QFramework;
 
 namespace HomeVisit.UI
 {
-	// Generate Id:52a0be06-9b5e-4c5d-881c-5965b9f9f967
+	// Generate Id:ad912991-7bee-4fb8-bbf8-899657b3ab08
 	public partial class RecordSheetPanel
 	{
 		public const string Name = "RecordSheetPanel";
 		
 		[SerializeField]
-		public TMPro.TMP_InputField inputDate;
+		public UnityEngine.UI.InputField inputDate;
 		[SerializeField]
-		public TMPro.TMP_InputField inputTime;
+		public UnityEngine.UI.InputField inputTime;
 		[SerializeField]
-		public TMPro.TMP_InputField inputName;
+		public UnityEngine.UI.InputField inputName;
 		[SerializeField]
-		public TMPro.TMP_InputField inputSex;
+		public UnityEngine.UI.InputField inputSex;
 		[SerializeField]
-		public TMPro.TMP_InputField inputAddress;
+		public UnityEngine.UI.InputField inputAddress;
 		[SerializeField]
-		public TMPro.TMP_InputField inputParentState;
+		public UnityEngine.UI.InputField inputParentState;
 		[SerializeField]
-		public TMPro.TMP_InputField inputDescribeStudent;
+		public UnityEngine.UI.InputField inputDescribeStudent;
 		[SerializeField]
-		public TMPro.TMP_InputField inputDescribeParent;
+		public UnityEngine.UI.InputField inputDescribeParent;
 		[SerializeField]
-		public TMPro.TMP_InputField inputStudentSpeciality;
+		public UnityEngine.UI.InputField inputStudentSpeciality;
 		[SerializeField]
-		public TMPro.TMP_InputField inputStudentHigh;
+		public UnityEngine.UI.InputField inputStudentHigh;
 		[SerializeField]
-		public TMPro.TMP_InputField inputStudentDeskmate;
+		public UnityEngine.UI.InputField inputStudentDeskmate;
 		[SerializeField]
-		public TMPro.TMP_InputField inputClassDuty;
+		public UnityEngine.UI.InputField inputClassDuty;
 		[SerializeField]
-		public TMPro.TMP_InputField inputOutline;
+		public UnityEngine.UI.InputField inputOutline;
 		[SerializeField]
-		public TMPro.TMP_InputField inputCharacter;
+		public UnityEngine.UI.InputField inputCharacter;
 		[SerializeField]
-		public TMPro.TMP_InputField inputInterest;
+		public UnityEngine.UI.InputField inputInterest;
 		[SerializeField]
-		public TMPro.TMP_InputField inputSpeciality;
+		public UnityEngine.UI.InputField inputSpeciality;
 		[SerializeField]
-		public TMPro.TMP_InputField inputParentDemand;
+		public UnityEngine.UI.InputField inputParentDemand;
 		[SerializeField]
 		public UnityEngine.UI.Button btnClose;
 		[SerializeField]

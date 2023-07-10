@@ -60,7 +60,7 @@ public class RecordManager : SingletonMono<RecordManager>
 	public void EndRecord()
 	{
 #if UNITY_EDITOR
-		xunFei.停止语音识别();
+		StartCoroutine(xunFei.停止语音识别());
 #else
 		SignalManager.Instance.EndRecorderFunc();
 #endif

@@ -1,0 +1,164 @@
+[
+    {
+		"seq": 0,
+		"title": "获取信息",
+		"startTime": "0001-01-01T00:00:00",
+		"endTime": "0001-01-01T00:00:00",
+		"expectTime": "00:05:00",
+		"maxScore": 2,
+		"score": 0
+	},
+	{
+		"seq": 1,
+		"title": "确认家访内容",
+		"startTime": "0001-01-01T00:00:00",
+		"endTime": "0001-01-01T00:00:00",
+		"expectTime": "00:05:00",
+		"maxScore": 2,
+		"score": 0
+	},
+	{
+		"seq": 2,
+		"title": "确认家访形式",
+		"startTime": "0001-01-01T00:00:00",
+		"endTime": "0001-01-01T00:00:00",
+		"expectTime": "00:05:00",
+		"maxScore": 4,
+		"score": 0
+	},
+	{
+		"seq": 3,
+		"title": "确认家访时间路线",
+		"startTime": "0001-01-01T00:00:00",
+		"endTime": "0001-01-01T00:00:00",
+		"expectTime": "00:05:00",
+		"maxScore": 2,
+		"score": 0
+	},
+	{
+		"seq": 4,
+		"title": "交流提纲",
+		"startTime": "0001-01-01T00:00:00",
+		"endTime": "0001-01-01T00:00:00",
+		"expectTime": "00:05:00",
+		"maxScore": 18,
+		"score": 0
+	},
+	{
+		"seq": 5,
+		"title": "着装物品准备",
+		"startTime": "0001-01-01T00:00:00",
+		"endTime": "0001-01-01T00:00:00",
+		"expectTime": "00:05:00",
+		"maxScore": 8,
+		"score": 0
+	},
+	{
+		"seq": 6,
+		"title": "了解情况_观环境",
+		"startTime": "0001-01-01T00:00:00",
+		"endTime": "0001-01-01T00:00:00",
+		"expectTime": "00:05:00",
+		"maxScore": 0,
+		"score": 0
+	},
+	{
+		"seq": 7,
+		"title": "了解情况_展能力",
+		"startTime": "0001-01-01T00:00:00",
+		"endTime": "0001-01-01T00:00:00",
+		"expectTime": "00:05:00",
+		"maxScore": 0,
+		"score": 0
+	},
+	{
+		"seq": 8,
+		"title": "了解情况_查细节",
+		"startTime": "0001-01-01T00:00:00",
+		"endTime": "0001-01-01T00:00:00",
+		"expectTime": "00:05:00",
+		"maxScore": 0,
+		"score": 0
+	},
+	{
+		"seq": 9,
+		"title": "了解情况_说学校",
+		"startTime": "0001-01-01T00:00:00",
+		"endTime": "0001-01-01T00:00:00",
+		"expectTime": "00:05:00",
+		"maxScore": 0,
+		"score": 0
+	},
+	{
+		"seq": 10,
+		"title": "了解情况_聊班级",
+		"startTime": "0001-01-01T00:00:00",
+		"endTime": "0001-01-01T00:00:00",
+		"expectTime": "00:05:00",
+		"maxScore": 0,
+		"score": 0
+	},
+	{
+		"seq": 11,
+		"title": "建立联系_摸情况",
+		"startTime": "0001-01-01T00:00:00",
+		"endTime": "0001-01-01T00:00:00",
+		"expectTime": "00:05:00",
+		"maxScore": 0,
+		"score": 0
+	},
+	{
+		"seq": 12,
+		"title": "建立联系_明期望",
+		"startTime": "0001-01-01T00:00:00",
+		"endTime": "0001-01-01T00:00:00",
+		"expectTime": "00:05:00",
+		"maxScore": 0,
+		"score": 0
+	},
+	{
+		"seq": 13,
+		"title": "适当指导_缓焦虑",
+		"startTime": "0001-01-01T00:00:00",
+		"endTime": "0001-01-01T00:00:00",
+		"expectTime": "00:05:00",
+		"maxScore": 0,
+		"score": 0
+	},
+	{
+		"seq": 14,
+		"title": "适当指导_答疑惑",
+		"startTime": "0001-01-01T00:00:00",
+		"endTime": "0001-01-01T00:00:00",
+		"expectTime": "00:05:00",
+		"maxScore": 0,
+		"score": 0
+	},
+    {
+		"seq": 15,
+		"title": "表达感谢",
+		"startTime": "0001-01-01T00:00:00",
+		"endTime": "0001-01-01T00:00:00",
+		"expectTime": "00:05:00",
+		"maxScore": 0,
+		"score": 0
+	},
+	{
+		"seq": 16,
+		"title": "访后记录",
+		"startTime": "0001-01-01T00:00:00",
+		"endTime": "0001-01-01T00:00:00",
+		"expectTime": "00:05:00",
+		"maxScore": 2,
+		"score": 0
+	},
+	{
+		"seq": 17,
+		"title": "知识考核",
+		"startTime": "0001-01-01T00:00:00",
+		"endTime": "0001-01-01T00:00:00",
+		"expectTime": "00:05:00",
+		"maxScore": 20,
+		"score": 0
+	}
+]

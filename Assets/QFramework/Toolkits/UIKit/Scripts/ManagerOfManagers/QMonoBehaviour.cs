@@ -57,7 +57,7 @@ namespace QFramework
 		{
 			gameObject.SetActive (true);
 
-			OnShow ();
+			OnShow();
 		}
 
 		protected virtual void OnShow() {}

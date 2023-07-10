@@ -18,16 +18,16 @@ namespace HomeVisit
 		{
 			get 
 			{
-				switch (UnityEngine.Random.Range(0,3))
+				switch (DateTime.Now.Ticks % 3)
 				{
 					case 0:
 						OldRandomScene = "ToBeDeveloped";
 						break;
 					case 1:
-						OldRandomScene = "Developing";
+						OldRandomScene = "ToBeDeveloped";
 						break;
 					case 2:
-						OldRandomScene = "Developing";
+						OldRandomScene = "ModelTest2";
 						break;
 				}
 				return OldRandomScene;

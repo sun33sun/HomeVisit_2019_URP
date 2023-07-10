@@ -7,6 +7,186 @@
     <link rel="shortcut icon" href="TemplateData/img/favicon.ico">
     <link rel="stylesheet" href="TemplateData/css/style.css">
     <script src="Build/UnityLoader.js"></script>
+    <script src="./crypto-js.js"></script>
+    <script src="./dist/index.umd.js"></script>
+    <script>
+        let btnStatus = "UNDEFINED"; // "UNDEFINED" "CONNECTING" "OPEN" "CLOSING" "CLOSED"
+
+        const btnControl = document.getElementById("btn_control");
+
+        const recorder = new RecorderManager("../../dist");
+
+        let iatWS;
+        let resultText = "";
+        let resultTextTemp = "";
+        let countdownInterval;
+
+        /**
+         * 获取websocket url
+         * 该接口需要后端提供，这里为了方便前端处理
+         */
+        function getWebSocketUrl () {
+            // 请求地址根据语种不同变化
+            var url = "wss://iat-api.xfyun.cn/v2/iat";
+            var host = "iat-api.xfyun.cn";
+            var apiKey = '75ba1be15320ede80d3e86bf6fd17c82';
+            var apiSecret = 'ODk2OTgzMDMxYjczM2Y3YjE0OWQ3ZTM4';
+            var date = new Date().toGMTString();
+            var algorithm = "hmac-sha256";
+            var headers = "host date request-line";
+            var signatureOrigin = `host: ${host}\ndate: ${date}\nGET /v2/iat HTTP/1.1`;
+            var signatureSha = CryptoJS.HmacSHA256(signatureOrigin, apiSecret);
+            var signature = CryptoJS.enc.Base64.stringify(signatureSha);
+            var authorizationOrigin = `api_key="${apiKey}", algorithm="${algorithm}", headers="${headers}", signature="${signature}"`;
+            var authorization = btoa(authorizationOrigin);
+            url = `${url}?authorization=${authorization}&date=${date}&host=${host}`;
+            return url;
+        }
+
+        function toBase64 (buffer) {
+            var binary = "";
+            var bytes = new Uint8Array(buffer);
+            var len = bytes.byteLength;
+            for (var i = 0; i < len; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+            return window.btoa(binary);
+        }
+
+        function countdown () {
+            let seconds = 60;
+            countdownInterval = setInterval(() => {
+                seconds = seconds - 1;
+                if (seconds <= 0) {
+                    clearInterval(countdownInterval);
+                    recorder.stop();
+                } else {
+                    // btnControl.innerText = `录音中（${seconds}s）`;
+                }
+            }, 1000);
+        }
+
+        function changeBtnStatus (status) {
+            btnStatus = status;
+            if (status === "CONNECTING") {
+                // btnControl.innerText = "建立连接中";
+                // document.getElementById("result").innerText = "";
+                resultText = "";
+                resultTextTemp = "";
+            } else if (status === "OPEN") {
+                countdown();
+            } else if (status === "CLOSING") {
+                // btnControl.innerText = "关闭连接中";
+            } else if (status === "CLOSED") {
+                // btnControl.innerText = "开始录音";
+            }
+        }
+
+        function renderResult (resultData) {
+            // 识别结束
+            let jsonData = JSON.parse(resultData);
+            if (jsonData.data && jsonData.data.result) {
+                let data = jsonData.data.result;
+                let str = "";
+                let ws = data.ws;
+                for (let i = 0; i < ws.length; i++) {
+                    str = str + ws[i].cw[0].w;
+                }
+                // 开启wpgs会有此字段(前提：在控制台开通动态修正功能)
+                // 取值为 "apd"时表示该片结果是追加到前面的最终结果；取值为"rpl" 时表示替换前面的部分结果，替换范围为rg字段
+                if (data.pgs) {
+                    if (data.pgs === "apd") {
+                        // 将resultTextTemp同步给resultText
+                        resultText = resultTextTemp;
+                    }
+                    // 将结果存储在resultTextTemp中
+                    resultTextTemp = resultText + str;
+                } else {
+                    resultText = resultText + str;
+                }
+                sendWavData(resultTextTemp || resultText || "")
+            }
+            if (jsonData.code === 0 && jsonData.data.status === 2) {
+                iatWS.close();
+            }
+            if (jsonData.code !== 0) {
+                iatWS.close();
+                console.error(jsonData);
+            }
+        }
+
+        function connectWebSocket () {
+            const websocketUrl = getWebSocketUrl();
+            if ("WebSocket" in window) {
+                iatWS = new WebSocket(websocketUrl);
+            } else if ("MozWebSocket" in window) {
+                iatWS = new MozWebSocket(websocketUrl);
+            } else {
+                alert("浏览器不支持WebSocket");
+                return;
+            }
+            changeBtnStatus("CONNECTING");
+            iatWS.onopen = (e) => {
+                // 开始录音
+                recorder.start({
+                    sampleRate: 16000,
+                    frameSize: 1280,
+                });
+                var params = {
+                    common: {
+                        app_id: 'ddeb7aa4',
+                    },
+                    business: {
+                        language: "zh_cn",
+                        domain: "iat",
+                        accent: "mandarin",
+                        vad_eos: 5000,
+                        dwa: "wpgs",
+                    },
+                    data: {
+                        status: 0,
+                        format: "audio/L16;rate=16000",
+                        encoding: "raw",
+                    },
+                };
+                iatWS.send(JSON.stringify(params));
+                changeBtnStatus("OPEN");
+            };
+            iatWS.onmessage = (e) => {
+                renderResult(e.data);
+            };
+            iatWS.onerror = (e) => {
+                console.error(e);
+                recorder.stop();
+                changeBtnStatus("CLOSED");
+            };
+            iatWS.onclose = (e) => {
+                recorder.stop();
+                changeBtnStatus("CLOSED");
+            };
+        }
+
+        recorder.onFrameRecorded = ({ isLastFrame, frameBuffer }) => {
+            if (iatWS.readyState === iatWS.OPEN) {
+                iatWS.send(
+                    JSON.stringify({
+                        data: {
+                            status: isLastFrame ? 2 : 1,
+                            format: "audio/L16;rate=16000",
+                            encoding: "raw",
+                            audio: toBase64(frameBuffer),
+                        },
+                    })
+                );
+                if (isLastFrame) {
+                    changeBtnStatus("CLOSING");
+                }
+            }
+        };
+        recorder.onStop = () => {
+            clearInterval(countdownInterval);
+        };
+    </script>
 	<script>
 		function ToggleFullScreen() {
 			var isInFullScreen = (document.fullscreenElement && document.fullscreenElement !== null) ||
@@ -76,6 +256,36 @@
 				onRuntimeInitialized:RuntimeInitialized,
 			},		
 		});
+
+        //调用语音识别函数
+        //全局Unity实例   （全局找 unityInstance , 然后等于它就行）
+        var UnityIns = gameInstance;
+        var microPhoneState = 0
+        navigator.mediaDevices.getUserMedia({ audio: true }).then(() => {
+            microPhoneState = 1
+        })
+
+        // 开始
+        function StartRecord () {
+            if (microPhoneState == 1) {
+                connectWebSocket();
+            }
+        }
+        // 结束
+        function StopRecord () {
+            if (microPhoneState == 1) {
+                recorder.stop();
+            } else {
+                sendWavData("没有麦克风");
+            }
+        }
+
+        // 切片像unity发送音频数据
+        function sendWavData (blob) {
+            newStr = '识别内容：' + blob;
+            UnityIns.SendMessage("SignalManager", "OnEndRecordTrigger", '开始录音');
+            console.log(`类型为 : ${typeof blob}\t\t内容为 : ${blob}`);
+        }
     </script>
   </head>
   <body>
@@ -83,23 +293,25 @@
     <div class="keepRatio">
   
 		<div class="webgl-content">
-			<button id="fullScreenButton" onclick="ToggleFullScreen()"></button>
+			<!-- <button id="fullScreenButton" onclick="ToggleFullScreen()"></button> -->
 			<div id="gameContainer"></div>
 		</div>
-		
-		
-		<div id="loadingBlock">
-			<img class="logo" src="TemplateData/img/Logo.png"></img>
-			
+				
+        <div id="loadingBlock">
+			<img class="newLogo" src="TemplateData/img/Logo.png"></img>
+	
 			<div id="progressBar">
 				<div class="centered">
 					<div id="emptyBar"></div>
 					<div id="fullBar"></div>
-				</div>
+				</div>		
 			</div>
-            <span class="subtitle1">
-                软件正在加载中，加载时间可能会受网速、计算机性能等影响，请您耐心等待。 本实验基于最新的HTML5和WebGL技术开发，使用虚拟3D场景构建。建议使用GoolgeChrome浏览器打开、Microsoft Edge、Mozilla Firefox浏览器打开。如遇到加载至99%长时间不进入实验的情况，请清楚浏览器缓存，重新加载！
-            </span>
+            <div class="txt1">
+                <p>软件正在加载中，加载时间可能会受网速、计算机性能等影响，请您耐心等待。</p> 
+                <p>本实验基于最新的HTML5和WebGL技术开发，使用虚拟3D场景构建。建议使用GoolgeChrome</p>
+                <p>浏览器打开、MicrosoftEdge、Mozilla Firefox浏览器打开。如遇到加载至99%长时间不进入实</p>
+                <p>验的情况，请清楚浏览器缓存，重新加载！</p>
+            </div>
 			
 			<div id="warningBrowserBlock" style="display:none;">
 				<div class="warningBrowserText">

@@ -61,13 +61,13 @@ namespace QFramework
             }
         }
 
-        [MenuItem("Assets/@QPM - Publish Package", true)]
+        [MenuItem("Assets/@QPM/Publish Package", true)]
         static bool ValidateExportPackage()
         {
             return User.Logined;
         }
 
-        [MenuItem("Assets/@QPM - Publish Package", priority = 2)]
+        [MenuItem("Assets/@QPM/Publish Package", priority = 2)]
         public static void PublishPackage()
         {
             if (Application.internetReachability == NetworkReachability.NotReachable)

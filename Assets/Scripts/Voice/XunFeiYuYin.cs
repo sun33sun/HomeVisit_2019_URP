@@ -84,6 +84,8 @@ public class XunFeiYuYin : MonoBehaviour
 
     public void 开始语音识别()
     {
+        if (Microphone.devices.Length < 1)
+            return;
         if (语音识别WebSocket != null && 语音识别WebSocket.State == WebSocketState.Open)
         {
             Debug.LogWarning("开始语音识别失败！，等待上次识别连接结束");
@@ -95,6 +97,11 @@ public class XunFeiYuYin : MonoBehaviour
 
     public IEnumerator 停止语音识别()
     {
+        if (Microphone.devices.Length < 1)
+		{
+            语音识别完成事件?.Invoke("没有麦克风");
+           yield break;
+        }
         Microphone.End(null);
         yield return new WaitUntil(() => 语音识别WebSocket.State != WebSocketState.Open);
         Debug.Log("识别结束，停止录音");

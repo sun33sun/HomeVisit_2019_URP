@@ -5,6 +5,7 @@ using System.Collections;
 using TMPro;
 using System.Collections.Generic;
 using ProjectBase;
+using UnityEngine.EventSystems;
 
 namespace HomeVisit.UI
 {
@@ -26,9 +27,14 @@ namespace HomeVisit.UI
 
 			mData = uiData as MainPanelData ?? new MainPanelData();
 
-			btnFullScreen.onClick.AddListener(() => { Screen.fullScreen = !Screen.fullScreen; });
+			#region х╚фа
+			EventTrigger.Entry entry = new EventTrigger.Entry() { eventID = EventTriggerType.PointerDown };
+			entry.callback.AddListener(data => { Screen.fullScreen = !Screen.fullScreen; });
+			togFullScreen.triggers.Add(entry);
+			#endregion
 
-			for (int i = 0; i < visitStepPanels.Length; i++)
+
+			for (int i = 0; i < visitStepPanels.Length - 1; i++)
 			{
 				visitStepPanels[i].InitState();
 			}
@@ -56,10 +62,18 @@ namespace HomeVisit.UI
 			visitStepPanels[visitStepIndex].InitState();
 			visitStepPanels[visitStepIndex].gameObject.SetActive(false);
 			visitStepIndex++;
-			visitStepPanels[visitStepIndex].gameObject.SetActive(true);
-			visitStepPanels[visitStepIndex].InitState();
+			if (visitStepIndex >= visitStepPanels.Length - 1)
+			{
+				imgVisitProgress.sprite = visitStepPanels[visitStepIndex].spriteProgress;
+			}
+			else
+			{
+				visitStepPanels[visitStepIndex].gameObject.SetActive(true);
+				visitStepPanels[visitStepIndex].InitState();
 
-			imgVisitProgress.sprite = visitStepPanels[visitStepIndex].spriteProgress;
+				imgVisitProgress.sprite = visitStepPanels[visitStepIndex].spriteProgress;
+			}
+
 		}
 
 
@@ -92,6 +106,7 @@ namespace HomeVisit.UI
 				Destroy(this.keywords[i].gameObject);
 			}
 			this.keywords.Clear();
+			float Height = 20 + 20 + keywords.Length * 20 + (keywords.Length - 1) * 15;
 			for (int i = 0; i < keywords.Length; i++)
 			{
 				Keyword tmpKeyword = Instantiate(keywordPrefab);
@@ -99,10 +114,10 @@ namespace HomeVisit.UI
 				tmpKeyword.transform.SetParent(imgKeywordsDetail.transform, false);
 				tmpKeyword.tmpKeyword.text = keywords[i];
 			}
-			LayoutRebuilder.ForceRebuildLayoutImmediate(imgKeywordsDetail);
 			Vector3 newPos = Vector3.zero;
-			newPos.y = -rtBtnKeyword.sizeDelta.y - imgKeywordsDetail.sizeDelta.y / 2;
+			newPos.y = -rtBtnKeyword.sizeDelta.y - Height / 2;
 			imgKeywordsDetail.anchoredPosition = newPos;
+			LayoutRebuilder.ForceRebuildLayoutImmediate(imgKeywordsDetail);
 			yield return null;
 		}
 
@@ -114,6 +129,11 @@ namespace HomeVisit.UI
 				keywords[i].imgRight.enabled = item;
 				i++;
 			}
+		}
+
+		public void ShowCompletedTip()
+		{
+			imgCompletedTip.gameObject.SetActive(true);
 		}
 	}
 }

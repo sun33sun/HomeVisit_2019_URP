@@ -1,4 +1,5 @@
 ﻿using QFramework;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -28,7 +29,15 @@ namespace HomeVisit.UI
 		{
 			btnConfirm.onClick.AddListener(() =>
 			{
-				UIKit.HidePanel<GetInfornationPanel>();
+				ScoreReportData data = new ScoreReportData()
+				{
+					title = "获取信息",
+					startTime = UIKit.GetPanel<GetInformationPanel>().startTime,
+					endTime = DateTime.Now,
+					score = 2
+				};
+				UIKit.GetPanel<TestReportPanel>().CreateScoreReport(data);
+				UIKit.HidePanel<GetInformationPanel>();
 				UIKit.ShowPanel<HomeVisitContentPanel>();
 			});
 		}

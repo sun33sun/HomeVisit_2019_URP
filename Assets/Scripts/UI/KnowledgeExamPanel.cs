@@ -10,45 +10,37 @@ namespace HomeVisit.UI
 {
 	public enum ExamState
 	{
-		Knowledge,OnVisit
+		Knowledge, OnVisit
 	}
 	public class KnowledgeExamPanelData : UIPanelData
 	{
 	}
 	public partial class KnowledgeExamPanel : UIPanel
 	{
-		public bool IsFollow = true;
-
 		List<ITitle> titles = new List<ITitle>();
 		DateTime startTime;
 		ExamState examState = ExamState.Knowledge;
-
 
 
 		protected override void OnInit(IUIData uiData = null)
 		{
 			mData = uiData as KnowledgeExamPanelData ?? new KnowledgeExamPanelData();
 
-			btnClose.onClick.AddListener(Hide);
-			
+			btnClose.onClick.AddListener(Close);
+
 			btnConfirm.onClick.AddListener(Confirm);
 			btnSubmit.onClick.AddListener(Submit);
 
-			btnCancel.onClick.AddListener(() =>
+			btnCancelConfirm.onClick.AddListener(() =>
 			{
-				btnConfirm.transform.SetAsLastSibling();
-				imgSubmitExam.gameObject.SetActive(false);
-				imgExam.gameObject.SetActive(true);
-				for (int i = 0; i < titles.Count; i++)
-					titles[i].Reset();
+				imgConfirmConfirm.gameObject.SetActive(false);
 			});
-			btnConfirmSubmit.onClick.AddListener(ConfirmSubmit);
-
+			btnConfirmConfirm.onClick.AddListener(ConfirmConfirm);
 
 			StartCoroutine(LoadKnowledgeExamPaper());
 		}
 
-		IEnumerator LoadKnowledgeExamPaper()
+		public IEnumerator LoadKnowledgeExamPaper()
 		{
 			examState = ExamState.Knowledge;
 			yield return WebKit.GetInstance().Read<List<SingleTitleData>>(Settings.PAPER + "Paper_Knowledge.json", datas =>
@@ -57,6 +49,7 @@ namespace HomeVisit.UI
 				{
 					CreateSingleTitle(item);
 				}
+				LayoutRebuilder.ForceRebuildLayoutImmediate(Content);
 			});
 			btnSubmit.transform.SetAsLastSibling();
 			btnConfirm.transform.SetAsLastSibling();
@@ -64,19 +57,24 @@ namespace HomeVisit.UI
 
 		public void LoadOnVisitPaper(List<SingleTitleData> datas)
 		{
-			for (int i = 0; i < titles.Count; i++)
+			//加载数据
+			for (int i = titles.Count - 1; i >= 0; i--)
 			{
 				Destroy(titles[i].gameObject);
+				titles.RemoveAt(i);
 			}
 			titles.Clear();
-			gameObject.SetActive(true);
-			examState = ExamState.OnVisit;
 			for (int i = 0; i < datas.Count; i++)
-			{
 				CreateSingleTitle(datas[i]);
-			}
+			//设置UI
+			gameObject.SetActive(true);
+			imgExam.gameObject.SetActive(true);
+			imgConfirmConfirm.gameObject.SetActive(false);
 			btnSubmit.transform.SetAsLastSibling();
 			btnConfirm.transform.SetAsLastSibling();
+			LayoutRebuilder.ForceRebuildLayoutImmediate(Content);
+			//记录状态
+			examState = ExamState.OnVisit;
 		}
 
 		GameObject CreateSingleTitle(SingleTitleData data)
@@ -101,8 +99,32 @@ namespace HomeVisit.UI
 
 		void Confirm()
 		{
-			for (int i = 0; i < titles.Count; i++)
-				titles[i].CheckTitle();
+			switch (examState)
+			{
+				case ExamState.Knowledge:
+					imgConfirmConfirm.gameObject.SetActive(true);
+					break;
+				case ExamState.OnVisit:
+					for (int i = 0; i < titles.Count; i++)
+					{
+						titles[i].CheckTitle();
+						titles[i].SetInteractable(false);
+					}
+					btnSubmit.transform.SetAsLastSibling();
+					break;
+				default:
+					break;
+			}
+		}
+
+		void ConfirmConfirm()
+		{
+			imgConfirmConfirm.gameObject.SetActive(false);
+			foreach (var item in titles)
+			{
+				item.CheckTitle();
+				item.SetInteractable(false);
+			}
 			btnSubmit.transform.SetAsLastSibling();
 		}
 
@@ -111,49 +133,55 @@ namespace HomeVisit.UI
 			switch (examState)
 			{
 				case ExamState.Knowledge:
-					imgSubmitExam.gameObject.SetActive(true);
+					for (int i = 0; i < titles.Count; i++)
+					{
+						titles[i].CheckTitle();
+					}
 					break;
 				case ExamState.OnVisit:
-					ConfirmSubmit();
+					int totalScore1 = 0;
+					for (int i = 0; i < titles.Count; i++)
+						totalScore1 += titles[i].GetScore();
+					EventCenter.GetInstance().EventTrigger<int>("访中过程试题完成", totalScore1);
+					Hide();
 					break;
 				default:
 					break;
 			}
 		}
 
-
-		void ConfirmSubmit()
+		void Close()
 		{
-			imgExam.gameObject.SetActive(false);
-			int totalScore = 0;
-			for (int i = 0; i < titles.Count; i++)
-				totalScore += titles[i].GetScore();
-			
 			switch (examState)
 			{
 				case ExamState.Knowledge:
+					int totalScore = 0;
+					for (int i = 0; i < titles.Count; i++)
+					{
+						totalScore += titles[i].GetScore();
+					}
+					//创建知识考核的实验报告
 					ScoreReportData data = new ScoreReportData()
 					{
-						strModule = "知识考核",
-						strStart = startTime,
-						strEnd = DateTime.Now,
-						strScore = totalScore.ToString()
+						seq = 1,
+						title = "知识考核",
+						startTime = startTime,
+						endTime = DateTime.Now,
+						score = totalScore
 					};
 					TestReportPanel testReportPanel = UIKit.GetPanel<TestReportPanel>();
 					testReportPanel.CreateScoreReport(data);
-
-					if (IsFollow)
-					{
-						IsFollow = false;
-						UIKit.ShowPanel<TestReportPanel>();
-					}
 					break;
 				case ExamState.OnVisit:
-					EventCenter.GetInstance().EventTrigger<int>("访中过程考核结束", totalScore);
+					int totalScore1 = 0;
+					for (int i = 0; i < titles.Count; i++)
+						totalScore1 += titles[i].GetScore();
+					EventCenter.GetInstance().EventTrigger<int>("访中过程试题完成", totalScore1);
 					break;
 				default:
 					break;
 			}
+			
 			Hide();
 		}
 
@@ -163,13 +191,29 @@ namespace HomeVisit.UI
 
 		protected override void OnShow()
 		{
-			for (int i = 0; i < titles.Count; i++)
-				titles[i].Reset();
+			UIKit.GetPanel<TopPanel>().ChangeTip("知识考核");
+
+
+			if(examState == ExamState.Knowledge)
+			{
+				for (int i = 0; i < titles.Count; i++)
+					titles[i].Reset();
+			}
+			else
+			{
+				examState = ExamState.Knowledge;
+				for (int i = titles.Count - 1; i >= 0; i--)
+				{
+					Destroy(titles[i].gameObject);
+					titles.RemoveAt(i);
+				}
+				titles.Clear();
+				LoadKnowledgeExamPaper();
+			}
 
 			startTime = DateTime.Now;
 			imgExam.gameObject.SetActive(true);
-			imgSubmitExam.gameObject.SetActive(false);
-
+			imgConfirmConfirm.gameObject.SetActive(false);
 			btnConfirm.transform.SetAsLastSibling();
 		}
 

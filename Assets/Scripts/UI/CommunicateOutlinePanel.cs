@@ -20,14 +20,13 @@ namespace HomeVisit.UI
 		public List<string> strTogSelected = new List<string>();
 
 		DateTime startTime;
-		DateTime endTime;
 		List<OutlineTitleData> datas = null;
 
 		protected override void OnInit(IUIData uiData = null)
 		{
 			mData = uiData as CommunicateOutlinePanelData ?? new CommunicateOutlinePanelData();
 
-			btnClose.onClick.AddListener(Hide);
+			btnClose.onClick.AddListener(Submit);
 			btnConfirm.onClick.AddListener(Confirm);
 			btnSubmit.onClick.AddListener(Submit);
 
@@ -52,14 +51,18 @@ namespace HomeVisit.UI
 				totalScore = titles[i].GetScore();
 			ScoreReportData data = new ScoreReportData()
 			{
-				strModule = "交流提纲",
-				strScore = totalScore.ToString(),
+				seq = 2,
+				title = "交流提纲",
+				startTime = startTime,
+				endTime = DateTime.Now,
+				maxScore = titles.Count,
+				score = totalScore,
+				expectTime = new TimeSpan(0,18,0)
 			};
 			TestReportPanel testReportPanel = UIKit.GetPanel<TestReportPanel>();
 			testReportPanel.CreateScoreReport(data);
 
-			//修改进度UI并进入下一个页面
-			UIKit.GetPanel<MainPanel>().NextStep();
+			//下一个页面
 			UIKit.OpenPanelAsync<ClothesPanel>().ToAction().Start(this);
 			Hide();
 		}
@@ -95,13 +98,14 @@ namespace HomeVisit.UI
 		protected override void OnShow()
 		{
 			startTime = DateTime.Now;
+			UIKit.GetPanel<MainPanel>().NextStep();
+
 			btnConfirm.gameObject.SetActive(true);
 			btnSubmit.gameObject.SetActive(false);
 		}
 
 		protected override void OnHide()
 		{
-			endTime = DateTime.Now;
 		}
 
 		protected override void OnClose()

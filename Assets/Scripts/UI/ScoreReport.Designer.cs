@@ -21,7 +21,7 @@ namespace HomeVisit.UI
 		[SerializeField]
 		public TMPro.TextMeshProUGUI tmpScore;
 		
-		private ScoreReportData mPrivateData = null;
+		private ScoreReportData mPrivateData = new ScoreReportData();
 		
 		protected override void ClearUIComponents()
 		{

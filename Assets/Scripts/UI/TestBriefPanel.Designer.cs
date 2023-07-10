@@ -5,27 +5,11 @@ using QFramework;
 
 namespace HomeVisit.UI
 {
-	// Generate Id:7da99792-ef35-4ad8-bdb7-e93b604bedce
+	// Generate Id:2aa99d51-7c9f-483f-ada7-1f1b777266a5
 	public partial class TestBriefPanel
 	{
 		public const string Name = "TestBriefPanel";
 		
-		[SerializeField]
-		public UnityEngine.UI.Button btnTestGoal;
-		[SerializeField]
-		public UnityEngine.UI.Button btnTestPrinciple;
-		[SerializeField]
-		public UnityEngine.UI.Button btnTestDemand;
-		[SerializeField]
-		public UnityEngine.UI.Button btnTestAssistance;
-		[SerializeField]
-		public UnityEngine.UI.Image imgTestGoal;
-		[SerializeField]
-		public UnityEngine.UI.Image imgTestPrinciple;
-		[SerializeField]
-		public UnityEngine.UI.Image imgTestDemand;
-		[SerializeField]
-		public UnityEngine.UI.Image imgTestAssistance;
 		[SerializeField]
 		public UnityEngine.UI.Button btnClosePanel;
 		
@@ -33,14 +17,6 @@ namespace HomeVisit.UI
 		
 		protected override void ClearUIComponents()
 		{
-			btnTestGoal = null;
-			btnTestPrinciple = null;
-			btnTestDemand = null;
-			btnTestAssistance = null;
-			imgTestGoal = null;
-			imgTestPrinciple = null;
-			imgTestDemand = null;
-			imgTestAssistance = null;
 			btnClosePanel = null;
 			
 			mData = null;

@@ -15,6 +15,14 @@ namespace ProjectBase
 	{
 		public IEnumerator Read<T>(string path, Action<T> callBack)
 		{
+			try
+			{
+
+			}
+			catch (Exception e)
+			{
+				Debug.Log("文件读取错误：" + e.Message);
+			}
 			UnityWebRequest request = UnityWebRequest.Get(path);
 			yield return request.SendWebRequest();
 			string json = request.downloadHandler.text;

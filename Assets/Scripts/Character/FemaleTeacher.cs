@@ -138,12 +138,29 @@ namespace HomeVisit.Character
 			{
 				if (!isRotating)
 				{
+					thirdView.localPosition = new Vector3(0, 1.15f, -0.2f);
 					isRotating = true;
 					rotationCompleted = false;
 					StartCoroutine(RotateTo(nowTarget.eulerAngles));
 				}
 			}
 			return !anim.isPlaying && rotationCompleted;
+		}
+		#endregion
+
+		#region 站起
+		public WaitUntil StandUp()
+		{
+			PlayAnim("StandUp");
+			return new WaitUntil(OnStandUpCompleted);
+		}
+		bool OnStandUpCompleted()
+		{
+			if (!anim.isPlaying)
+			{
+				thirdView.localPosition = new Vector3(0, 1.55f, 0.1f);
+			}
+			return !anim.isPlaying;
 		}
 		#endregion
 

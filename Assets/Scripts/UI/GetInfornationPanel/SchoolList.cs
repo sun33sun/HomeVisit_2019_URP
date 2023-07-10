@@ -12,7 +12,7 @@ namespace HomeVisit.UI
 	{
 		[Header("输入的数据")]
 		public TMP_Dropdown dpDistrict;
-		public TMP_InputField inputKeyword;
+		public InputField inputKeyword;
 		public TMP_Dropdown dpPeriod;
 		public TMP_Dropdown dpBoarding;
 
@@ -38,14 +38,14 @@ namespace HomeVisit.UI
 			btnNext.onClick.AddListener(Next);
 			btnFindAll.onClick.AddListener(FindAll);
 
-			TeacherData nowTeacherData = UIKit.GetPanel<GetInfornationPanel>().nowAdministrator;
+			TeacherData nowTeacherData = UIKit.GetPanel<GetInformationPanel>().nowAdministrator;
 			for (int i = 0; i < items.Count; i++)
 			{
 				SchoolItem item = items[i];
 				item.GetComponent<Button>().onClick.AddListener(() =>
 				{
 					gameObject.SetActive(false);
-					UIKit.GetPanel<GetInfornationPanel>().ClassList.gameObject.SetActive(true);
+					UIKit.GetPanel<GetInformationPanel>().ClassList.gameObject.SetActive(true);
 				});
 			}
 		}

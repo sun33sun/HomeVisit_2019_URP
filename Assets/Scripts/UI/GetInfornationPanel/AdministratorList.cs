@@ -12,9 +12,9 @@ namespace HomeVisit.UI
 	{
 		[Header("输入的数据")]
 		public TMP_Dropdown dpDistrict;
-		public TMP_InputField inputName;
+		public InputField inputName;
 		public TMP_Dropdown dpRole;
-		public TMP_InputField inputID;
+		public InputField inputID;
 
 		[Header("管理员列表相关")]
 		public List<AdministratorItem> items = new List<AdministratorItem>();
@@ -44,7 +44,7 @@ namespace HomeVisit.UI
 				item.GetComponent<Button>().onClick.AddListener(() =>
 				{
 					gameObject.SetActive(false);
-					UIKit.GetPanel<GetInfornationPanel>().PolicyList.gameObject.SetActive(true);
+					UIKit.GetPanel<GetInformationPanel>().PolicyList.gameObject.SetActive(true);
 				});
 			}
 		}
@@ -52,7 +52,7 @@ namespace HomeVisit.UI
 
 		private void OnEnable()
 		{
-			GetInfornationPanel panel = UIKit.GetPanel<GetInfornationPanel>();
+			GetInformationPanel panel = UIKit.GetPanel<GetInformationPanel>();
 			if (panel != null && panel.nowAdministrator != null)
 			{
 				rightData = panel.nowAdministrator;

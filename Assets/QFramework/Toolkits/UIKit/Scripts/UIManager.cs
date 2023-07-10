@@ -124,6 +124,23 @@ namespace QFramework
             }
         }
 
+        public void LoadUIAsync(PanelSearchKeys panelSearchKeys, Action<IPanel> onLoad)
+        {
+
+            var retPanel = UIKit.Table.GetPanelsByPanelSearchKeys(panelSearchKeys).FirstOrDefault();
+
+            if (retPanel == null)
+            {
+                CreateUIAsync(panelSearchKeys, (panel) =>
+                {
+                    retPanel = panel;
+                    onLoad?.Invoke(retPanel);
+
+                });
+            }
+
+        }
+
         /// <summary>
         /// 显示UIBehaiviour
         /// </summary>

@@ -13,6 +13,12 @@ namespace HomeVisit.UI
 	public partial class HomeVisitContentPanel : UIPanel
 	{
 		public Questionnaire questionnaire;
+		DateTime startTime;
+
+		private void Start()
+		{
+			startTime = DateTime.Now;
+		}
 
 		protected override void OnInit(IUIData uiData = null)
 		{
@@ -28,6 +34,15 @@ namespace HomeVisit.UI
 
 		void Confirm()
 		{
+			ScoreReportData data = new ScoreReportData()
+			{
+				title = "确认家访内容",
+				startTime = this.startTime,
+				endTime = DateTime.Now,
+				score = 2
+			};
+			UIKit.GetPanel<TestReportPanel>().CreateScoreReport(data);
+
 			Hide();
 			UIKit.ShowPanel<HomeVisitFormPanel>();
 		}
@@ -38,6 +53,7 @@ namespace HomeVisit.UI
 		
 		protected override void OnShow()
 		{
+			UIKit.GetPanel<TopPanel>().ChangeTip("双击左键选择家访训练");
 		}
 
 		protected override void OnHide()

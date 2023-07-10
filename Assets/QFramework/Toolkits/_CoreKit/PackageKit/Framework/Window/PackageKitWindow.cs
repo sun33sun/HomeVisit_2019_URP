@@ -24,7 +24,7 @@ namespace QFramework
         {
             mViews = null;
         }
-        
+
         [DidReloadScripts]
         public static void Reload()
         {
@@ -141,7 +141,7 @@ namespace QFramework
             RemoveAllChildren();
 
             mSplitView = null;
-            
+
             var reflectRenderInfos = AssetDatabase.FindAssets("packagekitconfig t:TextAsset")
                 .Select(guid => AssetDatabase.GUIDToAssetPath(guid))
                 .Where(path => path.EndsWith(".json"))
@@ -149,7 +149,7 @@ namespace QFramework
                 {
                     var jsonText = File.ReadAllText(path);
 
-                    var infoNew = JsonUtility.FromJson<ReflectRenderInfo>(jsonText);
+                    var infoNew = JsonUtility.FromJson<PackageKitScriptViewRenderInfo>(jsonText);
 
                     if (infoNew.Load())
                     {
@@ -168,6 +168,7 @@ namespace QFramework
                         renderInfo.Interface.Init();
                         return renderInfo;
                     }
+
 
                     return null;
                 }).Where(info => info != null);

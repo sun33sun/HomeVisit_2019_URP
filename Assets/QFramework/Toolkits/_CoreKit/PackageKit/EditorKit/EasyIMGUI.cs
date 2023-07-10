@@ -18,8 +18,7 @@ namespace QFramework
         {
             return new IMGUILabelView();
         }
-
-
+        
         public static IMGUIButton Button()
         {
             return new IMGUIButtonView();

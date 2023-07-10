@@ -17,7 +17,6 @@ namespace HomeVisit.UI
 		[SerializeField] Sprite[] spriteSex;
 
 		DateTime startTime;
-		DateTime endTime;
 
 		protected override void OnInit(IUIData uiData = null)
 		{
@@ -25,15 +24,17 @@ namespace HomeVisit.UI
 
 			btnMan.onClick.AddListener(Man);
 			btnWoman.onClick.AddListener(Woman);
-			btnCloseClothes.onClick.AddListener(Hide);
-			btnSubmit.onClick.AddListener(()=> 
-			{
-				imgTopBk.gameObject.SetActive(false);
-				imgMidBk.gameObject.SetActive(false);
-				imgConfirm.gameObject.SetActive(true);
-			});
+			btnCloseClothes.onClick.AddListener(ConfirmSubmit);
+			btnSubmit.onClick.AddListener(Submit);
 			btnConfirm.onClick.AddListener(Confirm);
 			btnConfirmSubmit.onClick.AddListener(ConfirmSubmit);
+		}
+
+		void Submit()
+		{
+			imgTopBk.gameObject.SetActive(false);
+			imgMidBk.gameObject.SetActive(false);
+			imgConfirm.gameObject.SetActive(true);
 		}
 
 		void Man()
@@ -107,19 +108,27 @@ namespace HomeVisit.UI
 				totalScore += manClothes[i].GetScore();
 			for (int i = 0; i < womanClothes.Count; i++)
 				totalScore += womanClothes[i].GetScore();
-			endTime = DateTime.Now;
 			ScoreReportData data = new ScoreReportData()
 			{
-				strModule = "着装准备",
-				strStart = startTime,
-				strEnd = endTime,
-				strScore = totalScore.ToString()
+				seq = 3,
+				title = "着装物品准备",
+				startTime = startTime,
+				endTime = DateTime.Now,
+				maxScore = bothClothes.Count + manClothes.Count + womanClothes.Count,
+				score = totalScore,
+				expectTime = new TimeSpan(0, 18, 0)
 			};
 			UIKit.GetPanel<TestReportPanel>().CreateScoreReport(data);
 
 			UIKit.GetPanel<MainPanel>().NextVisitStepPanel();
 			UIKit.OpenPanelAsync<OnVisitPanel>().ToAction().Start(this);
+
 			Hide();
+		}
+
+		void InitScoreReport()
+		{
+
 		}
 
 		protected override void OnOpen(IUIData uiData = null)
@@ -130,6 +139,8 @@ namespace HomeVisit.UI
 		protected override void OnShow()
 		{
 			startTime = DateTime.Now;
+			UIKit.GetPanel<MainPanel>().NextStep();
+			UIKit.GetPanel<TopPanel>().ChangeTip("请选择得体的衣服。\n点击确定后，将提示得体、不得体的衣服");
 
 			imgTopBk.gameObject.SetActive(true);
 			imgMidBk.gameObject.SetActive(true);

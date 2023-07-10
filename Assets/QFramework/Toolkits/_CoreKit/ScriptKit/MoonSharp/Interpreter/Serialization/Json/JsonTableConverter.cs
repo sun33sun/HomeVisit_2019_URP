@@ -197,6 +197,7 @@ namespace MoonSharp.Interpreter.Serialization.Json
 
 			return t;
 		}
+		
 
 		private static DynValue ParseJsonValue(Lexer L, Script script)
 		{

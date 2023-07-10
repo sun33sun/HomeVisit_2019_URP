@@ -11,9 +11,9 @@ namespace HomeVisit.UI
 	public class StudentList : MonoBehaviour
 	{
 		[Header("输入的数据")]
-		public TMP_Dropdown dpGrade;
-		public TMP_InputField inputKeyword;
-		public TMP_InputField inputStudentID;
+		//public TMP_Dropdown dpGrade;
+		public InputField inputKeyword;
+		public InputField inputStudentID;
 		public TMP_Dropdown dpBoarding;
 
 		[Header("政策列表相关")]
@@ -43,7 +43,7 @@ namespace HomeVisit.UI
 				item.GetComponent<Button>().onClick.AddListener(() =>
 				{
 					gameObject.SetActive(false);
-					StudentInformation information = UIKit.GetPanel<GetInfornationPanel>().StudentInformation;
+					StudentInformation information = UIKit.GetPanel<GetInformationPanel>().StudentInformation;
 					information.gameObject.SetActive(true);
 					gameObject.SetActive(false);
 					information.InitData(item.mData);

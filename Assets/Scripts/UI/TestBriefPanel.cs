@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using QFramework;
+using System.Collections.Generic;
 
 namespace HomeVisit.UI
 {
@@ -9,47 +10,21 @@ namespace HomeVisit.UI
 	}
 	public partial class TestBriefPanel : UIPanel
 	{
-		public bool IsFollow = true;
+		bool IsFirst = true;
+		[SerializeField] List<Toggle> togs;
+		[SerializeField] List<GameObject> objs;
 
 		protected override void OnInit(IUIData uiData = null)
 		{
 			mData = uiData as TestBriefPanelData ?? new TestBriefPanelData();
-			btnTestGoal.onClick.AddListener(() =>
+			for (int i = 0; i < togs.Count; i++)
 			{
-				imgTestGoal.gameObject.SetActive(true);
-				imgTestAssistance.gameObject.SetActive(false);
-				imgTestPrinciple.gameObject.SetActive(false);
-				imgTestDemand.gameObject.SetActive(false);
-			});
-			btnTestPrinciple.onClick.AddListener(() =>
-			{
-				imgTestGoal.gameObject.SetActive(false);
-				imgTestPrinciple.gameObject.SetActive(true);
-				imgTestDemand.gameObject.SetActive(false);
-				imgTestAssistance.gameObject.SetActive(false);
-			});
-			btnTestDemand.onClick.AddListener(() =>
-			{
-				imgTestGoal.gameObject.SetActive(false);
-				imgTestPrinciple.gameObject.SetActive(false);
-				imgTestDemand.gameObject.SetActive(true);
-				imgTestAssistance.gameObject.SetActive(false);
-			});
-			btnTestAssistance.onClick.AddListener(() =>
-			{
-				imgTestGoal.gameObject.SetActive(false);
-				imgTestPrinciple.gameObject.SetActive(false);
-				imgTestDemand.gameObject.SetActive(false);
-				imgTestAssistance.gameObject.SetActive(true);
-			});
+				int index = i;
+				togs[i].onValueChanged.AddListener(isOn =>{objs[index].SetActive(isOn);});
+			}
 			btnClosePanel.onClick.AddListener(() =>
 			{
 				UIKit.HidePanel<TestBriefPanel>();
-				if (IsFollow)
-				{
-					IsFollow = false;
-					UIKit.ShowPanel<HomeVisitContentPanel>();
-				}
 			});
 		}
 
@@ -59,15 +34,22 @@ namespace HomeVisit.UI
 
 		protected override void OnShow()
 		{
-			imgTestGoal.gameObject.SetActive(true);
-			imgTestAssistance.gameObject.SetActive(false);
-			imgTestPrinciple.gameObject.SetActive(false);
-			imgTestDemand.gameObject.SetActive(false);
+			togs[0].isOn = true;
+			objs[0].SetActive(true);
+			for (int i = 1; i < togs.Count; i++)
+			{
+				togs[i].isOn = false;
+				objs[i].SetActive(false);
+			}
 		}
 
 		protected override void OnHide()
 		{
-
+			if (IsFirst)
+			{
+				IsFirst = false;
+				UIKit.ShowPanel<GetInformationPanel>();
+			}
 		}
 
 		protected override void OnClose()

@@ -13,7 +13,7 @@ namespace HomeVisit.UI
 		[Header("输入的数据")]
 		public TMP_Dropdown dpDistrict;
 		public TMP_Dropdown dpPolicyType;
-		public TMP_InputField inputKeyword;
+		public InputField inputKeyword;
 		public TMP_Dropdown dpPeriod;
 
 		[Header("政策列表相关")]
@@ -37,7 +37,7 @@ namespace HomeVisit.UI
 			btnPrior.onClick.AddListener(Prior);
 			btnNext.onClick.AddListener(Next);
 			btnFindAll.onClick.AddListener(FindAll);
-			GetInfornationPanel panel = UIKit.GetPanel<GetInfornationPanel>();
+			GetInformationPanel panel = UIKit.GetPanel<GetInformationPanel>();
 			for (int i = 0; i < items.Count; i++)
 			{
 				PolicyItem item = items[i];

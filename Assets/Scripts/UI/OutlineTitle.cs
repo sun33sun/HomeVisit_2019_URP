@@ -77,14 +77,22 @@ namespace HomeVisit.UI
 		public bool GetExamResult()
 		{
 			bool isRIght = true;
-			for (int i = 0; i < selectedTogList.Count; i++)
+			if (selectedTogList.Count < 1)
 			{
-				if (selectedTogList[i].tog.isOn != mData.rightIndexs[i])
+				isRIght = false;
+			}
+			else
+			{
+				for (int i = 0; i < selectedTogList.Count; i++)
 				{
-					isRIght = false;
-					break;
+					if (selectedTogList[i].tog.isOn != mData.rightIndexs[i])
+					{
+						isRIght = false;
+						break;
+					}
 				}
 			}
+
 			return isRIght;
 		}
 
