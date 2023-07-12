@@ -128,7 +128,7 @@ namespace HomeVisit.Character
 		{
 			nowTarget = target;
 			transform.position = nowTarget.position;
-			anim.Play("SitDown");
+			anim.Play("坐下");
 			return new WaitUntil(OnSitDownCompleted);
 		}
 

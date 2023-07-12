@@ -30,7 +30,7 @@ namespace HomeVisit.Character
 		#region 走路
 		public WaitUntil Walk(Transform target)
 		{
-			anim.Play("Walk");
+			anim.Play("走路");
 			nowTarget = target;
 			agent.isStopped = false;
 			agent.SetDestination(nowTarget.position);
@@ -64,7 +64,7 @@ namespace HomeVisit.Character
 		#region 坐下
 		public WaitUntil SitDown(Transform target)
 		{
-			anim.Play("SitDown");
+			anim.Play("坐下");
 			nowTarget = target;
 			return new WaitUntil(OnSitDownCompleted);
 		}

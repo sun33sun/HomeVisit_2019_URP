@@ -85,6 +85,7 @@ namespace HomeVisit.Task
 			onVisitPanel.btnDialogue.gameObject.SetActive(false);
 			yield return RecordSpeech(new string[] { "挺好", "画" });
 			onVisitPanel.CloseRecord();
+			StudentMather.Instance.PlayAnim("鼓掌");
 			yield return FemaleTeacher.Instance.PlayAnim("鼓掌");
 			onVisitPanel.GenerateReportData("了解情况_展能力", 2);
 			//查细节
@@ -94,12 +95,12 @@ namespace HomeVisit.Task
 			StudentController.Instance.agent.enabled = true;
 			yield return StudentController.Instance.Walk(Interactive.Get("客厅坐位_学生").transform);
 			yield return StudentMather.Instance.SitDown(Interactive.Get("客厅坐位_母亲").transform);
-			yield return StudentFather.Instance.PlayAnim("SitDown");
+			yield return StudentFather.Instance.PlayAnim("坐下");
 			yield return StudentController.Instance.SitDown(Interactive.Get("客厅坐位_学生").transform);
 			yield return Interactive.Get<ObjColliderEvent>("女老师坐下的位置").AreaHighlight();
 			FemaleTeacher.Instance.canMove = false;
 			yield return FemaleTeacher.Instance.SitDown(Interactive.Get("客厅坐位_女老师").transform);
-			StudentController.Instance.PlayAnim("Naughty");
+			StudentController.Instance.PlayAnim("乱动水果");
 			yield return ObjHighlightClickCallBack(StudentController.Instance.gameObject, true);
 			yield return StartInputExam("<b>题目：</b>请输入学生的行为错在那些地方");
 			StudentController.Instance.StopAnim();
@@ -150,10 +151,10 @@ namespace HomeVisit.Task
 			mainPanel.NextStep();
 			mainPanel.NextTmp();
 			buttonPanel.tmpTip.text = "拒绝礼物并送学生钢笔";
-			StudentMather.Instance.PlayAnim("StandUp");
-			StudentFather.Instance.PlayAnim("StandUp");
+			StudentMather.Instance.PlayAnim("站起");
+			StudentFather.Instance.PlayAnim("站起");
 			yield return FemaleTeacher.Instance.StandUp();
-			yield return StudentFather.Instance.PlayAnim("GiveGift");
+			yield return StudentFather.Instance.PlayAnim("送礼");
 			yield return PlayAudio("父亲感谢老师", 4, "谢谢老师的指导，希望以后能在学校里多关注孩子");
 			yield return PlayAudio("父亲送礼", 4, "这是点小心意，还请务必收下");
 			onVisitPanel.btnDialogue.gameObject.SetActive(false);

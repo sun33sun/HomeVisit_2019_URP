@@ -21,10 +21,10 @@ namespace HomeVisit
 				switch (DateTime.Now.Ticks % 3)
 				{
 					case 0:
-						OldRandomScene = "ToBeDeveloped";
+						OldRandomScene = "ModelTest2";
 						break;
 					case 1:
-						OldRandomScene = "ToBeDeveloped";
+						OldRandomScene = "ModelTest2";
 						break;
 					case 2:
 						OldRandomScene = "ModelTest2";

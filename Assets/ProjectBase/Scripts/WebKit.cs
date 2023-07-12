@@ -30,15 +30,10 @@ namespace ProjectBase
 			callBack(t);
 		}
 
-		public IEnumerator Write(string path, object obj)
+		public void Write(string path, object obj)
 		{
 			string json = JsonConvert.SerializeObject(obj);
 			File.WriteAllText(path, json);
-			yield return null;
-			//UnityWebRequest request = UnityWebRequest(path, json);
-			//request.SetRequestHeader("Content-Type", "application/json;charset=utf-8");
-			//yield return request.SendWebRequest();
-			//Debug.Log("Error : " + request.error + "\t\t" + request.responseCode);
 		}
 	}
 }

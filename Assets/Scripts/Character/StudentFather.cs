@@ -28,7 +28,7 @@ namespace HomeVisit.Character
 		#region 坐下
 		public WaitUntil SitDown(Transform target)
 		{
-			anim.Play("SitDown");
+			anim.Play("坐下");
 			nowTarget = target;
 			return new WaitUntil(OnSitDownCompleted);
 		}
