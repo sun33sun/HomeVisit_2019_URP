@@ -5,17 +5,13 @@ using QFramework;
 
 namespace HomeVisit.UI
 {
-	// Generate Id:95c21738-d333-4d0e-b0da-3145ee19389f
+	// Generate Id:1f5879a4-e008-4682-9703-bd03bdb7e61e
 	public partial class GetInformationPanel
 	{
-		public const string Name = "GetInfornationPanel";
+		public const string Name = "GetInformationPanel";
 		
 		[SerializeField]
 		public EditTeachterInformation EditTeachterInformation;
-		[SerializeField]
-		public AdministratorList AdministratorList;
-		[SerializeField]
-		public ProcessOverview ProcessOverview;
 		[SerializeField]
 		public PolicyList PolicyList;
 		[SerializeField]
@@ -26,19 +22,26 @@ namespace HomeVisit.UI
 		public HomeVisit.UI.StudentList StudentList;
 		[SerializeField]
 		public StudentInformation StudentInformation;
+		[SerializeField]
+		public TipElement TipElement;
+		[SerializeField]
+		public RectTransform InformationSecurity;
+		[SerializeField]
+		public UnityEngine.UI.Button btnConfirmInformationSecurity;
 		
 		private GetInformationPanelData mPrivateData = null;
 		
 		protected override void ClearUIComponents()
 		{
 			EditTeachterInformation = null;
-			AdministratorList = null;
-			ProcessOverview = null;
 			PolicyList = null;
 			SchoolList = null;
 			ClassList = null;
 			StudentList = null;
 			StudentInformation = null;
+			TipElement = null;
+			InformationSecurity = null;
+			btnConfirmInformationSecurity = null;
 			
 			mData = null;
 		}

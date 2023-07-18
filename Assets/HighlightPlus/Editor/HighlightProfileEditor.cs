@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace HighlightPlus {
 
-    [CustomEditor(typeof(HighlightProfile))]
+    [UnityEditor.CustomEditor(typeof(HighlightProfile))]
     [CanEditMultipleObjects]
     public class HighlightProfileEditor : Editor {
 

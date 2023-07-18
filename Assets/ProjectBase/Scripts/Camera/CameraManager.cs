@@ -21,9 +21,9 @@ namespace ProjectBase
 
 
 		[SerializeField] Camera mainC;
-		[SerializeField] CinemachineVirtualCamera roamC = null;
-		[SerializeField] CinemachineVirtualCamera followC = null;
-		[SerializeField] CinemachineVirtualCamera thirdPersonC = null;
+		public CinemachineVirtualCamera roamC = null;
+		public CinemachineVirtualCamera followC = null;
+		public CinemachineVirtualCamera thirdPersonC = null;
 
 		//漫游相机的刚体
 		Rigidbody roamRig = null;
@@ -103,6 +103,14 @@ namespace ProjectBase
 
 
 		#region 按键响应事件
+		void MyUpdate()
+		{
+			if (EventSystem.current.IsPointerOverGameObject())
+			{
+				roamRig.velocity = Vector3.zero;
+			}
+		}
+
 		private void OnWDown()
 		{
 			if (!IsEnable)
@@ -175,7 +183,13 @@ namespace ProjectBase
 		{
 			if (!isRotate || !IsEnable)
 				return;
-			roamC.transform.RotateAround(roamC.transform.position, Vector3.up, vec2.x * rotateSpeed);
+			roamC.transform.rotation = Quaternion.AngleAxis(-vec2.y, roamC.transform.right) * Quaternion.AngleAxis(vec2.x, roamC.transform.up) * roamC.transform.rotation;
+			Vector3 euler = roamC.transform.localEulerAngles;
+			if (euler.z != 0)
+			{
+				euler.z = 0;
+				roamC.transform.localEulerAngles = euler;
+			}
 		}
 		private void OnLeftControlState()
 		{
@@ -232,25 +246,6 @@ namespace ProjectBase
 			}
 		}
 
-		public void Follow(Transform target)
-		{
-			if (target != null)
-			{
-				followC.Follow = target;
-				ActionKit.Delay(1, () =>
-				 {
-					 followC.Priority = 12;
-					 roamC.Priority = 11;
-				 });
-			}
-			else
-			{
-				followC.Follow = null;
-				roamC.Priority = 12;
-				followC.Priority = 11;
-			}
-		}
-
 
 		public void Reset()
 		{
@@ -292,13 +287,15 @@ namespace ProjectBase
 				roamC.Priority = 13;
 				thirdPersonC.Priority = 12;
 				followC.Priority = 11;
+				thirdPersonC.Follow = null;
 			}
 			else
 			{
-				thirdPersonC.transform.SetParent(target, false);
+				//thirdPersonC.transform.SetParent(target, false);
 				thirdPersonC.Priority = 13;
 				roamC.Priority = 12;
 				followC.Priority = 11;
+				thirdPersonC.Follow = target;
 			}
 		}
 
@@ -306,19 +303,32 @@ namespace ProjectBase
 		{
 			if (target == null)
 			{
-				thirdPersonC.transform.SetParent(transform, false);
+				//thirdPersonC.transform.SetParent(transform, false);
 				roamC.Priority = 13;
 				thirdPersonC.Priority = 12;
 				followC.Priority = 11;
+				thirdPersonC.Follow = null;
+				thirdPersonC.LookAt = null;
 			}
 			else
 			{
-				thirdPersonC.transform.SetParent(target, false);
+				//thirdPersonC.transform.SetParent(target, false);
 				thirdPersonC.Priority = 13;
 				roamC.Priority = 12;
 				followC.Priority = 11;
+				thirdPersonC.Follow = target;
+				thirdPersonC.LookAt = target;
 			}
 			return new WaitForSeconds(waitTime);
+		}
+
+		public void StartRoam(Transform source)
+		{
+			roamC.transform.position = source.position;
+			roamC.transform.rotation = source.rotation;
+			roamC.Priority = 13;
+			thirdPersonC.Priority = 12;
+			followC.Priority = 11;
 		}
 	}
 

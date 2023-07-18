@@ -22,8 +22,8 @@ namespace HomeVisit.UI
 		{
 			mData = uiData as RecordSheetPanelData ?? new RecordSheetPanelData();
 
-			btnClose.onClick.AddListener(UnloadOnVisit);
-			btnSubmit.onClick.AddListener(UnloadOnVisit);
+			btnClose.onClick.AddListener(Close);
+			btnSubmit.onClick.AddListener(Close);
 		}
 		
 		protected override void OnOpen(IUIData uiData = null)
@@ -43,19 +43,10 @@ namespace HomeVisit.UI
 		{
 		}
 
-		void UnloadOnVisit()
+		void Close()
 		{
-			StartCoroutine(UnloadOnVisitAsync());
-		}
-
-		IEnumerator UnloadOnVisitAsync()
-		{
-			TopPanel topPanel = UIKit.GetPanel<TopPanel>();
-			yield return topPanel.CloseEyeAnim();
-			AsyncOperation unload = SceneManager.UnloadSceneAsync(Settings.OldRandomScene);
-			yield return unload;
-			UIKit.GetPanel<MainPanel>().SetBK(false);
-			UIKit.ShowPanel<TestReportPanel>();
+			TestReportPanel testReportPanel = UIKit.GetPanel<TestReportPanel>();
+			testReportPanel.Show();
 			ScoreReportData data = new ScoreReportData()
 			{
 				title = "·Ãºó¼ÇÂ¼",
@@ -63,12 +54,9 @@ namespace HomeVisit.UI
 				endTime = DateTime.Now,
 				score = 2
 			};
-			UIKit.GetPanel<TestReportPanel>().CreateScoreReport(data);
-			MainPanel mainPanel = UIKit.GetPanel<MainPanel>();
-			mainPanel.SetBK(true);
-			mainPanel.ShowCompletedTip();
+			testReportPanel.CreateScoreReport(data);
+			UIKit.GetPanel<MainPanel>().ShowCompletedTip();
 			Hide();
-			topPanel.StartCoroutine(topPanel.OpenEyeAnim());
 		}
 	}
 }

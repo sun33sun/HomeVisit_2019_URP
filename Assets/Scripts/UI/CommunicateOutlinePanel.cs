@@ -63,7 +63,7 @@ namespace HomeVisit.UI
 			testReportPanel.CreateScoreReport(data);
 
 			//下一个页面
-			UIKit.OpenPanelAsync<ClothesPanel>().ToAction().Start(this);
+			UIKit.OpenPanelAsync<ClothesPanel>(prefabName: Settings.UI + QAssetBundle.Uiprefab.CLOTHESPANEL).ToAction().Start(this);
 			Hide();
 		}
 

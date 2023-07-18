@@ -6,7 +6,7 @@ using UnityEngine.Rendering.Universal;
 
 namespace HighlightPlus {
 
-    [CustomEditor(typeof(HighlightEffect))]
+    [UnityEditor.CustomEditor(typeof(HighlightEffect))]
     [CanEditMultipleObjects]
     public class HighlightEffectEditor : Editor {
 

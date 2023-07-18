@@ -121,7 +121,7 @@ namespace HomeVisit.UI
 			UIKit.GetPanel<TestReportPanel>().CreateScoreReport(data);
 
 			UIKit.GetPanel<MainPanel>().NextVisitStepPanel();
-			UIKit.OpenPanelAsync<OnVisitPanel>().ToAction().Start(this);
+			UIKit.OpenPanelAsync<OnVisitPanel>(prefabName:Settings.UI+QAssetBundle.Onvisitpanel_prefab.ONVISITPANEL).ToAction().Start(this);
 
 			Hide();
 		}

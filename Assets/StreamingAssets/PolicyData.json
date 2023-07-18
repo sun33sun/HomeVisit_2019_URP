@@ -1,1 +1,386 @@
-[{"strDistrict":"黄浦","strPolicyType":"区招生政策","strBanner":"黄浦区教育局关于2018年本区义务教育阶段学校招生","strPeriod":"小学/初中","DistrictConfirmType":0,"strPublishStatus":"正常"},{"strDistrict":"黄浦","strPolicyType":"幼升小对口","strBanner":"2018年黄浦区公办小学划区范围New","strPeriod":"小学","DistrictConfirmType":0,"strPublishStatus":"正常"},{"strDistrict":"黄浦","strPolicyType":"小升初对口","strBanner":"2018年黄浦区公办初中划区范围New","strPeriod":"初中","DistrictConfirmType":0,"strPublishStatus":"正常"},{"strDistrict":"徐汇","strPolicyType":"区招生政策","strBanner":"徐汇区教育局关于2018年本区义务教育阶段学校招生","strPeriod":"小学/初中","DistrictConfirmType":1,"strPublishStatus":"异常"},{"strDistrict":"徐汇","strPolicyType":"幼升小对口","strBanner":"2018年徐汇区公办小学划区范围New","strPeriod":"小学","DistrictConfirmType":1,"strPublishStatus":"异常"},{"strDistrict":"徐汇","strPolicyType":"小升初对口","strBanner":"2018年徐汇区公办初中划区范围New","strPeriod":"初中","DistrictConfirmType":1,"strPublishStatus":"异常"},{"strDistrict":"长宁","strPolicyType":"区招生政策","strBanner":"长宁区教育局关于2018年本区义务教育阶段学校招生","strPeriod":"小学/初中","DistrictConfirmType":0,"strPublishStatus":"正常"},{"strDistrict":"长宁","strPolicyType":"幼升小对口","strBanner":"2018年长宁区公办小学划区范围New","strPeriod":"小学","DistrictConfirmType":0,"strPublishStatus":"正常"},{"strDistrict":"长宁","strPolicyType":"小升初对口","strBanner":"2018年长宁区公办初中划区范围New","strPeriod":"初中","DistrictConfirmType":0,"strPublishStatus":"正常"},{"strDistrict":"静安","strPolicyType":"区招生政策","strBanner":"静安区教育局关于2018年本区义务教育阶段学校招生","strPeriod":"小学/初中","DistrictConfirmType":1,"strPublishStatus":"异常"},{"strDistrict":"静安","strPolicyType":"幼升小对口","strBanner":"2018年静安区公办小学划区范围New","strPeriod":"小学","DistrictConfirmType":1,"strPublishStatus":"异常"},{"strDistrict":"静安","strPolicyType":"小升初对口","strBanner":"2018年静安区公办初中划区范围New","strPeriod":"初中","DistrictConfirmType":1,"strPublishStatus":"异常"},{"strDistrict":"普陀","strPolicyType":"区招生政策","strBanner":"普陀区教育局关于2018年本区义务教育阶段学校招生","strPeriod":"小学/初中","DistrictConfirmType":0,"strPublishStatus":"正常"},{"strDistrict":"普陀","strPolicyType":"幼升小对口","strBanner":"2018年普陀区公办小学划区范围New","strPeriod":"小学","DistrictConfirmType":0,"strPublishStatus":"正常"},{"strDistrict":"普陀","strPolicyType":"小升初对口","strBanner":"2018年普陀区公办初中划区范围New","strPeriod":"初中","DistrictConfirmType":0,"strPublishStatus":"正常"},{"strDistrict":"虹口","strPolicyType":"区招生政策","strBanner":"虹口区教育局关于2018年本区义务教育阶段学校招生","strPeriod":"小学/初中","DistrictConfirmType":1,"strPublishStatus":"异常"},{"strDistrict":"虹口","strPolicyType":"幼升小对口","strBanner":"2018年虹口区公办小学划区范围New","strPeriod":"小学","DistrictConfirmType":1,"strPublishStatus":"异常"},{"strDistrict":"虹口","strPolicyType":"小升初对口","strBanner":"2018年虹口区公办初中划区范围New","strPeriod":"初中","DistrictConfirmType":1,"strPublishStatus":"异常"},{"strDistrict":"杨浦","strPolicyType":"区招生政策","strBanner":"杨浦区教育局关于2018年本区义务教育阶段学校招生","strPeriod":"小学/初中","DistrictConfirmType":0,"strPublishStatus":"正常"},{"strDistrict":"杨浦","strPolicyType":"幼升小对口","strBanner":"2018年杨浦区公办小学划区范围New","strPeriod":"小学","DistrictConfirmType":0,"strPublishStatus":"正常"},{"strDistrict":"杨浦","strPolicyType":"小升初对口","strBanner":"2018年杨浦区公办初中划区范围New","strPeriod":"初中","DistrictConfirmType":0,"strPublishStatus":"正常"},{"strDistrict":"闵行","strPolicyType":"区招生政策","strBanner":"闵行区教育局关于2018年本区义务教育阶段学校招生","strPeriod":"小学/初中","DistrictConfirmType":1,"strPublishStatus":"异常"},{"strDistrict":"闵行","strPolicyType":"幼升小对口","strBanner":"2018年闵行区公办小学划区范围New","strPeriod":"小学","DistrictConfirmType":1,"strPublishStatus":"异常"},{"strDistrict":"闵行","strPolicyType":"小升初对口","strBanner":"2018年闵行区公办初中划区范围New","strPeriod":"初中","DistrictConfirmType":1,"strPublishStatus":"异常"},{"strDistrict":"宝山","strPolicyType":"区招生政策","strBanner":"宝山区教育局关于2018年本区义务教育阶段学校招生","strPeriod":"小学/初中","DistrictConfirmType":0,"strPublishStatus":"正常"},{"strDistrict":"宝山","strPolicyType":"幼升小对口","strBanner":"2018年宝山区公办小学划区范围New","strPeriod":"小学","DistrictConfirmType":0,"strPublishStatus":"正常"},{"strDistrict":"宝山","strPolicyType":"小升初对口","strBanner":"2018年宝山区公办初中划区范围New","strPeriod":"初中","DistrictConfirmType":0,"strPublishStatus":"正常"},{"strDistrict":"嘉定","strPolicyType":"区招生政策","strBanner":"嘉定区教育局关于2018年本区义务教育阶段学校招生","strPeriod":"小学/初中","DistrictConfirmType":1,"strPublishStatus":"异常"},{"strDistrict":"嘉定","strPolicyType":"幼升小对口","strBanner":"2018年嘉定区公办小学划区范围New","strPeriod":"小学","DistrictConfirmType":1,"strPublishStatus":"异常"},{"strDistrict":"嘉定","strPolicyType":"小升初对口","strBanner":"2018年嘉定区公办初中划区范围New","strPeriod":"初中","DistrictConfirmType":1,"strPublishStatus":"异常"},{"strDistrict":"浦东新区","strPolicyType":"区招生政策","strBanner":"浦东新区教育局关于2018年本区义务教育阶段学校招生","strPeriod":"小学/初中","DistrictConfirmType":0,"strPublishStatus":"正常"},{"strDistrict":"浦东新区","strPolicyType":"幼升小对口","strBanner":"2018年浦东新区公办小学划区范围New","strPeriod":"小学","DistrictConfirmType":0,"strPublishStatus":"正常"},{"strDistrict":"浦东新区","strPolicyType":"小升初对口","strBanner":"2018年浦东新区公办初中划区范围New","strPeriod":"初中","DistrictConfirmType":0,"strPublishStatus":"正常"},{"strDistrict":"金山","strPolicyType":"区招生政策","strBanner":"金山区教育局关于2018年本区义务教育阶段学校招生","strPeriod":"小学/初中","DistrictConfirmType":1,"strPublishStatus":"异常"},{"strDistrict":"金山","strPolicyType":"幼升小对口","strBanner":"2018年金山区公办小学划区范围New","strPeriod":"小学","DistrictConfirmType":1,"strPublishStatus":"异常"},{"strDistrict":"金山","strPolicyType":"小升初对口","strBanner":"2018年金山区公办初中划区范围New","strPeriod":"初中","DistrictConfirmType":1,"strPublishStatus":"异常"},{"strDistrict":"松江","strPolicyType":"区招生政策","strBanner":"松江区教育局关于2018年本区义务教育阶段学校招生","strPeriod":"小学/初中","DistrictConfirmType":0,"strPublishStatus":"正常"},{"strDistrict":"松江","strPolicyType":"幼升小对口","strBanner":"2018年松江区公办小学划区范围New","strPeriod":"小学","DistrictConfirmType":0,"strPublishStatus":"正常"},{"strDistrict":"松江","strPolicyType":"小升初对口","strBanner":"2018年松江区公办初中划区范围New","strPeriod":"初中","DistrictConfirmType":0,"strPublishStatus":"正常"},{"strDistrict":"青浦","strPolicyType":"区招生政策","strBanner":"青浦区教育局关于2018年本区义务教育阶段学校招生","strPeriod":"小学/初中","DistrictConfirmType":1,"strPublishStatus":"异常"},{"strDistrict":"青浦","strPolicyType":"幼升小对口","strBanner":"2018年青浦区公办小学划区范围New","strPeriod":"小学","DistrictConfirmType":1,"strPublishStatus":"异常"},{"strDistrict":"青浦","strPolicyType":"小升初对口","strBanner":"2018年青浦区公办初中划区范围New","strPeriod":"初中","DistrictConfirmType":1,"strPublishStatus":"异常"},{"strDistrict":"奉贤","strPolicyType":"区招生政策","strBanner":"奉贤区教育局关于2018年本区义务教育阶段学校招生","strPeriod":"小学/初中","DistrictConfirmType":0,"strPublishStatus":"正常"},{"strDistrict":"奉贤","strPolicyType":"幼升小对口","strBanner":"2018年奉贤区公办小学划区范围New","strPeriod":"小学","DistrictConfirmType":0,"strPublishStatus":"正常"},{"strDistrict":"奉贤","strPolicyType":"小升初对口","strBanner":"2018年奉贤区公办初中划区范围New","strPeriod":"初中","DistrictConfirmType":0,"strPublishStatus":"正常"},{"strDistrict":"崇明","strPolicyType":"区招生政策","strBanner":"崇明区教育局关于2018年本区义务教育阶段学校招生","strPeriod":"小学/初中","DistrictConfirmType":1,"strPublishStatus":"异常"},{"strDistrict":"崇明","strPolicyType":"幼升小对口","strBanner":"2018年崇明区公办小学划区范围New","strPeriod":"小学","DistrictConfirmType":1,"strPublishStatus":"异常"},{"strDistrict":"崇明","strPolicyType":"小升初对口","strBanner":"2018年崇明区公办初中划区范围New","strPeriod":"初中","DistrictConfirmType":1,"strPublishStatus":"异常"}]
+[
+	{
+		"strDistrict": "黄浦",
+		"strPolicyType": "区招生政策",
+		"strBanner": "黄浦区教育局关于2018年本区义务教育阶段学校招生",
+		"strPeriod": "小学/初中",
+		"DistrictConfirmType": 0,
+		"strPublishStatus": "正常"
+	},
+	{
+		"strDistrict": "黄浦",
+		"strPolicyType": "幼升小对口",
+		"strBanner": "2018年黄浦区公办小学划区范围New",
+		"strPeriod": "小学",
+		"DistrictConfirmType": 0,
+		"strPublishStatus": "正常"
+	},
+	{
+		"strDistrict": "黄浦",
+		"strPolicyType": "小升初对口",
+		"strBanner": "2018年黄浦区公办初中划区范围New",
+		"strPeriod": "初中",
+		"DistrictConfirmType": 0,
+		"strPublishStatus": "正常"
+	},
+	{
+		"strDistrict": "徐汇",
+		"strPolicyType": "区招生政策",
+		"strBanner": "徐汇区教育局关于2018年本区义务教育阶段学校招生",
+		"strPeriod": "小学/初中",
+		"DistrictConfirmType": 1,
+		"strPublishStatus": "异常"
+	},
+	{
+		"strDistrict": "徐汇",
+		"strPolicyType": "幼升小对口",
+		"strBanner": "2018年徐汇区公办小学划区范围New",
+		"strPeriod": "小学",
+		"DistrictConfirmType": 1,
+		"strPublishStatus": "异常"
+	},
+	{
+		"strDistrict": "徐汇",
+		"strPolicyType": "小升初对口",
+		"strBanner": "2018年徐汇区公办初中划区范围New",
+		"strPeriod": "初中",
+		"DistrictConfirmType": 1,
+		"strPublishStatus": "异常"
+	},
+	{
+		"strDistrict": "长宁",
+		"strPolicyType": "区招生政策",
+		"strBanner": "长宁区教育局关于2018年本区义务教育阶段学校招生",
+		"strPeriod": "小学/初中",
+		"DistrictConfirmType": 0,
+		"strPublishStatus": "正常"
+	},
+	{
+		"strDistrict": "长宁",
+		"strPolicyType": "幼升小对口",
+		"strBanner": "2018年长宁区公办小学划区范围New",
+		"strPeriod": "小学",
+		"DistrictConfirmType": 0,
+		"strPublishStatus": "正常"
+	},
+	{
+		"strDistrict": "长宁",
+		"strPolicyType": "小升初对口",
+		"strBanner": "2018年长宁区公办初中划区范围New",
+		"strPeriod": "初中",
+		"DistrictConfirmType": 0,
+		"strPublishStatus": "正常"
+	},
+	{
+		"strDistrict": "静安",
+		"strPolicyType": "区招生政策",
+		"strBanner": "静安区教育局关于2018年本区义务教育阶段学校招生",
+		"strPeriod": "小学/初中",
+		"DistrictConfirmType": 1,
+		"strPublishStatus": "异常"
+	},
+	{
+		"strDistrict": "静安",
+		"strPolicyType": "幼升小对口",
+		"strBanner": "2018年静安区公办小学划区范围New",
+		"strPeriod": "小学",
+		"DistrictConfirmType": 1,
+		"strPublishStatus": "异常"
+	},
+	{
+		"strDistrict": "静安",
+		"strPolicyType": "小升初对口",
+		"strBanner": "2018年静安区公办初中划区范围New",
+		"strPeriod": "初中",
+		"DistrictConfirmType": 1,
+		"strPublishStatus": "异常"
+	},
+	{
+		"strDistrict": "普陀",
+		"strPolicyType": "区招生政策",
+		"strBanner": "普陀区教育局关于2018年本区义务教育阶段学校招生",
+		"strPeriod": "小学/初中",
+		"DistrictConfirmType": 0,
+		"strPublishStatus": "正常"
+	},
+	{
+		"strDistrict": "普陀",
+		"strPolicyType": "幼升小对口",
+		"strBanner": "2018年普陀区公办小学划区范围New",
+		"strPeriod": "小学",
+		"DistrictConfirmType": 0,
+		"strPublishStatus": "正常"
+	},
+	{
+		"strDistrict": "普陀",
+		"strPolicyType": "小升初对口",
+		"strBanner": "2018年普陀区公办初中划区范围New",
+		"strPeriod": "初中",
+		"DistrictConfirmType": 0,
+		"strPublishStatus": "正常"
+	},
+	{
+		"strDistrict": "虹口",
+		"strPolicyType": "区招生政策",
+		"strBanner": "虹口区教育局关于2018年本区义务教育阶段学校招生",
+		"strPeriod": "小学/初中",
+		"DistrictConfirmType": 1,
+		"strPublishStatus": "异常"
+	},
+	{
+		"strDistrict": "虹口",
+		"strPolicyType": "幼升小对口",
+		"strBanner": "2018年虹口区公办小学划区范围New",
+		"strPeriod": "小学",
+		"DistrictConfirmType": 1,
+		"strPublishStatus": "异常"
+	},
+	{
+		"strDistrict": "虹口",
+		"strPolicyType": "小升初对口",
+		"strBanner": "2018年虹口区公办初中划区范围New",
+		"strPeriod": "初中",
+		"DistrictConfirmType": 1,
+		"strPublishStatus": "异常"
+	},
+	{
+		"strDistrict": "杨浦",
+		"strPolicyType": "区招生政策",
+		"strBanner": "杨浦区教育局关于2018年本区义务教育阶段学校招生",
+		"strPeriod": "小学/初中",
+		"DistrictConfirmType": 0,
+		"strPublishStatus": "正常"
+	},
+	{
+		"strDistrict": "杨浦",
+		"strPolicyType": "幼升小对口",
+		"strBanner": "2018年杨浦区公办小学划区范围New",
+		"strPeriod": "小学",
+		"DistrictConfirmType": 0,
+		"strPublishStatus": "正常"
+	},
+	{
+		"strDistrict": "杨浦",
+		"strPolicyType": "小升初对口",
+		"strBanner": "2018年杨浦区公办初中划区范围New",
+		"strPeriod": "初中",
+		"DistrictConfirmType": 0,
+		"strPublishStatus": "正常"
+	},
+	{
+		"strDistrict": "闵行",
+		"strPolicyType": "区招生政策",
+		"strBanner": "闵行区教育局关于2018年本区义务教育阶段学校招生",
+		"strPeriod": "小学/初中",
+		"DistrictConfirmType": 1,
+		"strPublishStatus": "异常"
+	},
+	{
+		"strDistrict": "闵行",
+		"strPolicyType": "幼升小对口",
+		"strBanner": "2018年闵行区公办小学划区范围New",
+		"strPeriod": "小学",
+		"DistrictConfirmType": 1,
+		"strPublishStatus": "异常"
+	},
+	{
+		"strDistrict": "闵行",
+		"strPolicyType": "小升初对口",
+		"strBanner": "2018年闵行区公办初中划区范围New",
+		"strPeriod": "初中",
+		"DistrictConfirmType": 1,
+		"strPublishStatus": "异常"
+	},
+	{
+		"strDistrict": "宝山",
+		"strPolicyType": "区招生政策",
+		"strBanner": "宝山区教育局关于2018年本区义务教育阶段学校招生",
+		"strPeriod": "小学/初中",
+		"DistrictConfirmType": 0,
+		"strPublishStatus": "正常"
+	},
+	{
+		"strDistrict": "宝山",
+		"strPolicyType": "幼升小对口",
+		"strBanner": "2018年宝山区公办小学划区范围New",
+		"strPeriod": "小学",
+		"DistrictConfirmType": 0,
+		"strPublishStatus": "正常"
+	},
+	{
+		"strDistrict": "宝山",
+		"strPolicyType": "小升初对口",
+		"strBanner": "2018年宝山区公办初中划区范围New",
+		"strPeriod": "初中",
+		"DistrictConfirmType": 0,
+		"strPublishStatus": "正常"
+	},
+	{
+		"strDistrict": "嘉定",
+		"strPolicyType": "区招生政策",
+		"strBanner": "嘉定区教育局关于2018年本区义务教育阶段学校招生",
+		"strPeriod": "小学/初中",
+		"DistrictConfirmType": 1,
+		"strPublishStatus": "异常"
+	},
+	{
+		"strDistrict": "嘉定",
+		"strPolicyType": "幼升小对口",
+		"strBanner": "2018年嘉定区公办小学划区范围New",
+		"strPeriod": "小学",
+		"DistrictConfirmType": 1,
+		"strPublishStatus": "异常"
+	},
+	{
+		"strDistrict": "嘉定",
+		"strPolicyType": "小升初对口",
+		"strBanner": "2018年嘉定区公办初中划区范围New",
+		"strPeriod": "初中",
+		"DistrictConfirmType": 1,
+		"strPublishStatus": "异常"
+	},
+	{
+		"strDistrict": "浦东新区",
+		"strPolicyType": "区招生政策",
+		"strBanner": "浦东新区教育局关于2018年本区义务教育阶段学校招生",
+		"strPeriod": "小学/初中",
+		"DistrictConfirmType": 0,
+		"strPublishStatus": "正常"
+	},
+	{
+		"strDistrict": "浦东新区",
+		"strPolicyType": "幼升小对口",
+		"strBanner": "2018年浦东新区公办小学划区范围New",
+		"strPeriod": "小学",
+		"DistrictConfirmType": 0,
+		"strPublishStatus": "正常"
+	},
+	{
+		"strDistrict": "浦东新区",
+		"strPolicyType": "小升初对口",
+		"strBanner": "2018年浦东新区公办初中划区范围New",
+		"strPeriod": "初中",
+		"DistrictConfirmType": 0,
+		"strPublishStatus": "正常"
+	},
+	{
+		"strDistrict": "金山",
+		"strPolicyType": "区招生政策",
+		"strBanner": "金山区教育局关于2018年本区义务教育阶段学校招生",
+		"strPeriod": "小学/初中",
+		"DistrictConfirmType": 1,
+		"strPublishStatus": "异常"
+	},
+	{
+		"strDistrict": "金山",
+		"strPolicyType": "幼升小对口",
+		"strBanner": "2018年金山区公办小学划区范围New",
+		"strPeriod": "小学",
+		"DistrictConfirmType": 1,
+		"strPublishStatus": "异常"
+	},
+	{
+		"strDistrict": "金山",
+		"strPolicyType": "小升初对口",
+		"strBanner": "2018年金山区公办初中划区范围New",
+		"strPeriod": "初中",
+		"DistrictConfirmType": 1,
+		"strPublishStatus": "异常"
+	},
+	{
+		"strDistrict": "松江",
+		"strPolicyType": "区招生政策",
+		"strBanner": "松江区教育局关于2018年本区义务教育阶段学校招生",
+		"strPeriod": "小学/初中",
+		"DistrictConfirmType": 0,
+		"strPublishStatus": "正常"
+	},
+	{
+		"strDistrict": "松江",
+		"strPolicyType": "幼升小对口",
+		"strBanner": "2018年松江区公办小学划区范围New",
+		"strPeriod": "小学",
+		"DistrictConfirmType": 0,
+		"strPublishStatus": "正常"
+	},
+	{
+		"strDistrict": "松江",
+		"strPolicyType": "小升初对口",
+		"strBanner": "2018年松江区公办初中划区范围New",
+		"strPeriod": "初中",
+		"DistrictConfirmType": 0,
+		"strPublishStatus": "正常"
+	},
+	{
+		"strDistrict": "青浦",
+		"strPolicyType": "区招生政策",
+		"strBanner": "青浦区教育局关于2018年本区义务教育阶段学校招生",
+		"strPeriod": "小学/初中",
+		"DistrictConfirmType": 1,
+		"strPublishStatus": "异常"
+	},
+	{
+		"strDistrict": "青浦",
+		"strPolicyType": "幼升小对口",
+		"strBanner": "2018年青浦区公办小学划区范围New",
+		"strPeriod": "小学",
+		"DistrictConfirmType": 1,
+		"strPublishStatus": "异常"
+	},
+	{
+		"strDistrict": "青浦",
+		"strPolicyType": "小升初对口",
+		"strBanner": "2018年青浦区公办初中划区范围New",
+		"strPeriod": "初中",
+		"DistrictConfirmType": 1,
+		"strPublishStatus": "异常"
+	},
+	{
+		"strDistrict": "奉贤",
+		"strPolicyType": "区招生政策",
+		"strBanner": "奉贤区教育局关于2018年本区义务教育阶段学校招生",
+		"strPeriod": "小学/初中",
+		"DistrictConfirmType": 0,
+		"strPublishStatus": "正常"
+	},
+	{
+		"strDistrict": "奉贤",
+		"strPolicyType": "幼升小对口",
+		"strBanner": "2018年奉贤区公办小学划区范围New",
+		"strPeriod": "小学",
+		"DistrictConfirmType": 0,
+		"strPublishStatus": "正常"
+	},
+	{
+		"strDistrict": "奉贤",
+		"strPolicyType": "小升初对口",
+		"strBanner": "2018年奉贤区公办初中划区范围New",
+		"strPeriod": "初中",
+		"DistrictConfirmType": 0,
+		"strPublishStatus": "正常"
+	},
+	{
+		"strDistrict": "崇明",
+		"strPolicyType": "区招生政策",
+		"strBanner": "崇明区教育局关于2018年本区义务教育阶段学校招生",
+		"strPeriod": "小学/初中",
+		"DistrictConfirmType": 1,
+		"strPublishStatus": "异常"
+	},
+	{
+		"strDistrict": "崇明",
+		"strPolicyType": "幼升小对口",
+		"strBanner": "2018年崇明区公办小学划区范围New",
+		"strPeriod": "小学",
+		"DistrictConfirmType": 1,
+		"strPublishStatus": "异常"
+	},
+	{
+		"strDistrict": "崇明",
+		"strPolicyType": "小升初对口",
+		"strBanner": "2018年崇明区公办初中划区范围New",
+		"strPeriod": "初中",
+		"DistrictConfirmType": 1,
+		"strPublishStatus": "异常"
+	}
+]

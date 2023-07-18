@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace ProjectBase
 {
@@ -8,6 +9,7 @@ namespace ProjectBase
 	{
 		public UnityAction OnDoubleClick;
 		public bool isDoubleClick = false;
+
 		public void OnPointerClick(PointerEventData eventData)
 		{
 			if (eventData.button != PointerEventData.InputButton.Left)

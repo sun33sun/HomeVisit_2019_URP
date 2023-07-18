@@ -10,16 +10,17 @@ namespace HomeVisit.UI
 {
 	public class StudentList : MonoBehaviour
 	{
+		[Header("老师信息")]
+		public TextMeshProUGUI tmpTeacher;
 		[Header("输入的数据")]
-		//public TMP_Dropdown dpGrade;
 		public InputField inputKeyword;
 		public InputField inputStudentID;
 		public TMP_Dropdown dpBoarding;
 
 		[Header("政策列表相关")]
 		public List<StudentItem> items = new List<StudentItem>();
-		public List<StudentData> datas;
-		List<StudentData> nowDatas;
+		public List<NewStudentData> datas;
+		List<NewStudentData> nowDatas;
 		public int pageIndex;
 		[Header("功能按钮")]
 		public Button btnFindAll;
@@ -28,27 +29,34 @@ namespace HomeVisit.UI
 
 		private void Start()
 		{
-			StartCoroutine(WebKit.GetInstance().Read<List<StudentData>>(Application.streamingAssetsPath + "/StudentData.json", datas =>
+			StartCoroutine(WebKit.GetInstance().Read<List<NewStudentData>>(Application.streamingAssetsPath + "/NewStudentData.json", datas =>
 			{
+				GetInformationPanel panel = UIKit.GetPanel<GetInformationPanel>();
 				this.datas = datas;
 				nowDatas = datas;
 				LoadItemsData();
-			}));
-			btnPrior.onClick.AddListener(Prior);
-			btnNext.onClick.AddListener(Next);
-			btnFindAll.onClick.AddListener(FindAll);
-			for (int i = 0; i < items.Count; i++)
-			{
-				StudentItem item = items[i];
-				item.GetComponent<Button>().onClick.AddListener(() =>
+				btnPrior.onClick.AddListener(Prior);
+				btnNext.onClick.AddListener(Next);
+				btnFindAll.onClick.AddListener(FindAll);
+				btnFindAll.interactable = true;
+				btnNext.interactable = true;
+				btnPrior.interactable = true;
+				for (int i = 0; i < items.Count; i++)
 				{
-					gameObject.SetActive(false);
-					StudentInformation information = UIKit.GetPanel<GetInformationPanel>().StudentInformation;
-					information.gameObject.SetActive(true);
-					gameObject.SetActive(false);
-					information.InitData(item.mData);
-				});
-			}
+					StudentItem item = items[i];
+					Button btn = item.GetComponent<Button>();
+					btn.onClick.AddListener(() =>
+					{
+						panel.InformationSecurity.gameObject.SetActive(true);
+						StudentInformation information = panel.StudentInformation;
+						information.gameObject.SetActive(true);
+						information.InitData(item.mData);
+						gameObject.SetActive(false);
+					});
+					btn.interactable = true;
+				}
+			}));
+			
 		}
 
 		void Prior()
@@ -89,9 +97,8 @@ namespace HomeVisit.UI
 		void FindAll()
 		{
 			nowDatas = datas.FindAll(data =>
-				(inputKeyword.text == "" || data.strStudentName.Contains(inputKeyword.text)) &&
-				(inputStudentID.text == "" || data.StudentID == int.Parse(inputStudentID.text)) &&
-				data.Boarding == dpBoarding.value
+				(inputKeyword.text == "" || data.name.Contains(inputKeyword.text)) &&
+				(inputStudentID.text == "" || data.id == inputStudentID.text)
 			);
 			pageIndex = 0;
 			LoadItemsData();

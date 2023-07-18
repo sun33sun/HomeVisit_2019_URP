@@ -10,6 +10,8 @@ namespace HomeVisit.UI
 {
 	public class PolicyList : MonoBehaviour
 	{
+		[Header("老师信息")]
+		public TextMeshProUGUI tmpTeacher;
 		[Header("输入的数据")]
 		public TMP_Dropdown dpDistrict;
 		public TMP_Dropdown dpPolicyType;
@@ -30,23 +32,37 @@ namespace HomeVisit.UI
 		{
 			StartCoroutine(WebKit.GetInstance().Read<List<PolicyData>>(Application.streamingAssetsPath + "/PolicyData.json", datas =>
 			{
+				GetInformationPanel panel = UIKit.GetPanel<GetInformationPanel>();
 				this.datas = datas;
-				nowDatas = datas;
+				nowDatas = this.datas;
 				LoadItemsData();
-			}));
-			btnPrior.onClick.AddListener(Prior);
-			btnNext.onClick.AddListener(Next);
-			btnFindAll.onClick.AddListener(FindAll);
-			GetInformationPanel panel = UIKit.GetPanel<GetInformationPanel>();
-			for (int i = 0; i < items.Count; i++)
-			{
-				PolicyItem item = items[i];
-				item.GetComponent<Button>().onClick.AddListener(() =>
+				btnPrior.onClick.AddListener(Prior);
+				btnNext.onClick.AddListener(Next);
+				btnFindAll.onClick.AddListener(FindAll);
+				btnFindAll.interactable = true;
+				btnNext.interactable = true;
+				btnPrior.interactable = true;
+				for (int i = 0; i < items.Count; i++)
 				{
-					gameObject.SetActive(false);
-					panel.SchoolList.gameObject.SetActive(true);
-				});
-			}
+					PolicyItem item = items[i];
+					Button btn = item.GetComponent<Button>();
+					btn.onClick.AddListener(() =>
+					{
+						if (item.tmpDistrict.text != panel.nowTeacherData.strDistrict)
+						{
+							panel.TipElement.Show();
+							return;
+						}
+						gameObject.SetActive(false);
+						panel.SchoolList.gameObject.SetActive(true);
+					});
+					btn.interactable = true;
+				}
+
+				//重写
+				//List<PolicyData> newDatas = datas.FindAll(d=>d.)
+			}));
+
 		}
 
 		void Prior()

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using HomeVisit.Character;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Interactive : MonoBehaviour

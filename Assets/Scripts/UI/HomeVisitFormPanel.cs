@@ -56,7 +56,7 @@ namespace HomeVisit.UI
 			UIKit.GetPanel<TestReportPanel>().CreateScoreReport(data);
 			//µ÷ÕûUI
 			if (routePanel == null)
-				UIKit.OpenPanelAsync<HomeVisitRoutePanel>().ToAction().Start(this, () => { routePanel = UIKit.GetPanel<HomeVisitRoutePanel>(); });
+				UIKit.OpenPanelAsync<HomeVisitRoutePanel>(prefabName:Settings.UI + QAssetBundle.Homevisitroutepanel_prefab.HOMEVISITROUTEPANEL).ToAction().Start(this, () => { routePanel = UIKit.GetPanel<HomeVisitRoutePanel>(); });
 			else
 				UIKit.ShowPanel<HomeVisitRoutePanel>();
 			Hide();
@@ -87,7 +87,7 @@ namespace HomeVisit.UI
 		void SubmitForm()
 		{
 			if (routePanel == null)
-				UIKit.OpenPanelAsync<HomeVisitRoutePanel>().ToAction().Start(this, () => { routePanel = UIKit.GetPanel<HomeVisitRoutePanel>(); });
+				UIKit.OpenPanelAsync<HomeVisitRoutePanel>(prefabName: Settings.UI + QAssetBundle.Homevisitroutepanel_prefab.HOMEVISITROUTEPANEL).ToAction().Start(this, () => { routePanel = UIKit.GetPanel<HomeVisitRoutePanel>(); });
 			else
 				UIKit.ShowPanel<HomeVisitRoutePanel>();
 			Hide();

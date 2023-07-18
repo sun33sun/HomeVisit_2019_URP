@@ -4,7 +4,7 @@ using UnityEditor;
 
 namespace HomeVisit.UI
 {
-	[CustomEditor(typeof(MyScrollRect), true)]
+	[UnityEditor.CustomEditor(typeof(MyScrollRect), true)]
 	[CanEditMultipleObjects]
 	public class MyScrollRectEditor : ScrollRectEditor
 	{

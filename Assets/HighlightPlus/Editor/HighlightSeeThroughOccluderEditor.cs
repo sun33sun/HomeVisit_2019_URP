@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace HighlightPlus {
 	
-	[CustomEditor (typeof(HighlightSeeThroughOccluder))]
+	[UnityEditor.CustomEditor (typeof(HighlightSeeThroughOccluder))]
 	public class HighlightSeeThroughOccluderEditor : Editor {
         public override void OnInspectorGUI () {
 			EditorGUILayout.Separator ();

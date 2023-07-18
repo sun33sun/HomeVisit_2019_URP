@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace HighlightPlus {
-    [CustomEditor(typeof(HighlightTrigger))]
+    [UnityEditor.CustomEditor(typeof(HighlightTrigger))]
     public class HighlightTriggerEditor : Editor {
 
         SerializedProperty highlightOnHover, triggerMode, raycastCamera, raycastSource, minDistance, maxDistance, respectUI, volumeLayerMask;

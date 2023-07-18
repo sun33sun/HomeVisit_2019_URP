@@ -11,16 +11,6 @@
 namespace QAssetBundle
 {
     
-    public class Buttonpanel_prefab
-    {
-        public const string BundleName = "buttonpanel_prefab";
-        public const string TOPPANEL = "TopPanel";
-    }
-    public class Clothespanel_prefab
-    {
-        public const string BundleName = "clothespanel_prefab";
-        public const string CLOTHESPANEL = "ClothesPanel";
-    }
     public class Communicateoutlinepanel_prefab
     {
         public const string BundleName = "communicateoutlinepanel_prefab";
@@ -96,8 +86,14 @@ namespace QAssetBundle
         public const string SINGLETITLE = "SingleTitle";
         public const string TOGOUTLINE = "TogOutline";
     }
+    public class Toppanel_prefab
+    {
+        public const string BundleName = "toppanel_prefab";
+        public const string TOPPANEL = "TopPanel";
+    }
     public class Uiprefab
     {
         public const string BundleName = "uiprefab";
+        public const string CLOTHESPANEL = "ClothesPanel";
     }
 }

@@ -5,7 +5,7 @@ using QFramework;
 
 namespace HomeVisit.UI
 {
-	// Generate Id:af1e21e5-b93a-4efa-b911-fd4a054ed31b
+	// Generate Id:3698c988-ca16-4897-8ad9-6f7b08c7de94
 	public partial class OnVisitPanel
 	{
 		public const string Name = "OnVisitPanel";
@@ -33,13 +33,7 @@ namespace HomeVisit.UI
 		[SerializeField]
 		public UnityEngine.UI.Button btnEndRecord;
 		[SerializeField]
-		public TMPro.TextMeshProUGUI tmpSpeakText;
-		[SerializeField]
 		public UnityEngine.UI.Image imgPostSpeak;
-		[SerializeField]
-		public UnityEngine.UI.Button btnPlayRecord;
-		[SerializeField]
-		public TMPro.TextMeshProUGUI tmpPostText;
 		[SerializeField]
 		public UnityEngine.UI.Button btnReRecord;
 		[SerializeField]
@@ -66,6 +60,22 @@ namespace HomeVisit.UI
 		public UnityEngine.UI.Image imgGratitudeTip;
 		[SerializeField]
 		public UnityEngine.UI.Button btnConfirmGratitudeTip;
+		[SerializeField]
+		public UnityEngine.UI.Button btnSwitchHistoryDialogueList;
+		[SerializeField]
+		public UnityEngine.UI.Button btnScreenshot;
+		[SerializeField]
+		public UnityEngine.UI.Button btnShowScreenshot;
+		[SerializeField]
+		public HomeVisit.UI.MyScrollRect imgHistoryDialogueList;
+		[SerializeField]
+		public UnityEngine.UI.Button btnCloseHistoryDialogueList;
+		[SerializeField]
+		public UnityEngine.UI.Image imgScreenshot;
+		[SerializeField]
+		public UnityEngine.UI.Button btnCloseScreenshot;
+		[SerializeField]
+		public UnityEngine.UI.RawImage rawImgScreenshot;
 		
 		private OnVisitPanelData mPrivateData = null;
 		
@@ -82,10 +92,7 @@ namespace HomeVisit.UI
 			imgState = null;
 			imgFillWave = null;
 			btnEndRecord = null;
-			tmpSpeakText = null;
 			imgPostSpeak = null;
-			btnPlayRecord = null;
-			tmpPostText = null;
 			btnReRecord = null;
 			btnConfirmRecord = null;
 			imgExpressGratitude = null;
@@ -99,6 +106,14 @@ namespace HomeVisit.UI
 			btnSubmitOnVisit = null;
 			imgGratitudeTip = null;
 			btnConfirmGratitudeTip = null;
+			btnSwitchHistoryDialogueList = null;
+			btnScreenshot = null;
+			btnShowScreenshot = null;
+			imgHistoryDialogueList = null;
+			btnCloseHistoryDialogueList = null;
+			imgScreenshot = null;
+			btnCloseScreenshot = null;
+			rawImgScreenshot = null;
 			
 			mData = null;
 		}

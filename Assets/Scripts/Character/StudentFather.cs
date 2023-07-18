@@ -8,40 +8,33 @@ namespace HomeVisit.Character
 {
     public class StudentFather : SingletonMono<StudentFather>
     {
-        public Animation anim;
+        public Animator anim;
 
 		Transform nowTarget;
-		public bool CheckAnim()
+		public IEnumerator PlayAnim(string clipName,bool once = true)
 		{
-			return anim.isPlaying;
-		}
-		public WaitUntil PlayAnim(string clipName)
-		{
-			if (anim[clipName] == null)
-			{
-				print("播放 : " + clipName);
-				return null;
-			}
-			return AnimationManager.GetInstance().Play(anim, clipName);
+			yield return AnimationManager.GetInstance().Play(anim, clipName);
+			if(once)
+				anim.Play("站立");
 		}
 
 		#region 坐下
-		public WaitUntil SitDown(Transform target)
+		public IEnumerator SitDown(Transform target)
 		{
-			anim.Play("坐下");
 			nowTarget = target;
-			return new WaitUntil(OnSitDownCompleted);
-		}
-		bool OnSitDownCompleted()
-		{
-			if (!anim.isPlaying)
-			{
-				transform.position = nowTarget.position;
-				transform.rotation = nowTarget.rotation;
-			}
-			return anim.isPlaying;
+			transform.position = nowTarget.position;
+			transform.forward = nowTarget.forward;
+			yield return PlayAnim("坐下",false);
+			transform.position = nowTarget.position;
+			transform.forward = nowTarget.forward;
 		}
 		#endregion
+
+		public void SetTransform(Transform newTrans)
+		{
+			transform.position = newTrans.position;
+			transform.forward = newTrans.forward;
+		}
 	}
 }
 

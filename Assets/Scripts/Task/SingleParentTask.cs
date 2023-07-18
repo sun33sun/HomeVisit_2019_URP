@@ -17,7 +17,7 @@ namespace HomeVisit.Task
 
 		OnVisitPanel onVisitPanel = null;
 		MainPanel mainPanel = null;
-		TopPanel buttonPanel = null;
+		TopPanel topPanel = null;
 
 		bool isExaming = false;
 		string strStudentDoFruitOnTable;
@@ -25,7 +25,7 @@ namespace HomeVisit.Task
 		private void Start()
 		{
 			EventCenter.GetInstance().AddEventListener<int>("访中过程试题完成", SingleTitleExamCallBack);
-			EventCenter.GetInstance().AddEventListener<string>("<b>题目：</b>请输入学生的行为错在那些地方", InputExamCallBack);
+			EventCenter.GetInstance().AddEventListener<string>("请输入学生的行为错在那些地方", InputExamCallBack);
 		}
 
 		void InputExamCallBack(string newStr)
@@ -42,7 +42,7 @@ namespace HomeVisit.Task
 		{
 			StopAllCoroutines();
 			EventCenter.GetInstance().RemoveEventListener<int>("访中过程试题完成", SingleTitleExamCallBack);
-			EventCenter.GetInstance().RemoveEventListener<string>("<b>题目：</b>请输入学生的行为错在那些地方", InputExamCallBack);
+			EventCenter.GetInstance().RemoveEventListener<string>("请输入学生的行为错在那些地方", InputExamCallBack);
 		}
 
 		public IEnumerator StartTask()
@@ -51,16 +51,17 @@ namespace HomeVisit.Task
 				onVisitPanel = UIKit.GetPanel<OnVisitPanel>();
 			if (mainPanel == null)
 				mainPanel = UIKit.GetPanel<MainPanel>();
-			if (buttonPanel == null)
-				buttonPanel = UIKit.GetPanel<TopPanel>();
+			if (topPanel == null)
+				topPanel = UIKit.GetPanel<TopPanel>();
 			StudentFather.Instance.gameObject.SetActive(false);
-			StudentController.Instance.transform.position = Interactive.Get("学生蜷缩位置").transform.position;
-			StudentController.Instance.PlayAnim("CurlUp");
+			MaleStudent.Instance.SetTransform(Interactive.Get("学生蜷缩位置").transform);
+		 	yield return MaleStudent.Instance.PlayAnim("蜷缩", false);
+			FemaleStudent.Instance.gameObject.SetActive(false);
 			Interactive.Get("平板").SetActive(false);
 
 			//观环境
 			mainPanel.StartTMP();
-			yield return CameraManager.Instance.ThirdPerson(FemaleTeacher.Instance.thirdView, 2f);
+			yield return CameraManager.Instance.ThirdPerson(FemaleTeacher.Instance.transform, 2f);
 			mainPanel.SetBK(false);
 			yield return FemaleTeacher.Instance.PlayAnim("手机调为静音");
 			yield return FemaleTeacher.Instance.PlayAnim("敲门");
@@ -70,88 +71,86 @@ namespace HomeVisit.Task
 			yield return AnimationManager.GetInstance().Play(KeTingMen.GetComponent<Animation>(), "OpenDoor");
 			yield return StudentMather.Instance.Walk(Interactive.Get<Transform>("客厅站位_母亲"));
 			yield return PlayAudio("母亲欢迎老师进门", 0, "老师，您好！欢迎欢迎，请进，请进！");
-			onVisitPanel.btnDialogue.gameObject.SetActive(false);
 			yield return FemaleTeacher.Instance.Walk(Interactive.Get<Transform>("客厅站位_女老师"));
 			yield return AnimationManager.GetInstance().Play(KeTingMen.GetComponent<Animation>(), "CloseDoor");
 			FemaleTeacher.Instance.canMove = true;
 			FemaleTeacher.Instance.canRotate = true;
 			yield return PlayAudio("母亲_让孩子别看书出来见老师", 0, "老师来了，你别看书了，出来见见吧。");
-			onVisitPanel.btnDialogue.gameObject.SetActive(false);
 			yield return RecordSpeech(new string[] { "咱们 ", "孩子房间", "看看" });
 			yield return PlayAudio("母亲_唉，好吧", 0, "唉，好吧。");
-			onVisitPanel.btnDialogue.gameObject.SetActive(false);
-			yield return Interactive.Get<ObjColliderEvent>("学生房间高亮正方体").AreaHighlight();
+			yield return AreaHighlight(Interactive.Get<ObjColliderEvent>("学生房间高亮正方体"));
 			GameObject XueShengFangMen = Interactive.Get("学生房门");
 			yield return ObjHighlightClickCallBack(XueShengFangMen, true);
-			yield return AnimationManager.GetInstance().Play(XueShengFangMen.GetComponent<Animation>(), "OpenDoor");
+			FemaleTeacher.Instance.canMove = false;
+			FemaleTeacher.Instance.canRotate = false;
+			yield return topPanel.CloseEyeAnim();
+			StudentMather.Instance.SetTransform(Interactive.Get("学生房站位_母亲").transform);
+			yield return FemaleTeacher.Instance.SetTransform(Interactive.Get("学生房站位_女老师").transform);
+			yield return topPanel.OpenEyeAnim();
 			onVisitPanel.GenerateReportData("了解情况_观环境", 3);
 			//展能力
 			mainPanel.NextTmp();
-			yield return StudentMather.Instance.Walk(Interactive.Get("学生房站位_母亲").transform);
 			yield return PlayAudio("母亲_这孩子就知道看书", 0, "这孩子就知道看书。");
-			onVisitPanel.btnDialogue.gameObject.SetActive(false);
 			yield return ObjHighlightClickCallBack(Interactive.Get("俄狄浦斯"), true);
 			yield return RecordSpeech(new string[] { "喜欢", "俄狄浦斯", "哪部分" });
-			StudentController.Instance.PlayAnim("GetUp");
-			StudentController.Instance.transform.position = Interactive.Get("学生房站位_学生").transform.position;
-			StudentController.Instance.transform.forward = Interactive.Get("学生房站位_学生").transform.forward;
+			yield return MaleStudent.Instance.PlayAnim("下床");
+			MaleStudent.Instance.SetTransform(Interactive.Get("学生房站位_学生").transform);
 			yield return PlayAudio("男学生_俄狄浦斯的命运，我就受到了命运的捉弄。", 3, "俄狄浦斯的命运，我就受到了命运的捉弄。");
-			onVisitPanel.btnDialogue.gameObject.SetActive(false);
 			onVisitPanel.GenerateReportData("了解情况_展能力", 3);
 			//查细节
 			mainPanel.NextTmp();
 			yield return ObjHighlightClickCallBack(Interactive.Get("书柜"), true);
 			yield return RecordSpeech(new string[] { "索福克勒斯", "其他作品" });
 			yield return PlayAudio("男学生_想，可是我没有。", 3, "想，可是我没有。");
-			onVisitPanel.btnDialogue.gameObject.SetActive(false);
 			yield return RecordSpeech(new string[] { "学校图书馆", "借书证" });
 			yield return PlayAudio("男学生_真的吗？老师你真好", 3, "真的吗？老师你真好！");
-			onVisitPanel.btnDialogue.gameObject.SetActive(false);
 			onVisitPanel.GenerateReportData("了解情况_查细节", 4);
 			//说学校
 			mainPanel.NextTmp();
-			buttonPanel.tmpTip.text = "请对办学理念，成绩特色，校纪校规进行简单的叙述";
+			topPanel.tmpTip.text = "请对办学理念，成绩特色，校纪校规进行简单的叙述";
+			GameObject XueShengFangWaiChuWeiZhi = Interactive.Get("学生房外出位置");
+			yield return StudentMather.Instance.Walk(XueShengFangWaiChuWeiZhi.transform);
 			GameObject KeTingZuoWei_MuQing = Interactive.Get("客厅坐位_母亲");
-			yield return StudentMather.Instance.Walk(KeTingZuoWei_MuQing.transform);
+			StudentMather.Instance.SetTransform(KeTingZuoWei_MuQing.transform);
+			MaleStudent.Instance.agent.enabled = true;
+			yield return MaleStudent.Instance.Walk(XueShengFangWaiChuWeiZhi.transform);
+			GameObject KeTingZuoWei_XueSheng = Interactive.Get("客厅坐位_学生");
+			MaleStudent.Instance.SetTransform(KeTingZuoWei_XueSheng.transform);
+			yield return AreaHighlight(Interactive.Get("学生房外出高亮正方体").GetComponent<ObjColliderEvent>());
+			yield return FemaleTeacher.Instance.SetTransform(Interactive.Get("学生房门外位置").transform);
 			yield return StudentMather.Instance.SitDown(KeTingZuoWei_MuQing.transform);
-			yield return Interactive.Get<ObjColliderEvent>("女老师坐下的位置").AreaHighlight();
-			FemaleTeacher.Instance.canMove = false;
+			yield return MaleStudent.Instance.SitDown(KeTingZuoWei_XueSheng.transform);
+			yield return AreaHighlight(Interactive.Get<ObjColliderEvent>("女老师坐下的位置"));
 			yield return FemaleTeacher.Instance.SitDown(Interactive.Get("客厅坐位_女老师").transform);
 			yield return RecordSpeech(new string[] { "育才先育人", "校规", "身心健康", "家长会" });
 			yield return PlayAudio("母亲老师您说得是", 0, "老师您说得是！");
-			onVisitPanel.btnDialogue.gameObject.SetActive(false);
 			onVisitPanel.GenerateReportData("了解情况_说学校", 4);
 			//聊班级
-			buttonPanel.tmpTip.text = "请对班级概况，任课老师进行简单的叙述，并说明彦威朋友不少却情绪低落。";
+			topPanel.tmpTip.text = "请对班级概况，任课老师进行简单的叙述，并说明彦威朋友不少却情绪低落。";
 			yield return RecordSpeech(new string[] { "班级概况", "任课老师", "情绪低落", "朋友不少" });
 			yield return PlayAudio("母亲_嗯嗯嗯，我会更加关心他的", 0, "嗯嗯嗯，我会更加关心他的。");
-			onVisitPanel.btnDialogue.gameObject.SetActive(false);
 			onVisitPanel.GenerateReportData("了解情况_聊班级", 4);
 			//建立联系
 			//摸情况
 			mainPanel.NextStep();
 			mainPanel.NextTmp();
-			buttonPanel.tmpTip.text = "请询问孩子身体情况，特别需求，明确家长接送时间，工作安排";
-			yield return LoadStudentInformationPaper();
+			topPanel.tmpTip.text = "请询问孩子身体情况，特别需求，明确家长接送时间，工作安排";
 			yield return RecordSpeech(new string[] { "身体情况", "家长会", "接送时间", "工作安排" });
 			yield return PlayAudio("母亲_单亲需求", 0, "没啥特别需求，但是家里有些事忙不过来，没法参与家长会。平时都是孩子自己上下学。");
-			onVisitPanel.btnDialogue.gameObject.SetActive(false);
 			onVisitPanel.GenerateReportData("建立联系_摸情况", 4);
 			//明期望
 			mainPanel.NextTmp();
-			buttonPanel.tmpTip.text = "请明确家长的教育需求";
+			topPanel.tmpTip.text = "请明确家长的教育需求";
 			yield return RecordSpeech(new string[] { "特别需求", "发展目标" });
 			yield return PlayAudio("母亲_单亲教育需求", 0, "只要孩子没啥事就行，其他的就全交给老师您了。");
-			onVisitPanel.btnDialogue.gameObject.SetActive(false);
 			onVisitPanel.GenerateReportData("建立联系_明期望", 2);
 			//适当指导
 			//缓焦虑
 			mainPanel.NextStep();
 			mainPanel.NextTmp();
-			buttonPanel.tmpTip.text = "引导家长关心孩子心理健康，并提醒家长消除单亲影响不能单靠老师";
-			yield return RecordSpeech(new string[] {"单亲","单独家访", "不能放养" });
+			topPanel.tmpTip.text = "引导家长关心孩子心理健康，并提醒家长消除单亲影响不能单靠老师";
+			yield return RecordSpeech(new string[] { "单亲", "单独家访", "不能放养" });
 			yield return PlayAudio("母亲_太谢谢您了，孩子我会尽量多关注的。", 0, "太谢谢您了，孩子我会尽量多关注的。");
-			onVisitPanel.btnDialogue.gameObject.SetActive(false);
 			onVisitPanel.GenerateReportData("适当指导_缓焦虑", 3);
 			//答疑惑
 			mainPanel.NextTmp();
@@ -162,38 +161,52 @@ namespace HomeVisit.Task
 			//表达感谢
 			mainPanel.NextStep();
 			mainPanel.NextTmp();
-			StudentMather.Instance.PlayAnim("StandUp");
+			yield return StudentMather.Instance.PlayAnim("站起");
+			yield return MaleStudent.Instance.PlayAnim("站起");
 			yield return FemaleTeacher.Instance.StandUp();
-			yield return StudentMather.Instance.PlayAnim("GiveGift");
 			yield return PlayAudio("母亲_送礼", 0, "这是点小心意，还请务必收下。");
-			onVisitPanel.btnDialogue.gameObject.SetActive(false);
-			yield return RecordSpeech(new string[] { "不接受任何形式的礼物", "感谢接待和配合", "谢谢" });
+			yield return StudentMather.Instance.PlayAnim("送礼");
 			yield return onVisitPanel.ShowExpressGratitude();
+			yield return RecordSpeech(new string[] { "不接受任何形式的礼物", "感谢接待和配合", "谢谢" });
+			yield return FemaleTeacher.Instance.PlayAnim("拒绝礼品");
 			FemaleTeacher.Instance.canMove = true;
-			yield return Interactive.Get("客厅门口高亮正方体").GetComponent<ObjColliderEvent>().AreaHighlight();
-			onVisitPanel.GenerateReportData("表达感谢", 1);
+			FemaleTeacher.Instance.canRotate = true;
+			yield return AreaHighlight(Interactive.Get("客厅门口高亮正方体").GetComponent<ObjColliderEvent>());
+			onVisitPanel.SetMask(true);
+			yield return topPanel.CloseEyeAnim();
+			mainPanel.SetBK(true);
+			onVisitPanel.SetMask(false);
+			yield return topPanel.OpenEyeAnim();
+			yield return LoadStudentInformationPaper();
+			onVisitPanel.GenerateReportData("表达感谢", 13);
 			onVisitPanel.ShowNext();
 		}
 
 		#region 播放家长语音并显示文字
-		WaitUntil PlayAudio(string clipName, int spriteIndex, string strWord)
+		IEnumerator PlayAudio(string clipName, int spriteIndex, string strWord)
 		{
-			Sprite spriteParent = sprites[spriteIndex];
-			onVisitPanel.ShowParentWord(spriteParent, strWord);
-			return AudioManager.Instance.Play(clipName);
+			onVisitPanel.ShowParentWord(spriteIndex, strWord);
+			yield return AudioManager.Instance.Play(clipName);
+			onVisitPanel.btnDialogue.gameObject.SetActive(false);
 		}
 		#endregion
 
-		#region 开始语音识别
+		//区域高亮
+		IEnumerator AreaHighlight(ObjColliderEvent obj)
+		{
+			yield return obj.AreaHighlight();
+			yield return FemaleTeacher.Instance.PlayAnim("站立", false);
+		}
+
+		//开始语音识别
 		WaitUntil RecordSpeech(string[] keywords)
 		{
 			StartCoroutine(mainPanel.InitKeyWords(keywords));
 			onVisitPanel.ShowRecordUI(keywords);
 			return new WaitUntil(() => { return onVisitPanel.recordState == RecordState.ResultIsRight; });
 		}
-		#endregion
 
-		#region 物体高亮点击回调
+		//物体高亮点击回调
 		WaitUntil ObjHighlightClickCallBack(GameObject targetObj, bool isCallBack)
 		{
 			EffectManager.Instance.AddEffectImmediately(targetObj);
@@ -206,9 +219,8 @@ namespace HomeVisit.Task
 				return null;
 			}
 		}
-		#endregion
 
-		#region 考核
+		//考核
 		WaitUntil StartExam(List<SingleTitleData> datas)
 		{
 			isExaming = true;
@@ -225,7 +237,6 @@ namespace HomeVisit.Task
 			});
 			yield return StartExam(datas);
 		}
-		#endregion
 	}
 }
 

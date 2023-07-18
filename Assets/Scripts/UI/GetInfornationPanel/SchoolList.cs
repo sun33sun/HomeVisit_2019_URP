@@ -10,6 +10,8 @@ namespace HomeVisit.UI
 {
 	public class SchoolList : MonoBehaviour
 	{
+		[Header("老师信息")]
+		public TextMeshProUGUI tmpTeacher;
 		[Header("输入的数据")]
 		public TMP_Dropdown dpDistrict;
 		public InputField inputKeyword;
@@ -30,24 +32,36 @@ namespace HomeVisit.UI
 		{
 			StartCoroutine(WebKit.GetInstance().Read<List<SchoolData>>(Application.streamingAssetsPath + "/SchoolData.json", datas =>
 			{
-				this.datas = datas;
-				nowDatas = datas;
+				GetInformationPanel panel = UIKit.GetPanel<GetInformationPanel>();
+				this.datas = datas.FindAll(d=>d.strDistrict.Substring(0,2) == panel.nowTeacherData.strUnit.Substring(0,2));
+				nowDatas = this.datas;
 				LoadItemsData();
-			}));
-			btnPrior.onClick.AddListener(Prior);
-			btnNext.onClick.AddListener(Next);
-			btnFindAll.onClick.AddListener(FindAll);
-
-			TeacherData nowTeacherData = UIKit.GetPanel<GetInformationPanel>().nowAdministrator;
-			for (int i = 0; i < items.Count; i++)
-			{
-				SchoolItem item = items[i];
-				item.GetComponent<Button>().onClick.AddListener(() =>
+				btnPrior.onClick.AddListener(Prior);
+				btnNext.onClick.AddListener(Next);
+				btnFindAll.onClick.AddListener(FindAll);
+				btnFindAll.interactable = true;
+				btnNext.interactable = true;
+				btnPrior.interactable = true;
+			
+				for (int i = 0; i < items.Count; i++)
 				{
-					gameObject.SetActive(false);
-					UIKit.GetPanel<GetInformationPanel>().ClassList.gameObject.SetActive(true);
-				});
-			}
+					SchoolItem item = items[i];
+					Button btn = item.GetComponent<Button>();
+					btn.onClick.AddListener(() =>
+					{
+						if (panel.nowTeacherData.strUnit != item.tmpSchoolName.text)
+						{
+							panel.TipElement.Show();
+							return;
+						}
+						gameObject.SetActive(false);
+						panel.ClassList.gameObject.SetActive(true);
+						panel.InformationSecurity.gameObject.SetActive(true);
+					});
+					btn.interactable = true;
+				}
+			}));
+			
 		}
 
 		void Prior()

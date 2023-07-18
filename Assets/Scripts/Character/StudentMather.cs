@@ -9,77 +9,51 @@ namespace HomeVisit.Character
 {
 	public class StudentMather : SingletonMono<StudentMather>
 	{
-		public Animation anim;
+		public Animator anim;
 		public NavMeshAgent agent;
 		Transform nowTarget;
 
-		public bool CheckAnim()
+		public IEnumerator PlayAnim(string clipName,bool once = true)
 		{
-			return anim.isPlaying;
-		}
-		public WaitUntil PlayAnim(string clipName)
-		{
-			if (anim[clipName] == null)
-			{
-				print("播放 : " + clipName);
-				return null;
-			}
-			return AnimationManager.GetInstance().Play(anim,clipName);
+			yield return AnimationManager.GetInstance().Play(anim, clipName);
+			if(once)
+				anim.Play("站立");
 		}
 
 		#region 走路
-		public WaitUntil Walk(Transform target)
+		public IEnumerator Walk(Transform target)
 		{
 			anim.Play("走路");
 			nowTarget = target;
 			agent.isStopped = false;
 			agent.SetDestination(nowTarget.position);
-			return new WaitUntil(OnWalkCompleted);
-		}
-		bool OnWalkCompleted()
-		{
-			if (nowTarget == null)
-			{
-				Debug.LogWarning("StudentMather的nowTarget为null");
-				agent.isStopped = true;
-				anim.Stop();
-				return true;
-			}
-			float distance = Vector3.Distance(nowTarget.position, transform.position);
-			if (distance < 1.5f)
-			{
-				agent.isStopped = true;
-				anim.Stop();
-				transform.forward = nowTarget.forward;
-				transform.position = nowTarget.position;
-				return true;
-			}
-			else
-			{
-				return false;
-			}
+			yield return new WaitForDistance(transform, nowTarget);
+			anim.Play("站立");
+			agent.isStopped = true;
+			transform.forward = nowTarget.forward;
+			transform.position = nowTarget.position;
 		}
 		#endregion
 
 		#region 坐下
-		public WaitUntil SitDown(Transform target)
+		public IEnumerator SitDown(Transform target)
 		{
-			anim.Play("坐下");
 			nowTarget = target;
-			return new WaitUntil(OnSitDownCompleted);
-		}
-		bool OnSitDownCompleted()
-		{
-			if (!anim.isPlaying)
-			{
-				Vector3 temp = nowTarget.position;
-				temp.y = 0;
-				transform.position = temp;
-				transform.rotation = nowTarget.rotation;
-			}
-			return anim.isPlaying;
+			transform.position = nowTarget.position;
+			transform.rotation = nowTarget.rotation;
+			yield return PlayAnim("坐下", false);
+			transform.position = nowTarget.position;
+			transform.rotation = nowTarget.rotation;
 		}
 		#endregion
+
+		public void SetTransform(Transform newTrans)
+		{
+			agent.enabled = false;
+			transform.position = newTrans.position;
+			transform.forward = newTrans.forward;
+			agent.enabled = true;
+		}
 	}
 }
 

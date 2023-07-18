@@ -21,17 +21,18 @@ namespace HomeVisit
 				switch (DateTime.Now.Ticks % 3)
 				{
 					case 0:
-						OldRandomScene = "ModelTest2";
+						OldRandomScene = "Developed";
 						break;
 					case 1:
-						OldRandomScene = "ModelTest2";
+						OldRandomScene = "Developed";
 						break;
 					case 2:
-						OldRandomScene = "ModelTest2";
+						OldRandomScene = "Developed";
 						break;
 				}
 				return OldRandomScene;
 			}
 		}
+		public const string UI = "Resources/UIPrefab/";
 	}
 }

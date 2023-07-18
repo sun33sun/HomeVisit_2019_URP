@@ -66,7 +66,7 @@ namespace HomeVisit.UI
 			};
 			UIKit.GetPanel<TestReportPanel>().CreateScoreReport(data);
 
-			UIKit.OpenPanelAsync<CommunicateOutlinePanel>().ToAction().Start(this);
+			UIKit.OpenPanelAsync<CommunicateOutlinePanel>(prefabName: Settings.UI + QAssetBundle.Communicateoutlinepanel_prefab.COMMUNICATEOUTLINEPANEL).ToAction().Start(this);
 			Hide();
 			UIKit.GetPanel<MainPanel>().SetBK(true);
 			UIKit.GetPanel<TestReportPanel>().SetTestEvaluate(inputTestEvaluate.text);

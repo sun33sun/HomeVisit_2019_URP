@@ -11,6 +11,9 @@ using UnityEngine.Networking;
 using HomeVisit.Character;
 using System;
 using HomeVisit.Task;
+using TMPro;
+using HomeVisit.Screenshot;
+using Cysharp.Threading.Tasks;
 
 namespace HomeVisit.UI
 {
@@ -30,6 +33,9 @@ namespace HomeVisit.UI
 		public int score = 0;
 		bool isConfirm = false;
 		DateTime startTime;
+		[SerializeField] TextMeshProUGUI dialoguePrefab;
+		[SerializeField] Sprite[] sprites;
+		List<TextMeshProUGUI> tmpDialogues = new List<TextMeshProUGUI>();
 
 		protected override void OnInit(IUIData uiData = null)
 		{
@@ -65,17 +71,39 @@ namespace HomeVisit.UI
 				imgGratitudeTip.gameObject.SetActive(false);
 				imgExpressGratitude.gameObject.SetActive(true);
 			});
-			btnNext.onClick.AddListener(() =>
-			{
-				UIKit.OpenPanelAsync<RecordSheetPanel>().ToAction().Start(this);
-				Hide();
-			});
+			btnNext.onClick.AddListener(Next);
 			btnSubmitOnVisit.onClick.AddListener(SubmitOnVisit);
+			//历史对话
+			btnSwitchHistoryDialogueList.onClick.AddListener(() =>
+			{ 
+				imgHistoryDialogueList.gameObject.SetActive(!imgHistoryDialogueList.gameObject.activeInHierarchy);
+			});
+			//截图
+			btnScreenshot.onClick.AddListener(()=> { ScreenshotManager.Instance.CaptureScreenshot(rawImgScreenshot); });
+			btnShowScreenshot.onClick.AddListener(() => { imgScreenshot.gameObject.SetActive(true); });
+			btnCloseHistoryDialogueList.onClick.AddListener(() => { imgHistoryDialogueList.gameObject.SetActive(false); });
+			btnCloseScreenshot.onClick.AddListener(() => { imgScreenshot.gameObject.SetActive(false); });
 
 			InitState();
 
 			StartCoroutine(LoadSceneAsync());
 		}
+
+		void Next()
+		{
+			StartCoroutine(UnloadOnVisitAsync());
+		}
+
+		IEnumerator UnloadOnVisitAsync()
+		{
+			AsyncOperation unload = SceneManager.UnloadSceneAsync(Settings.OldRandomScene);
+			yield return unload;
+			MainPanel mainPanel = UIKit.GetPanel<MainPanel>();
+			mainPanel.SetBK(true);
+			yield return UIKit.OpenPanelAsync<RecordSheetPanel>(prefabName: Settings.UI + QAssetBundle.Recordsheetpanel_prefab.RECORDSHEETPANEL);
+			Hide();
+		}
+
 
 		public void ShowNext()
 		{
@@ -110,12 +138,29 @@ namespace HomeVisit.UI
 
 		#region 语音部分
 		//展示家长说的话
-		public void ShowParentWord(Sprite spriteParent, string strWord)
+		public void ShowParentWord(int index, string strWord)
 		{
 			CloseRecord();
 			btnDialogue.gameObject.SetActive(true);
-			btnDialogue.sprite = spriteParent;
+			btnDialogue.sprite = sprites[index];
 			txtDialogue.text = strWord;
+			string historyWord = "";
+			if (index == 0)
+				historyWord = "母亲：" + strWord;
+			else if (index == 2)
+				historyWord = "学生：" + strWord;
+			else if (index == 3)
+				historyWord = "学生：" + strWord;
+			else if (index == 4)
+				historyWord = "父亲：" + strWord;
+			else
+				return;
+			TextMeshProUGUI tmpDialogue = Instantiate(dialoguePrefab);
+			tmpDialogue.text = historyWord;
+			tmpDialogue.transform.SetParent(imgHistoryDialogueList.content);
+			tmpDialogue.transform.localScale = Vector3.one;
+			tmpDialogue.transform.SetAsLastSibling();
+			LayoutRebuilder.ForceRebuildLayoutImmediate(imgHistoryDialogueList.content);
 		}
 		//展示开始录音UI
 		public void ShowRecordUI(string[] keywords)
@@ -243,7 +288,6 @@ namespace HomeVisit.UI
 			yield return operation;
 			CameraManager.Instance.SetRoamPos(FemaleTeacher.Instance.transform.position);
 			CameraManager.Instance.SetRoamForward(FemaleTeacher.Instance.transform.forward);
-			yield return topPanel.OpenEyeAnim();
 
 			switch (UIKit.GetPanel<HomeVisitContentPanel>().GetStudentName())
 			{
@@ -293,6 +337,22 @@ namespace HomeVisit.UI
 
 		protected override void OnClose()
 		{
+		}
+
+		public void SetMask(bool enable)
+		{
+			GetComponent<Image>().enabled = enable;
+		}
+
+		public override void Hide()
+		{
+			for (int i = tmpDialogues.Count - 1; i >=0 ; i--)
+			{
+				Destroy(tmpDialogues[i].gameObject);
+				tmpDialogues.RemoveAt(i);
+			}
+			tmpDialogues.Clear();
+			base.Hide();
 		}
 	}
 }

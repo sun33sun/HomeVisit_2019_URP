@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 
 namespace HighlightPlus {
-    [CustomEditor(typeof(HighlightManager))]
+    [UnityEditor.CustomEditor(typeof(HighlightManager))]
     public class HighlightManagerEditor : Editor {
 
         SerializedProperty highlightOnHover, layerMask, raycastCamera, raycastSource, minDistance, maxDistance, respectUI;

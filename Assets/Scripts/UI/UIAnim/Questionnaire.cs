@@ -11,21 +11,22 @@ namespace HomeVisit
 {
 	public class Questionnaire : MonoBehaviour
 	{
-		[SerializeField] TextMeshProUGUI tmpBigQuestionnaire;
-		public DoubleClickEvent btnBigQuestionnaire;
 		[SerializeField] Image imgScenarioCases;
 		[SerializeField] List<Button> btns;
-		[SerializeField] List<TextMeshProUGUI> tmps;
+		[SerializeField] Image[] imgs;
 		int selectedIndex = 0;
-		List<string> studentName = new List<string>() { "传统", "多孩", "单亲" };
+		List<string> sceneName = new List<string>() { "传统", "多孩", "单亲" };
+		List<string> studentName = new List<string>() { "张守光", "林光美", "秦彦威" };
 		[SerializeField] Image imgBuildTip;
 		[SerializeField] Button btnCloseBuildTip;
+		[SerializeField] Sprite[] sprites;
+
+		public string SceneName { get { return sceneName[selectedIndex]; } }
 		public string StudentName { get { return studentName[selectedIndex]; } }
 
 		private void OnEnable()
 		{
 			imgBuildTip.gameObject.SetActive(false);
-			btnBigQuestionnaire.gameObject.SetActive(false);
 		}
 
 		private void OnDisable()
@@ -41,10 +42,9 @@ namespace HomeVisit
 				int index = i;
 				btns[i].GetComponent<DoubleClickEvent>().OnDoubleClick += () =>
 				{
+					imgs[selectedIndex].sprite = sprites[0];
 					selectedIndex = index;
-					tmpBigQuestionnaire.text = tmps[index].text;
-					btnBigQuestionnaire.gameObject.SetActive(true);
-					UIKit.HidePanel<TopPanel>();
+					imgs[selectedIndex].sprite = sprites[1];
 				};
 			}
 			//没有对应场景的按钮
@@ -53,12 +53,6 @@ namespace HomeVisit
 				btns[i].GetComponent<DoubleClickEvent>().OnDoubleClick += () => { imgBuildTip.gameObject.SetActive(true); };
 			}
 			btnCloseBuildTip.onClick.AddListener(() => { imgBuildTip.gameObject.SetActive(false); });
-
-			btnBigQuestionnaire.OnDoubleClick += () =>
-			{
-				UIKit.ShowPanel<TopPanel>();
-				btnBigQuestionnaire.gameObject.SetActive(false);
-			};
 		}
 	}
 }

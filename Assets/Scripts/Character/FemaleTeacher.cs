@@ -10,10 +10,11 @@ namespace HomeVisit.Character
 {
 	public class FemaleTeacher : SingletonMono<FemaleTeacher>
 	{
-		public Animation anim;
+		public Animator anim;
 		public Transform face;
+		SkinnedMeshRenderer faceSkin;
 		public CharacterController cc;
-		public Transform thirdView;
+		//public Transform thirdView;
 		public NavMeshAgent agent;
 
 		public bool canMove = false;
@@ -30,22 +31,69 @@ namespace HomeVisit.Character
 
 		[SerializeField] Transform nowTarget;
 
+		//private void OnEnable()
+		//{
+		//	faceSkin = face.gameObject.GetComponent<SkinnedMeshRenderer>();
+		//	StartCoroutine(Speak());
+		//}
+
+		//IEnumerator Speak()
+		//{
+		//	WaitForEndOfFrame wait = new WaitForEndOfFrame();
+		//	float count = 1;
+		//	while (count > 0)
+		//	{
+		//		count-=0.01f;
+		//		faceSkin.SetBlendShapeWeight(0, count);
+		//		yield return wait; 
+		//	}
+		//}
+
 		private void Start()
 		{
 			EventCenter.GetInstance().AddEventListener("鼠标右键按下", OnMouseRightDown);
 			EventCenter.GetInstance().AddEventListener("鼠标右键抬起", OnMouseRightUp);
 			EventCenter.GetInstance().AddEventListener<Vector2>("鼠标滑动", OnMouseSliding);
+			MonoMgr.GetInstance().AddUpdateListener(MyUpdate);
+
+			EventCenter.GetInstance().AddEventListener(KeyCode.W + "按下", OnKeyState);
+			EventCenter.GetInstance().AddEventListener(KeyCode.S + "按下", OnKeyState);
+			EventCenter.GetInstance().AddEventListener(KeyCode.A + "按下", OnKeyState);
+			EventCenter.GetInstance().AddEventListener(KeyCode.D + "按下", OnKeyState);
+
+			EventCenter.GetInstance().AddEventListener(KeyCode.W + "抬起", OnKeyUp);
+			EventCenter.GetInstance().AddEventListener(KeyCode.A + "抬起", OnKeyUp);
+			EventCenter.GetInstance().AddEventListener(KeyCode.S + "抬起", OnKeyUp);
+			EventCenter.GetInstance().AddEventListener(KeyCode.D + "抬起", OnKeyUp);
 		}
-		private void Update()
+
+		private void OnDestroy()
 		{
+			EventCenter.GetInstance().RemoveEventListener("鼠标右键按下", OnMouseRightDown);
+			EventCenter.GetInstance().RemoveEventListener("鼠标右键抬起", OnMouseRightUp);
+			EventCenter.GetInstance().RemoveEventListener<Vector2>("鼠标滑动", OnMouseSliding);
+			MonoMgr.GetInstance().RemoveUpdateListener(MyUpdate);
+
+			EventCenter.GetInstance().RemoveEventListener(KeyCode.W + "保持", OnKeyState);
+			EventCenter.GetInstance().RemoveEventListener(KeyCode.S + "保持", OnKeyState);
+			EventCenter.GetInstance().RemoveEventListener(KeyCode.A + "保持", OnKeyState);
+			EventCenter.GetInstance().RemoveEventListener(KeyCode.D + "保持", OnKeyState);
+
+			EventCenter.GetInstance().RemoveEventListener(KeyCode.W + "抬起", OnKeyUp);
+			EventCenter.GetInstance().RemoveEventListener(KeyCode.S + "抬起", OnKeyUp);
+			EventCenter.GetInstance().RemoveEventListener(KeyCode.A + "抬起", OnKeyUp);
+			EventCenter.GetInstance().RemoveEventListener(KeyCode.D + "抬起", OnKeyUp);
+		}
+
+		void MyUpdate()
+		{
+			if (canMove != cc.enabled)
+				cc.enabled = canMove;
 			if (!canMove || EventSystem.current.IsPointerOverGameObject())
 				return;
-			if (cc.isGrounded)
-			{
-				moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-				moveDirection = transform.TransformDirection(moveDirection);
-				moveDirection *= moveSpeed;
-			}
+			moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+			moveDirection = transform.TransformDirection(moveDirection);
+			moveDirection *= moveSpeed;
 			moveDirection.y -= gravity * Time.deltaTime;
 			cc.Move(moveDirection * Time.deltaTime);
 		}
@@ -71,115 +119,109 @@ namespace HomeVisit.Character
 				isRotate = false;
 				return;
 			}
-			transform.RotateAround(transform.position, Vector3.up, vec2.x * rotateSpeed);
+
+			transform.rotation = Quaternion.AngleAxis(vec2.x, transform.up) * transform.rotation;
+		}
+
+		void OnKeyState()
+		{
+			if (!canMove)
+				return;
+			if (!anim.GetCurrentAnimatorStateInfo(0).IsName("走路"))
+			{
+				anim.Play("走路");
+			}
+		}
+
+		void OnKeyUp()
+		{
+			if (!canMove)
+				return;
+			anim.Play("站立");
 		}
 
 		#endregion
 
-		public WaitUntil PlayAnim(string clipName)
+		public IEnumerator PlayAnim(string clipName,bool once = true)
 		{
-			if (anim[clipName] == null)
-			{
-				print("播放 : " + clipName);
-				return null;
-			}
-			return AnimationManager.GetInstance().Play(anim, clipName);
+			yield return AnimationManager.GetInstance().Play(anim, clipName);
+			if(once)
+				anim.Play("站立");
 		}
 
 		#region 走路
-		public WaitUntil Walk(Transform target)
+		public IEnumerator Walk(Transform target)
 		{
+			agent.enabled = true;
+			anim.Play("走路");
 			nowTarget = target;
 			agent.isStopped = false;
 			agent.SetDestination(target.position);
-			return new WaitUntil(OnWalkCompleted);
-		}
-
-		bool OnWalkCompleted()
-		{
-			if (nowTarget == null)
-			{
-				Debug.LogWarning("StudentMather的nowTarget为null");
-				anim.Stop();
-				return true;
-			}
-			if (Vector3.Distance(nowTarget.position, transform.position) < 1.5f)
-			{
-				if (!isRotating)
-				{
-					anim.Stop();
-					agent.isStopped = true;
-					transform.position = nowTarget.position;
-					isRotating = true;
-					rotationCompleted = false;
-					StartCoroutine(RotateTo(nowTarget.eulerAngles));
-				}
-				return rotationCompleted;
-			}
-			else
-			{
-				return false;
-			}
+			yield return new WaitForDistance(transform, nowTarget);
+			anim.Play("站立");
+			agent.isStopped = true;
+			transform.position = nowTarget.position;
+			yield return RotateTo(nowTarget.eulerAngles);
 		}
 		#endregion
 
 		#region 坐下
-		public WaitUntil SitDown(Transform target)
+		public IEnumerator SitDown(Transform target)
 		{
+			canMove = false;
+			canRotate = false;
 			nowTarget = target;
 			transform.position = nowTarget.position;
-			anim.Play("坐下");
-			return new WaitUntil(OnSitDownCompleted);
-		}
-
-		bool OnSitDownCompleted()
-		{
-			if (!anim.isPlaying)
-			{
-				if (!isRotating)
-				{
-					thirdView.localPosition = new Vector3(0, 1.15f, -0.2f);
-					isRotating = true;
-					rotationCompleted = false;
-					StartCoroutine(RotateTo(nowTarget.eulerAngles));
-				}
-			}
-			return !anim.isPlaying && rotationCompleted;
+			transform.forward = nowTarget.forward;
+			cc.enabled = false;
+			yield return new WaitForEndOfFrame();
+			yield return AnimationManager.GetInstance().Play(anim, "坐下");
+			CameraManager.Instance.StartRoam(CameraManager.Instance.thirdPersonC.transform);
 		}
 		#endregion
 
 		#region 站起
-		public WaitUntil StandUp()
+		public IEnumerator StandUp()
 		{
-			PlayAnim("StandUp");
-			return new WaitUntil(OnStandUpCompleted);
-		}
-		bool OnStandUpCompleted()
-		{
-			if (!anim.isPlaying)
-			{
-				thirdView.localPosition = new Vector3(0, 1.55f, 0.1f);
-			}
-			return !anim.isPlaying;
+			yield return AnimationManager.GetInstance().Play(anim, "站起");
+			CameraManager.Instance.ThirdPerson(transform);
+			cc.enabled = true;
 		}
 		#endregion
 
 		#region 慢慢旋转到某个方向
-		bool isRotating = false;
-		bool rotationCompleted = false;
 		public IEnumerator RotateTo(Vector3 targetAngle)
 		{
 			WaitForEndOfFrame wait = new WaitForEndOfFrame();
+			Quaternion target = Quaternion.Euler(targetAngle);
 			while (Vector3.Distance(transform.eulerAngles, targetAngle) > 3)
 			{
-				transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(targetAngle), Time.deltaTime);
+				transform.rotation = Quaternion.Lerp(transform.rotation, target, Time.deltaTime);
 				yield return wait;
 			}
-			transform.rotation = Quaternion.Euler(targetAngle);
-			rotationCompleted = true;
-			isRotating = false;
+			transform.rotation = target;
+
 		}
 		#endregion
+
+		public IEnumerator SetTransform(Transform newTrans)
+		{
+			canMove = false;
+			canRotate = false;
+			cc.enabled = false;
+			anim.enabled = false;
+			agent.enabled = false;
+			yield return null;
+			transform.position = newTrans.position;
+			transform.forward = newTrans.forward;
+			yield return null;
+			canMove = true;
+			canRotate = true;
+			cc.enabled = true;
+			anim.enabled = true;
+			agent.enabled = true;
+			anim.Play("站立");
+		}
 	}
 }
 

@@ -29,7 +29,7 @@ namespace HomeVisit.UI
 				UIKit.ShowPanel<HomeVisitFormPanel>();
 				Hide();
 			});
-			btnConfirm.onClick.AddListener(Confirm);
+			btnConfirm.onClick.AddListener(ShowStudentInformation);
 		}
 
 		void Confirm()
@@ -66,15 +66,24 @@ namespace HomeVisit.UI
 
 		public string GetStudentName()
 		{
-			return questionnaire.StudentName;
+			return questionnaire.SceneName;
 		}
 
-		public WaitUntil ShowSelectedStudentInfo()
+		public void ShowStudentInformation()
 		{
-			//TODO:
-			questionnaire.btnBigQuestionnaire.gameObject.SetActive(true);
-			questionnaire.btnBigQuestionnaire.isDoubleClick = false;
-			return new WaitUntil(() => { return questionnaire.btnBigQuestionnaire.isDoubleClick; });
+			GetInformationPanel panel = UIKit.GetPanel<GetInformationPanel>();
+			NewStudentData data = panel.StudentList.datas.Find(s => s.name == questionnaire.StudentName);
+			panel.StudentInformation.InitData(data);
+			panel.gameObject.SetActive(true);
+			panel.StudentInformation.gameObject.SetActive(true);
+			panel.InformationSecurity.gameObject.SetActive(true);
+			Hide();
+			ActionKit.Sequence()
+				.DelayFrame(1)
+				.Condition(() => { return !panel.StudentInformation.gameObject.activeInHierarchy; })
+				.DelayFrame(1)
+				.Callback(Confirm)
+				.Start(this);
 		}
 	}
 }

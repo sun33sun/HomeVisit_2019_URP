@@ -6,6 +6,7 @@ using TMPro;
 using System.Collections.Generic;
 using ProjectBase;
 using UnityEngine.EventSystems;
+using HomeVisit.Screenshot;
 
 namespace HomeVisit.UI
 {
