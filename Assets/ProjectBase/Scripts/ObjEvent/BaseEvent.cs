@@ -18,7 +18,7 @@ namespace ProjectBase
 
 		protected virtual void OnDestroy()
 		{
-			EventManager.Instance.Unregister(this);
+			EventManager.Instance?.Unregister(this);
 		}
 
 		public virtual void SelfDestroy(bool isInvoke = true)

@@ -7,12 +7,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using QFramework;
+using TMPro;
 
 namespace HomeVisit.UI
 {
 	public partial class StudentInformation : UIElement
 	{
-		NewStudentData mData;
+		public TextMeshProUGUI tmpTeacher;
+		public NewStudentData mData;
+
 		protected override void OnBeforeDestroy()
 		{
 		}
@@ -31,6 +34,7 @@ namespace HomeVisit.UI
 				UIKit.GetPanel<TestReportPanel>().CreateScoreReport(data);
 				UIKit.HidePanel<GetInformationPanel>();
 				UIKit.ShowPanel<HomeVisitContentPanel>();
+				gameObject.SetActive(false);
 			});
 			btnBack.onClick.AddListener(() =>
 			{

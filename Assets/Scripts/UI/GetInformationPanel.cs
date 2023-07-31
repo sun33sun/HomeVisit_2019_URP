@@ -37,6 +37,7 @@ namespace HomeVisit.UI
 		
 		protected override void OnHide()
 		{
+			InformationSecurity.gameObject.SetActive(false);
 		}
 		
 		protected override void OnClose()
@@ -51,11 +52,13 @@ namespace HomeVisit.UI
 			if (newData.strName == "")
 				strWelcome = $"欢迎您：{strDistrict}区{newData.strUnit}老师";
 			else
-				strWelcome = $"欢迎您：{strDistrict}区{newData.strUnit}的{newData.strName}老师";
+				strWelcome = $"欢迎您：{strDistrict}区{newData.strUnit}{newData.strName}老师";
 			PolicyList.tmpTeacher.text = strWelcome;
 			SchoolList.tmpTeacher.text = strWelcome;
 			ClassList.tmpTeacher.text = strWelcome;
 			StudentList.tmpTeacher.text = strWelcome;
+			StudentInformation.tmpTeacher.text = strWelcome;
+			StudentInformation1.tmpTeacher.text = strWelcome;
 		}
 	}
 }

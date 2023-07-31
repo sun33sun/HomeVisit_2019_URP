@@ -5,7 +5,7 @@ using QFramework;
 
 namespace HomeVisit.UI
 {
-	// Generate Id:1f5879a4-e008-4682-9703-bd03bdb7e61e
+	// Generate Id:09ca052a-60b0-4971-a46a-8412eabab1f0
 	public partial class GetInformationPanel
 	{
 		public const string Name = "GetInformationPanel";
@@ -21,13 +21,15 @@ namespace HomeVisit.UI
 		[SerializeField]
 		public HomeVisit.UI.StudentList StudentList;
 		[SerializeField]
-		public StudentInformation StudentInformation;
-		[SerializeField]
-		public TipElement TipElement;
-		[SerializeField]
 		public RectTransform InformationSecurity;
 		[SerializeField]
 		public UnityEngine.UI.Button btnConfirmInformationSecurity;
+		[SerializeField]
+		public TipElement TipElement;
+		[SerializeField]
+		public StudentInformation StudentInformation;
+		[SerializeField]
+		public StudentInformation1 StudentInformation1;
 		
 		private GetInformationPanelData mPrivateData = null;
 		
@@ -38,10 +40,11 @@ namespace HomeVisit.UI
 			SchoolList = null;
 			ClassList = null;
 			StudentList = null;
-			StudentInformation = null;
-			TipElement = null;
 			InformationSecurity = null;
 			btnConfirmInformationSecurity = null;
+			TipElement = null;
+			StudentInformation = null;
+			StudentInformation1 = null;
 			
 			mData = null;
 		}

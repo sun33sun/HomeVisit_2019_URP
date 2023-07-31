@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using QFramework;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.EventSystems;
+using TMPro;
 
 namespace HomeVisit.UI
 {
@@ -13,6 +16,8 @@ namespace HomeVisit.UI
 		KnowledgeExamPanel knowledgeExamPanel = null;
 		TestReportPanel testReportPanel = null;
 		TestBriefPanel testBriefPanel = null;
+		[SerializeField] List<EventTrigger> etList;
+		[SerializeField] List<TextMeshProUGUI> tmpList;
 
 		protected override void OnInit(IUIData uiData = null)
 		{
@@ -22,12 +27,23 @@ namespace HomeVisit.UI
 			testReportPanel = UIKit.GetPanel<TestReportPanel>();
 			testBriefPanel = UIKit.GetPanel<TestBriefPanel>();
 			//¶©ÔÄµã»÷ÊÂ¼þ
-			btnSeting.onClick.AddListener(SwitchSettingBtn);
+			btnSetting.onClick.AddListener(SwitchSettingBtn);
 			btnTip.onClick.AddListener(SwitchTip);
 
 			btnTestReport.onClick.AddListener(SwitchTestReportPanel);
 			btnKnowledge.onClick.AddListener(SwitchKnowledgePanel);
 			btnTestBrief.onClick.AddListener(SwitchTestBriefPanel);
+
+			for (int i = 0; i < etList.Count; i++)
+			{
+				GameObject obj = tmpList[i].gameObject;
+				EventTrigger.Entry enter = new EventTrigger.Entry() { eventID = EventTriggerType.PointerEnter };
+				enter.callback.AddListener((d) => {obj.SetActive(true);});
+				EventTrigger.Entry exit = new EventTrigger.Entry() { eventID = EventTriggerType.PointerExit };
+				exit.callback.AddListener((d) => {obj.SetActive(false);});
+				etList[i].triggers.Add(enter);
+				etList[i].triggers.Add(exit);
+			}
 		}
 		
 		protected override void OnOpen(IUIData uiData = null)
@@ -44,7 +60,8 @@ namespace HomeVisit.UI
 		public void ChangeTip(string newContent)
 		{
 			tmpTip.text = newContent;
-			imgTipAnim.gameObject.SetActive(true);
+			//imgTipAnim.gameObject.SetActive(true);
+			imgTip.gameObject.SetActive(true);
 		}
 
 		protected override void OnShow()

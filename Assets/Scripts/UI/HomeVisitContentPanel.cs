@@ -14,6 +14,7 @@ namespace HomeVisit.UI
 	{
 		public Questionnaire questionnaire;
 		DateTime startTime;
+		public NewStudentData studentData;
 
 		private void Start()
 		{
@@ -34,6 +35,11 @@ namespace HomeVisit.UI
 
 		void Confirm()
 		{
+			if (GetStudentName() == "")
+			{
+				imgBuildTip.gameObject.SetActive(true);
+				return;
+			}
 			ScoreReportData data = new ScoreReportData()
 			{
 				title = "确认家访内容",
@@ -72,16 +78,15 @@ namespace HomeVisit.UI
 		public void ShowStudentInformation()
 		{
 			GetInformationPanel panel = UIKit.GetPanel<GetInformationPanel>();
-			NewStudentData data = panel.StudentList.datas.Find(s => s.name == questionnaire.StudentName);
-			panel.StudentInformation.InitData(data);
+			studentData = panel.StudentList.datas.Find(s => s.name == questionnaire.StudentName);
+			panel.StudentInformation.InitData(studentData);
 			panel.gameObject.SetActive(true);
 			panel.StudentInformation.gameObject.SetActive(true);
 			panel.InformationSecurity.gameObject.SetActive(true);
 			Hide();
 			ActionKit.Sequence()
 				.DelayFrame(1)
-				.Condition(() => { return !panel.StudentInformation.gameObject.activeInHierarchy; })
-				.DelayFrame(1)
+				.Condition(() => { return !panel.StudentInformation1.gameObject.activeInHierarchy && !panel.StudentInformation.gameObject.activeInHierarchy;  })
 				.Callback(Confirm)
 				.Start(this);
 		}

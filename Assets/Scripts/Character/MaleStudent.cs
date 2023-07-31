@@ -15,7 +15,7 @@ namespace HomeVisit.Character
 
 		public IEnumerator PlayAnim(string clipName, bool once = true)
 		{
-			yield return AnimationManager.GetInstance().Play(anim, clipName);
+			yield return AnimMgr.GetInstance().Play(anim, clipName);
 			if (once)
 				anim.Play("站立");
 		}
@@ -40,7 +40,7 @@ namespace HomeVisit.Character
 			nowTarget = target;
 			transform.position = nowTarget.position;
 			transform.forward = nowTarget.forward;
-			yield return AnimationManager.GetInstance().Play(anim, "坐下");
+			yield return AnimMgr.GetInstance().Play(anim, "坐下");
 			transform.position = nowTarget.position;
 			transform.forward = nowTarget.forward;
 		}

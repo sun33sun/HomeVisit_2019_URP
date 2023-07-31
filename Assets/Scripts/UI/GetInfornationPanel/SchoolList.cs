@@ -10,7 +10,7 @@ namespace HomeVisit.UI
 {
 	public class SchoolList : MonoBehaviour
 	{
-		[Header("老师信息")]
+		[Header("欢迎老师")]
 		public TextMeshProUGUI tmpTeacher;
 		[Header("输入的数据")]
 		public TMP_Dropdown dpDistrict;

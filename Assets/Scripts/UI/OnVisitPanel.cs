@@ -99,11 +99,9 @@ namespace HomeVisit.UI
 			AsyncOperation unload = SceneManager.UnloadSceneAsync(Settings.OldRandomScene);
 			yield return unload;
 			MainPanel mainPanel = UIKit.GetPanel<MainPanel>();
-			mainPanel.SetBK(true);
 			yield return UIKit.OpenPanelAsync<RecordSheetPanel>(prefabName: Settings.UI + QAssetBundle.Recordsheetpanel_prefab.RECORDSHEETPANEL);
 			Hide();
 		}
-
 
 		public void ShowNext()
 		{

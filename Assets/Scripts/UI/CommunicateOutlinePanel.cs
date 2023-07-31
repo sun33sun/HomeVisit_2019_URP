@@ -77,7 +77,6 @@ namespace HomeVisit.UI
 			{
 				CreateOutlinTitle(item);
 			}
-
 			btnConfirm.transform.SetAsLastSibling();
 		}
 

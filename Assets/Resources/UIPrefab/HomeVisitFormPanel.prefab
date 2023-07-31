@@ -31,9 +31,9 @@ RectTransform:
   m_Father: {fileID: 6777123590509661496}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 386.5, y: -840.52}
   m_SizeDelta: {x: 773, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2158554818129043049
@@ -74,7 +74,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 842, y: 400}
+  m_SizeDelta: {x: 1226, y: 514}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2158554818129043052
 CanvasRenderer:
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2b2ff683884b9c645bc6a7de78949cb0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e548b26ddc0886143a09cac1f8d72139, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -193,10 +193,10 @@ RectTransform:
   m_Father: {fileID: 6777123590509661496}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 386.53278, y: 0}
-  m_SizeDelta: {x: 773.06555, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 400, y: -396.51}
+  m_SizeDelta: {x: 800, y: 793.02}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2158554818725398747
 CanvasRenderer:
@@ -614,9 +614,9 @@ RectTransform:
   m_Father: {fileID: 5599004110780722277}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 507.734, y: -50}
   m_SizeDelta: {x: 995.468, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6273735156119119895
@@ -1029,7 +1029,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5599004110627761772
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1502,10 +1502,10 @@ RectTransform:
   m_Father: {fileID: 5567682821701698052}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 20, y: -0.00015115089}
-  m_SizeDelta: {x: -40, y: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -400, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &7318873215779340269
 MonoBehaviour:
@@ -1519,7 +1519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalFit: 0
+  m_HorizontalFit: 2
   m_VerticalFit: 2
 --- !u!114 &5361753642766832039
 MonoBehaviour:
@@ -1582,8 +1582,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -409.1, y: 155.6}
-  m_SizeDelta: {x: 813.06555, y: 313.45923}
+  m_AnchoredPosition: {x: -450, y: 210}
+  m_SizeDelta: {x: 900, y: 420}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &1257103195430894205
 CanvasRenderer:
@@ -1781,6 +1781,7 @@ GameObject:
   - component: {fileID: 6435326614859803363}
   - component: {fileID: 8926516268709067371}
   - component: {fileID: 6537974160655969318}
+  - component: {fileID: 4703123743271385388}
   m_Layer: 5
   m_Name: imgExam
   m_TagString: Untagged
@@ -1805,9 +1806,9 @@ RectTransform:
   m_Father: {fileID: 5599004110127137459}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -624}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1180, y: 792}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6435326614859803363
@@ -1863,3 +1864,15 @@ MonoBehaviour:
   CustomComponentName: imgExam
   CustomComment: 
   mComponentName: UnityEngine.UI.Image
+--- !u!114 &4703123743271385388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8913246045119175404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 683ecc4fee048b24e97686ce0d9a0319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

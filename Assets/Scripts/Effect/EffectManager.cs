@@ -24,13 +24,18 @@ namespace HomeVisit.Effect
 			return newHighlight;
 		}
 
-		public HighlightEffect AddEffectImmediately(GameObject newObj)
+		public HighlightEffect AddEffectImmediately(GameObject newObj, bool haveInnerGlow = true)
 		{
 			HighlightEffect newHighlight = newObj.AddComponent<HighlightEffect>();
 			effectList.Add(newHighlight);
 			newHighlight.outlineColor = Color.red;
 			newHighlight.highlighted = true;
-
+			if (haveInnerGlow)
+			{
+				newHighlight.innerGlow = 0.5f;
+				newHighlight.innerGlowWidth = 2;
+				newHighlight.innerGlowColor = Color.red;
+			}
 			return newHighlight;
 		}
 

@@ -54,28 +54,36 @@ namespace HomeVisit.Task
 			if (topPanel == null)
 				topPanel = UIKit.GetPanel<TopPanel>();
 			StudentFather.Instance.gameObject.SetActive(false);
-			MaleStudent.Instance.SetTransform(Interactive.Get("学生蜷缩位置").transform);
-		 	yield return MaleStudent.Instance.PlayAnim("蜷缩", false);
+			if(Settings.OldRandomScene == "ToBeDeveloped")
+			{
+				MaleStudent.Instance.SetTransform(Interactive.Get("学生蜷缩位置").transform);
+				yield return MaleStudent.Instance.PlayAnim("蜷缩", false);
+			}
+			else
+			{
+				MaleStudent.Instance.SetTransform(Interactive.Get("学生房站位_学生").transform);
+			}
+			
 			FemaleStudent.Instance.gameObject.SetActive(false);
 			Interactive.Get("平板").SetActive(false);
 
 			//观环境
 			mainPanel.StartTMP();
 			yield return CameraManager.Instance.ThirdPerson(FemaleTeacher.Instance.transform, 2f);
-			mainPanel.SetBK(false);
+			yield return topPanel.OpenEyeAnim();
 			yield return FemaleTeacher.Instance.PlayAnim("手机调为静音");
 			yield return FemaleTeacher.Instance.PlayAnim("敲门");
 			GameObject KeTingMen = Interactive.Get("客厅门");
 			yield return ObjHighlightClickCallBack(KeTingMen, true);
 			yield return StudentMather.Instance.Walk(Interactive.Get("客厅门口站位").transform);
-			yield return AnimationManager.GetInstance().Play(KeTingMen.GetComponent<Animation>(), "OpenDoor");
+			yield return AnimMgr.GetInstance().Play(KeTingMen.GetComponent<Animation>(), "OpenDoor");
 			yield return StudentMather.Instance.Walk(Interactive.Get<Transform>("客厅站位_母亲"));
 			yield return PlayAudio("母亲欢迎老师进门", 0, "老师，您好！欢迎欢迎，请进，请进！");
 			yield return FemaleTeacher.Instance.Walk(Interactive.Get<Transform>("客厅站位_女老师"));
-			yield return AnimationManager.GetInstance().Play(KeTingMen.GetComponent<Animation>(), "CloseDoor");
+			yield return AnimMgr.GetInstance().Play(KeTingMen.GetComponent<Animation>(), "CloseDoor");
 			FemaleTeacher.Instance.canMove = true;
 			FemaleTeacher.Instance.canRotate = true;
-			yield return PlayAudio("母亲_让孩子别看书出来见老师", 0, "老师来了，你别看书了，出来见见吧。");
+			yield return PlayAudio("母亲_让孩子出来见老师", 0, "老师来了，你别窝在屋里了，出来见见吧。");
 			yield return RecordSpeech(new string[] { "咱们 ", "孩子房间", "看看" });
 			yield return PlayAudio("母亲_唉，好吧", 0, "唉，好吧。");
 			yield return AreaHighlight(Interactive.Get<ObjColliderEvent>("学生房间高亮正方体"));
@@ -87,23 +95,51 @@ namespace HomeVisit.Task
 			StudentMather.Instance.SetTransform(Interactive.Get("学生房站位_母亲").transform);
 			yield return FemaleTeacher.Instance.SetTransform(Interactive.Get("学生房站位_女老师").transform);
 			yield return topPanel.OpenEyeAnim();
+			FemaleTeacher.Instance.canMove = true;
+			FemaleTeacher.Instance.canRotate = true;
 			onVisitPanel.GenerateReportData("了解情况_观环境", 3);
 			//展能力
 			mainPanel.NextTmp();
-			yield return PlayAudio("母亲_这孩子就知道看书", 0, "这孩子就知道看书。");
-			yield return ObjHighlightClickCallBack(Interactive.Get("俄狄浦斯"), true);
-			yield return RecordSpeech(new string[] { "喜欢", "俄狄浦斯", "哪部分" });
-			yield return MaleStudent.Instance.PlayAnim("下床");
-			MaleStudent.Instance.SetTransform(Interactive.Get("学生房站位_学生").transform);
-			yield return PlayAudio("男学生_俄狄浦斯的命运，我就受到了命运的捉弄。", 3, "俄狄浦斯的命运，我就受到了命运的捉弄。");
+			#region 贫穷家庭
+			if (Settings.OldRandomScene == "ToBeDeveloped")
+			{
+				yield return PlayAudio("母亲_这孩子就知道看书", 0, "这孩子就知道看书。");
+				yield return ObjHighlightClickCallBack(Interactive.Get("俄狄浦斯"), true);
+				yield return RecordSpeech(new string[] { "喜欢", "俄狄浦斯", "哪部分" });
+				yield return MaleStudent.Instance.PlayAnim("下床");
+				MaleStudent.Instance.SetTransform(Interactive.Get("学生房站位_学生").transform);
+				yield return PlayAudio("男学生_俄狄浦斯", 2, "俄狄浦斯的命运，我就受到了命运的捉弄。");
+				onVisitPanel.GenerateReportData("了解情况_展能力", 3);
+			}
+			#endregion
+			#region 普通家庭
+			if (Settings.OldRandomScene == "ModelTest2")
+			{
+				yield return ObjHighlightClickCallBack(Interactive.Get("画"), true);
+				yield return PlayAudio("母亲说孩子画画", 0, "这幅画是我们孩子平时自己画的，他比较喜欢画画，所以我们都给挂起来啦！");
+				yield return RecordSpeech(new string[] { "挺好", "画", "风格明快" });
+				yield return FemaleTeacher.Instance.PlayAnim("鼓掌");
+				yield return StudentMather.Instance.PlayAnim("鼓掌");
+			}
+			#endregion
+			#region 富裕家庭
+			if (Settings.OldRandomScene == "Developed")
+			{
+				yield return PlayAudio("母亲_展示弹琴", 0, "你平时不是喜欢弹琴吗？给老师展示下吧。");
+				Transform GangQinWeiZhi = Interactive.Get("钢琴位置").transform;
+				yield return MaleStudent.Instance.Walk(GangQinWeiZhi);
+				yield return MaleStudent.Instance.SitDown(GangQinWeiZhi);
+				yield return MaleStudent.Instance.PlayAnim("弹琴", false);
+				yield return FemaleTeacher.Instance.PlayAnim("鼓掌");
+				yield return RecordSpeech(new string[] { "孩子", "钢琴", "好听" });
+			}
+			#endregion
 			onVisitPanel.GenerateReportData("了解情况_展能力", 3);
 			//查细节
 			mainPanel.NextTmp();
-			yield return ObjHighlightClickCallBack(Interactive.Get("书柜"), true);
-			yield return RecordSpeech(new string[] { "索福克勒斯", "其他作品" });
-			yield return PlayAudio("男学生_想，可是我没有。", 3, "想，可是我没有。");
-			yield return RecordSpeech(new string[] { "学校图书馆", "借书证" });
-			yield return PlayAudio("男学生_真的吗？老师你真好", 3, "真的吗？老师你真好！");
+			yield return RecordSpeech(new string[] { "爱好很重要", "全面发展" });
+			yield return PlayAudio("母亲老师您说得是", 0, "老师您说得是");
+			yield return RecordSpeech(new string[] { "素质", "育人" });
 			onVisitPanel.GenerateReportData("了解情况_查细节", 4);
 			//说学校
 			mainPanel.NextTmp();
@@ -176,7 +212,6 @@ namespace HomeVisit.Task
 			yield return topPanel.CloseEyeAnim();
 			mainPanel.SetBK(true);
 			onVisitPanel.SetMask(false);
-			yield return topPanel.OpenEyeAnim();
 			yield return LoadStudentInformationPaper();
 			onVisitPanel.GenerateReportData("表达感谢", 13);
 			onVisitPanel.ShowNext();
@@ -207,17 +242,13 @@ namespace HomeVisit.Task
 		}
 
 		//物体高亮点击回调
-		WaitUntil ObjHighlightClickCallBack(GameObject targetObj, bool isCallBack)
+		WaitUntil ObjHighlightClickCallBack(GameObject targetObj, bool isCallBack, bool haveInnerGlow = true)
 		{
-			EffectManager.Instance.AddEffectImmediately(targetObj);
+			EffectManager.Instance.AddEffectImmediately(targetObj,haveInnerGlow);
 			if (isCallBack)
-			{
 				return EventManager.Instance.AddObjClick(targetObj);
-			}
 			else
-			{
 				return null;
-			}
 		}
 
 		//考核
@@ -235,6 +266,7 @@ namespace HomeVisit.Task
 			{
 				datas = d;
 			});
+			yield return topPanel.OpenEyeAnim();
 			yield return StartExam(datas);
 		}
 	}

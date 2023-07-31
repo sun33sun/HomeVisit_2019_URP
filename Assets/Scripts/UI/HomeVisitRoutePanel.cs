@@ -68,7 +68,6 @@ namespace HomeVisit.UI
 
 			UIKit.OpenPanelAsync<CommunicateOutlinePanel>(prefabName: Settings.UI + QAssetBundle.Communicateoutlinepanel_prefab.COMMUNICATEOUTLINEPANEL).ToAction().Start(this);
 			Hide();
-			UIKit.GetPanel<MainPanel>().SetBK(true);
 			UIKit.GetPanel<TestReportPanel>().SetTestEvaluate(inputTestEvaluate.text);
 		}
 
@@ -80,11 +79,13 @@ namespace HomeVisit.UI
 			yield return SceneManager.LoadSceneAsync("Office", LoadSceneMode.Additive);
 			yield return topPanel.OpenEyeAnim();
 			GameObject Teacher_Computer = Interactive.Get("Teacher_Computer");
-			EffectManager.Instance.AddEffectAndTarget(Teacher_Computer);
+			EffectManager.Instance.AddEffectImmediately(Teacher_Computer);
 			EventManager.Instance.AddObjClick(Teacher_Computer, () =>
 			{
 				svMap.gameObject.SetActive(true);
 				imgMid.gameObject.SetActive(true);
+				GetComponent<Image>().enabled = true;
+				CameraManager.Instance.IsEnable = false;
 			});
 			CameraManager.Instance.SetRoamRig(RigidbodyConstraints.FreezeRotation);
 			CameraManager.Instance.IsEnable = true;
@@ -104,6 +105,7 @@ namespace HomeVisit.UI
 			svMap.gameObject.SetActive(false);
 			imgMid.gameObject.SetActive(false);
 			imgBlank.gameObject.SetActive(false);
+			GetComponent<Image>().enabled = false;
 			UIKit.GetPanel<TopPanel>().ChangeTip("请根据学校发放给班主任的学生信息，将家庭住址相近的学生圈画在一起，初步列为同一天进行家访的名单");
 		}
 

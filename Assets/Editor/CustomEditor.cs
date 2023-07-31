@@ -12,14 +12,14 @@ public class CustomEditor : Editor
 	[MenuItem("GameObject/执行代码",false,49)]
 	public static void SetName()
 	{
-		GameObject parent = Selection.activeGameObject;
-		//List<Transform> childs = parent.GetComponentsInChildren<Transform>().ToList().FindAll(o=>o.name == "ViewPort");
-		//for (int i = childs.Count - 1; i >= 0; i--)
-		//{
-		//	Debug.Log(childs[i].name);
-		//	DestroyImmediate(childs[i].GetComponent<Mask>());
-		//}
-		//childs.Clear();
-		//childs = null;
+		Transform parent = Selection.activeGameObject.transform;
+		GameObject inputPrefab = Resources.Load<GameObject>("input");
+		for (int i = 0; i < parent.childCount; i++)
+		{
+			GameObject newObj = Instantiate(inputPrefab);
+			Transform child = parent.GetChild(i);
+			newObj.name = "input" + child.name.Replace("img", "");
+			child.transform.SetParent(child);
+		}
 	}
 }

@@ -136,5 +136,11 @@ namespace HomeVisit.UI
 		{
 			imgCompletedTip.gameObject.SetActive(true);
 		}
+
+		public void SetProgress(bool isShow)
+		{
+			visitStepPanels[visitStepIndex].gameObject.SetActive(isShow);
+			imgVisitProgress.gameObject.SetActive(isShow);
+		}
 	}
 }

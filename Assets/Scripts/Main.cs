@@ -11,6 +11,7 @@ using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Linq;
 using System.Threading;
+using QAssetBundle;
 
 namespace HomeVisit.UI
 {
@@ -19,18 +20,18 @@ namespace HomeVisit.UI
 		IEnumerator Start()
 		{
 			//遮挡层，遮挡其他UI，直到它们加载完成
-			yield return UIKit.PreLoadPanelAsync<MaskPanel>(UILevel.PopUI, prefabName: Settings.UI + QAssetBundle.Maskpanel_prefab.MASKPANEL);
+			yield return UIKit.PreLoadPanelAsync<MaskPanel>(UILevel.PopUI, prefabName: Settings.UI + Maskpanel_prefab.MASKPANEL);
 			//主要
-			yield return UIKit.PreLoadPanelAsync<MainPanel>(UILevel.Bg, prefabName: Settings.UI + QAssetBundle.Mainpanel_prefab.MAINPANEL);
+			yield return UIKit.PreLoadPanelAsync<MainPanel>(UILevel.Bg, prefabName: Settings.UI + Mainpanel_prefab.MAINPANEL);
 			//获取信息
-			yield return UIKit.PreLoadPanelAsync<GetInformationPanel>(prefabName: Settings.UI + QAssetBundle.Getinfornationpanel_prefab.GETINFORMATIONPANEL);
+			yield return UIKit.PreLoadPanelAsync<GetInformationPanel>(prefabName: Settings.UI + Getinfornationpanel_prefab.GETINFORMATIONPANEL);
 			//家访内容
-			yield return UIKit.PreLoadPanelAsync<HomeVisitContentPanel>(prefabName: Settings.UI + QAssetBundle.Homevisitcontentpanel_prefab.HOMEVISITCONTENTPANEL);
+			yield return UIKit.PreLoadPanelAsync<HomeVisitContentPanel>(prefabName: Settings.UI + Homevisitcontentpanel_prefab.HOMEVISITCONTENTPANEL);
 			UIKit.HidePanel<HomeVisitContentPanel>();
 			//家访形式
-			yield return UIKit.PreLoadPanelAsync<HomeVisitFormPanel>(prefabName: Settings.UI + QAssetBundle.Homevisitformpanel_prefab.HOMEVISITFORMPANEL);
+			yield return UIKit.PreLoadPanelAsync<HomeVisitFormPanel>(prefabName: Settings.UI + Homevisitformpanel_prefab.HOMEVISITFORMPANEL);
 			//知识考核
-			yield return UIKit.PreLoadPanelAsync<KnowledgeExamPanel>(prefabName: Settings.UI + QAssetBundle.Knowledgeexampanel_prefab.KNOWLEDGEEXAMPANEL);
+			yield return UIKit.PreLoadPanelAsync<KnowledgeExamPanel>(prefabName: Settings.UI + Knowledgeexampanel_prefab.KNOWLEDGEEXAMPANEL);
 			UIKit.HidePanel<KnowledgeExamPanel>();
 			//实验报告
 			TestReportPanelData reportPanelData = new TestReportPanelData();
@@ -38,20 +39,22 @@ namespace HomeVisit.UI
 			{
 				reportPanelData.datas = d;
 			});
-			yield return UIKit.PreLoadPanelAsync<TestReportPanel>(UILevel.Common, prefabName: Settings.UI + QAssetBundle.Testreportpanel_prefab.TESTREPORTPANEL);
+			yield return UIKit.PreLoadPanelAsync<TestReportPanel>(UILevel.Common, prefabName: Settings.UI + Testreportpanel_prefab.TESTREPORTPANEL);
 			UIKit.GetPanel<TestReportPanel>().InitReport(reportPanelData);
 			UIKit.HidePanel<TestReportPanel>();
 			//实验简介
-			yield return UIKit.PreLoadPanelAsync<TestBriefPanel>(prefabName: Settings.UI + QAssetBundle.Testbriefpanel_prefab.TESTBRIEFPANEL);
+			yield return UIKit.PreLoadPanelAsync<TestBriefPanel>(prefabName: Settings.UI + Testbriefpanel_prefab.TESTBRIEFPANEL);
 			//最顶部页面
-			yield return UIKit.PreLoadPanelAsync<TopPanel>(UILevel.PopUI, prefabName: Settings.UI + QAssetBundle.Toppanel_prefab.TOPPANEL);
+			yield return UIKit.PreLoadPanelAsync<TopPanel>(UILevel.PopUI, prefabName: Settings.UI + Toppanel_prefab.TOPPANEL);
 			HomeVisitFormPanel formPanel = UIKit.GetPanel<HomeVisitFormPanel>();
-			//关闭MaskPanel
-			UIKit.ClosePanel<MaskPanel>();
+
 			//关闭获取信息
 			UIKit.HidePanel<GetInformationPanel>();
 			//关闭形式
 			UIKit.HidePanel<HomeVisitFormPanel>();
+			UIKit.GetPanel<MainPanel>().SetProgress(false);
+			//关闭MaskPanel
+			UIKit.ClosePanel<MaskPanel>();
 		}
 
 		#region 生成数据

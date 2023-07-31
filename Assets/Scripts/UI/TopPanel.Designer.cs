@@ -5,7 +5,7 @@ using QFramework;
 
 namespace HomeVisit.UI
 {
-	// Generate Id:c422ae46-f755-40cb-a54f-7218beafb401
+	// Generate Id:1f07ee8c-7d95-4f25-9f82-ae451dd4c4c7
 	public partial class TopPanel
 	{
 		public const string Name = "TopPanel";
@@ -15,7 +15,7 @@ namespace HomeVisit.UI
 		[SerializeField]
 		public UnityEngine.UI.Image imgTipAnim;
 		[SerializeField]
-		public UnityEngine.UI.Button btnSeting;
+		public UnityEngine.UI.Button btnSetting;
 		[SerializeField]
 		public UnityEngine.UI.Button btnTestReport;
 		[SerializeField]
@@ -35,7 +35,7 @@ namespace HomeVisit.UI
 		{
 			btnTip = null;
 			imgTipAnim = null;
-			btnSeting = null;
+			btnSetting = null;
 			btnTestReport = null;
 			btnKnowledge = null;
 			btnTestBrief = null;

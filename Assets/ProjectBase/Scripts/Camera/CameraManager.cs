@@ -6,6 +6,7 @@ using Cinemachine;
 using QFramework;
 using ProjectBase;
 using UnityEngine.EventSystems;
+using HomeVisit.Character;
 
 namespace ProjectBase
 {
@@ -24,10 +25,11 @@ namespace ProjectBase
 		public CinemachineVirtualCamera roamC = null;
 		public CinemachineVirtualCamera followC = null;
 		public CinemachineVirtualCamera thirdPersonC = null;
+		public CinemachineVirtualCamera firstPersonC = null;
 
 		//漫游相机的刚体
 		Rigidbody roamRig = null;
-
+		bool[] keyCodeState = new bool[4];
 		Vector3 originPos;
 		Vector3 originAngle;
 		float originFieldOfView;
@@ -37,7 +39,7 @@ namespace ProjectBase
 		{
 			get
 			{
-				return isEnable && !EventSystem.current.IsPointerOverGameObject();
+				return isEnable;
 			}
 			set
 			{
@@ -54,7 +56,6 @@ namespace ProjectBase
 		public bool Paused { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
 		bool isRotate = false;
-		bool isMoveing = false;
 
 		private void Start()
 		{
@@ -85,6 +86,8 @@ namespace ProjectBase
 			EventCenter.GetInstance().AddEventListener(KeyCode.Space + "保持", OnSpaceState);
 
 			EventCenter.GetInstance().AddEventListener<float>("鼠标滚轮", OnMouseScrollWheel);
+
+			MonoMgr.GetInstance().AddFixedUpdateListener(MyFixedUpdate);
 		}
 
 		public void SetRoamRig(RigidbodyConstraints newState)
@@ -103,68 +106,62 @@ namespace ProjectBase
 
 
 		#region 按键响应事件
-		void MyUpdate()
+		void MyFixedUpdate()
 		{
-			if (EventSystem.current.IsPointerOverGameObject())
+			Vector3 velocity = Vector3.zero;
+			if (IsEnable)
 			{
-				roamRig.velocity = Vector3.zero;
+				if (keyCodeState[0])
+					velocity += roamC.transform.forward * horizontalSpeed;
+				if (keyCodeState[1])
+					velocity += -roamC.transform.right * horizontalSpeed;
+				if (keyCodeState[2])
+					velocity += -roamC.transform.forward * horizontalSpeed;
+				if (keyCodeState[3])
+					velocity += roamC.transform.right * horizontalSpeed;
 			}
+			print(velocity);
+			roamRig.velocity = velocity;
 		}
 
 		private void OnWDown()
 		{
-			if (!IsEnable)
-				return;
-			roamRig.velocity = roamC.transform.forward * horizontalSpeed;
+			keyCodeState[0] = true;
 		}
 
 		private void OnADown()
 		{
-			if (!IsEnable)
-				return;
-			roamRig.velocity = roamC.transform.right * -horizontalSpeed;
+			keyCodeState[1] = true;
 		}
 
 		private void OnSDown()
 		{
-			if (!IsEnable)
-				return;
-			roamRig.velocity = roamC.transform.forward * -horizontalSpeed;
+			keyCodeState[2] = true;
 		}
 
 		private void OnDDown()
 		{
-			if (!IsEnable)
-				return;
-			roamRig.velocity = roamC.transform.right * horizontalSpeed;
+			keyCodeState[3] = true;
 		}
 
 		private void OnWUp()
 		{
-			if (!IsEnable)
-				return;
-			roamRig.velocity = Vector3.zero;
+			keyCodeState[0] = false;
 		}
 
 		private void OnAUp()
 		{
-			if (!IsEnable)
-				return;
-			roamRig.velocity = Vector3.zero;
+			keyCodeState[1] = false;
 		}
 
 		private void OnSUp()
 		{
-			if (!IsEnable)
-				return;
-			roamRig.velocity = Vector3.zero;
+			keyCodeState[2] = false;
 		}
 
 		private void OnDUp()
 		{
-			if (!IsEnable)
-				return;
-			roamRig.velocity = Vector3.zero;
+			keyCodeState[3] = false;
 		}
 
 		private void OnMouseRightDown()
@@ -303,7 +300,6 @@ namespace ProjectBase
 		{
 			if (target == null)
 			{
-				//thirdPersonC.transform.SetParent(transform, false);
 				roamC.Priority = 13;
 				thirdPersonC.Priority = 12;
 				followC.Priority = 11;
@@ -312,7 +308,6 @@ namespace ProjectBase
 			}
 			else
 			{
-				//thirdPersonC.transform.SetParent(target, false);
 				thirdPersonC.Priority = 13;
 				roamC.Priority = 12;
 				followC.Priority = 11;
@@ -324,6 +319,7 @@ namespace ProjectBase
 
 		public void StartRoam(Transform source)
 		{
+			IsEnable = true;
 			roamC.transform.position = source.position;
 			roamC.transform.rotation = source.rotation;
 			roamC.Priority = 13;

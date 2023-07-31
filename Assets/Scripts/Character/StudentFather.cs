@@ -13,7 +13,7 @@ namespace HomeVisit.Character
 		Transform nowTarget;
 		public IEnumerator PlayAnim(string clipName,bool once = true)
 		{
-			yield return AnimationManager.GetInstance().Play(anim, clipName);
+			yield return AnimMgr.GetInstance().Play(anim, clipName);
 			if(once)
 				anim.Play("站立");
 		}

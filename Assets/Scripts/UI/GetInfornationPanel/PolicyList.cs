@@ -10,7 +10,7 @@ namespace HomeVisit.UI
 {
 	public class PolicyList : MonoBehaviour
 	{
-		[Header("老师信息")]
+		[Header("欢迎老师")]
 		public TextMeshProUGUI tmpTeacher;
 		[Header("输入的数据")]
 		public TMP_Dropdown dpDistrict;
@@ -76,7 +76,7 @@ namespace HomeVisit.UI
 		void Next()
 		{
 			//每页10个元素
-			if (pageIndex > (nowDatas.Count / 10f - 1))
+			if (pageIndex > (nowDatas.Count / 7f - 1))
 				return;
 			pageIndex++;
 			LoadItemsData();
@@ -86,7 +86,7 @@ namespace HomeVisit.UI
 		{
 			for (int i = 0; i < items.Count; i++)
 			{
-				int dataIndex = pageIndex * 10 + i;
+				int dataIndex = pageIndex * 7 + i;
 				PolicyItem item = items[i];
 				if (dataIndex > nowDatas.Count - 1)
 				{

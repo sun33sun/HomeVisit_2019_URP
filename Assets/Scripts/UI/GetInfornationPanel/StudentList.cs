@@ -10,7 +10,7 @@ namespace HomeVisit.UI
 {
 	public class StudentList : MonoBehaviour
 	{
-		[Header("老师信息")]
+		[Header("欢迎老师")]
 		public TextMeshProUGUI tmpTeacher;
 		[Header("输入的数据")]
 		public InputField inputKeyword;
@@ -48,9 +48,9 @@ namespace HomeVisit.UI
 					btn.onClick.AddListener(() =>
 					{
 						panel.InformationSecurity.gameObject.SetActive(true);
-						StudentInformation information = panel.StudentInformation;
-						information.gameObject.SetActive(true);
-						information.InitData(item.mData);
+						StudentInformation1 information1 = panel.StudentInformation1;
+						information1.gameObject.SetActive(true);
+						information1.InitData(item.mData);
 						gameObject.SetActive(false);
 					});
 					btn.interactable = true;
@@ -69,8 +69,8 @@ namespace HomeVisit.UI
 
 		void Next()
 		{
-			//每页10个元素
-			if (pageIndex > (nowDatas.Count / 10f - 1))
+			//每页元素数量
+			if (pageIndex > (nowDatas.Count / (float)items.Count - 1))
 				return;
 			pageIndex++;
 			LoadItemsData();
@@ -80,7 +80,7 @@ namespace HomeVisit.UI
 		{
 			for (int i = 0; i < items.Count; i++)
 			{
-				int dataIndex = pageIndex * 10 + i;
+				int dataIndex = pageIndex * items.Count + i;
 				StudentItem item = items[i];
 				if (dataIndex > nowDatas.Count - 1)
 				{
@@ -98,7 +98,8 @@ namespace HomeVisit.UI
 		{
 			nowDatas = datas.FindAll(data =>
 				(inputKeyword.text == "" || data.name.Contains(inputKeyword.text)) &&
-				(inputStudentID.text == "" || data.id == inputStudentID.text)
+				(inputStudentID.text == "" || data.id == inputStudentID.text) &&
+				dpBoarding.options[dpBoarding.value].text == "寄宿制"
 			);
 			pageIndex = 0;
 			LoadItemsData();

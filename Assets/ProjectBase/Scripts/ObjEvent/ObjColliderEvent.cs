@@ -20,6 +20,7 @@ public class ObjColliderEvent : MonoBehaviour
 	{
 		if (!other.gameObject.tag.Equals("Teacher"))
 			return;
+		//if(Vec)
 		StopAllCoroutines();
 		OnColliderEnterEvent?.Invoke(other);
 		isCollision = true;

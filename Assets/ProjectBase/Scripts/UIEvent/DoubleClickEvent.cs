@@ -14,11 +14,8 @@ namespace ProjectBase
 		{
 			if (eventData.button != PointerEventData.InputButton.Left)
 				return;
-			if (eventData.clickCount == 2)
-			{
 				isDoubleClick = true;
-				OnDoubleClick?.Invoke();
-			}
+			OnDoubleClick?.Invoke();
 		}
 	}
 }
