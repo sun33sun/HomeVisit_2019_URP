@@ -13,7 +13,6 @@ using System;
 using HomeVisit.Task;
 using TMPro;
 using HomeVisit.Screenshot;
-using Cysharp.Threading.Tasks;
 
 namespace HomeVisit.UI
 {
@@ -287,7 +286,7 @@ namespace HomeVisit.UI
 			CameraManager.Instance.SetRoamPos(FemaleTeacher.Instance.transform.position);
 			CameraManager.Instance.SetRoamForward(FemaleTeacher.Instance.transform.forward);
 
-			switch (UIKit.GetPanel<HomeVisitContentPanel>().GetStudentName())
+			switch (UIKit.GetPanel<HomeVisitContentPanel>().GetHomeType())
 			{
 				case "´«Í³":
 					TraditionTask.Instance.StartCoroutine(TraditionTask.Instance.StartTask());

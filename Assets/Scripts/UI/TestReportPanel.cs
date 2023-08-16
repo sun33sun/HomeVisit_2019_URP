@@ -20,7 +20,7 @@ namespace HomeVisit.UI
 		private void Start()
 		{
 			startTime = DateTime.Now;
-			MonoMgr.GetInstance().AddFixedUpdateListener(() => { tmpDate.text = "µ±Ç°Ê±¼ä£º" + DateTime.Now.ToString("yyyy/MM-dd HH:mm"); });
+			MonoMgr.GetInstance().AddFixedUpdateListener(() => { tmpDate.text = "å½“å‰æ—¶é—´ï¼š" + DateTime.Now.ToString("yyyy/MM-dd HH:mm"); });
 		}
 
 		protected override void OnInit(IUIData uiData = null)
@@ -53,11 +53,11 @@ namespace HomeVisit.UI
 				string strEvaluation;
 				float percentage = reportList[i].Data.score / (float)reportList[i].Data.maxScore;
 				if (percentage > 0.8)
-					strEvaluation = "ÓÅ";
+					strEvaluation = "ä¼˜";
 				else if (percentage > 0.66f)
-					strEvaluation = "Á¼";
+					strEvaluation = "è‰¯";
 				else
-					strEvaluation = "²î";
+					strEvaluation = "å·®";
 				Step newStep = new Step()
 				{
 					seq = 0,
@@ -77,7 +77,7 @@ namespace HomeVisit.UI
 			ContextJson newContextJson = new ContextJson()
 			{
 				username = "username",
-				title = "»ù´¡½ÌÓı¼Ò·Ã",
+				title = "åŸºç¡€æ•™è‚²å®¶è®¿",
 				status = 1,
 				score = projectScore,
 				startTime = startTime.ToString(),
@@ -92,7 +92,7 @@ namespace HomeVisit.UI
 			};
 			SubmitData submitData = new SubmitData()
 			{
-				customName = "ÉÏº£Ê¦·¶´óÑ§",
+				customName = "ä¸Šæµ·å¸ˆèŒƒå¤§å­¦",
 				accountNumber = "test",
 				contextJson = JsonConvert.SerializeObject(newContextJson)
 			};
@@ -136,13 +136,13 @@ namespace HomeVisit.UI
 				report.Data.score = data.maxScore;
 			report.Data.score = data.score;
 			report.Init(report.Data);
-			//¼ÆËã×Ü·Ö
+			//è®¡ç®—æ€»åˆ†
 			int totalScore = 0;
 			foreach (var item in reportList)
 			{
 				totalScore += item.Data.score;
 			}
-			tmpTotalScore.text = "×Ü³É¼¨£º" + totalScore.ToString();
+			tmpTotalScore.text = "æ€»æˆç»©ï¼š" + totalScore.ToString();
 		}
 
 		public void SetTestEvaluate(string newContent)

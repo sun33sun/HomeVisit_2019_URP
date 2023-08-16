@@ -33,15 +33,15 @@ namespace HomeVisit
 		[SerializeField] Button btnCloseBuildTip;
 
 		//外界获取家访孩子信息
-		List<string> sceneName = new List<string>() { "传统", "多孩", "单亲" };
-		List<string> studentName = new List<string>() { "张守光", "林光美", "秦彦威" };
-		public string SceneName 
+		List<string> homeTypes = new List<string>() { "传统", "多孩", "单亲" };
+		List<string> studentNames = new List<string>() { "张守光", "林光美", "秦彦威" };
+		public string HomeType 
 		{ 
 			get 
 			{
 				if (selectedIndex > 2)
 					return "";
-				return sceneName[selectedIndex];
+				return homeTypes[selectedIndex];
 			} 
 		}
 		public string StudentName 
@@ -50,7 +50,7 @@ namespace HomeVisit
 			{
 				if (selectedIndex > 2)
 					return "";
-				return studentName[selectedIndex];
+				return studentNames[selectedIndex];
 			} 
 		}
 

@@ -31,15 +31,12 @@ namespace HomeVisit.UI
 				Hide();
 			});
 			btnConfirm.onClick.AddListener(ShowStudentInformation);
+			
+			btnCloseBuildTip.onClick.AddListener(()=>imgBuildTip.gameObject.SetActive(false));
 		}
 
 		void Confirm()
 		{
-			if (GetStudentName() == "")
-			{
-				imgBuildTip.gameObject.SetActive(true);
-				return;
-			}
 			ScoreReportData data = new ScoreReportData()
 			{
 				title = "确认家访内容",
@@ -48,7 +45,6 @@ namespace HomeVisit.UI
 				score = 2
 			};
 			UIKit.GetPanel<TestReportPanel>().CreateScoreReport(data);
-
 			Hide();
 			UIKit.ShowPanel<HomeVisitFormPanel>();
 		}
@@ -70,25 +66,34 @@ namespace HomeVisit.UI
 		{
 		}
 
-		public string GetStudentName()
+		public string GetHomeType()
 		{
-			return questionnaire.SceneName;
+			return questionnaire.HomeType;
 		}
 
 		public void ShowStudentInformation()
 		{
-			GetInformationPanel panel = UIKit.GetPanel<GetInformationPanel>();
-			studentData = panel.StudentList.datas.Find(s => s.name == questionnaire.StudentName);
-			panel.StudentInformation.InitData(studentData);
-			panel.gameObject.SetActive(true);
-			panel.StudentInformation.gameObject.SetActive(true);
-			panel.InformationSecurity.gameObject.SetActive(true);
-			Hide();
-			ActionKit.Sequence()
-				.DelayFrame(1)
-				.Condition(() => { return !panel.StudentInformation1.gameObject.activeInHierarchy && !panel.StudentInformation.gameObject.activeInHierarchy;  })
-				.Callback(Confirm)
-				.Start(this);
+			string studentName = questionnaire.StudentName;
+			if (studentName == "")
+			{
+				imgBuildTip.gameObject.SetActive(true);
+			}
+			else
+			{
+				GetInformationPanel panel = UIKit.GetPanel<GetInformationPanel>();
+				studentData = panel.StudentList.datas.Find(s => s.name == studentName);
+				panel.StudentInformation.InitData(studentData);
+				panel.gameObject.SetActive(true);
+				panel.StudentInformation.gameObject.SetActive(true);
+				panel.InformationSecurity.gameObject.SetActive(true);
+				Hide();
+				ActionKit.Sequence()
+					.DelayFrame(1)
+					.Condition(() => { return !panel.StudentInformation1.gameObject.activeInHierarchy && !panel.StudentInformation.gameObject.activeInHierarchy;  })
+					.Callback(Confirm)
+					.Start(this);
+			}
+
 		}
 	}
 }

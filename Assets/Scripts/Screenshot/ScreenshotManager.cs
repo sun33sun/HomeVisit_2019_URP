@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using ProjectBase;
-using Cysharp.Threading.Tasks;
 using QFramework;
+using Cysharp.Threading.Tasks;
 
 namespace HomeVisit.Screenshot
 {
     public class ScreenshotManager : SingletonMono<ScreenshotManager>
     {
-        //public Texture2D screenShot;
-        //public Image image;
-        public Sprite testimage;
+		public Texture2D screenShot;
+		public Image image;
+		public Sprite testimage;
 
         bool isScreenshot = false;
         public void CaptureScreenshot(RawImage rawImage)

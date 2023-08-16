@@ -49,14 +49,13 @@ namespace HomeVisit.Task
 				topPanel = UIKit.GetPanel<TopPanel>();
 			if (Settings.OldRandomScene == "ToBeDeveloped")
 			{
-				FemaleStudent.Instance.SetTransform(Interactive.Get("学生蜷缩位置").transform);
-				yield return FemaleStudent.Instance.PlayAnim("蜷缩", false);
+				StudentController.Instance.SetTransform(Interactive.Get("学生蜷缩位置").transform);
+				yield return StudentController.Instance.PlayAnim("蜷缩", false);
 			}
 			else
 			{
-				FemaleStudent.Instance.SetTransform(Interactive.Get("学生房站位_学生").transform);
+				StudentController.Instance.SetTransform(Interactive.Get("学生房站位_学生").transform);
 			}
-			MaleStudent.Instance.gameObject.SetActive(false);
 
 			//观环境
 			mainPanel.StartTMP();
@@ -97,13 +96,13 @@ namespace HomeVisit.Task
 				yield return PlayAudio("母亲_这孩子就知道看书", 0, "这孩子就知道看书。");
 				yield return ObjHighlightClickCallBack(Interactive.Get("俄狄浦斯"), true);
 				yield return RecordSpeech(new string[] { "俄狄浦斯", "哪部分" });
-				yield return FemaleStudent.Instance.PlayAnim("下床");
-				FemaleStudent.Instance.SetTransform(Interactive.Get("学生房站位_学生").transform);
+				yield return StudentController.Instance.PlayAnim("下床");
+				StudentController.Instance.SetTransform(Interactive.Get("学生房站位_学生").transform);
 				yield return PlayAudio("女学生_俄狄浦斯", 2, "俄狄浦斯的命运，我就受到了命运的捉弄。");
 			}
 			#endregion
 			#region 普通家庭
-			if (Settings.OldRandomScene == "ModelTest2")
+			if (Settings.OldRandomScene == "Developing")
 			{
 				yield return ObjHighlightClickCallBack("画", true);
 				yield return PlayAudio("母亲说孩子画画", 0, "这幅画是我们孩子平时自己画的，他比较喜欢画画，所以我们都给挂起来啦！");
@@ -117,9 +116,9 @@ namespace HomeVisit.Task
 			{
 				yield return PlayAudio("母亲_展示弹琴", 0, "你平时不是喜欢弹琴吗？给老师展示下吧。");
 				Transform GangQinWeiZhi = Interactive.Get("钢琴位置").transform;
-				yield return FemaleStudent.Instance.Walk(GangQinWeiZhi);
-				yield return FemaleStudent.Instance.SitDown(GangQinWeiZhi);
-				yield return FemaleStudent.Instance.PlayAnim("弹琴", false);
+				yield return StudentController.Instance.Walk(GangQinWeiZhi);
+				yield return StudentController.Instance.SitDown(GangQinWeiZhi);
+				yield return StudentController.Instance.PlayAnim("弹琴", false);
 				yield return FemaleTeacher.Instance.PlayAnim("鼓掌");
 				yield return RecordSpeech(new string[] { "钢琴", "好听" });
 			}
@@ -132,22 +131,22 @@ namespace HomeVisit.Task
 			GameObject WaiChuWeiZhi = Interactive.Get("学生房外出位置");
 			yield return StudentMather.Instance.Walk(WaiChuWeiZhi.transform);
 			StudentMather.Instance.SetTransform(Interactive.Get("客厅坐位_母亲").transform);
-			FemaleStudent.Instance.agent.enabled = true;
-			yield return FemaleStudent.Instance.Walk(WaiChuWeiZhi.transform);
-			FemaleStudent.Instance.SetTransform(Interactive.Get("客厅坐位_学生").transform);
+			StudentController.Instance.agent.enabled = true;
+			yield return StudentController.Instance.Walk(WaiChuWeiZhi.transform);
+			StudentController.Instance.SetTransform(Interactive.Get("客厅坐位_学生").transform);
 			yield return AreaHighlight(Interactive.Get("学生房外出高亮正方体").GetComponent<ObjColliderEvent>());
 			yield return FemaleTeacher.Instance.SetTransform(Interactive.Get("学生房门外位置").transform);
 			yield return StudentMather.Instance.SitDown(Interactive.Get("客厅坐位_母亲").transform);
-			yield return FemaleStudent.Instance.SitDown(Interactive.Get("客厅坐位_学生").transform);
+			yield return StudentController.Instance.SitDown(Interactive.Get("客厅坐位_学生").transform);
 			yield return StudentFather.Instance.SitDown(Interactive.Get("客厅坐位_父亲").transform);
 			yield return AreaHighlight(Interactive.Get<ObjColliderEvent>("女老师坐下的位置"));
 			yield return FemaleTeacher.Instance.SitDown(Interactive.Get("客厅坐位_女老师").transform);
-			StartCoroutine(FemaleStudent.Instance.PlayAnim("乱动水果", false));
-			yield return ObjHighlightClickCallBack(FemaleStudent.Instance.gameObject, true,false);
+			StartCoroutine(StudentController.Instance.PlayAnim("乱动水果", false));
+			yield return ObjHighlightClickCallBack(StudentController.Instance.gameObject, true,false);
 			CameraManager.Instance.IsEnable = false;
 			yield return StartInputExam("请输入学生的行为错在那些地方");
 			CameraManager.Instance.IsEnable = true;
-			yield return FemaleStudent.Instance.PlayAnim("不再乱动", false);
+			yield return StudentController.Instance.PlayAnim("不再乱动", false);
 			onVisitPanel.GenerateReportData("了解情况_查细节", 2);
 			////说学校
 			mainPanel.NextTmp();
@@ -191,7 +190,7 @@ namespace HomeVisit.Task
 			topPanel.tmpTip.text = "拒绝礼物并送学生钢笔";
 			yield return StudentFather.Instance.PlayAnim("站起");
 			yield return StudentMather.Instance.PlayAnim("站起");
-			yield return FemaleStudent.Instance.PlayAnim("站起");
+			yield return StudentController.Instance.PlayAnim("站起");
 			yield return FemaleTeacher.Instance.StandUp();
 			yield return PlayAudio("父亲感谢老师", 4, "谢谢老师的指导，希望以后能在学校里多关注孩子");
 			yield return StudentFather.Instance.PlayAnim("送礼");

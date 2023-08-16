@@ -8,8 +8,6 @@ using UnityEngine.SceneManagement;
 using HomeVisit.Character;
 using HomeVisit.Screenshot;
 using UnityEngine.UI;
-using Cysharp.Threading.Tasks;
-using Cysharp.Threading.Tasks.Linq;
 using System.Threading;
 using QAssetBundle;
 

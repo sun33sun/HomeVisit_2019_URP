@@ -22,8 +22,8 @@ namespace HomeVisit.UI
 			mData = uiData as ScoreReportData ?? new ScoreReportData();
 
 			tmpModule.text = mData.title;
-			tmpStart.text = "¿ªÊ¼£º"+mData.startTime.ToString("MM-dd HH:mm");
-			tmpEnd.text = "½áÊø£º"+ mData.endTime.ToString("MM-dd HH:mm");
+			tmpStart.text = "å¼€å§‹ï¼š"+mData.startTime.ToString("MM-dd HH:mm");
+			tmpEnd.text = "ç»“æŸï¼š"+ mData.endTime.ToString("MM-dd HH:mm");
 			tmpTotalTime.text = (mData.startTime - mData.endTime).ToString(@"mm\:ss");
 			tmpScore.text = mData.score.ToString();
 		}

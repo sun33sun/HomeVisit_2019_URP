@@ -120,7 +120,6 @@ namespace ProjectBase
 				if (keyCodeState[3])
 					velocity += roamC.transform.right * horizontalSpeed;
 			}
-			print(velocity);
 			roamRig.velocity = velocity;
 		}
 

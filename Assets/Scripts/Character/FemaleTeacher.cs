@@ -11,8 +11,6 @@ namespace HomeVisit.Character
 	public class FemaleTeacher : SingletonMono<FemaleTeacher>
 	{
 		public Animator anim;
-		public Transform face;
-		public Transform thirdPerson;
 		SkinnedMeshRenderer faceSkin;
 		public CharacterController cc;
 		public NavMeshAgent agent;

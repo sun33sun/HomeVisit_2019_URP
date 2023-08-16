@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/ToBeDeveloped.unity
     guid: 7eb7d653cf561f34ab3b826c42cc7f93
   - enabled: 1
-    path: Assets/Scenes/ModelTest2.unity
+    path: Assets/Scenes/Developing.unity
     guid: 60e6b2af03c735847ad5f8a923725d25
   - enabled: 1
     path: Assets/Scenes/Developed.unity
