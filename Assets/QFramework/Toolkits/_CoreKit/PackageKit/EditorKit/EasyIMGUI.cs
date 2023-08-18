@@ -7,6 +7,7 @@
  ****************************************************************************/
 
 #if UNITY_EDITOR
+using System;
 using UnityEditor;
 
 namespace QFramework
@@ -98,6 +99,11 @@ namespace QFramework
         public static IMGUIRectBox BoxWithRect()
         {
             return new IMGUIRectBoxView();
+        }
+
+        public static IMGUIEnumPopup EnumPopup(Enum initValue)
+        {
+            return new IMGUIEnumPopupView(initValue);
         }
 
         static EasyIMGUI()

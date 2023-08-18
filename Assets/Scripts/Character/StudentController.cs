@@ -23,6 +23,7 @@ namespace HomeVisit.Character
 		#region 走路
 		public IEnumerator Walk(Transform target)
 		{
+			anim.speed = 1;
 			anim.Play("走路");
 			nowTarget = target;
 			agent.isStopped = false;

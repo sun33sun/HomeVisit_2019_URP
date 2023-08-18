@@ -8,8 +8,8 @@ namespace QFramework
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         public static void Init()
         {
-			UIKit.Config.PanelLoaderPool = new ResKitPanelLoaderPool();
-		}
+            UIKit.Config.PanelLoaderPool = new ResKitPanelLoaderPool();
+        }
     }
 
     public class ResKitPanelLoaderPool : AbstractPanelLoaderPool

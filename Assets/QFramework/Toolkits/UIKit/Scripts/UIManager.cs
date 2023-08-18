@@ -56,6 +56,19 @@ namespace QFramework
             }
         }
 
+        public void LoadUIAsync(PanelSearchKeys panelSearchKeys, Action<IPanel> onLoad)
+        {
+            var retPanel = UIKit.Table.GetPanelsByPanelSearchKeys(panelSearchKeys).FirstOrDefault();
+
+            if (retPanel == null)
+            {
+                CreateUIAsync(panelSearchKeys, (panel) =>
+                {
+                    retPanel = panel;
+                    onLoad?.Invoke(retPanel);
+                });
+            }
+        }
 
         public void OpenUIAsync(PanelSearchKeys panelSearchKeys,Action<IPanel> onLoad)
         {
@@ -121,22 +134,6 @@ namespace QFramework
                 retPanel.Open(panelSearchKeys.UIData);
                 retPanel.Show();
                 return retPanel;
-            }
-        }
-
-        public void LoadUIAsync(PanelSearchKeys panelSearchKeys, Action<IPanel> onLoad)
-        {
-
-            var retPanel = UIKit.Table.GetPanelsByPanelSearchKeys(panelSearchKeys).FirstOrDefault();
-
-            if (retPanel == null)
-            {
-                CreateUIAsync(panelSearchKeys, (panel) =>
-                {
-                    retPanel = panel;
-                    onLoad?.Invoke(retPanel);
-
-                });
             }
         }
 

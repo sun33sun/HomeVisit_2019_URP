@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Namespace: HomeVisit.UI
   ScriptDir: Assets/Scripts/UI
-  PrefabDir: Assets/Art/UIPrefab
+  PrefabDir: Resources/UIPrefab

@@ -45,8 +45,8 @@ namespace QFramework
             Set(style => style.fontSize = size);
             return this;
         }
-        
-        private Func<GUIStyle> mStyleFactory;
+
+        private Func<GUIStyle> mStyleFactory = () => new GUIStyle();
 
         private Action<GUIStyle> mOperations = style => { };
 

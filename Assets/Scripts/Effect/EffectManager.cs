@@ -30,12 +30,7 @@ namespace HomeVisit.Effect
 			effectList.Add(newHighlight);
 			newHighlight.outlineColor = Color.red;
 			newHighlight.highlighted = true;
-			if (haveInnerGlow)
-			{
-				newHighlight.innerGlow = 0.5f;
-				newHighlight.innerGlowWidth = 2;
-				newHighlight.innerGlowColor = Color.red;
-			}
+			newHighlight.outlineVisibility = Visibility.AlwaysOnTop;
 			return newHighlight;
 		}
 

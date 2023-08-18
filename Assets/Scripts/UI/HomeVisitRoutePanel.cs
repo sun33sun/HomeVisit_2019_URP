@@ -9,6 +9,7 @@ using HomeVisit.Effect;
 using ProjectBase;
 using HomeVisit.Character;
 using System;
+using HomeVisit.Task;
 using UnityEngine.EventSystems;
 
 namespace HomeVisit.UI
@@ -77,19 +78,23 @@ namespace HomeVisit.UI
 			yield return topPanel.CloseEyeAnim();
 			UIKit.GetPanel<MainPanel>().SetBK(false);
 			yield return SceneManager.LoadSceneAsync("Office", LoadSceneMode.Additive);
+			CameraManager.Instance.SetRoamPos(Interactive.Get("开始点").transform.position);
 			yield return topPanel.OpenEyeAnim();
-			GameObject Teacher_Computer = Interactive.Get("Teacher_Computer");
-			EffectManager.Instance.AddEffectImmediately(Teacher_Computer);
-			EventManager.Instance.AddObjClick(Teacher_Computer, () =>
+			//人物动画完成回调
+			OffiecTask.Instance.DoTask(() =>
 			{
-				svMap.gameObject.SetActive(true);
-				imgMid.gameObject.SetActive(true);
-				GetComponent<Image>().enabled = true;
-				CameraManager.Instance.IsEnable = false;
+				GameObject Teacher_Computer = Interactive.Get("Teacher_Computer");
+				EffectManager.Instance.AddEffectImmediately(Teacher_Computer);
+				EventManager.Instance.AddObjClick(Teacher_Computer, () =>
+				{
+					svMap.gameObject.SetActive(true);
+					imgMid.gameObject.SetActive(true);
+					GetComponent<Image>().enabled = true;
+					CameraManager.Instance.IsEnable = false;
+				});
 			});
 			CameraManager.Instance.SetRoamRig(RigidbodyConstraints.FreezeRotation);
 			CameraManager.Instance.IsEnable = true;
-			Animation anim = Interactive.Get("老师坐下").GetComponent<Animation>();
 		}
 
 		protected override void OnOpen(IUIData uiData = null)

@@ -18,30 +18,15 @@ MonoBehaviour:
     GameObject: {fileID: 0}
     From: 0
     NameToFullName: []
-    BindInfos:
-    - TypeName: UnityEngine.UI.Button
-      PathToRoot: btnTip
-      MemberName: btnTip
-    - TypeName: UnityEngine.UI.Button
-      PathToRoot: btnSeting
-      MemberName: btnSeting
-    - TypeName: UnityEngine.UI.Button
-      PathToRoot: btnKnowledge
-      MemberName: btnKnowledge
-    - TypeName: UnityEngine.UI.Button
-      PathToRoot: btnTestReport
-      MemberName: btnTestReport
-    - TypeName: UnityEngine.UI.Button
-      PathToRoot: btnTestBrief
-      MemberName: btnTestBrief
+    BindInfos: []
     ScriptsFolder: Assets/Scripts/UI
-    ClassName: ButtonPanel
+    ClassName: TaskInteractive
     Namespace: HomeVisit.UI
     MainCode: "using UnityEngine;\r\nusing QFramework;\r\n\r\nnamespace HomeVisit.UI\r\n{\r\n\tpublic
-      partial class ButtonPanel : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
+      partial class TaskInteractive : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
       Code Here\r\n\t\t}\r\n\t}\r\n}\r\n"
-    DesignerCode: "// Generate Id:6cb317ce-682a-4728-96f6-f04cce0490bd\r\nusing UnityEngine;\r\n\r\nnamespace
-      HomeVisit.UI\r\n{\r\n\tpublic partial class ButtonPanel\r\n\t{\r\n\r\n\t\tpublic
-      UnityEngine.UI.Button btnTip;\r\n\r\n\t\tpublic UnityEngine.UI.Button btnSeting;\r\n\r\n\t\tpublic
-      UnityEngine.UI.Button btnKnowledge;\r\n\r\n\t\tpublic UnityEngine.UI.Button
-      btnTestReport;\r\n\r\n\t\tpublic UnityEngine.UI.Button btnTestBrief;\r\n\r\n\t}\r\n}\r\n"
+    DesignerCode: "// Generate Id:b516770a-96fb-421d-9dd6-88d7700a406b\r\nusing UnityEngine;\r\n\r\nnamespace
+      HomeVisit.UI\r\n{\r\n\tpublic partial class TaskInteractive\r\n\t{\r\n\r\n\t\tpublic
+      UnityEngine.GameObject \u5973\u8001\u5E08;\r\n\r\n\t\tpublic UnityEngine.GameObject
+      \u8001\u5E08\u7535\u8111;\r\n\r\n\t\tpublic UnityEngine.GameObject \u7535\u8111\u5750\u4F4D;\r\n\r\n\t\tpublic
+      UnityEngine.GameObject \u5F00\u59CB\u70B9;\r\n\r\n\t}\r\n}\r\n"

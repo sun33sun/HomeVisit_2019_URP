@@ -139,7 +139,6 @@ namespace HomeVisit
 			{
 				int ringIndex = (selectedIndex - 2 + i)%strList.Count;
 				ringIndex = ringIndex >= 0 ? ringIndex : strList.Count + ringIndex;
-				print($"selectedIndex:{selectedIndex}  i:{i}  ringIndex:{ringIndex}");
 				tmps[i].text = strList[ringIndex];
 			}
 			parent.localPosition = new Vector3(-856, 140, 0);

@@ -78,8 +78,13 @@ namespace HomeVisit.UI
 				imgHistoryDialogueList.gameObject.SetActive(!imgHistoryDialogueList.gameObject.activeInHierarchy);
 			});
 			//截图
-			btnScreenshot.onClick.AddListener(()=> { ScreenshotManager.Instance.CaptureScreenshot(rawImgScreenshot); });
-			btnShowScreenshot.onClick.AddListener(() => { imgScreenshot.gameObject.SetActive(true); });
+			bool isScreenshot = false;
+			btnScreenshot.onClick.AddListener(() =>
+			{
+				isScreenshot = true;
+				ScreenshotManager.Instance.CaptureScreenshot(rawImgScreenshot);
+			});
+			btnShowScreenshot.onClick.AddListener(() => { if(isScreenshot){imgScreenshot.gameObject.SetActive(true);} });
 			btnCloseHistoryDialogueList.onClick.AddListener(() => { imgHistoryDialogueList.gameObject.SetActive(false); });
 			btnCloseScreenshot.onClick.AddListener(() => { imgScreenshot.gameObject.SetActive(false); });
 
@@ -134,24 +139,48 @@ namespace HomeVisit.UI
 		}
 
 		#region 语音部分
+
+		void IndexConvert(ref int index)
+		{
+			switch (Settings.OldRandomScene)
+			{
+				case "ToBeDeveloped":
+				case "Developing":
+					if (index == 2 || index == 2)
+						index = 3;
+					break;
+				case "Developed":
+					if (index == 2 || index == 2)
+						index = 2;
+					break;
+				default:
+					break;
+			}
+		}
 		//展示家长说的话
 		public void ShowParentWord(int index, string strWord)
 		{
 			CloseRecord();
 			btnDialogue.gameObject.SetActive(true);
+			IndexConvert(ref index);
 			btnDialogue.sprite = sprites[index];
 			txtDialogue.text = strWord;
 			string historyWord = "";
-			if (index == 0)
-				historyWord = "母亲：" + strWord;
-			else if (index == 2)
-				historyWord = "学生：" + strWord;
-			else if (index == 3)
-				historyWord = "学生：" + strWord;
-			else if (index == 4)
-				historyWord = "父亲：" + strWord;
-			else
-				return;
+			switch (index)
+			{
+				case 0:
+					historyWord = "母亲：" + strWord;
+					break;
+				case 2:
+				case 3:
+					historyWord = "学生：" + strWord;
+					break;
+				case 4:
+					historyWord = "父亲：" + strWord;
+					break;
+				default:
+					return;
+			}
 			TextMeshProUGUI tmpDialogue = Instantiate(dialoguePrefab);
 			tmpDialogue.text = historyWord;
 			tmpDialogue.transform.SetParent(imgHistoryDialogueList.content);

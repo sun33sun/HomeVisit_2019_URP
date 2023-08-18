@@ -25,6 +25,7 @@ namespace ProjectBase.Anim
 
 		public IEnumerator Play(Animator animator,string clipName)
 		{
+			Debug.LogFormat($"<color=green>{clipName}</color>");
 			animator.Play(clipName);
 			yield return AnimatorWaitFrame;
 			if(clipName == "站起")

@@ -231,7 +231,7 @@ public class XunFeiYuYin : MonoBehaviour
             yield return new WaitForSecondsRealtime(waitTime);
             if (Microphone.IsRecording(null))
                 position = Microphone.GetPosition(null);
-            Debug.Log("录音时长：" + t + "position=" + position + ",lastPosition=" + lastPosition);
+            // Debug.Log("录音时长：" + t + "position=" + position + ",lastPosition=" + lastPosition);
             if (position <= lastPosition)
             {
                 Debug.LogWarning("字节流发送完毕！强制结束！");
@@ -317,8 +317,8 @@ public class XunFeiYuYin : MonoBehaviour
                             { "business",new JSONNode{ { "vcn", voice },{ "aue", "raw" },{ "speed", speed },{ "volume", volume },{ "tte", "UTF8" } } },
                             { "data",new JSONNode{ { "status", 2 }, { "text", text } } }
                          };
-            Debug.Log("发送消息:" + sendJson);
-            Debug.Log("连接成功");
+            // Debug.Log("发送消息:" + sendJson);
+            // Debug.Log("连接成功");
             await 语音合成WebSocket.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes(sendJson)), WebSocketMessageType.Binary, true, ct); //发送数据
             StringBuilder sb = new StringBuilder();
             播放队列.Clear();
@@ -328,12 +328,12 @@ public class XunFeiYuYin : MonoBehaviour
                 await 语音合成WebSocket.ReceiveAsync(new ArraySegment<byte>(result), ct);//接受数据
                 List<byte> list = new List<byte>(result); while (list[list.Count - 1] == 0x00) list.RemoveAt(list.Count - 1);//去除空字节  
                 var str = Encoding.UTF8.GetString(list.ToArray());
-                Debug.Log(str);
+                // Debug.Log(str);
                 sb.Append(str);
                 if (str.EndsWith("}}"))
                 {
                     JSONNode json = JSONNode.Parse(sb.ToString());
-                    Debug.Log("收到完整json数据：" + json);
+                    // Debug.Log("收到完整json数据：" + json);
                     JSONNode data = json["data"];
                     int status = data["status"];
                     float[] fs = bytesToFloat(Convert.FromBase64String(data["audio"]));
@@ -413,6 +413,7 @@ public class XunFeiYuYin : MonoBehaviour
         if (request.isNetworkError || request.isHttpError)
         {
             Debug.LogError("网络出错请检查网络连接, err: " + request.error);
+            评测结果回调("");
         }
         else
         {

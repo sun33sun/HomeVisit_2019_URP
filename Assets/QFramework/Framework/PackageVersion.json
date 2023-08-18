@@ -1,6 +1,6 @@
 {
     "Id": "",
-    "Version": "v1.0.68",
+    "Version": "v1.0.74",
     "Type": 0,
     "AccessRight": 0,
     "DownloadUrl": "",
@@ -11,10 +11,10 @@
     ],
     "DocUrl": "https://liangxiegame.com",
     "Readme": {
-        "version": "v1.0.68",
-        "content": "PackageKit 显示本地版本",
+        "version": "v1.0.74",
+        "content": "文档支持 子目录",
         "author": "liangxie",
-        "date": "2023 年 06 月 29 日 13:43",
+        "date": "2023 年 07 月 24 日 15:29",
         "PackageId": ""
     }
 }

@@ -5,7 +5,7 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: Take 001
+    second: "\u5750\u4E0B\u4F7F\u7528\u7535\u8111"
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -75,7 +75,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Take 001
+      name: "\u5750\u4E0B\u4F7F\u7528\u7535\u8111"
       takeName: Take 001
       internalID: 0
       firstFrame: 1

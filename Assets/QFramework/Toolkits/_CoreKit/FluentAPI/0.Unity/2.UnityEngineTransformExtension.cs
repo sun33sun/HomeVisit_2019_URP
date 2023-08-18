@@ -1001,6 +1001,14 @@ var pos = gameObj.Position();
             return self.transform.position;
         }
 
+        public static void PositionAdd(this GameObject self, Vector2 delta)
+        {
+            Vector3 newPos = self.transform.position;
+            newPos.x += delta.x * Time.deltaTime;
+            newPos.y += delta.y * Time.deltaTime;
+            self.transform.position = newPos;
+        }
+
 #if UNITY_EDITOR
         // v1 No.117
         [MethodAPI]
@@ -1390,6 +1398,18 @@ var rotation = gameObj.Rotation();
         public static Quaternion Rotation(this GameObject self)
         {
             return self.transform.rotation;
+        }
+
+        public static void RotationAdd(this GameObject self, Vector2 slidingValue)
+        {
+            self.transform.rotation = Quaternion.AngleAxis(-slidingValue.y, self.transform.right) *
+                                      Quaternion.AngleAxis(slidingValue.x, self.transform.up) * self.transform.rotation;
+            Vector3 euler = self.transform.localEulerAngles;
+            if (euler.z != 0)
+            {
+                euler.z = 0;
+                self.transform.localEulerAngles = euler;
+            }
         }
 
 

@@ -165,6 +165,22 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 623385741}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &187504043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187504040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49b4cc203aa6414fae5c798d1d0e7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 0
 --- !u!1 &418652645
 GameObject:
   m_ObjectHideFlags: 3
@@ -358,6 +374,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1000011747922128, guid: c70aac0028afd42eabc9e0c55824c824, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1000012438581554, guid: c70aac0028afd42eabc9e0c55824c824, type: 3}
       propertyPath: m_Name
       value: UIRoot
@@ -1031,6 +1051,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 51aa743a7c766cf4dbdc175504320393, type: 3}
   - {fileID: 8300000, guid: af3628a6664ed7e40ac79a26b559a2a7, type: 3}
   - {fileID: 8300000, guid: 1af8778b37acde940a2e7c70098d3e5b, type: 3}
+  - {fileID: 8300000, guid: 8152820238f0e9a43b8939c8ebeede61, type: 3}
+  - {fileID: 8300000, guid: 33c43c56a72c38d4f88908727eb0ebc5, type: 3}
+  - {fileID: 8300000, guid: 4470cd505c359164ab0a0ddc7f0a04d7, type: 3}
 --- !u!82 &1168738624
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1307,7 +1330,7 @@ MonoBehaviour:
   m_EventMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_MaxRayIntersections: 0
+  m_MaxRayIntersections: 10
 --- !u!1 &1707305946
 GameObject:
   m_ObjectHideFlags: 3

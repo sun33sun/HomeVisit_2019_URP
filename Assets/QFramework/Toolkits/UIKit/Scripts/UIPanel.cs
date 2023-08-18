@@ -55,20 +55,14 @@ namespace QFramework
 
 		public void Open(IUIData uiData = null)
 		{
-			//State = PanelState.Opening;
+			State = PanelState.Opening;
 			OnOpen(uiData);
 		}
 
 		public override void Hide()
 		{
-			StopAllCoroutines();
 			State = PanelState.Hide;
 			base.Hide();
-		}
-
-		public virtual void OnEnable()
-		{
-			State = PanelState.Opening;
 		}
 
 
