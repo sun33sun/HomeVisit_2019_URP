@@ -55,6 +55,37 @@ namespace HomeVisit.Character
 			transform.forward = newTrans.forward;
 			agent.enabled = true;
 		}
+		
+		[SerializeField] private SkinnedMeshRenderer mouse;
+		private bool isSpkeaing = false;
+		public IEnumerator StartSpeak()
+		{
+			isSpkeaing = true;
+			WaitForEndOfFrame waitFrame = new WaitForEndOfFrame();
+			float blendWeight = 0;
+			bool isAdd = true;
+			while (isSpkeaing)
+			{
+				if (isAdd)
+				{
+					blendWeight += 1;
+				}
+				else
+				{
+					blendWeight -= 1;
+				}
+				mouse.SetBlendShapeWeight(0,blendWeight);
+				yield return waitFrame;
+				if (blendWeight > 99 || blendWeight < 1)
+					isAdd = !isAdd;
+			}
+			mouse.SetBlendShapeWeight(0,0);
+		}
+
+		public void StopSpeak()
+		{
+			isSpkeaing = false;
+		}
 	}
 
 }

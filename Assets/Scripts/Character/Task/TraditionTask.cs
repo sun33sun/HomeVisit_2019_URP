@@ -221,18 +221,46 @@ namespace HomeVisit.Task
 		//播放家长语音并显示文字
 		IEnumerator PlayAudio(string clipName, int spriteIndex, string strWord)
 		{
+			switch (spriteIndex)
+			{
+				case 0:
+					StartCoroutine(StudentMather.Instance.StartSpeak());
+					break;
+				case 2:
+				case 3:
+					StartCoroutine(StudentController.Instance.StartSpeak());
+					break;
+				case 4:
+					StartCoroutine(StudentFather.Instance.StartSpeak());
+					break;
+			}
 			onVisitPanel.ShowParentWord(spriteIndex, strWord);
 			yield return AudioManager.Instance.Play(clipName);
+			switch (spriteIndex)
+			{
+				case 0:
+					StudentMather.Instance.StopSpeak();
+					break;
+				case 2:
+				case 3:
+					StudentController.Instance.StopSpeak();
+					break;
+				case 4:
+					StudentFather.Instance.StopSpeak();
+					break;
+			}
 			onVisitPanel.btnDialogue.gameObject.SetActive(false);
 		}
 
 		//开始语音识别
 		IEnumerator RecordSpeech(string[] keywords)
 		{
+			StartCoroutine(FemaleTeacher.Instance.StartSpeak());
 			StartCoroutine(mainPanel.InitKeyWords(keywords));
 			onVisitPanel.ShowRecordUI(keywords);
 			yield return new WaitUntil(() => { return onVisitPanel.recordState == RecordState.ResultIsRight; });
 			onVisitPanel.CloseRecord();
+			FemaleTeacher.Instance.StopSpeak();
 		}
 
 		//物体高亮点击回调

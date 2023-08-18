@@ -11,6 +11,7 @@ namespace HomeVisit.Character
         public Animator anim;
 
 		Transform nowTarget;
+
 		public IEnumerator PlayAnim(string clipName,bool once = true)
 		{
 			yield return AnimMgr.GetInstance().Play(anim, clipName);
@@ -34,6 +35,37 @@ namespace HomeVisit.Character
 		{
 			transform.position = newTrans.position;
 			transform.forward = newTrans.forward;
+		}
+		
+		[SerializeField] private SkinnedMeshRenderer mouse;
+		private bool isSpkeaing = false;
+		public IEnumerator StartSpeak()
+		{
+			isSpkeaing = true;
+			WaitForEndOfFrame waitFrame = new WaitForEndOfFrame();
+			float blendWeight = 0;
+			bool isAdd = true;
+			while (isSpkeaing)
+			{
+				if (isAdd)
+				{
+					blendWeight += Time.deltaTime;
+				}
+				else
+				{
+					blendWeight -= Time.deltaTime;
+				}
+				mouse.SetBlendShapeWeight(0,blendWeight);
+				yield return waitFrame;
+				if (blendWeight > 99 || blendWeight < 1)
+					isAdd = !isAdd;
+			}
+			mouse.SetBlendShapeWeight(0,0);
+		}
+
+		public void StopSpeak()
+		{
+			isSpkeaing = false;
 		}
 	}
 }

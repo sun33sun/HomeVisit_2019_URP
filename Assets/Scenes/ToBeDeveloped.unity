@@ -5853,6 +5853,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NeedDestroy: 1
   anim: {fileID: 6696972734287150843}
+  mouse: {fileID: 4847657484131195388}
 --- !u!1 &111373908725574702
 GameObject:
   m_ObjectHideFlags: 0
@@ -7941,6 +7942,7 @@ MonoBehaviour:
   NeedDestroy: 1
   anim: {fileID: 5866666020742513982}
   agent: {fileID: 919132148181222911}
+  mouse: {fileID: 869102181608960018}
 --- !u!65 &919132148181222913
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19108,7 +19110,8 @@ SkinnedMeshRenderer:
   - {fileID: 7773710023218134615}
   - {fileID: 5469983213732417155}
   - {fileID: 879500905487969825}
-  m_BlendShapeWeights: []
+  m_BlendShapeWeights:
+  - 0
   m_RootBone: {fileID: 2903166783267462996}
   m_AABB:
     m_Center: {x: 0.006994784, y: -0.25659055, z: 0.045515552}
@@ -20796,6 +20799,7 @@ MonoBehaviour:
   NeedDestroy: 1
   anim: {fileID: 710521683453738450}
   agent: {fileID: 6086539910501989651}
+  mouse: {fileID: 4674490347773399747}
 --- !u!33 &6090366423280942606
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -26164,6 +26168,7 @@ MonoBehaviour:
   rotateSpeed: 5
   nowTarget: {fileID: 0}
   gravity: 20
+  mouse: {fileID: 5392108717213030135}
 --- !u!143 &8021364686373053821
 CharacterController:
   m_ObjectHideFlags: 0

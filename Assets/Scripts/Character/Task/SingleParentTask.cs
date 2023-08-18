@@ -233,9 +233,35 @@ namespace HomeVisit.Task
 
         IEnumerator PlayAudio(string clipName, int spriteIndex, string strWord)
         {
+            switch (spriteIndex)
+            {
+                case 0:
+                    StartCoroutine(StudentMather.Instance.StartSpeak());
+                    break;
+                case 2:
+                case 3:
+                    StartCoroutine(StudentController.Instance.StartSpeak());
+                    break;
+                case 4:
+                    StartCoroutine(StudentFather.Instance.StartSpeak());
+                    break;
+            }
             onVisitPanel.ShowParentWord(spriteIndex, strWord);
             yield return AudioManager.Instance.Play(clipName);
             onVisitPanel.btnDialogue.gameObject.SetActive(false);
+            switch (spriteIndex)
+            {
+                case 0:
+                    StudentMather.Instance.StopSpeak();
+                    break;
+                case 2:
+                case 3:
+                    StudentController.Instance.StopSpeak();
+                    break;
+                case 4:
+                    StudentFather.Instance.StopSpeak();
+                    break;
+            }
         }
 
         #endregion
@@ -248,11 +274,14 @@ namespace HomeVisit.Task
         }
 
         //开始语音识别
-        WaitUntil RecordSpeech(string[] keywords)
+        IEnumerator RecordSpeech(string[] keywords)
         {
+            StartCoroutine(FemaleTeacher.Instance.StartSpeak());
             StartCoroutine(mainPanel.InitKeyWords(keywords));
             onVisitPanel.ShowRecordUI(keywords);
-            return new WaitUntil(() => { return onVisitPanel.recordState == RecordState.ResultIsRight; });
+            yield return new WaitUntil(() => { return onVisitPanel.recordState == RecordState.ResultIsRight; });
+            onVisitPanel.CloseRecord();
+            FemaleTeacher.Instance.StopSpeak();
         }
 
         //物体高亮点击回调

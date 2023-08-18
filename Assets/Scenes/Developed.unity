@@ -17580,6 +17580,7 @@ MonoBehaviour:
   rotateSpeed: 5
   nowTarget: {fileID: 0}
   gravity: 20
+  mouse: {fileID: 1216031372}
 --- !u!95 &1581592315
 Animator:
   serializedVersion: 3
@@ -26175,6 +26176,7 @@ MonoBehaviour:
   NeedDestroy: 1
   anim: {fileID: 5866666020032312728}
   agent: {fileID: 919132147815347546}
+  mouse: {fileID: 4601121978276422270}
 --- !u!195 &919132147815347546
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -26229,6 +26231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NeedDestroy: 1
   anim: {fileID: 5866666020792291773}
+  mouse: {fileID: 6677322509001313949}
 --- !u!1 &931191655929595195
 GameObject:
   m_ObjectHideFlags: 0
@@ -36904,6 +36907,7 @@ MonoBehaviour:
   NeedDestroy: 1
   anim: {fileID: 7032602194152453575}
   agent: {fileID: 4337861544334030089}
+  mouse: {fileID: 6379236038838172914}
 --- !u!195 &4337861544334030089
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -43900,7 +43904,8 @@ SkinnedMeshRenderer:
   - {fileID: 5901452234215201092}
   - {fileID: 366175169087093827}
   - {fileID: 7078722786390070705}
-  m_BlendShapeWeights: []
+  m_BlendShapeWeights:
+  - 0
   m_RootBone: {fileID: 366175169087093827}
   m_AABB:
     m_Center: {x: 0.0006841421, y: 0.26886865, z: 0.09206237}
