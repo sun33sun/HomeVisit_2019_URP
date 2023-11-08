@@ -42,6 +42,7 @@ namespace HomeVisit.UI
 			//显示提交按钮
 			btnConfirm.gameObject.SetActive(false);
 			btnSubmit.gameObject.SetActive(true);
+			inputCommunicateOutline.interactable = false;
 		}
 
 		void Submit()
@@ -61,7 +62,6 @@ namespace HomeVisit.UI
 			};
 			TestReportPanel testReportPanel = UIKit.GetPanel<TestReportPanel>();
 			testReportPanel.CreateScoreReport(data);
-
 			//下一个页面
 			UIKit.OpenPanelAsync<ClothesPanel>(prefabName: Settings.UI + QAssetBundle.Uiprefab.CLOTHESPANEL).ToAction().Start(this);
 			Hide();
@@ -101,6 +101,7 @@ namespace HomeVisit.UI
 
 			btnConfirm.gameObject.SetActive(true);
 			btnSubmit.gameObject.SetActive(false);
+			inputCommunicateOutline.interactable = true;
 		}
 
 		protected override void OnHide()

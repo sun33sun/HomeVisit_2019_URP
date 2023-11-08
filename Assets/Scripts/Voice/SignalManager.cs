@@ -3,21 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
+using ProjectBase;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SignalManager : MonoBehaviour
+public class SignalManager : SingletonMono<SignalManager>
 {
-	#region µ¥ÀýÄ£Ê½
-	private static SignalManager instance = null;
-	public static SignalManager Instance { get { return instance; } }
-
-	private void Awake()
-	{
-		instance = this;
-	}
-	#endregion
-
 	public Action<string> OnEndRecord;
 	AudioSource m_audioSource;
 

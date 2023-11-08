@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HomeVisit.UI;
+using ProjectBase;
 using QFramework;
 using UnityEngine;
 using UnityEngine.Networking;
 
 namespace HomeVisit
 {
-	public class ExamManager : MonoSingleton<ExamManager>
+	public class ExamManager : SingletonMono<ExamManager>
 	{
 		[SerializeField] GameObject singleTitlePrefab;
 		[SerializeField] GameObject scoreReportPrefab;

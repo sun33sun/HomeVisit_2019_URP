@@ -275,27 +275,7 @@ namespace ProjectBase
 			EventCenter.GetInstance().RemoveEventListener<float>("Êó±ê¹öÂÖ", OnMouseScrollWheel);
 		}
 
-		public void ThirdPerson(Transform target)
-		{
-			if (target == null)
-			{
-				thirdPersonC.transform.SetParent(transform, false);
-				roamC.Priority = 13;
-				thirdPersonC.Priority = 12;
-				followC.Priority = 11;
-				thirdPersonC.Follow = null;
-			}
-			else
-			{
-				//thirdPersonC.transform.SetParent(target, false);
-				thirdPersonC.Priority = 13;
-				roamC.Priority = 12;
-				followC.Priority = 11;
-				thirdPersonC.Follow = target;
-			}
-		}
-
-		public WaitForSeconds ThirdPerson(Transform target, float waitTime)
+		public IEnumerator ThirdPerson(Transform target, float waitTime)
 		{
 			if (target == null)
 			{
@@ -312,8 +292,11 @@ namespace ProjectBase
 				followC.Priority = 11;
 				thirdPersonC.Follow = target;
 				thirdPersonC.LookAt = target;
+				thirdPersonC.transform.rotation = target.rotation;
 			}
-			return new WaitForSeconds(waitTime);
+
+			WaitForSeconds wait = new WaitForSeconds(waitTime);
+			yield return wait;
 		}
 
 		public void StartRoam(Transform source)

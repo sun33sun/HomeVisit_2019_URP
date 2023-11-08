@@ -37,7 +37,6 @@ namespace HomeVisit.Draw
 			m_lastRenderTex.name = "m_lastRenderTex";
 
 			rawImage.texture = m_lastRenderTex;
-
 			brushMat.SetColor("_Color", Color.black);
 			brushMat.SetFloat("_Size", 100);
 

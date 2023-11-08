@@ -1,27 +1,39 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using QFramework;
 using System.Collections;
-using System;
 using System.Collections.Generic;
 using ProjectBase;
-using UnityEngine.SceneManagement;
-using HomeVisit.Character;
-using HomeVisit.Screenshot;
-using UnityEngine.UI;
-using System.Threading;
-using Cysharp.Threading.Tasks;
 using QAssetBundle;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace HomeVisit.UI
 {
-    public class Main : MonoBehaviour
+    public class Main : SingletonMono<Main>
     {
+        //IEnumerator NetWorkTest()
+        //{
+        //    //isBusy = true;
+        //    //yield return NetWorkManager.Instance.LoginRecordAsync();
+        //    string studyrecordAutoid = null;
+        //    yield return NetWorkManager.Instance.SaveStudyAsync(1, str => studyrecordAutoid = str);
+        //    print(studyrecordAutoid);
+        //    yield return NetWorkManager.Instance.SaveStudyScoreAsync(studyrecordAutoid, 100, "2551");
+        //    yield return NetWorkManager.Instance.SaveStudyTotalScoreAsync(studyrecordAutoid, "7551", "接口测试");
+        //    List<NetWorkQuestion> list;
+        //    yield return NetWorkManager.Instance.GetSearchQuestionAsync(1, 1, 10, getedList => list = getedList);
+
+        //    isBusy = false;
+        //}
+
         IEnumerator Start()
         {
-            //IOC容器
-            IOCMgr.Init();
-            //遮挡层，遮挡其他UI，直到它们加载完成
-            yield return UIKit.PreLoadPanelAsync<MaskPanel>(UILevel.PopUI,
+            //登录
+			yield return NetWorkManager.Instance.LoginRecordAsync();
+
+			//遮挡层，遮挡其他UI，直到它们加载完成
+			yield return UIKit.PreLoadPanelAsync<MaskPanel>(UILevel.PopUI,
                 prefabName: Settings.UI + Maskpanel_prefab.MASKPANEL);
             //主要
             yield return UIKit.PreLoadPanelAsync<MainPanel>(UILevel.Bg,

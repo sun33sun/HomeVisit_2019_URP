@@ -3,7 +3,657 @@ guid: 1ccd56b8a500533409b769c4b938bbde
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: f8aa4a423cab8a0459f65b20c99a5406, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_001_2
+    second: {fileID: 2100000, guid: 9be0981d6071d3b47ad6fe281015b670, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_003
+    second: {fileID: 2100000, guid: 3f09cc68697bf2a42a9ea5b13fb34f8d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_004
+    second: {fileID: 2100000, guid: 613d963a46aeb42479b8057212fb8098, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_005
+    second: {fileID: 2100000, guid: a2b1b14355536054b88f70777ce6b66e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_006
+    second: {fileID: 2100000, guid: 0e5ba73bee059c94e80165d173d737e8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_007
+    second: {fileID: 2100000, guid: 113dfea8a88be4048b80f3763e2e206f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_008
+    second: {fileID: 2100000, guid: a35c67a0f7165ec489e8e3f06a5de2fd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_009
+    second: {fileID: 2100000, guid: 7585159214dcc98488769f27c5cb33b0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_011
+    second: {fileID: 2100000, guid: 19f54c8d70fd71e43bd4a129d1a6bf5c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_012
+    second: {fileID: 2100000, guid: e45262f4649dedc4cb9ad55a89afb712, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_014
+    second: {fileID: 2100000, guid: c40b63a63e6f6ff4e94f772051cac121, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_015_1
+    second: {fileID: 2100000, guid: b413fad4fbfa0734da861d9e46ae670b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_015_2
+    second: {fileID: 2100000, guid: 1a809029a768512488c62d6df34114c0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_015_3
+    second: {fileID: 2100000, guid: 7591a61cbc2e74542b4ff899bdc68851, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_017
+    second: {fileID: 2100000, guid: 348e0f81d22bcc944b0cc39689889aae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_019_1
+    second: {fileID: 2100000, guid: 613d963a46aeb42479b8057212fb8098, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_020_1
+    second: {fileID: 2100000, guid: 7570873a4d8f7a249b4bfee9ce729252, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_020_2
+    second: {fileID: 2100000, guid: a71cf37ab598a7b43800d867c36b35a4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_021_5
+    second: {fileID: 2100000, guid: cee8ce95d2e1ac448b9dac17115db0a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_022
+    second: {fileID: 2100000, guid: 50aa3a99df64e1d44b4c28a8ab774350, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_023
+    second: {fileID: 2100000, guid: fc1784ef0baf08c4999d895433e9192a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_024
+    second: {fileID: 2100000, guid: 18055762292a04a498261b00af302fc5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_025
+    second: {fileID: 2100000, guid: 40c9558a27d2ee148ac3bbff29499acd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_026
+    second: {fileID: 2100000, guid: 858ac213f1e233d4c94c927a896289c3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_027_12
+    second: {fileID: 2100000, guid: 6ea3b23c047be7249a58ec6cc20a67ae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_027_25
+    second: {fileID: 2100000, guid: d0c4e5d72566a7348ae080913fcd3c7d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_027_28
+    second: {fileID: 2100000, guid: d8839a6eb0ab6c0419512f638603a332, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_027_29
+    second: {fileID: 2100000, guid: a4ca7f91688de1949aa55b8c1bcc7934, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_027_31
+    second: {fileID: 2100000, guid: 2202933914dc0354080f4ada3aec0640, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_027_4
+    second: {fileID: 2100000, guid: ee14ee7aa10504d4e8a122e339db2215, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_046_1
+    second: {fileID: 2100000, guid: 33eaa0ce285849a43ae7f8671fd73827, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_046_2
+    second: {fileID: 2100000, guid: d2bef7724e58eed4d8617ef7d6b8cc19, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_046_3
+    second: {fileID: 2100000, guid: ac002dddffd84f642a4ed61d75b55774, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_047
+    second: {fileID: 2100000, guid: 66550d9c976ce49408978f6cfd1434b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_048
+    second: {fileID: 2100000, guid: e1b37921eceab4145802a16ad0f1a6fb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_049_2
+    second: {fileID: 2100000, guid: 0139a07061fcb2e42a80f2f370b0fa0e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_050_2
+    second: {fileID: 2100000, guid: 719a7d0b0b0b7e84189f00c0031b468a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_051_2
+    second: {fileID: 2100000, guid: 59ec8dee1b221aa40967e2ab1c1f04f3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_052_1
+    second: {fileID: 2100000, guid: 729d60686ab2164488fb7430438e98d3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_052_2
+    second: {fileID: 2100000, guid: c4a41c097ba4bb44a84ec1e4bfaa5f71, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_053_1
+    second: {fileID: 2100000, guid: b85be796468d59c488d8a965d29b6e33, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_053_2
+    second: {fileID: 2100000, guid: b0f668a474ef1df459274eee0d645a07, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_054_1
+    second: {fileID: 2100000, guid: 948bbe3a536596144b93389bf28752ed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_054_2
+    second: {fileID: 2100000, guid: f96778fe738c35d41bfff892fa269dfc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_055_1
+    second: {fileID: 2100000, guid: 92ceac4949e5e4543a8252d93e0ed227, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_055_2
+    second: {fileID: 2100000, guid: f9d5e9fc42481a14bb10be8da945125d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_056_1
+    second: {fileID: 2100000, guid: bace6e04b06764144bde27a527af54f4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_056_2
+    second: {fileID: 2100000, guid: 9be0981d6071d3b47ad6fe281015b670, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_057_1
+    second: {fileID: 2100000, guid: 1bc3db47cde22394cbae77bc82afe804, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_057_2
+    second: {fileID: 2100000, guid: 2e9f0dd2502e38547adeb3ffb0bf172c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_058_1
+    second: {fileID: 2100000, guid: 1bc3db47cde22394cbae77bc82afe804, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_058_2
+    second: {fileID: 2100000, guid: 60b546f3beb00754caae686cae88e748, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_060_2
+    second: {fileID: 2100000, guid: 47c34e174fe71794d834b4c30ecd50b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_061_1
+    second: {fileID: 2100000, guid: 1bc3db47cde22394cbae77bc82afe804, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_061_2
+    second: {fileID: 2100000, guid: 60b546f3beb00754caae686cae88e748, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_061_3
+    second: {fileID: 2100000, guid: 7c8d9b004c1b64348860d40cc040de6d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_062_1
+    second: {fileID: 2100000, guid: 1bc3db47cde22394cbae77bc82afe804, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_062_2
+    second: {fileID: 2100000, guid: 60b546f3beb00754caae686cae88e748, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_062_3
+    second: {fileID: 2100000, guid: 7c8d9b004c1b64348860d40cc040de6d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_063_1
+    second: {fileID: 2100000, guid: 1bc3db47cde22394cbae77bc82afe804, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_063_2
+    second: {fileID: 2100000, guid: 60b546f3beb00754caae686cae88e748, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_064
+    second: {fileID: 2100000, guid: bb4d6f0f3dcdc334f8e0cb222393eace, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_065
+    second: {fileID: 2100000, guid: 647947a90643d9747a40e1cb3b6ffd22, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_066
+    second: {fileID: 2100000, guid: 707aa8f4992ddfe4ab718a26daaee2db, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_067
+    second: {fileID: 2100000, guid: 5fbcbc85c3218894f8415096b034ed08, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_068
+    second: {fileID: 2100000, guid: c16160172e54abe428ee5c729c1e387d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_069
+    second: {fileID: 2100000, guid: 7f78f3eb228392847ae053f5a93a589f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_070
+    second: {fileID: 2100000, guid: c742f9059a8bb394c8f540c8daa51ba7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_071
+    second: {fileID: 2100000, guid: ff00919058ad1b542bc7e6ba71a2bd35, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_073
+    second: {fileID: 2100000, guid: b311ec1b5b0b3b34db9d4c698e007034, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_074_1
+    second: {fileID: 2100000, guid: f4af87ebf92ca0846be2a590d5672336, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_074_2
+    second: {fileID: 2100000, guid: de19e6caf6bf2e848a3f08f50fb7809f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_075
+    second: {fileID: 2100000, guid: 30948268e276e2247b73a10d2c23f61b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_076
+    second: {fileID: 2100000, guid: fcbd9fe10d84deb41922114c80cad86a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_077
+    second: {fileID: 2100000, guid: b13ff68924390eb48a068734e23a709b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_078_1
+    second: {fileID: 2100000, guid: 18bf41ef2b1c2a74987ed2dc7a7dbc93, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_078_2
+    second: {fileID: 2100000, guid: 5f543738b6789ed4cad9823a0ed8ece7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_078_3
+    second: {fileID: 2100000, guid: 7dca7b7b650a9c44db67849360165d38, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_078_4
+    second: {fileID: 2100000, guid: 28f8e5fb65c8a6242b93b55ff4aef71c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_079
+    second: {fileID: 2100000, guid: f168bc0acee2d9c489b0d4e66e0bee32, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_080
+    second: {fileID: 2100000, guid: 9566430fbc68ca1459ba685b853d1873, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_081
+    second: {fileID: 2100000, guid: 7a01040a2427ae14da3fcd5cd98e166f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_082
+    second: {fileID: 2100000, guid: 96f3ea8fea990c94b9704c3e8eedd2ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_083_1
+    second: {fileID: 2100000, guid: 14fde274c20141a42a9f971ea3542337, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_083_2
+    second: {fileID: 2100000, guid: 90c3dfb174453604280a5d9756155db9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_084_2
+    second: {fileID: 2100000, guid: fc4c0f11448c9c34880ac6d05fe1a214, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_085
+    second: {fileID: 2100000, guid: 559b88786234c3f44a81f85ed86a4432, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_086
+    second: {fileID: 2100000, guid: 2b07300b284c8cd4b9e93082f2c593d1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_087
+    second: {fileID: 2100000, guid: a4989fcc0d015bc45b449ee7bfd94697, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_088
+    second: {fileID: 2100000, guid: 958fb9fdbf58b3c45bbec9538ea6849d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_089
+    second: {fileID: 2100000, guid: 42a6ba925140b1d4a8696433b3e56d16, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_090_1
+    second: {fileID: 2100000, guid: d31bbc5d2035c284db457c2cd6864a60, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_090_2
+    second: {fileID: 2100000, guid: ad4deab23c4b7ca4eae0fbe93db25dc8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_090_3
+    second: {fileID: 2100000, guid: 162dd6a1b37959e49a236c24e3db3e85, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_091
+    second: {fileID: 2100000, guid: 8ce4c55d3a942fb449b112ca17212504, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_092
+    second: {fileID: 2100000, guid: 31fb06cd1a5475d44844e74e5681c520, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_093
+    second: {fileID: 2100000, guid: f16d023aeedd0384aaefd04c12c3a3cd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_094
+    second: {fileID: 2100000, guid: 3a348d137d5b05b46888f0412dc43a74, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_095
+    second: {fileID: 2100000, guid: f0f42055e5c960641979c23e2f335803, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_096
+    second: {fileID: 2100000, guid: d554da52cf81a9f4e9dd5f33eca75cf6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_097
+    second: {fileID: 2100000, guid: 42e3fd17bdeb70f408845a3a5bbbc6ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_098
+    second: {fileID: 2100000, guid: 120ef7ba279b4304aab832f927c298e2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_099_1
+    second: {fileID: 2100000, guid: 5e802367623596a408f1bcc925ca016a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_099_4
+    second: {fileID: 2100000, guid: 32cc8182394adb34da4f37043aee67c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_099_5
+    second: {fileID: 2100000, guid: 1d8772e9d31ce8f449237b77303cbf9c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_100_1
+    second: {fileID: 2100000, guid: 924eae82f3fc0fa43a2ae5e9b17bda59, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_100_2
+    second: {fileID: 2100000, guid: 700cfe90c769c6a458497398a3c14d26, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_101_1
+    second: {fileID: 2100000, guid: f44d95a4da8072b43af0649ddd0da55b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_101_2
+    second: {fileID: 2100000, guid: a0e2989155b7ddc4cacfc22cd98ee9db, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_101_3
+    second: {fileID: 2100000, guid: 65d322c5d61f9eb49bcf2ba538a5e9a3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_103
+    second: {fileID: 2100000, guid: 5ad3bc708eb482d4d8bac02022e9fa8e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_104
+    second: {fileID: 2100000, guid: 613d963a46aeb42479b8057212fb8098, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_105
+    second: {fileID: 2100000, guid: c29d988d41c43f942a54827bec6761bf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_106
+    second: {fileID: 2100000, guid: f1be85408ebbdcc49a7ccd4c3448ccd3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_107
+    second: {fileID: 2100000, guid: 270d16fdb10710e4fae792eac39aded4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_108
+    second: {fileID: 2100000, guid: 60b546f3beb00754caae686cae88e748, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_109
+    second: {fileID: 2100000, guid: 91f5895a1a83e7b45900b8a28ecc2e65, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_110
+    second: {fileID: 2100000, guid: 47618200f3e3b664f9fafb538f458362, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_111
+    second: {fileID: 2100000, guid: e90927dd886ee8f48b984cdf98b50733, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_112
+    second: {fileID: 2100000, guid: 116ffe4a17f563246b5ef67c7b081e6d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_113
+    second: {fileID: 2100000, guid: b37aff285f5ebf748bf5ca164ba077cb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_114_1
+    second: {fileID: 2100000, guid: 613d963a46aeb42479b8057212fb8098, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_114_2
+    second: {fileID: 2100000, guid: d80eabe9c0c319343b27ac8d810adbd2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_115
+    second: {fileID: 2100000, guid: a7873d1c0f3880441b62b52076e8a46e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_116
+    second: {fileID: 2100000, guid: df9084384b9093f479cc2a6f986a8c88, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_118
+    second: {fileID: 2100000, guid: 38f44167ca46c1749ba675834b646a60, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_119_1
+    second: {fileID: 2100000, guid: 94b83733ace36344898cf5f06fc3f7d5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_119_2
+    second: {fileID: 2100000, guid: 4467cfe2aeaedb64c94cf5e7d7c612eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_haozhai_120
+    second: {fileID: 2100000, guid: 04fc190d0ef79fe4daf73a65ac7be3dc, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -45,7 +695,7 @@ ModelImporter:
     importLights: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1

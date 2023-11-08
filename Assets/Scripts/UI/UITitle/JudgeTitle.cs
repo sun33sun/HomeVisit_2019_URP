@@ -50,6 +50,10 @@ namespace HomeVisit.UI
 
 		public void CheckTitle()
 		{
+			for (int i = 0; i < togs.Count; i++)
+			{
+				togs[i].interactable = false;
+			}
 			if (selectIndex == mData.rightIndex)
 			{
 				tmpAnalysis.text = "解析：<color=#00FF00>回答正确</color>";

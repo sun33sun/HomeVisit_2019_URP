@@ -11,7 +11,7 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using ZenFulcrum.EmbeddedBrowser;
 
-#if UNITY_EDITOR
+#if !UNITY_WEBGL
 public class XunFeiYuYin : MonoBehaviour
 {
     public enum Voice
@@ -140,8 +140,12 @@ public class XunFeiYuYin : MonoBehaviour
             if (!string.IsNullOrEmpty(s))
             {
                 Debug.LogWarning("识别到声音：" + s);
+                语音识别完成事件?.Invoke(s);
             }
-            语音识别完成事件?.Invoke(s);
+            else
+            {
+                语音识别完成事件?.Invoke("未识别到声音");
+            }
         }
     }
 

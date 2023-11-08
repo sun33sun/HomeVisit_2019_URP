@@ -46,12 +46,7 @@ namespace HomeVisit.UI
 			}
 			for (int i = 0; i < womanClothes.Count; i++)
 			{
-				womanClothes[i].Reset();
 				womanClothes[i].gameObject.SetActive(false);
-			}
-			for (int i = 0; i < bothClothes.Count; i++)
-			{
-				bothClothes[i].Reset();
 			}
 		}
 
@@ -64,12 +59,7 @@ namespace HomeVisit.UI
 			}
 			for (int i = 0; i < manClothes.Count; i++)
 			{
-				manClothes[i].Reset();
 				manClothes[i].gameObject.SetActive(false);
-			}
-			for (int i = 0; i < bothClothes.Count; i++)
-			{
-				bothClothes[i].Reset();
 			}
 		}
 

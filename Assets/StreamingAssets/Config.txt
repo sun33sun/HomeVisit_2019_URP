@@ -1,1 +1,16 @@
-http://123.60.156.121:8001/remote_java
+{
+	"AppId": 2,
+	"UserType": 1,
+	"UserName": "admin",
+	"Pwd": "123",
+	"DomainUrl": "https://homevisit.project.shxyxx.cn",
+	"ContentType": "application/json;charset=utf-8",
+	"Auth": "62e93c92644d344a43f6e82315b32c4b",
+	"nowPlaform": 0,
+	"LoginUrl": "https://homevisit.project.shxyxx.cn/api/admin/record/loginRecord",
+	"SaveStudyUrl": "https://homevisit.project.shxyxx.cn/api/admin/record/saveStudy",
+	"SaveStudyScoreUrl": "https://homevisit.project.shxyxx.cn/api/admin/record/saveStudyScore",
+	"SaveStudyTotalScoreUrl": "https://homevisit.project.shxyxx.cn/api/admin/record/saveStudyTotalScore",
+	"SaveStudyQuestionUrl": "https://homevisit.project.shxyxx.cnsaveStudyQuestion",
+	"GetSearchStudyQuestionUrl": "https://homevisit.project.shxyxx.cn/api/admin/record/getSearchStudyQuestion"
+}

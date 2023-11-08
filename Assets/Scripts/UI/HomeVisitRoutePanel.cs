@@ -21,7 +21,6 @@ namespace HomeVisit.UI
 	public partial class HomeVisitRoutePanel : UIPanel
 	{
 		[SerializeField] DrawDriver drawDriver;
-		[SerializeField] List<Button> btnRouteList;
 		[SerializeField] List<Sprite> spriteRouteList;
 		DateTime startTime;
 		private void Start()
@@ -40,20 +39,17 @@ namespace HomeVisit.UI
 			{
 				btnDialogue.gameObject.SetActive(false);
 				imgTip.gameObject.SetActive(true);
+				tmpTip.text = @"新手班主任如果想全方面了解孩子的生活环境及家庭教育情况，最好选择家庭成员全员在家这一时间段（普遍为双休日）
+；如果仅仅只是想了解孩子暑假的生活学习情况，可选择有家长在即可；留足家庭与家庭之间的时间。";
 			});
 			btnConfirm.onClick.AddListener(() =>
 			{
 				imgTip.gameObject.SetActive(false);
-				StartCoroutine(LoadSceneAsync());
+				if(!isLoaded)
+					StartCoroutine(LoadSceneAsync());
 			});
 			btnDraw.onClick.AddListener(() => { drawDriver.isEnable = !drawDriver.isEnable; });
 			btnErase.onClick.AddListener(drawDriver.Clear);
-
-			for (int i = 0; i < btnRouteList.Count; i++)
-			{
-				int index = i;
-				btnRouteList[i].onClick.AddListener(() => { imgRoute.sprite = spriteRouteList[index]; });
-			}
 		}
 
 		void Submit()
@@ -69,15 +65,17 @@ namespace HomeVisit.UI
 
 			UIKit.OpenPanelAsync<CommunicateOutlinePanel>(prefabName: Settings.UI + QAssetBundle.Communicateoutlinepanel_prefab.COMMUNICATEOUTLINEPANEL).ToAction().Start(this);
 			Hide();
-			UIKit.GetPanel<TestReportPanel>().SetTestEvaluate(inputTestEvaluate.text);
+			UIKit.GetPanel<TestReportPanel>().tmpRoute.text =inputTestEvaluate.text;
 		}
 
+		private bool isLoaded = false;
 		IEnumerator LoadSceneAsync()
 		{
+			isLoaded = true;
 			TopPanel topPanel = UIKit.GetPanel<TopPanel>();
 			yield return topPanel.CloseEyeAnim();
 			UIKit.GetPanel<MainPanel>().SetBK(false);
-			yield return SceneManager.LoadSceneAsync("Office", LoadSceneMode.Additive);
+			yield return SceneManager.LoadSceneAsync("Office");
 			CameraManager.Instance.SetRoamPos(Interactive.Get("开始点").transform.position);
 			yield return topPanel.OpenEyeAnim();
 			//人物动画完成回调
@@ -91,6 +89,8 @@ namespace HomeVisit.UI
 					imgMid.gameObject.SetActive(true);
 					GetComponent<Image>().enabled = true;
 					CameraManager.Instance.IsEnable = false;
+					imgTip.gameObject.SetActive(true);
+					tmpTip.text = "点击左上角按钮选择家访路线。点击右下角按钮对地图进行绘画、擦除。";
 				});
 			});
 			CameraManager.Instance.SetRoamRig(RigidbodyConstraints.FreezeRotation);
@@ -111,7 +111,7 @@ namespace HomeVisit.UI
 			imgMid.gameObject.SetActive(false);
 			imgBlank.gameObject.SetActive(false);
 			GetComponent<Image>().enabled = false;
-			UIKit.GetPanel<TopPanel>().ChangeTip("请根据学校发放给班主任的学生信息，将家庭住址相近的学生圈画在一起，初步列为同一天进行家访的名单");
+			UIKit.GetPanel<TopPanel>().ChangeTip("将家庭住址相近的学生圈画在一起，初步列为同一天进行家访的名单");
 		}
 
 		protected override void OnHide()

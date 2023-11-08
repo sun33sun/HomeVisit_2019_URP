@@ -46,57 +46,34 @@ namespace HomeVisit.UI
 
 		void Submit()
 		{
-			int projectScore = 0;
-			List<Step> steps = new List<Step>();
-			for (int i = 0; i < reportList.Count; i++)
-			{
-				string strEvaluation;
-				float percentage = reportList[i].Data.score / (float)reportList[i].Data.maxScore;
-				if (percentage > 0.8)
-					strEvaluation = "优";
-				else if (percentage > 0.66f)
-					strEvaluation = "良";
-				else
-					strEvaluation = "差";
-				Step newStep = new Step()
-				{
-					seq = 0,
-					title = reportList[i].Data.title,
-					startTime = reportList[i].Data.startTime.ToString("u"),
-					endTime = reportList[i].Data.endTime.ToString("u"),
-					timeUsed = (reportList[i].Data.startTime - reportList[i].Data.endTime).ToString(),
-					expectTime = reportList[i].Data.expectTime.ToString(),
-					maxScore = reportList[i].Data.maxScore,
-					score = reportList[i].Data.score,
-					repeatCount = 1,
-					evaluation = strEvaluation
-				};
-				projectScore += reportList[i].Data.score;
-				steps.Add(newStep);
-			}
-			ContextJson newContextJson = new ContextJson()
-			{
-				username = "username",
-				title = "基础教育家访",
-				status = 1,
-				score = projectScore,
-				startTime = startTime.ToString(),
-				endTime = DateTime.Now.ToString(),
-				timeUsed = (startTime - DateTime.Now).ToString(),
-				appid = 0,
-				originId = 0,
-				group_id = 0,
-				group_name = null,
-				role_in_group = null,
-				steps = steps
-			};
-			SubmitData submitData = new SubmitData()
-			{
-				customName = "上海师范大学",
-				accountNumber = "test",
-				contextJson = JsonConvert.SerializeObject(newContextJson)
-			};
-			HttpManager.GetInstance().Post(submitData);
+			// int projectScore = 0;
+			// List<Step> steps = new List<Step>();
+			// for (int i = 0; i < reportList.Count; i++)
+			// {
+			// 	string strEvaluation;
+			// 	float percentage = reportList[i].Data.score / (float)reportList[i].Data.maxScore;
+			// 	if (percentage > 0.8)
+			// 		strEvaluation = "优";
+			// 	else if (percentage > 0.66f)
+			// 		strEvaluation = "良";
+			// 	else
+			// 		strEvaluation = "差";
+			// 	Step newStep = new Step()
+			// 	{
+			// 		seq = 0,
+			// 		title = reportList[i].Data.title,
+			// 		startTime = reportList[i].Data.startTime.ToString("u"),
+			// 		endTime = reportList[i].Data.endTime.ToString("u"),
+			// 		timeUsed = (reportList[i].Data.startTime - reportList[i].Data.endTime).ToString(),
+			// 		expectTime = reportList[i].Data.expectTime.ToString(),
+			// 		maxScore = reportList[i].Data.maxScore,
+			// 		score = reportList[i].Data.score,
+			// 		repeatCount = 1,
+			// 		evaluation = strEvaluation
+			// 	};
+			// 	projectScore += reportList[i].Data.score;
+			// 	steps.Add(newStep);
+			// }
 		}
 
 
@@ -106,6 +83,15 @@ namespace HomeVisit.UI
 
 		protected override void OnShow()
 		{
+			LayoutRebuilder.ForceRebuildLayoutImmediate(objScreenshot);
+			LayoutRebuilder.ForceRebuildLayoutImmediate(Content);
+		}
+
+		public void ReloadScreenshot(Texture texture)
+		{
+			imgScreenshot.texture = texture;
+			imgScreenshot.SetNativeSize();
+			LayoutRebuilder.ForceRebuildLayoutImmediate(objScreenshot);
 			LayoutRebuilder.ForceRebuildLayoutImmediate(Content);
 		}
 

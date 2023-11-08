@@ -14,7 +14,7 @@ namespace ProjectBase
     public class MonoMgr : Singleton<MonoMgr>
     {
         private MonoController controller;
-
+        
         public MonoMgr()
         {
             //保证了MonoController对象的唯一性

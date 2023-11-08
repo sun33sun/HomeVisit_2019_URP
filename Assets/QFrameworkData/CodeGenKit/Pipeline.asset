@@ -19,14 +19,33 @@ MonoBehaviour:
     From: 0
     NameToFullName: []
     BindInfos: []
-    ScriptsFolder: Assets/Scripts/UI
-    ClassName: TaskInteractive
-    Namespace: HomeVisit.UI
-    MainCode: "using UnityEngine;\r\nusing QFramework;\r\n\r\nnamespace HomeVisit.UI\r\n{\r\n\tpublic
-      partial class TaskInteractive : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
+    ScriptsFolder: Assets/Scripts/Task
+    ClassName: ToBeDevelopedController
+    Namespace: HomeVisit.Task
+    MainCode: "using UnityEngine;\r\nusing QFramework;\r\n\r\nnamespace HomeVisit.Task\r\n{\r\n\tpublic
+      partial class ToBeDevelopedController : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
       Code Here\r\n\t\t}\r\n\t}\r\n}\r\n"
-    DesignerCode: "// Generate Id:b516770a-96fb-421d-9dd6-88d7700a406b\r\nusing UnityEngine;\r\n\r\nnamespace
-      HomeVisit.UI\r\n{\r\n\tpublic partial class TaskInteractive\r\n\t{\r\n\r\n\t\tpublic
-      UnityEngine.GameObject \u5973\u8001\u5E08;\r\n\r\n\t\tpublic UnityEngine.GameObject
-      \u8001\u5E08\u7535\u8111;\r\n\r\n\t\tpublic UnityEngine.GameObject \u7535\u8111\u5750\u4F4D;\r\n\r\n\t\tpublic
-      UnityEngine.GameObject \u5F00\u59CB\u70B9;\r\n\r\n\t}\r\n}\r\n"
+    DesignerCode: "// Generate Id:83c2edea-f47d-4d13-bc01-8e7535900d94\r\nusing UnityEngine;\r\n\r\nnamespace
+      HomeVisit.Task\r\n{\r\n\tpublic partial class ToBeDevelopedController\r\n\t{\r\n\r\n\t\tpublic
+      UnityEngine.GameObject \u5B66\u751F\u8737\u7F29\u4F4D\u7F6E;\r\n\r\n\t\tpublic
+      UnityEngine.GameObject \u753B;\r\n\r\n\t\tpublic UnityEngine.GameObject \u5B66\u751F\u623F\u95E8\u7236\u7269\u4F53;\r\n\r\n\t\tpublic
+      UnityEngine.GameObject \u5BA2\u5385\u95E8\u7236\u7269\u4F53;\r\n\r\n\t\tpublic
+      UnityEngine.GameObject \u5BA2\u5385\u95E8;\r\n\r\n\t\tpublic UnityEngine.GameObject
+      \u5B66\u751F\u623F\u95F4\u9AD8\u4EAE\u6B63\u65B9\u4F53;\r\n\r\n\t\tpublic UnityEngine.GameObject
+      \u5973\u8001\u5E08\u5750\u4E0B\u7684\u4F4D\u7F6E;\r\n\r\n\t\tpublic UnityEngine.GameObject
+      \u5BA2\u5385\u95E8\u53E3\u9AD8\u4EAE\u6B63\u65B9\u4F53;\r\n\r\n\t\tpublic UnityEngine.GameObject
+      \u4FC4\u72C4\u6D66\u65AF;\r\n\r\n\t\tpublic UnityEngine.GameObject \u4E66\u67DC;\r\n\r\n\t\tpublic
+      UnityEngine.GameObject \u5B66\u751F\u623F\u5916\u51FA\u9AD8\u4EAE\u6B63\u65B9\u4F53;\r\n\r\n\t\tpublic
+      UnityEngine.GameObject \u5BA2\u5385\u7AD9\u4F4D_\u6BCD\u4EB2;\r\n\r\n\t\tpublic
+      UnityEngine.GameObject \u5BA2\u5385\u7AD9\u4F4D_\u5973\u8001\u5E08;\r\n\r\n\t\tpublic
+      UnityEngine.GameObject \u5B66\u751F\u623F\u7AD9\u4F4D_\u6BCD\u4EB2;\r\n\r\n\t\tpublic
+      UnityEngine.GameObject \u5BA2\u5385\u7AD9\u4F4D_\u5B66\u751F;\r\n\r\n\t\tpublic
+      UnityEngine.GameObject \u5BA2\u5385\u95E8\u53E3\u7AD9\u4F4D;\r\n\r\n\t\tpublic
+      UnityEngine.GameObject \u5B66\u751F\u623F\u7AD9\u4F4D_\u5B66\u751F;\r\n\r\n\t\tpublic
+      UnityEngine.GameObject \u5B66\u751F\u623F\u5916\u51FA\u4F4D\u7F6E;\r\n\r\n\t\tpublic
+      UnityEngine.GameObject \u5B66\u751F\u623F\u95E8\u5916\u4F4D\u7F6E;\r\n\r\n\t\tpublic
+      UnityEngine.GameObject \u5B66\u751F\u623F\u7AD9\u4F4D_\u5973\u8001\u5E08;\r\n\r\n\t\tpublic
+      UnityEngine.GameObject \u5BA2\u5385\u5750\u4F4D_\u6BCD\u4EB2;\r\n\r\n\t\tpublic
+      UnityEngine.GameObject \u5BA2\u5385\u5750\u4F4D_\u7236\u4EB2;\r\n\r\n\t\tpublic
+      UnityEngine.GameObject \u5BA2\u5385\u5750\u4F4D_\u5973\u8001\u5E08;\r\n\r\n\t\tpublic
+      UnityEngine.GameObject \u5BA2\u5385\u5750\u4F4D_\u5B66\u751F;\r\n\r\n\t}\r\n}\r\n"

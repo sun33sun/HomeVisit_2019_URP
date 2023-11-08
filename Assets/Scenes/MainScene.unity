@@ -284,7 +284,6 @@ GameObject:
   - component: {fileID: 564670458}
   - component: {fileID: 564670459}
   - component: {fileID: 564670460}
-  - component: {fileID: 564670461}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -327,46 +326,40 @@ MonoBehaviour:
   m_GameObject: {fileID: 564670457}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd6043bde05a7fc4cba197d06915c1e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ad980451443d70438faac0bc6c235a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damping: {x: 0, y: 0, z: 0}
-  ShoulderOffset: {x: 0, y: 1.5, z: 0}
-  VerticalArmLength: 0.4
-  CameraSide: 1
-  CameraDistance: 0.6
-  CameraCollisionFilter:
-    serializedVersion: 2
-    m_Bits: 0
-  IgnoreTag: 
-  CameraRadius: 0.2
---- !u!114 &564670461
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 564670457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4044717213e31446939f7bd49c896ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TrackedObjectOffset: {x: 0, y: 1.48, z: 0}
+  m_TrackedObjectOffset: {x: 0, y: 0.4, z: 0}
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
-  m_HorizontalDamping: 0.5
-  m_VerticalDamping: 0.5
+  m_XDamping: 1
+  m_YDamping: 1
+  m_ZDamping: 1
+  m_TargetMovementOnly: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
+  m_CameraDistance: 1
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
+  m_DeadZoneDepth: 0
+  m_UnlimitedSoftZone: 0
   m_SoftZoneWidth: 0.8
   m_SoftZoneHeight: 0.8
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
+  m_GroupFramingMode: 2
+  m_AdjustmentMode: 0
+  m_GroupFramingSize: 0.8
+  m_MaxDollyIn: 5000
+  m_MaxDollyOut: 5000
+  m_MinimumDistance: 1
+  m_MaximumDistance: 5000
+  m_MinimumFOV: 3
+  m_MaximumFOV: 60
+  m_MinimumOrthoSize: 1
+  m_MaximumOrthoSize: 5000
 --- !u!1001 &623385741
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -395,6 +388,11 @@ PrefabInstance:
       propertyPath: m_HDR
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 20000013668380898, guid: c70aac0028afd42eabc9e0c55824c824,
+        type: 3}
+      propertyPath: m_ClearFlags
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 114574186442532806, guid: c70aac0028afd42eabc9e0c55824c824,
         type: 3}
       propertyPath: m_MatchWidthOrHeight
@@ -409,6 +407,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ReferenceResolution.y
       value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 223938889282763000, guid: c70aac0028afd42eabc9e0c55824c824,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 223938889282763000, guid: c70aac0028afd42eabc9e0c55824c824,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 224089801841284202, guid: c70aac0028afd42eabc9e0c55824c824,
         type: 3}
@@ -685,6 +693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc56c80a7e6ff0946b056f13128bfc8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NeedDestroy: 0
 --- !u!1 &886399482
 GameObject:
   m_ObjectHideFlags: 0
@@ -1215,7 +1224,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 567
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1515,6 +1524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207303cd74fbbcc44a7f90502b10324b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NeedDestroy: 0
   singleTitlePrefab: {fileID: 6612779045072830739, guid: 8b13dbd64fc5b024d9676dfab25a816d,
     type: 3}
   scoreReportPrefab: {fileID: 4966625517963348014, guid: aecf1c941229b934bb215c5c2005ac96,
@@ -1545,6 +1555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40780bcbd35db794589c3b8255c22718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NeedDestroy: 0
 --- !u!1 &2015915205
 GameObject:
   m_ObjectHideFlags: 0
