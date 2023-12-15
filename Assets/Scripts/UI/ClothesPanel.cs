@@ -103,7 +103,7 @@ namespace HomeVisit.UI
 				seq = 3,
 				title = "着装物品准备",
 				startTime = startTime,
-				endTime = DateTime.Now,
+				endTime = DateTime.UtcNow,
 				maxScore = bothClothes.Count + manClothes.Count + womanClothes.Count,
 				score = totalScore,
 				expectTime = new TimeSpan(0, 18, 0)
@@ -128,7 +128,7 @@ namespace HomeVisit.UI
 
 		protected override void OnShow()
 		{
-			startTime = DateTime.Now;
+			startTime = DateTime.UtcNow;
 			UIKit.GetPanel<MainPanel>().NextStep();
 			UIKit.GetPanel<TopPanel>().ChangeTip("请选择得体的衣服。\n点击确定后，将提示得体、不得体的衣服");
 

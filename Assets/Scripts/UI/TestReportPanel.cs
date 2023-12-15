@@ -15,11 +15,9 @@ namespace HomeVisit.UI
 	public partial class TestReportPanel : UIPanel
 	{
 		[SerializeField] List<ScoreReport> reportList;
-		DateTime startTime;
 
 		private void Start()
 		{
-			startTime = DateTime.Now;
 			MonoMgr.GetInstance().AddFixedUpdateListener(() => { tmpDate.text = "当前时间：" + DateTime.Now.ToString("yyyy/MM-dd HH:mm"); });
 		}
 
@@ -46,35 +44,23 @@ namespace HomeVisit.UI
 
 		void Submit()
 		{
-			// int projectScore = 0;
-			// List<Step> steps = new List<Step>();
-			// for (int i = 0; i < reportList.Count; i++)
-			// {
-			// 	string strEvaluation;
-			// 	float percentage = reportList[i].Data.score / (float)reportList[i].Data.maxScore;
-			// 	if (percentage > 0.8)
-			// 		strEvaluation = "优";
-			// 	else if (percentage > 0.66f)
-			// 		strEvaluation = "良";
-			// 	else
-			// 		strEvaluation = "差";
-			// 	Step newStep = new Step()
-			// 	{
-			// 		seq = 0,
-			// 		title = reportList[i].Data.title,
-			// 		startTime = reportList[i].Data.startTime.ToString("u"),
-			// 		endTime = reportList[i].Data.endTime.ToString("u"),
-			// 		timeUsed = (reportList[i].Data.startTime - reportList[i].Data.endTime).ToString(),
-			// 		expectTime = reportList[i].Data.expectTime.ToString(),
-			// 		maxScore = reportList[i].Data.maxScore,
-			// 		score = reportList[i].Data.score,
-			// 		repeatCount = 1,
-			// 		evaluation = strEvaluation
-			// 	};
-			// 	projectScore += reportList[i].Data.score;
-			// 	steps.Add(newStep);
-			// }
-		}
+			int totalScore = 0;
+            foreach (var report in reportList)
+            {
+				ScoreReportData data = report.Data;
+				if(data == null)
+					data = new ScoreReportData();
+				//步骤
+				WebSendScore.Instance.SetStartTime(data.startTime);
+				WebSendScore.Instance.SetEndTime(data.endTime);
+				//总分
+				totalScore += data.score;
+            }
+
+			tmpTotalScore.text = totalScore.ToString();
+
+			WebSendScore.Instance.Submit();
+        }
 
 
 		protected override void OnOpen(IUIData uiData = null)
@@ -128,7 +114,7 @@ namespace HomeVisit.UI
 			{
 				totalScore += item.Data.score;
 			}
-			tmpTotalScore.text = "总成绩：" + totalScore.ToString();
+			tmpTotalScore.text = totalScore.ToString();
 		}
 
 		public void SetTestEvaluate(string newContent)

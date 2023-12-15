@@ -18,7 +18,7 @@ namespace HomeVisit.UI
 
 		private void Start()
 		{
-			startTime = DateTime.Now;
+			startTime = DateTime.UtcNow;
 		}
 
 		protected override void OnInit(IUIData uiData = null)
@@ -41,7 +41,7 @@ namespace HomeVisit.UI
 			{
 				title = "确认家访内容",
 				startTime = this.startTime,
-				endTime = DateTime.Now,
+				endTime = DateTime.UtcNow,
 				score = 2
 			};
 			UIKit.GetPanel<TestReportPanel>().CreateScoreReport(data);

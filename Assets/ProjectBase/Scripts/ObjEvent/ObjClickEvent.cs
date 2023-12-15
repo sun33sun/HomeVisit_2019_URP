@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace ProjectBase
 {
 	public class ObjClickEvent : BaseEvent

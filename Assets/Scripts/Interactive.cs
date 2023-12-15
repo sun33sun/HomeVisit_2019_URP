@@ -3,36 +3,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interactive : MonoBehaviour
+namespace HomeVisit.Task
 {
-	#region 单例模式
-	static Interactive instance;
-	public static Interactive Instance { get { return instance; } }
-	#endregion
-	[SerializeField] List<GameObject> objList;
-
-	private void Awake()
+	public class Interactive : MonoBehaviour
 	{
-		instance = this;
-	}
+		#region 单例模式
+		static Interactive instance;
+		public static Interactive Instance { get { return instance; } }
 
-	public static T Get<T>(string objName)
-	{
-		GameObject obj = instance.objList.Find(o => o.name.Equals(objName));
-		return obj.GetComponent<T>();
-	}
+		#endregion
 
-	public static GameObject Get(string objName)
-	{
-		return instance.objList.Find(o => o.name.Equals(objName));
-	}
+		[SerializeField] List<GameObject> objList;
 
-	private void OnDestroy()
-	{
-		if (instance == this)
+		private void Awake()
 		{
-			instance = null;
+			instance = this;
+		}
+
+		public static T Get<T>(string objName)
+		{
+			GameObject obj = instance.objList.Find(o => o.name.Equals(objName));
+			return obj.GetComponent<T>();
+		}
+
+		public static GameObject Get(string objName)
+		{
+			return instance.objList.Find(o => o.name.Equals(objName));
+		}
+
+		private void OnDestroy()
+		{
+			if (instance == this)
+			{
+				instance = null;
+			}
 		}
 	}
 }
+
 

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a687913e69b985c40bf418e6e5ed7e5b, type: 3}
+  m_Name: "\u5355\u4EB21_\u89C2\u73AF\u5883"
+  m_EditorClassIdentifier: 
+  npcIndex: 0
+  options:
+  - str: "\u8001\u5E08\u6765\u4E86\uFF0C\u522B\u770B\u4E66\u4E86\uFF0C\u51FA\u6765\u89C1\u89C1\u5427\u3002"
+    clip: {fileID: 8300000, guid: 68531912c515eea429e81a34a15baed0, type: 3}
+  - str: "\u8001\u5E08\u6765\u4E86\u4E5F\u4E0D\u77E5\u9053\u8FCE\u63A5\u4E00\u4E0B\uFF0C\u5FEB\u8FC7\u6765\u3002"
+    clip: {fileID: 8300000, guid: ef9503881e4ac084f92a9b90b7af1142, type: 3}
+  - str: "\u8FD9\u5B69\u5B50\u5C31\u77E5\u9053\u628A\u81EA\u5DF1\u5173\u5C4B\u91CC\u770B\u4E66\uFF0C\u4E00\u70B9\u90FD\u4E0D\u61C2\u4E8B\uFF0C\u8001\u5E08\u89C1\u8C05\u3002"
+    clip: {fileID: 8300000, guid: fa7899a16f4fc1e4e99cdacb2897493b, type: 3}

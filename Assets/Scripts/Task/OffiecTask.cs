@@ -13,13 +13,13 @@ namespace HomeVisit.Task
     {
         public async UniTask DoTask(Action callBack)
         {
-            NavMeshAgent agent = global::Interactive.Get<NavMeshAgent>("女老师");
+            NavMeshAgent agent = Interactive.Get<NavMeshAgent>("女老师");
             Animator animator = agent.gameObject.GetComponent<Animator>();
             animator.Play("走路");
-            Vector3 computerPos = global::Interactive.Get("电脑坐位").transform.position;
+            Vector3 computerPos = Interactive.Get("电脑坐位").transform.position;
             agent.SetDestination(computerPos);
             await UniTask.WaitUntil(() => Vector3.Distance(agent.transform.position, computerPos) < 0.1);
-            agent.transform.forward = global::Interactive.Get("电脑坐位").transform.forward;
+            agent.transform.forward = Interactive.Get("电脑坐位").transform.forward;
             await AnimMgr.GetInstance().Play(animator, "坐下").ToUniTask(this);
             callBack?.Invoke();
         }

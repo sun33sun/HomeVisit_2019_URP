@@ -10,16 +10,16 @@ using UnityEngine.UI;
 public class CustomEditor : Editor
 {
 	[MenuItem("GameObject/执行代码",false,49)]
-	public static void SetName()
+	public static void ExecuteScript()
 	{
 		Transform parent = Selection.activeGameObject.transform;
-		GameObject inputPrefab = Resources.Load<GameObject>("input");
-		for (int i = 0; i < parent.childCount; i++)
+		Transform[] childs = parent.GetComponentsInChildren<Transform>(true);
+		Transform FurnitureParent = childs.First(c => c.name.Equals("FurnitureParent"));
+		Transform[] furnitures = childs.Where(c=>c.tag.Equals("Furniture")).ToArray();
+		foreach (Transform t in furnitures)
 		{
-			GameObject newObj = Instantiate(inputPrefab);
-			Transform child = parent.GetChild(i);
-			newObj.name = "input" + child.name.Replace("img", "");
-			child.transform.SetParent(child);
+			t.gameObject.SetActive(false);
+			t.SetParent(FurnitureParent);
 		}
 	}
 }

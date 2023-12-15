@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,8 +23,9 @@ namespace ProjectBase
 			baseEvent.OnClick += callBack;
 		}
 
-		public WaitUntil AddObjClick(GameObject newObj)
+		public IEnumerator AddObjClick(GameObject newObj)
 		{
+			newObj.GetComponent<Collider>().enabled = true;
 			BaseEvent baseEvent = newObj.GetComponent<BaseEvent>();
 			if (baseEvent == null)
 			{
@@ -33,7 +35,10 @@ namespace ProjectBase
 			{
 				Debug.LogWarning($"{newObj.name} : {newObj.GetInstanceID()}\t\t有重复的回调事件：");
 			}
-			return new WaitUntil(() => { return baseEvent.isDestroy; });
+			while (!baseEvent.isDestroy)
+			{
+				yield return null;
+			}
 		}
 
 		public void Register(BaseEvent newEvent)

@@ -18,16 +18,16 @@ namespace HomeVisit
 		{
 			get 
 			{
-				switch (DateTime.Now.Ticks % 3)
+				switch (DateTime.UtcNow.Ticks % 3)
 				{
 					case 0:
 						OldRandomScene = "Developed";
 						break;
 					case 1:
-						OldRandomScene = "Developed";
+						OldRandomScene = "Developing";
 						break;
 					case 2:
-						OldRandomScene = "Developed";
+						OldRandomScene = "ToBeDeveloped";
 						break;
 				}
 				return OldRandomScene;

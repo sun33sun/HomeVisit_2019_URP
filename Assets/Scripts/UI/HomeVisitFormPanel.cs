@@ -49,7 +49,7 @@ namespace HomeVisit.UI
 			{
 				title = "确认家访形式",
 				startTime = startTime,
-				endTime = DateTime.Now,
+				endTime = DateTime.UtcNow,
 				maxScore = titles.Count,
 				score = totalScore
 			};
@@ -76,7 +76,7 @@ namespace HomeVisit.UI
 			{
 				title = "确认家访形式",
 				startTime = startTime,
-				endTime = DateTime.Now,
+				endTime = DateTime.UtcNow,
 				maxScore = titles.Count,
 				score = totalScore
 			};
@@ -126,7 +126,7 @@ namespace HomeVisit.UI
 			UIKit.GetPanel<MainPanel>().NextStep();
 			UIKit.GetPanel<TopPanel>().ChangeTip("请在题目出现后进行答题");
 
-			startTime = DateTime.Now;
+			startTime = DateTime.UtcNow;
 			imgExam.gameObject.SetActive(false);
 			imgSubmitExam.gameObject.SetActive(true);
 			AudioManager.Instance.PlayAudio("1.确认家访形式");

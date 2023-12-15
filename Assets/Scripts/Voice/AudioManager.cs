@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using ProjectBase;
 using System.Collections.Generic;
+using System.Collections;
+using Cysharp.Threading.Tasks;
+using System.Threading;
 
 public class AudioManager : SingletonMono<AudioManager>
 {
@@ -33,7 +36,7 @@ public class AudioManager : SingletonMono<AudioManager>
 		source.clip = null;
 	}
 
-	public WaitUntil Play(string clipName)
+	public IEnumerator Play(string clipName)
 	{
 		AudioClip ac = audioDic[clipName];
 		if (ac == null)
@@ -44,13 +47,30 @@ public class AudioManager : SingletonMono<AudioManager>
 		{
 			source.clip = ac;
 			source.Play();
+
+			while (source.isPlaying)
+			{
+				yield return null;
+			}
 		}
-		return new WaitUntil(CheckPlay);
+
 	}
 
-	bool CheckPlay()
+	public async UniTask Play(AudioClip ac,CancellationToken token)
 	{
-		return !source.isPlaying;
+		if (ac == null)
+		{
+			print($"播放选项语音：Null");
+		}
+		else
+		{
+			source.clip = ac;	
+			source.Play();
+			while (source.isPlaying)
+			{
+				await UniTask.Yield(token);
+			}
+		}
 	}
 }
 

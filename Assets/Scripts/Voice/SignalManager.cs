@@ -7,6 +7,7 @@ using ProjectBase;
 using UnityEngine;
 using UnityEngine.UI;
 
+#if !UNITY_EDITOR
 public class SignalManager : SingletonMono<SignalManager>
 {
 	public Action<string> OnEndRecord;
@@ -24,17 +25,11 @@ public class SignalManager : SingletonMono<SignalManager>
 	private static extern void StopRecord();
 	public void StartRecorderFunc()
 	{
-#if UNITY_EDITOR
-#else
 		StartRecord();
-#endif
 	}
 	public void EndRecorderFunc()
 	{
-#if UNITY_EDITOR
-#else
 		StopRecord();
-#endif
 	}
 	#endregion
 
@@ -88,3 +83,5 @@ public class SignalManager : SingletonMono<SignalManager>
 	}
 	#endregion
 }
+#endif
+

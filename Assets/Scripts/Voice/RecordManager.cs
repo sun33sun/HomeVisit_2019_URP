@@ -8,14 +8,14 @@ public class RecordManager : SingletonMono<RecordManager>
 {
     Dictionary<string, bool> keywordDic = new Dictionary<string, bool>();
 
-#if !UNITY_WEBGL
+#if UNITY_EDITOR
     XunFeiYuYin xunFei;
 #endif
 
-    protected override void Awake()
+	protected override void Awake()
     {
         base.Awake();
-#if !UNITY_WEBGL
+#if UNITY_EDITOR
         xunFei = XunFeiYuYin.Init("ddeb7aa4", "ODk2OTgzMDMxYjczM2Y3YjE0OWQ3ZTM4", "75ba1be15320ede80d3e86bf6fd17c82",
             "c6ea43c9e7b14d163bdeb4e51d2e564d");
         xunFei.语音识别完成事件 += OnResult;
@@ -26,14 +26,13 @@ public class RecordManager : SingletonMono<RecordManager>
 
     public void StartRecord(string[] keywords)
     {
-#if !UNITY_WEBGL
-        keywordDic.Clear();
-        for (int i = 0; i < keywords.Length; i++)
-        {
-            keywordDic.Add(keywords[i], false);
-        }
-
-        xunFei.开始语音识别();
+		keywordDic.Clear();
+		for (int i = 0; i < keywords.Length; i++)
+		{
+			keywordDic.Add(keywords[i], false);
+		}
+#if UNITY_EDITOR
+		xunFei.开始语音识别();
 #else
 		SignalManager.Instance.StartRecorderFunc();
 #endif
@@ -49,20 +48,21 @@ public class RecordManager : SingletonMono<RecordManager>
             if (newStr.Contains(item))
             {
                 keywordDic[item] = true;
-                print("识别到：" + keywordDic[item]);
+                Debug.Log("识别到：" + keywordDic[item]);
             }
             else
             {
-                print("未识别到：" + keywordDic[item]);
+				Debug.Log("未识别到：" + keywordDic[item]);
             }
         }
-        EventCenter.GetInstance().EventTrigger("实时语音结果", newStr);
+		EventCenter.GetInstance().EventTrigger("实时语音结果", newStr);
         EventCenter.GetInstance().EventTrigger("语音识别结果", keywordDic);
     }
 
     public void EndRecord()
     {
-#if !UNITY_WEBGL
+        Debug.Log("Unity Execute EndRecord");
+#if UNITY_EDITOR
         StartCoroutine(xunFei.停止语音识别());
 #else
 		SignalManager.Instance.EndRecorderFunc();

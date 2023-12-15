@@ -5,7 +5,7 @@ using QFramework;
 
 namespace HomeVisit.UI
 {
-	// Generate Id:a5ef7075-c733-44c2-add5-797fbccba065
+	// Generate Id:85a1b13e-b6e0-46f6-9f3c-865ba56dfb00
 	public partial class OnVisitPanel
 	{
 		public const string Name = "OnVisitPanel";
@@ -20,6 +20,8 @@ namespace HomeVisit.UI
 		public UnityEngine.UI.Button btnCancelObserveDetail;
 		[SerializeField]
 		public UnityEngine.UI.Button btnConfirmObserveDetail;
+		[SerializeField]
+		public RecordSpeak RecordSpeak;
 		[SerializeField]
 		public UnityEngine.UI.Image imgPreSpeak;
 		[SerializeField]
@@ -41,12 +43,6 @@ namespace HomeVisit.UI
 		[SerializeField]
 		public TMPro.TextMeshProUGUI tmpSpeakResult;
 		[SerializeField]
-		public UnityEngine.UI.Image imgExpressGratitude;
-		[SerializeField]
-		public UnityEngine.UI.Button btnRefuse;
-		[SerializeField]
-		public UnityEngine.UI.Button btnAccept;
-		[SerializeField]
 		public UnityEngine.UI.Image imgNext;
 		[SerializeField]
 		public UnityEngine.UI.Button btnNext;
@@ -59,10 +55,6 @@ namespace HomeVisit.UI
 		[SerializeField]
 		public UnityEngine.UI.Button btnSubmitOnVisit;
 		[SerializeField]
-		public UnityEngine.UI.Image imgGratitudeTip;
-		[SerializeField]
-		public UnityEngine.UI.Button btnConfirmGratitudeTip;
-		[SerializeField]
 		public UnityEngine.UI.Button btnSwitchHistoryDialogueList;
 		[SerializeField]
 		public UnityEngine.UI.Button btnScreenshot;
@@ -73,13 +65,11 @@ namespace HomeVisit.UI
 		[SerializeField]
 		public UnityEngine.UI.Button btnCloseHistoryDialogueList;
 		[SerializeField]
-		public UnityEngine.UI.Image imgScreenshot;
+		public SelectionWindow SelectionWindow;
 		[SerializeField]
-		public UnityEngine.UI.Button btnCloseScreenshot;
+		public ScreenshotWindow ScreenshotWindow;
 		[SerializeField]
-		public UnityEngine.UI.RawImage rawImgScreenshot;
-		[SerializeField]
-		public UnityEngine.UI.RawImage imgScreenshotEffect;
+		public GiftWindow GiftWindow;
 		
 		private OnVisitPanelData mPrivateData = null;
 		
@@ -90,6 +80,7 @@ namespace HomeVisit.UI
 			imgObserveDetail = null;
 			btnCancelObserveDetail = null;
 			btnConfirmObserveDetail = null;
+			RecordSpeak = null;
 			imgPreSpeak = null;
 			btnStartRecord = null;
 			imgOnSpeak = null;
@@ -100,26 +91,20 @@ namespace HomeVisit.UI
 			btnReRecord = null;
 			btnConfirmRecord = null;
 			tmpSpeakResult = null;
-			imgExpressGratitude = null;
-			btnRefuse = null;
-			btnAccept = null;
 			imgNext = null;
 			btnNext = null;
 			imgInputBk = null;
 			tmpOnVIsitTip = null;
 			InputAnswer = null;
 			btnSubmitOnVisit = null;
-			imgGratitudeTip = null;
-			btnConfirmGratitudeTip = null;
 			btnSwitchHistoryDialogueList = null;
 			btnScreenshot = null;
 			btnShowScreenshot = null;
 			imgHistoryDialogueList = null;
 			btnCloseHistoryDialogueList = null;
-			imgScreenshot = null;
-			btnCloseScreenshot = null;
-			rawImgScreenshot = null;
-			imgScreenshotEffect = null;
+			SelectionWindow = null;
+			ScreenshotWindow = null;
+			GiftWindow = null;
 			
 			mData = null;
 		}

@@ -5,9 +5,6 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using ProjectBase;
-using Newtonsoft.Json;
-using System.IO;
-using UnityEngine.Networking;
 using HomeVisit.Character;
 using System;
 using Cysharp.Threading.Tasks;
@@ -15,449 +12,418 @@ using DG.Tweening;
 using HomeVisit.Task;
 using TMPro;
 using HomeVisit.Screenshot;
-using UnityEngine.Events;
+using System.Threading;
 
 namespace HomeVisit.UI
 {
-    public enum RecordState
-    {
-        None,
-        WaitRecord,
-        Recording,
-        HaveResult,
-        ResultIsRight
-    }
+	public enum NPCIndex
+	{
+		母亲, 老师1, 学生1, 学生2, 父亲
+	}
 
-    public class OnVisitPanelData : UIPanelData
-    {
-    }
+	public enum RecordState
+	{
+		None, WaitRecord, Recording, HaveResult, ResultIsRight
+	}
 
-    public partial class OnVisitPanel : UIPanel
-    {
-        bool isRefuseGift = false;
-        public string[] keywords;
-        public RecordState recordState;
-        public int score = 0;
-        bool isConfirm = false;
-        DateTime startTime;
-        [SerializeField] TextMeshProUGUI dialoguePrefab;
-        [SerializeField] Sprite[] sprites;
-        List<TextMeshProUGUI> tmpDialogues = new List<TextMeshProUGUI>();
+	public class OnVisitPanelData : UIPanelData
+	{
+	}
 
-        protected override void OnInit(IUIData uiData = null)
-        {
-            EventCenter.GetInstance().RemoveEventListener<Dictionary<string, bool>>("语音识别结果", OnResult);
-            EventCenter.GetInstance().RemoveEventListener<string>("实时语音结果", RealTimeResult);
-            EventCenter.GetInstance().RemoveEventListener<int>("访中过程试题完成", AddScore);
+	public partial class OnVisitPanel : UIPanel
+	{
+		public string[] keywords;
+		public RecordState recordState;
+		public int score = 0;
+		bool isConfirm = false;
+		DateTime startTime;
+		[SerializeField] TextMeshProUGUI dialoguePrefab;
+		[SerializeField] Sprite[] sprites;
+		List<TextMeshProUGUI> tmpDialogues = new List<TextMeshProUGUI>();
 
-            EventCenter.GetInstance().AddEventListener<Dictionary<string, bool>>("语音识别结果", OnResult);
-            EventCenter.GetInstance().AddEventListener<int>("访中过程试题完成", AddScore);
-            EventCenter.GetInstance().AddEventListener<string>("实时语音结果", RealTimeResult);
+		CancellationTokenSource cts = null;
 
-            mData = uiData as OnVisitPanelData ?? new OnVisitPanelData();
+		protected override void OnInit(IUIData uiData = null)
+		{
+			EventCenter.GetInstance().RemoveEventListener<Dictionary<string, bool>>("语音识别结果", OnResult);
+			EventCenter.GetInstance().RemoveEventListener<string>("实时语音结果", RealTimeResult);
+			EventCenter.GetInstance().RemoveEventListener<int>("访中过程试题完成", AddScore);
 
-            btnCancelObserveDetail.onClick.AddListener(() => { imgObserveDetail.gameObject.SetActive(false); });
-            btnConfirmObserveDetail.onClick.AddListener(ConfirmObserveDetail);
-            btnStartRecord.onClick.AddListener(StartRecord);
-            btnEndRecord.onClick.AddListener(EndRecord);
-            btnReRecord.onClick.AddListener(ReRecord);
-            btnConfirmRecord.onClick.AddListener(ConfirmRecord);
-            btnRefuse.onClick.AddListener(() =>
-            {
-                imgExpressGratitude.gameObject.SetActive(false);
-                isRefuseGift = true;
-            });
-            btnAccept.onClick.AddListener(() =>
-            {
-                imgGratitudeTip.gameObject.SetActive(true);
-                imgExpressGratitude.gameObject.SetActive(false);
-            });
-            btnConfirmGratitudeTip.onClick.AddListener(() =>
-            {
-                imgGratitudeTip.gameObject.SetActive(false);
-                imgExpressGratitude.gameObject.SetActive(true);
-            });
-            btnNext.onClick.AddListener(Next);
-            btnSubmitOnVisit.onClick.AddListener(SubmitOnVisit);
-            //历史对话
-            btnSwitchHistoryDialogueList.onClick.AddListener(() =>
-            {
-                imgHistoryDialogueList.gameObject.SetActive(!imgHistoryDialogueList.gameObject.activeInHierarchy);
-            });
-            //截图
-            bool isScreenshot = false;
-            btnScreenshot.onClick.AddListener(async () =>
-            {
-                if(WaveChangeInstance != null)
-                    return;
-                isScreenshot = true;
-                ScreenshotManager.Instance.CaptureScreenshot(rawImgScreenshot).Forget();
-                await UniTask.Yield();
-                await UniTask.Yield();
-                UIRoot.Instance.GraphicRaycaster.enabled = false;
-                imgScreenshotEffect.texture = rawImgScreenshot.texture;
-                UIKit.GetPanel<TestReportPanel>().ReloadScreenshot(rawImgScreenshot.texture);
-                imgScreenshotEffect.gameObject.SetActive(true);
-                imgScreenshotEffect.transform.localScale = Vector3.one;
-                imgScreenshotEffect.transform.localPosition = Vector3.zero;
-                imgScreenshotEffect.transform.DOLocalMove(btnShowScreenshot.transform.localPosition, 0.5f);
-                await imgScreenshotEffect.transform.DOScale(Vector3.zero, 0.5f).AsyncWaitForCompletion();
-                UIRoot.Instance.GraphicRaycaster.enabled = true;
-            });
-            btnShowScreenshot.onClick.AddListener(() =>
-            {
-                if (isScreenshot)
-                {
-                    imgScreenshot.gameObject.SetActive(true);
-                }
-            });
-            btnCloseHistoryDialogueList.onClick.AddListener(() =>
-            {
-                imgHistoryDialogueList.gameObject.SetActive(false);
-            });
-            btnCloseScreenshot.onClick.AddListener(() => { imgScreenshot.gameObject.SetActive(false); });
+			EventCenter.GetInstance().AddEventListener<Dictionary<string, bool>>("语音识别结果", OnResult);
+			EventCenter.GetInstance().AddEventListener<int>("访中过程试题完成", AddScore);
+			EventCenter.GetInstance().AddEventListener<string>("实时语音结果", RealTimeResult);
 
-            InitState();
+			mData = uiData as OnVisitPanelData ?? new OnVisitPanelData();
 
-            StartCoroutine(LoadSceneAsync());
-        }
+			btnCancelObserveDetail.onClick.AddListener(() => { imgObserveDetail.gameObject.SetActive(false); });
+			btnConfirmObserveDetail.onClick.AddListener(ConfirmObserveDetail);
+			btnStartRecord.onClick.AddListener(StartRecord);
+			btnEndRecord.onClick.AddListener(EndRecord);
+			btnReRecord.onClick.AddListener(ReRecord);
+			btnConfirmRecord.onClick.AddListener(ConfirmRecord);
 
-        void Next()
-        {
-            StartCoroutine(UnloadOnVisitAsync());
-        }
+			btnNext.onClick.AddListener(Next);
+			btnSubmitOnVisit.onClick.AddListener(SubmitOnVisit);
+			//历史对话
+			btnSwitchHistoryDialogueList.onClick.AddListener(() => imgHistoryDialogueList.gameObject.SetActive(!imgHistoryDialogueList.gameObject.activeInHierarchy));
+			//截图
+			btnScreenshot.onClick.AddListener(() =>
+			{
+				if (WaveChangeInstance != null)
+					return;
+				ScreenshotWindow.Screenshot(btnShowScreenshot.transform.localPosition);
+			});
+			btnShowScreenshot.onClick.AddListener(ScreenshotWindow.Show);
 
-        IEnumerator UnloadOnVisitAsync()
-        {
-            MainPanel mainPanel = UIKit.GetPanel<MainPanel>();
-            yield return UIKit.OpenPanelAsync<RecordSheetPanel>(
-                prefabName: Settings.UI + QAssetBundle.Recordsheetpanel_prefab.RECORDSHEETPANEL);
-            Hide();
-        }
+			btnCloseHistoryDialogueList.onClick.AddListener(() => imgHistoryDialogueList.gameObject.SetActive(false));
 
-        public void ShowNext()
-        {
-            imgNext.gameObject.SetActive(true);
-        }
+			InitState();
 
-        void AddScore(int addScore)
-        {
-            score += addScore;
-        }
+			StartCoroutine(LoadSceneAsync());
+		}
 
-        #region 访中过程UI
+		void Next()
+		{
+			StartCoroutine(UnloadOnVisitAsync());
+		}
 
-        void SubmitOnVisit()
-        {
-            imgInputBk.gameObject.SetActive(false);
-            EventCenter.GetInstance().EventTrigger<string>(tmpOnVIsitTip.text, InputAnswer.text);
-            InputAnswer.text = "";
-        }
+		IEnumerator UnloadOnVisitAsync()
+		{
+			MainPanel mainPanel = UIKit.GetPanel<MainPanel>();
+			yield return UIKit.OpenPanelAsync<RecordSheetPanel>(
+				prefabName: Settings.UI + QAssetBundle.Recordsheetpanel_prefab.RECORDSHEETPANEL);
+			Hide();
+		}
 
-        public void ShowOnVisitInput(string strTip)
-        {
-            imgInputBk.gameObject.SetActive(true);
-            tmpOnVIsitTip.text = strTip;
-        }
+		public void ShowNext()
+		{
+			imgNext.gameObject.SetActive(true);
+		}
 
-        #endregion
+		void AddScore(int addScore)
+		{
+			score += addScore;
+		}
 
-        void ConfirmObserveDetail()
-        {
-            //关闭自己
-            imgObserveDetail.gameObject.SetActive(false);
-        }
+		#region 访中过程UI
 
-        #region 语音部分
+		void SubmitOnVisit()
+		{
+			imgInputBk.gameObject.SetActive(false);
+			EventCenter.GetInstance().EventTrigger<string>(tmpOnVIsitTip.text, InputAnswer.text);
+			InputAnswer.text = "";
+		}
 
-        void IndexConvert(ref int index)
-        {
-            switch (Settings.OldRandomScene)
-            {
-                case "ToBeDeveloped":
-                case "Developing":
-                    if (index == 2 || index == 2)
-                        index = 3;
-                    break;
-                case "Developed":
-                    if (index == 2 || index == 2)
-                        index = 2;
-                    break;
-                default:
-                    break;
-            }
-        }
+		public void ShowOnVisitInput(string strTip)
+		{
+			imgInputBk.gameObject.SetActive(true);
+			tmpOnVIsitTip.text = strTip;
+		}
 
-        //展示家长说的话
-        public void AddHistoryDialogue(int index, string strWord)
-        {
-            CloseRecord();
-            btnDialogue.gameObject.SetActive(true);
-            IndexConvert(ref index);
-            btnDialogue.sprite = sprites[index];
-            txtDialogue.text = strWord;
-            string historyWord = "";
-            switch (index)
-            {
-                case 0:
-                    historyWord = "母亲：" + strWord;
-                    break;
-                case 1:
-                    historyWord = "老师：" + strWord;
-                    break;
-                case 2:
-                case 3:
-                    historyWord = "学生：" + strWord;
-                    break;
-                case 4:
-                    historyWord = "父亲：" + strWord;
-                    break;
-                default:
-                    return;
-            }
+		#endregion
 
-            TextMeshProUGUI tmpDialogue = Instantiate(dialoguePrefab);
-            tmpDialogue.text = historyWord;
-            tmpDialogue.transform.SetParent(imgHistoryDialogueList.content);
-            tmpDialogue.transform.localScale = Vector3.one;
-            tmpDialogue.transform.SetAsLastSibling();
-            LayoutRebuilder.ForceRebuildLayoutImmediate(imgHistoryDialogueList.content);
-        }
+		void ConfirmObserveDetail()
+		{
+			//关闭自己
+			imgObserveDetail.gameObject.SetActive(false);
+		}
 
-        //展示开始录音UI
-        public void ShowRecordUI(string[] keywords)
-        {
-            this.keywords = keywords;
-            btnDialogue.gameObject.SetActive(false);
-            CloseRecord();
-            imgPreSpeak.gameObject.SetActive(true);
-            //重置状态
-            isConfirm = false;
-            recordState = RecordState.WaitRecord;
-        }
+		#region 语音部分
 
-        //点击后开始录音
-        void StartRecord()
-        {
-            CloseRecord();
-            imgOnSpeak.gameObject.SetActive(true);
-            btnEndRecord.interactable = false;
-            WaveChangeInstance = WaveChange();
-            StartCoroutine(WaveChangeInstance);
-            RecordManager.Instance.StartRecord(keywords);
-            tmpSpeakResult.text = "";
-            recordState = RecordState.Recording;
-        }
+		void IndexConvert(ref int index)
+		{
+			switch (Settings.OldRandomScene)
+			{
+				case "ToBeDeveloped":
+				case "Developing":
+					if (index == 2 || index == 2)
+						index = 3;
+					break;
+				case "Developed":
+					if (index == 2 || index == 2)
+						index = 2;
+					break;
+				default:
+					break;
+			}
+		}
 
-        //录音结果返回
-        void OnResult(Dictionary<string, bool> keywordDic)
-        {
-            bool isAllRight = true;
-            foreach (var item in keywordDic.Values)
-            {
-                if (!item)
-                {
-                    recordState = RecordState.HaveResult;
-                    isAllRight = false;
-                }
-                else
-                {
-                    score += 1;
-                }
-            }
+		//展示家长说的话
+		public void AddHistoryDialogue(NPCIndex npcSprite, string strWord)
+		{
+			int index = (int)npcSprite;
+			CloseRecord();
+			btnDialogue.gameObject.SetActive(true);
+			IndexConvert(ref index);
+			btnDialogue.sprite = sprites[index];
+			txtDialogue.text = strWord;
+			string historyWord = $"{npcSprite}：{strWord}";
 
-            if (isAllRight || isConfirm)
-            {
-                CloseRecord();
-                recordState = RecordState.ResultIsRight;
-            }
-        }
+			TextMeshProUGUI tmpDialogue = Instantiate(dialoguePrefab);
+			tmpDialogue.text = historyWord;
+			tmpDialogue.transform.SetParent(imgHistoryDialogueList.content);
+			tmpDialogue.transform.localScale = Vector3.one;
+			tmpDialogue.transform.SetAsLastSibling();
+			LayoutRebuilder.ForceRebuildLayoutImmediate(imgHistoryDialogueList.content);
+		}
 
-        void RealTimeResult(string speakResult)
-        {
-            tmpSpeakResult.text = speakResult;
-            TextMeshProUGUI tmpDialogue = Instantiate(dialoguePrefab);
-            tmpDialogue.text = "老师 : " + speakResult;
-            tmpDialogue.transform.SetParent(imgHistoryDialogueList.content);
-            tmpDialogue.transform.localScale = Vector3.one;
-            tmpDialogue.transform.SetAsLastSibling();
-            LayoutRebuilder.ForceRebuildLayoutImmediate(imgHistoryDialogueList.content);
-        }
+		//展示开始录音UI
+		public void ShowRecordUI(string[] keywords)
+		{
+			this.keywords = keywords;
+			btnDialogue.gameObject.SetActive(false);
+			CloseRecord();
+			imgPreSpeak.gameObject.SetActive(true);
+			//重置状态
+			isConfirm = false;
+			recordState = RecordState.WaitRecord;
+		}
 
-        //录音不理想，再次录音
-        void ReRecord()
-        {
-            CloseRecord();
-            imgPreSpeak.gameObject.SetActive(true);
-        }
+		//点击后开始录音
+		void StartRecord()
+		{
+			CloseRecord();
+			imgOnSpeak.gameObject.SetActive(true);
+			btnEndRecord.interactable = false;
+			WaveChangeInstance = StartCoroutine(WaveChange());
+			RecordManager.Instance.StartRecord(keywords);
+			tmpSpeakResult.text = "";
+			recordState = RecordState.Recording;
+		}
 
-        //结束录音
-        void EndRecord()
-        {
-            CloseRecord();
-            RecordManager.Instance.EndRecord();
-            imgPostSpeak.gameObject.SetActive(true);
-        }
+		//录音结果返回
+		void OnResult(Dictionary<string, bool> keywordDic)
+		{
+			bool isAllRight = true;
+			foreach (var item in keywordDic.Values)
+			{
+				if (!item)
+				{
+					recordState = RecordState.HaveResult;
+					isAllRight = false;
+				}
+				else
+				{
+					score += 1;
+				}
+			}
 
-        //录音动画
-        private IEnumerator WaveChangeInstance = null;
-        IEnumerator WaveChange()
-        {
-            float value = 0;
-            WaitForEndOfFrame wait = new WaitForEndOfFrame();
-            imgFillWave.fillOrigin = 0;
-            float timer = 0;
+			if (isAllRight || isConfirm)
+			{
+				CloseRecord();
+				recordState = RecordState.ResultIsRight;
+			}
+		}
 
-            bool isAdd = true;
-            while (recordState != RecordState.ResultIsRight)
-            {
-                if (value > 1)
-                {
-                    imgFillWave.fillOrigin = 1;
-                    isAdd = false;
-                }
-                else if (value < 0)
-                {
-                    imgFillWave.fillOrigin = 0;
-                    isAdd = true;
-                }
+		void RealTimeResult(string speakResult)
+		{
+			if (speakResult.Equals("没有麦克风"))
+				btnEndRecord.interactable = true;
+			tmpSpeakResult.text = speakResult;
+			TextMeshProUGUI tmpDialogue = Instantiate(dialoguePrefab, imgHistoryDialogueList.content);
+			tmpDialogues.Add(tmpDialogue);
+			tmpDialogue.text = "老师 : " + speakResult;
+			tmpDialogue.transform.localScale = Vector3.one;
+			tmpDialogue.transform.SetAsLastSibling();
+			LayoutRebuilder.ForceRebuildLayoutImmediate(imgHistoryDialogueList.content);
+		}
 
-                imgFillWave.fillAmount = value;
-                if (isAdd)
-                    value += Time.deltaTime;
-                else
-                    value -= Time.deltaTime;
-                timer += Time.deltaTime;
-                yield return wait;
-                if (timer > 15)
-                    btnEndRecord.interactable = true;
-            }
-        }
+		//录音不理想，再次录音
+		void ReRecord()
+		{
+			CloseRecord();
+			imgPreSpeak.gameObject.SetActive(true);
+		}
 
-        //关闭所有录音UI
-        public void CloseRecord()
-        {
-            if (WaveChangeInstance != null)
-            {
-                StopCoroutine(WaveChangeInstance);
-                WaveChangeInstance = null;                
-            }
-            tmpSpeakResult.text = "";
-            imgPreSpeak.gameObject.SetActive(false);
-            imgOnSpeak.gameObject.SetActive(false);
-            imgPostSpeak.gameObject.SetActive(false);
-        }
+		//结束录音
+		void EndRecord()
+		{
+			CloseRecord();
+			RecordManager.Instance.EndRecord();
+			imgPostSpeak.gameObject.SetActive(true);
+		}
 
-        //确认录音，直接进入下一步
-        public void ConfirmRecord()
-        {
-            CloseRecord();
-            //记录状态
-            if (recordState == RecordState.HaveResult)
-                recordState = RecordState.ResultIsRight;
-            else
-                isConfirm = true;
-        }
+		//录音动画
+		private Coroutine WaveChangeInstance = null;
+		IEnumerator WaveChange()
+		{
+			float value = 0;
+			WaitForEndOfFrame wait = new WaitForEndOfFrame();
+			imgFillWave.fillOrigin = 0;
+			float timer = 0;
 
-        #endregion
+			bool isAdd = true;
+			while (recordState != RecordState.ResultIsRight)
+			{
+				if (value > 1)
+				{
+					imgFillWave.fillOrigin = 1;
+					isAdd = false;
+				}
+				else if (value < 0)
+				{
+					imgFillWave.fillOrigin = 0;
+					isAdd = true;
+				}
 
-        #region 实验报告
+				imgFillWave.fillAmount = value;
+				if (isAdd)
+					value += Time.deltaTime;
+				else
+					value -= Time.deltaTime;
+				timer += Time.deltaTime;
+				yield return wait;
+				if (timer > 10)
+					btnEndRecord.interactable = true;
+			}
+		}
 
-        public void GenerateReportData(string title, int maxScore)
-        {
-            ScoreReportData data = new ScoreReportData()
-            {
-                title = title,
-                startTime = startTime,
-                endTime = DateTime.Now,
-                maxScore = maxScore,
-                score = this.score
-            };
-            //重置记录数据
-            score = 0;
-            startTime = DateTime.Now;
-            UIKit.GetPanel<TestReportPanel>().CreateScoreReport(data);
-        }
+		//关闭所有录音UI
+		public void CloseRecord()
+		{
+			if (WaveChangeInstance != null)
+			{
+				StopCoroutine(WaveChangeInstance);
+				WaveChangeInstance = null;
+			}
+			tmpSpeakResult.text = "";
+			imgPreSpeak.gameObject.SetActive(false);
+			imgOnSpeak.gameObject.SetActive(false);
+			imgPostSpeak.gameObject.SetActive(false);
+		}
 
-        #endregion
+		//确认录音，直接进入下一步
+		public void ConfirmRecord()
+		{
+			CloseRecord();
+			//记录状态
+			//if (recordState == RecordState.HaveResult)
+			//    recordState = RecordState.ResultIsRight;
+			//else
+			//    isConfirm = true;
 
-        IEnumerator LoadSceneAsync()
-        {
-            TopPanel topPanel = UIKit.GetPanel<TopPanel>();
-            yield return topPanel.CloseEyeAnim();
-            AsyncOperation operation = SceneManager.LoadSceneAsync(Settings.RandomScene);
-            yield return operation;
-            CameraManager.Instance.SetRoamPos(FemaleTeacher.Instance.transform.position);
-            CameraManager.Instance.SetRoamForward(FemaleTeacher.Instance.transform.forward);
+			recordState = RecordState.ResultIsRight;
+			isConfirm = true;
+		}
 
-            switch (UIKit.GetPanel<HomeVisitContentPanel>().GetHomeType())
-            {
-                case "传统":
-                    TraditionTask.Instance.StartCoroutine(TraditionTask.Instance.StartTask());
-                    break;
-                case "多孩":
-                    MultipleChildrenTask.Instance.StartCoroutine(MultipleChildrenTask.Instance.StartTask());
-                    break;
-                case "单亲":
-                    SingleParentTask.Instance.StartCoroutine(SingleParentTask.Instance.StartTask());
-                    break;
-            }
+		#endregion
 
-            startTime = DateTime.Now;
-            topPanel.ChangeTip("请进行在线实验，过程中需要念出右上角关键字");
-        }
+		#region 实验报告
 
-        public void InitState()
-        {
-            imgObserveDetail.gameObject.SetActive(false);
-            CloseRecord();
-            imgExpressGratitude.gameObject.SetActive(false);
-            imgNext.gameObject.SetActive(false);
+		public void GenerateReportData(string title, int maxScore)
+		{
+			ScoreReportData data = new ScoreReportData()
+			{
+				title = title,
+				startTime = startTime,
+				endTime = DateTime.UtcNow,
+				maxScore = maxScore,
+				score = this.score
+			};
+			//重置记录数据
+			score = 0;
+			startTime = DateTime.UtcNow;
+			UIKit.GetPanel<TestReportPanel>().CreateScoreReport(data);
+		}
 
-            UIKit.GetPanel<MainPanel>().StartTMP();
-        }
+		#endregion
 
-        public WaitUntil ShowExpressGratitude()
-        {
-            CloseRecord();
-            isRefuseGift = false;
-            imgExpressGratitude.gameObject.SetActive(true);
-            return new WaitUntil(() => { return isRefuseGift; });
-        }
+		IEnumerator LoadSceneAsync()
+		{
+			TopPanel topPanel = UIKit.GetPanel<TopPanel>();
+			yield return topPanel.CloseEyeAnim();
+			AsyncOperation operation = SceneManager.LoadSceneAsync(Settings.RandomScene);
+			yield return operation;
+			CameraManager.Instance.SetRoamPos(FemaleTeacher.Instance.transform.position);
+			CameraManager.Instance.SetRoamForward(FemaleTeacher.Instance.transform.forward);
 
-        protected override void OnOpen(IUIData uiData = null)
-        {
-        }
+			switch (UIKit.GetPanel<HomeVisitContentPanel>().GetHomeType())
+			{
+				case "传统":
+					TraditionTask.Instance.StartCoroutine(TraditionTask.Instance.StartTask());
+					break;
+				case "多孩":
+					MultipleChildrenTask.Instance.StartCoroutine(MultipleChildrenTask.Instance.StartTask());
+					break;
+				case "单亲":
+					SingleParentTask.Instance.StartCoroutine(SingleParentTask.Instance.StartTask());
+					break;
+			}
 
-        protected override void OnShow()
-        {
-            tmpSpeakResult.text = "";
-            imgScreenshotEffect.gameObject.SetActive(false);
-        }
+			startTime = DateTime.UtcNow;
+			topPanel.ChangeTip("请进行在线实验，过程中需要念出右上角关键字");
+		}
 
-        protected override void OnHide()
-        {
-        }
+		public void InitState()
+		{
+			imgObserveDetail.gameObject.SetActive(false);
+			CloseRecord();
+			imgNext.gameObject.SetActive(false);
 
-        protected override void OnClose()
-        {
-        }
+			UIKit.GetPanel<MainPanel>().StartTMP();
+		}
 
-        public void SetMask(bool enable)
-        {
-            GetComponent<Image>().enabled = enable;
-        }
+		public IEnumerator ShowExpressGratitude()
+		{
+			CloseRecord();
+			yield return GiftWindow.ShowExpressGratitude();
+		}
 
-        public override void Hide()
-        {
-            for (int i = tmpDialogues.Count - 1; i >= 0; i--)
-            {
-                Destroy(tmpDialogues[i].gameObject);
-                tmpDialogues.RemoveAt(i);
-            }
+		protected override void OnOpen(IUIData uiData = null)
+		{
+		}
 
-            tmpDialogues.Clear();
-            base.Hide();
-        }
-    }
+		protected override void OnShow()
+		{
+			tmpSpeakResult.text = "";
+		}
+
+		protected override void OnHide()
+		{
+		}
+
+		protected override void OnClose()
+		{
+		}
+
+		public void SetMask(bool enable)
+		{
+			GetComponent<Image>().enabled = enable;
+		}
+
+		public override void Hide()
+		{
+		}
+
+		public async UniTask WaitSelectionOptions(SelectionSO selectionSO)
+		{
+			SelectionWindow.gameObject.SetActive(true);
+			OptionData data = await SelectionWindow.WaitSelectionOptions(selectionSO);
+			SelectionWindow.gameObject.SetActive(false);
+			//初始化值
+			TaskHelper.StartSpeak(selectionSO.npcIndex);
+			AddHistoryDialogue(selectionSO.npcIndex, data.str);
+			//播放音乐
+			await AudioManager.Instance.Play(data.clip, cts.Token);
+			//清除后遗症
+			TaskHelper.StopSpeak(selectionSO.npcIndex);
+			btnDialogue.gameObject.SetActive(false);
+		}
+
+		private void OnEnable()
+		{
+			if (cts != null)
+			{
+				cts.Dispose();
+				cts = null;
+			}
+
+			cts = new CancellationTokenSource();
+		}
+
+		private void OnDisable()
+		{
+			cts?.Cancel();
+		}
+	}
 }

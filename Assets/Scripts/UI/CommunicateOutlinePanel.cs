@@ -55,7 +55,7 @@ namespace HomeVisit.UI
 				seq = 2,
 				title = "交流提纲",
 				startTime = startTime,
-				endTime = DateTime.Now,
+				endTime = DateTime.UtcNow,
 				maxScore = titles.Count,
 				score = totalScore,
 				expectTime = new TimeSpan(0,18,0)
@@ -69,7 +69,7 @@ namespace HomeVisit.UI
 
 		IEnumerator LoadPaper()
 		{
-			DateTime startTime = DateTime.Now;
+			DateTime startTime = DateTime.UtcNow;
 
 			yield return WebKit.GetInstance().Read<List<OutlineTitleData>>(Settings.PAPER + "Paper_Outline.json", d => { datas = d; });
 
@@ -96,7 +96,7 @@ namespace HomeVisit.UI
 
 		protected override void OnShow()
 		{
-			startTime = DateTime.Now;
+			startTime = DateTime.UtcNow;
 			UIKit.GetPanel<MainPanel>().NextStep();
 
 			btnConfirm.gameObject.SetActive(true);

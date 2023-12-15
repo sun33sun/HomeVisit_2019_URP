@@ -28,17 +28,15 @@ public class ObjColliderEvent : MonoBehaviour
 		box.enabled = false;
 	}
 
-	public WaitUntil AreaHighlight()
+	public IEnumerator AreaHighlight()
 	{
 		mr.enabled = true;
 		box.enabled = true;
 
 		isCollision = false;
-		return new WaitUntil(CheckCollision);
-	}
-
-	bool CheckCollision()
-	{
-		return isCollision;
+		while (!isCollision)
+		{
+			yield return null;
+		}
 	}
 }

@@ -530,13 +530,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c698247ca8bb7fa4c85961a4aaa456f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NeedDestroy: 1
-  sprites:
-  - {fileID: 21300000, guid: 1f1c5b04519466e44ae580db9fc38d32, type: 3}
-  - {fileID: 21300000, guid: 98975091f8b4a8848b9c838795a9065e, type: 3}
-  - {fileID: 21300000, guid: 9b1a5892a42c6c94c8294b63a42b4eb2, type: 3}
-  - {fileID: 21300000, guid: 549e99783ce4ee649b523b850b78dc7b, type: 3}
-  - {fileID: 21300000, guid: d371974c5aa2684458b3f64e0d2de7d3, type: 3}
+  selectionObservingEnvironment: {fileID: 11400000, guid: f4c88eec79c3c074baf114f409a59ad8,
+    type: 2}
+  selectionExplainClass: {fileID: 11400000, guid: 41eaba5a5ec38de4f8f54cb02ad1028d,
+    type: 2}
+  selectionFindOutSituation: {fileID: 11400000, guid: 82bdaea85c6dcf64782574d45bd51f94,
+    type: 2}
+  selectionClarifyExpectations: {fileID: 11400000, guid: d84039cf36cb82945828bab3ad9cd043,
+    type: 2}
+  selectionRice: {fileID: 11400000, guid: 3fe6709b03ec3324f952c98ace578b39, type: 2}
+  selectionNormal: {fileID: 11400000, guid: 8e9c76855604b194886ac774b1e68f29, type: 2}
+  selectionPoor: {fileID: 11400000, guid: 0c2f242735295334c921ad858a18803a, type: 2}
 --- !u!114 &21724577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -549,13 +553,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49befbcec1566d94cb10f24124e543b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NeedDestroy: 1
-  sprites:
-  - {fileID: 21300000, guid: 1f1c5b04519466e44ae580db9fc38d32, type: 3}
-  - {fileID: 21300000, guid: 98975091f8b4a8848b9c838795a9065e, type: 3}
-  - {fileID: 21300000, guid: 9b1a5892a42c6c94c8294b63a42b4eb2, type: 3}
-  - {fileID: 21300000, guid: 549e99783ce4ee649b523b850b78dc7b, type: 3}
-  - {fileID: 21300000, guid: d371974c5aa2684458b3f64e0d2de7d3, type: 3}
+  selectionClarifyExpectations: {fileID: 11400000, guid: c2a26f3f3486b304486e85bf48615685,
+    type: 2}
+  selectionRelieveAnxiety: {fileID: 11400000, guid: e60dee2f03c0e3643880a2b6253c2066,
+    type: 2}
+  selectionRice: {fileID: 11400000, guid: 3fe6709b03ec3324f952c98ace578b39, type: 2}
+  selectionNormal: {fileID: 11400000, guid: 8e9c76855604b194886ac774b1e68f29, type: 2}
+  selectionPoor: {fileID: 11400000, guid: 0c2f242735295334c921ad858a18803a, type: 2}
 --- !u!114 &21724578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -568,13 +572,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b2339270e6c46149a4cec2cef0f28c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NeedDestroy: 1
-  sprites:
-  - {fileID: 21300000, guid: 1f1c5b04519466e44ae580db9fc38d32, type: 3}
-  - {fileID: 21300000, guid: 98975091f8b4a8848b9c838795a9065e, type: 3}
-  - {fileID: 21300000, guid: 9b1a5892a42c6c94c8294b63a42b4eb2, type: 3}
-  - {fileID: 21300000, guid: 549e99783ce4ee649b523b850b78dc7b, type: 3}
-  - {fileID: 21300000, guid: d371974c5aa2684458b3f64e0d2de7d3, type: 3}
+  selectionFindOutSituation: {fileID: 11400000, guid: b37ff74e5aab32741b50f57b6a20bc59,
+    type: 2}
+  selectionClarifyExpectations: {fileID: 11400000, guid: 98370b2ffbc717240af3f4e22f155426,
+    type: 2}
+  selectionRelieveAnxiety: {fileID: 11400000, guid: 3fd4600361a34c944b88d98524ae49f8,
+    type: 2}
+  selectionRice: {fileID: 11400000, guid: 3fe6709b03ec3324f952c98ace578b39, type: 2}
+  selectionNormal: {fileID: 11400000, guid: 8e9c76855604b194886ac774b1e68f29, type: 2}
+  selectionPoor: {fileID: 11400000, guid: 0c2f242735295334c921ad858a18803a, type: 2}
 --- !u!114 &21724579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4959,7 +4965,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &358639322
 Transform:
   m_ObjectHideFlags: 0
@@ -6766,7 +6772,7 @@ GameObject:
   - component: {fileID: 454870619}
   m_Layer: 0
   m_Name: shafa
-  m_TagString: Untagged
+  m_TagString: Furniture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -21248,7 +21254,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &667679552
 Transform:
   m_ObjectHideFlags: 0
@@ -23860,7 +23866,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &796882789
 Transform:
   m_ObjectHideFlags: 0
@@ -27012,7 +27018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1043159314
 Transform:
   m_ObjectHideFlags: 0
@@ -32880,7 +32886,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1295990914
 Transform:
   m_ObjectHideFlags: 0
@@ -33677,7 +33683,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1349601197
 Transform:
   m_ObjectHideFlags: 0
@@ -35235,7 +35241,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1417338399
 Transform:
   m_ObjectHideFlags: 0
@@ -39140,7 +39146,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1672880359
 Transform:
   m_ObjectHideFlags: 0
@@ -44336,7 +44342,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1925908500
 Transform:
   m_ObjectHideFlags: 0
@@ -45913,7 +45919,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2035589942
 Transform:
   m_ObjectHideFlags: 0
@@ -46941,7 +46947,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2093839666
 Transform:
   m_ObjectHideFlags: 0

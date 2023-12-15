@@ -16,7 +16,7 @@ namespace HomeVisit.UI
 
 		private void Start()
 		{
-			startTime = DateTime.Now;
+			startTime = DateTime.UtcNow;
 			btnConfirmInformationSecurity.onClick.AddListener(() => { InformationSecurity.gameObject.SetActive(false); });
 		}
 

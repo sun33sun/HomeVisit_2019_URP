@@ -54,15 +54,6 @@ namespace HomeVisit
 			return gameObj.GetComponent<TogOutline>();
 		}
 
-		public ScoreReport CreateScoreReport(ScoreReportData data)
-		{
-			GameObject gameObj = Instantiate(scoreReportPrefab);
-			gameObj.name = scoreReportPrefab.name;
-			ScoreReport scoreReport = gameObj.GetComponent<ScoreReport>();
-			scoreReport.Init(data);
-			return scoreReport;
-		}
-
 		public JudgeTitle CreateJudgeTitle(JudgeTitleData data)
 		{
 			GameObject gameObj = Instantiate(judgeTitlePrefab);

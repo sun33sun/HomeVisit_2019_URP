@@ -269,7 +269,8 @@
         function StartRecord () {
             if (microPhoneState == 1) {
                 connectWebSocket();
-            }
+            }else
+                sendWavData("没有麦克风");
         }
         // 结束
         function StopRecord () {
@@ -283,7 +284,7 @@
         // 切片像unity发送音频数据
         function sendWavData (blob) {
             newStr = '识别内容：' + blob;
-            UnityIns.SendMessage("SignalManager", "OnEndRecordTrigger", '开始录音');
+            UnityIns.SendMessage("SignalManager", "OnEndRecordTrigger", blob);
             console.log(`类型为 : ${typeof blob}\t\t内容为 : ${blob}`);
         }
     </script>

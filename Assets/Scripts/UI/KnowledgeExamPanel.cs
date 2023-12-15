@@ -166,7 +166,7 @@ namespace HomeVisit.UI
 						seq = 1,
 						title = "ÖªÊ¶¿¼ºË",
 						startTime = startTime,
-						endTime = DateTime.Now,
+						endTime = DateTime.UtcNow,
 						score = totalScore
 					};
 					TestReportPanel testReportPanel = UIKit.GetPanel<TestReportPanel>();
@@ -211,7 +211,7 @@ namespace HomeVisit.UI
 				LoadKnowledgeExamPaper();
 			}
 
-			startTime = DateTime.Now;
+			startTime = DateTime.UtcNow;
 			imgExam.gameObject.SetActive(true);
 			imgConfirmConfirm.gameObject.SetActive(false);
 			btnConfirm.transform.SetAsLastSibling();

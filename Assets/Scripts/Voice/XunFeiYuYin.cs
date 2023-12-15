@@ -11,7 +11,7 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using ZenFulcrum.EmbeddedBrowser;
 
-#if !UNITY_WEBGL
+#if UNITY_EDITOR
 public class XunFeiYuYin : MonoBehaviour
 {
     public enum Voice
@@ -80,13 +80,16 @@ public class XunFeiYuYin : MonoBehaviour
         string url = string.Format("{0}?authorization={1}&date={2}&host={3}", uri, authorization, date, uri.Host);
         return url;
     }
-    #region 语音识别
+	#region 语音识别
 
     public void 开始语音识别()
     {
         if (Microphone.devices.Length < 1)
-            return;
-        if (语音识别WebSocket != null && 语音识别WebSocket.State == WebSocketState.Open)
+        {
+			语音识别完成事件?.Invoke("没有麦克风");
+			return;
+		}
+		if (语音识别WebSocket != null && 语音识别WebSocket.State == WebSocketState.Open)
         {
             Debug.LogWarning("开始语音识别失败！，等待上次识别连接结束");
             return;
@@ -99,7 +102,6 @@ public class XunFeiYuYin : MonoBehaviour
     {
         if (Microphone.devices.Length < 1)
 		{
-            语音识别完成事件?.Invoke("没有麦克风");
            yield break;
         }
         Microphone.End(null);
@@ -251,9 +253,9 @@ public class XunFeiYuYin : MonoBehaviour
         //WebSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "关闭WebSocket连接",new CancellationToken());
         Microphone.End(null);
     }
-    #endregion
+	#endregion
 
-    #region 语音合成
+	#region 语音合成
     public AudioSource 语音合成流播放器;
     ClientWebSocket 语音合成WebSocket;
     int 语音流总长度 = 0;
@@ -375,9 +377,9 @@ public class XunFeiYuYin : MonoBehaviour
         // convert to range from -1 to (just below) 1
         return s / 32768.0F;
     }
-    #endregion
+	#endregion
 
-    #region 语音评测
+	#region 语音评测
     AudioClip 语音评测录音;
     public AudioClip 开始语音评测录音()
     {
@@ -459,7 +461,7 @@ public class XunFeiYuYin : MonoBehaviour
         }
         return ret.PadLeft(32, '0');
     }
-    #endregion
+	#endregion
 
 }
 #endif
